@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>JesusTD</name>
+    <description></description>
+    <version>1.0</version>
+    <author></author>
+    <unique-id>3lwefwx8ssrq4</unique-id>
+    <saved-with-version>8300</saved-with-version>
+    <used-plugins>
+        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="wastrel_or" version="1">OR</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
+        <plugin id="Sprite" version="1">Sprite</plugin>
+        <plugin id="Text" version="1">Text</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior id="Bullet" version="1">Bullet</behavior>
+        <behavior id="DragnDrop" version="1">Drag &amp; Drop</behavior>
+        <behavior id="Flash" version="1">Flash</behavior>
+        <behavior id="Physics" version="1">Physics</behavior>
+        <behavior id="Pin" version="1">Pin</behavior>
+        <behavior id="Rotate" version="1">Rotate</behavior>
+        <behavior id="bound" version="1">Bound to layout</behavior>
+        <behavior id="custom" version="1">Custom Movement</behavior>
+        <behavior id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior id="solid" version="1">Solid</behavior>
+    </used-behaviors>
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>800</width>
+        <height>600</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Off</prop>
+        <prop name="Preview browser">Chrome</prop>
+        <prop name="Preview mode">HTTP</prop>
+        <prop name="Sampling">Linear</prop>
+    </configuration-settings>
+    <object-folder expanded="1">
+        <object-folder expanded="1" name="Krull">
+            <object-type name="KrullBase">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="# of minions killed by all the weapons attached to this enemy" name="totalMinionsKilled" type="number" />
+                    <instance-variable comment="the index of this enemy in the list" name="listIndex" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Bullet">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                    <behavior-type name="Solid">
+                        <behavior id="solid" />
+                    </behavior-type>
+                    <behavior-type name="DragDrop">
+                        <behavior id="DragnDrop" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="1">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.208333" y="0.228261" />
+                                <point x="0.469203" y="0.115942" />
+                                <point x="0.762681" y="0.184783" />
+                                <point x="0.903986" y="0.481884" />
+                                <point x="0.79529" y="0.764493" />
+                                <point x="0.516304" y="0.884058" />
+                                <point x="0.244565" y="0.778986" />
+                                <point x="0.103261" y="0.51087" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="KrullBlade">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="number of minions killed by the blade" name="minionsKilled" type="number" />
+                    <instance-variable comment="the index in the enemy list of this krull" name="listIndex" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                    <behavior-type name="Rotate">
+                        <behavior id="Rotate" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.498127" hotspotY="0.513109">
+                            <collision-poly>
+                                <point x="0.2603" y="0.0411985" />
+                                <point x="0.646067" y="0.0187266" />
+                                <point x="0.949438" y="0.254682" />
+                                <point x="0.979401" y="0.64794" />
+                                <point x="0.7397" y="0.955056" />
+                                <point x="0.346442" y="0.985019" />
+                                <point x="0.0430712" y="0.730337" />
+                                <point x="0.0205993" y="0.35206" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Path">
+            <object-type name="Bar">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="nodeUID" type="number" />
+                    <instance-variable name="valid" type="boolean" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6">
+                            <image-point name="Endpoint" x="1" y="0.6" />
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6">
+                            <image-point name="Endpoint" x="1" y="0.6" />
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Green" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6">
+                            <image-point name="Endpoint" x="1" y="0.6" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="LeadingBar">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="nodeIndex" type="number" />
+                    <instance-variable name="nextNodeIndex" type="number" />
+                    <instance-variable comment="the index of the parent object in the master list" name="listIndex" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Node">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="nodeIndex" type="number" />
+                    <instance-variable comment="UID of previous bar" name="barUID" type="number" />
+                    <instance-variable comment="has the node been moved?" name="moving" type="boolean" />
+                    <instance-variable comment="the next node in the path" name="nextNode" type="number" />
+                    <instance-variable comment="the previous node in the path" name="previousNode" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="DragDrop">
+                        <behavior id="DragnDrop" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.0666667" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.933333" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.933333" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.0666667" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="NodeLabel">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Path">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the total number of nodes in the path" name="pathCount" type="number" />
+                    <instance-variable comment="is a node in the path currently being moved?" name="currentlyMovingNode" type="boolean" />
+                    <instance-variable comment="is the path currently being traced?" name="currentlyTracing" type="boolean" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="DragDrop">
+                        <behavior id="DragnDrop" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.0666667" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.933333" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.933333" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.0666667" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="0" name="Rocket">
+            <object-type name="Rocket">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the index of the enemy that spawned this beam" name="listIndex" type="number" />
+                    <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
+                    <instance-variable comment="the time (in ticks) when the rocket was launched" name="launchTime" type="number" />
+                    <instance-variable comment="has the rocket cleared the cannon body?" name="armed" type="boolean" />
+                    <instance-variable comment="the default rocket speed" name="defaultSpeed" type="number" />
+                    <instance-variable name="rocketLaunchBoost" type="number" />
+                    <instance-variable comment="should the rocket be detonated?" name="readyToDetonate" type="boolean" />
+                    <instance-variable comment="default fire rate for a gun loaded with this ammo" name="defaultFireRate" type="number" />
+                    <instance-variable comment="the ammo type value " name="ammoType" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="DestroyOutsideLayout">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                    <behavior-type name="Bullet">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                    <behavior-type name="CustomMovement">
+                        <behavior id="custom" />
+                    </behavior-type>
+                    <behavior-type name="Physics">
+                        <behavior id="Physics" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.545455">
+                            <image-point name="top" x="1" y="0.545455" />
+                            <image-point name="bottom" x="0" y="0.545455" />
+                            <collision-poly>
+                                <point x="0.88" y="0.272727" />
+                                <point x="1" y="0.5" />
+                                <point x="0.88" y="0.727273" />
+                                <point x="0.24375" y="0.727273" />
+                                <point x="0.04875" y="0.988636" />
+                                <point x="0.00375003" y="0.494318" />
+                                <point x="0.04875" y="0.0113636" />
+                                <point x="0.24125" y="0.261364" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="RocketEffects">
+                <plugin id="Particles" />
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                    <behavior-type name="DestroyOutsideLayout">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                </behaviors>
+                <texture />
+            </object-type>
+            <object-type name="RocketExplosion">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="17" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="100">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.517241" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.517241" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.517241" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.517241" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.516129" />
+                        <frame duration="1" hotspotX="0.515152" hotspotY="0.516129" />
+                        <frame duration="1" hotspotX="0.515152" hotspotY="0.516129" />
+                        <frame duration="1" hotspotX="0.515152" hotspotY="0.516129" />
+                        <frame duration="1" hotspotX="0.515152" hotspotY="0.516129" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="0" name="Beam">
+            <object-type name="Beam">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the index of the enemy that spawned this beam" name="listIndex" type="number" />
+                    <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
+                    <instance-variable comment="the default speed of the beam" name="defaultSpeed" type="number" />
+                    <instance-variable name="ammoType" type="number" />
+                    <instance-variable comment="the default rate of fire (ticks to wait per shot)" name="defaultFireRate" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="DestroyOutsideLayout">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                    <behavior-type name="Bullet">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.5">
+                            <image-point name="top" x="1" y="0.5" />
+                            <image-point name="bottom" x="0" y="0.5" />
+                            <collision-poly>
+                                <point x="1" y="0" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Data Sources">
+            <object-type name="ObjectMaster">
+                <plugin id="Arr" />
+                <instance-variables>
+                    <instance-variable comment="The total number of enemies in this list" name="total" type="number" />
+                </instance-variables>
+            </object-type>
+            <object-type name="Parameters">
+                <plugin id="Rex_Hash" />
+            </object-type>
+        </object-folder>
+        <object-folder expanded="0" name="Input">
+            <object-type name="Keyboard">
+                <plugin id="Keyboard" />
+            </object-type>
+            <object-type name="Mouse">
+                <plugin id="Mouse" />
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Turret">
+            <object-type name="distanceToTarget">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="TurretBase">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="# of minions killed by all the weapons attached to this enemy" name="totalMinionsKilled" type="number" />
+                    <instance-variable comment="the index of this enemy in the list" name="listIndex" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Solid">
+                        <behavior id="solid" />
+                    </behavior-type>
+                    <behavior-type name="DragDrop">
+                        <behavior id="DragnDrop" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="1" name="Rocket" pingpong="0" repeatcount="1" repeatto="0" speed="1">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.202703" y="0.202703" />
+                                <point x="0.5" y="0.189189" />
+                                <point x="0.797297" y="0.202703" />
+                                <point x="0.810811" y="0.5" />
+                                <point x="0.797297" y="0.797297" />
+                                <point x="0.202703" y="0.797297" />
+                                <point x="0.189189" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Beam" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.202703" y="0.202703" />
+                                <point x="0.5" y="0.189189" />
+                                <point x="0.797297" y="0.202703" />
+                                <point x="0.810811" y="0.5" />
+                                <point x="0.797297" y="0.797297" />
+                                <point x="0.202703" y="0.797297" />
+                                <point x="0.189189" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="0" name="Jesus">
+            <object-type name="Jesus">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="Is the base spawing minions?" name="Active" type="boolean" />
+                    <instance-variable comment="is this the big jesus?" name="bigJesus" type="boolean" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Solid">
+                        <behavior id="solid" />
+                    </behavior-type>
+                    <behavior-type name="DragDrop">
+                        <behavior id="DragnDrop" />
+                    </behavior-type>
+                    <behavior-type name="Flash">
+                        <behavior id="Flash" />
+                    </behavior-type>
+                    <behavior-type name="BoundToLayout">
+                        <behavior id="bound" />
+                    </behavior-type>
+                    <behavior-type name="CustomMovement">
+                        <behavior id="custom" />
+                    </behavior-type>
+                    <behavior-type name="Bullet">
+                        <behavior id="Bullet" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="0" name="Default" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="1" hotspotY="0.3025">
+                            <collision-poly>
+                                <point x="0.28" y="0.15125" />
+                                <point x="0.4225" y="0.16125" />
+                                <point x="0.63" y="0.28125" />
+                                <point x="1" y="0.26625" />
+                                <point x="0.905" y="0.99375" />
+                                <point x="0.5" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0.0075" y="0.56125" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="1" hotspotY="0.3025">
+                            <collision-poly>
+                                <point x="0.28" y="0.15125" />
+                                <point x="0.4225" y="0.16125" />
+                                <point x="0.63" y="0.28125" />
+                                <point x="1" y="0.26625" />
+                                <point x="0.905" y="0.99375" />
+                                <point x="0.5" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0.0075" y="0.56125" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Cannon">
+            <object-type name="Cannon">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="number of minions killed by the cannon" name="minionsKilled" type="number" />
+                    <instance-variable comment="the index in the enemy array of the parent krull" name="listIndex" type="number" />
+                    <instance-variable comment="cannon rate of fire (# ticks delay between each shot)" name="fireRate" type="number" />
+                    <instance-variable comment="time in game seconds when the cannon was fired last" name="lastFired" type="number" />
+                    <instance-variable comment="the id of the active ammo" name="activeAmmo" type="number" />
+                    <instance-variable comment="the default spin rate (deg/sec) of the cannon" name="defaultSpinRate" type="number" />
+                    <instance-variable comment="the maximum range (in px) that the cannon can aquire targets" name="targetRangeMax" type="number" />
+                    <instance-variable comment="the minum range (in px) that the cannon can aquire targets" name="targetRangeMin" type="number" />
+                    <instance-variable comment="the UId of the current target" name="currentTarget" type="number" />
+                    <instance-variable comment="are the weapons of this cannon online?" name="readyToFire" type="boolean" />
+                    <instance-variable comment="should the ui paint the lead to target?" name="showingLeadToTarget" type="boolean" />
+                    <instance-variable comment="does the cannon need to be setup?" name="fullyDeployed" type="boolean" />
+                    <instance-variable comment="the UID of the target lead" name="leadToTargetUID" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                    <behavior-type name="Rotate">
+                        <behavior id="Rotate" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Rocket" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="barrelEnd" x="0.972973" y="0.5" />
+                            <collision-poly>
+                                <point x="0.445946" y="0.445946" />
+                                <point x="0.5" y="0.418919" />
+                                <point x="0.986486" y="0.5" />
+                                <point x="0.5" y="0.581081" />
+                                <point x="0.445946" y="0.554054" />
+                                <point x="0.418919" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Beam" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="BarrelEnd" x="0.972973" y="0.5" />
+                            <collision-poly>
+                                <point x="0.445946" y="0.445946" />
+                                <point x="0.5" y="0.418919" />
+                                <point x="0.986486" y="0.5" />
+                                <point x="0.5" y="0.581081" />
+                                <point x="0.445946" y="0.554054" />
+                                <point x="0.418919" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="RangeFinder">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Rocket" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.21" y="0.21" />
+                                <point x="0.5" y="0.09" />
+                                <point x="0.79" y="0.21" />
+                                <point x="0.92" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.93" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.08" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Beam" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.21" y="0.21" />
+                                <point x="0.5" y="0.09" />
+                                <point x="0.79" y="0.21" />
+                                <point x="0.92" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.93" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.08" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="TargetLeadBar">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the index of the parent object in the master list" name="listIndex" type="number" />
+                    <instance-variable name="labelUID" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="LineOfSite" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="NoLineOfSite" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="0" name="Misc">
+            <object-type name="HiddenWall">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Solid">
+                        <behavior id="solid" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Branch">
+                <plugin id="Rex_Branch" />
+            </object-type>
+            <object-type name="OR">
+                <plugin id="wastrel_or" />
+            </object-type>
+            <object-type name="txtDebug">
+                <plugin id="Text" />
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Minion">
+            <object-type name="Minion">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="currentPathNode" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="CustomMovement">
+                        <behavior id="custom" />
+                    </behavior-type>
+                    <behavior-type name="DestroyOutsideLayout">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.21" y="0.345" />
+                                <point x="0.41" y="0.04" />
+                                <point x="0.545" y="0.05" />
+                                <point x="0.67" y="0.335" />
+                                <point x="0.625" y="0.55" />
+                                <point x="0.66" y="0.88" />
+                                <point x="0.18" y="0.9" />
+                                <point x="0.285" y="0.51" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.21" y="0.345" />
+                                <point x="0.41" y="0.04" />
+                                <point x="0.545" y="0.05" />
+                                <point x="0.67" y="0.335" />
+                                <point x="0.625" y="0.55" />
+                                <point x="0.66" y="0.88" />
+                                <point x="0.18" y="0.9" />
+                                <point x="0.285" y="0.51" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder expanded="1" name="Barrier">
+            <object-type name="BarrierWall">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="is the barrier currently being placed?" name="beingPlaced" type="boolean" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Solid">
+                        <behavior id="solid" />
+                    </behavior-type>
+                    <behavior-type name="DragDrop">
+                        <behavior id="DragnDrop" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+    </object-folder>
+    <families>
+        <family name="Turret" plugin-id="Sprite">
+            <members>
+                <member>Cannon</member>
+                <member>TurretBase</member>
+            </members>
+        </family>
+    </families>
+    <layout-folder expanded="1">
+        <layout>MainLayout.xml</layout>
+    </layout-folder>
+    <event-folder expanded="1">
+        <event-sheet>MainEvents.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Mouse" />
+        <global-instance type="Keyboard" />
+    </global-instances>
+    <sounds-folder expanded="1" />
+    <music-folder expanded="1" />
+</c2project>
