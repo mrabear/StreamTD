@@ -7,15 +7,15 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8300</saved-with-version>
     <used-plugins>
-        <plugin id="Arr" version="1">Array</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Rex_Branch" version="1">Branch</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Particles" version="1">Particles</plugin>
-        <plugin id="wastrel_or" version="1">OR</plugin>
         <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Particles" version="1">Particles</plugin>
         <plugin id="Text" version="1">Text</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="wastrel_or" version="1">OR</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -189,6 +189,14 @@
             </object-type>
             <object-type name="NodeLabel">
                 <plugin id="Text" />
+                <instance-variables>
+                    <instance-variable comment="the parent node UID" name="parentNodeUID" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
             </object-type>
             <object-type name="Path">
                 <plugin id="Sprite" />

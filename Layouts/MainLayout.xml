@@ -724,6 +724,12 @@
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                     </properties>
+                    <instance-variables>
+                        <parentNodeUID>0</parentNodeUID>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
                     <world>
                         <x>-274</x>
                         <y>142</y>
@@ -758,8 +764,8 @@
                         <width>30</width>
                         <height>30</height>
                         <depth>0</depth>
-                        <hotspotX>0.533333004</hotspotX>
-                        <hotspotY>0.533333004</hotspotY>
+                        <hotspotX>0.533333361</hotspotX>
+                        <hotspotY>0.533333361</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

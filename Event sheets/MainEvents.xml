@@ -181,8 +181,30 @@
         <variable comment="the current UID in the path" name="currentNodeUID" type="number">0</variable>
         <event-group description="Path that minions follow" title="Path">
             <sub-events>
-                <comment></comment>
+                <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <variable comment="The frequency (in seconds)  that a coordinate will be saved while drawing a new path" name="pathPollRate" type="number">0.1</variable>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">NodeLabel</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Node">
+                                    <param id="0" name="Unique ID">nodelabel.parentNodeUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="NodeLabel">
+                                    <param id="0" name="Text">node.nodeindex</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <comment>Add a new node to the path</comment>
                 <event-block>
                     <conditions>
@@ -204,9 +226,10 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <variable comment="the index of the node that the bar belongs to" name="nodeIndex" type="number">0</variable>
-                        <variable name="newUID" type="number">0</variable>
-                        <variable name="existingUID" type="number">0</variable>
+                        <variable comment="the index of the node that the bar belongs to" name="newNodeIndex" type="number">0</variable>
+                        <variable name="nextNodeUID" type="number">0</variable>
+                        <variable name="prevNodeUID" type="number">0</variable>
+                        <variable name="newNodeUID" type="number">0</variable>
                         <comment>Find the index of the node that the bar belongs to</comment>
                         <event-block>
                             <conditions>
@@ -216,8 +239,48 @@
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">nodeIndex</param>
+                                    <param id="0" name="Variable">newNodeIndex</param>
                                     <param id="1" name="Value">Node.nodeIndex</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">prevNodeUID</param>
+                                    <param id="1" name="Value">node.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Find the next node in the chain</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">newNodeIndex + 1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">newNodeIndex</param>
+                                    <param id="1" name="Value">Node.nodeIndex</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">nextNodeUID</param>
+                                    <param id="1" name="Value">node.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Increment all of the nodes in front of the new one</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">newNodeIndex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -238,8 +301,20 @@
                                     <param id="0" name="Instance variable">moving</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-10" name="Set value" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Value">newNodeIndex</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Node">
+                                    <param id="0" name="Instance variable">nextNode</param>
+                                    <param id="1" name="Value">nextNodeUID</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Node">
+                                    <param id="0" name="Instance variable">previousNode</param>
+                                    <param id="1" name="Value">prevNodeUID</param>
+                                </action>
                                 <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">newUID</param>
+                                    <param id="0" name="Variable">newNodeUID</param>
                                     <param id="1" name="Value">node.UID</param>
                                 </action>
                                 <action id="-3" name="Create object" type="System">
@@ -263,52 +338,65 @@
                                     <param id="0" name="Instance variable">pathCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">NodeLabel</param>
+                                    <param id="1" name="Layer">parameters.Entry( &quot;turretLayer&quot; )</param>
+                                    <param id="2" name="X">node.X</param>
+                                    <param id="3" name="Y">node.Y</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" type="NodeLabel">
+                                    <param id="0" name="Pin to">Node</param>
+                                </action>
+                                <action id="-10" name="Set value" type="NodeLabel">
+                                    <param id="0" name="Instance variable">parentNodeUID</param>
+                                    <param id="1" name="Value">node.UID</param>
+                                </action>
                             </actions>
-                        </event-block>
-                        <comment>Add the new node to the array and update all of the elements</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-10" name="For" type="System">
-                                    <param id="0" name="Name">&quot;UpdateNodes&quot;</param>
-                                    <param id="1" name="Start index">nodeIndex</param>
-                                    <param id="2" name="End index">path.pathCount - 1</param>
-                                </condition>
-                            </conditions>
-                            <actions />
                             <sub-events>
+                                <comment>Splice the new node into the existing path</comment>
                                 <event-block>
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Node</param>
                                         </condition>
-                                        <condition id="-7" name="Compare instance variable" type="Node">
-                                            <param id="0" name="Instance variable">nodeIndex</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">loopindex</param>
-                                        </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" type="Node">
-                                            <param id="0" name="Instance variable">nodeIndex</param>
-                                            <param id="1" name="Value">loopindex</param>
-                                        </action>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">existingUID</param>
-                                            <param id="1" name="Value">node.UID</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions />
-                                    <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">newUID</param>
-                                            <param id="1" name="Value">existingUID</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" type="Node">
+                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">newNodeIndex -1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" type="Node">
+                                                    <param id="0" name="Instance variable">nextNode</param>
+                                                    <param id="1" name="Value">newNodeUID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" type="Node">
+                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">newNodeIndex + 1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" type="Node">
+                                                    <param id="0" name="Instance variable">previousNode</param>
+                                                    <param id="1" name="Value">newNodeUID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <comment>Pin the new node to the mouse to allow the user to reposition it</comment>
                         <event-block>
                             <conditions />
                             <actions>
@@ -340,7 +428,12 @@
                                     <param id="0" name="Instance variable">moving</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-3" name="Set position" type="Node">
+                                    <param id="0" name="X">mouse.X</param>
+                                    <param id="1" name="Y">mouse.Y</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -463,14 +556,18 @@
                             <param id="0" name="Variable">currentNodeUID</param>
                             <param id="1" name="Value">node.UID</param>
                         </action>
-                        <action disabled="1" id="-3" name="Create object" type="System">
+                        <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">NodeLabel</param>
                             <param id="1" name="Layer">parameters.Entry( &quot;turretLayer&quot; )</param>
                             <param id="2" name="X">node.X</param>
                             <param id="3" name="Y">node.Y</param>
                         </action>
-                        <action disabled="1" id="0" name="Set text" type="NodeLabel">
-                            <param id="0" name="Text">node.UID</param>
+                        <action behavior="Pin" id="0" name="Pin to object" type="NodeLabel">
+                            <param id="0" name="Pin to">Node</param>
+                        </action>
+                        <action id="-10" name="Set value" type="NodeLabel">
+                            <param id="0" name="Instance variable">parentNodeUID</param>
+                            <param id="1" name="Value">node.UID</param>
                         </action>
                     </actions>
                     <sub-events>
