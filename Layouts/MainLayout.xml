@@ -198,11 +198,8 @@
                         <effectsUID>0</effectsUID>
                         <launchTime>0</launchTime>
                         <armed>false</armed>
-                        <defaultSpeed>50</defaultSpeed>
-                        <rocketLaunchBoost>1000</rocketLaunchBoost>
                         <readyToDetonate>false</readyToDetonate>
-                        <defaultFireRate>150</defaultFireRate>
-                        <ammoType>1</ammoType>
+                        <cannonUID>0</cannonUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout" />
@@ -299,6 +296,9 @@
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
+                    <instance-variables>
+                        <baseUID>0</baseUID>
+                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
                     </behavior-instances>
@@ -324,6 +324,7 @@
                     <instance-variables>
                         <listIndex>0</listIndex>
                         <labelUID>0</labelUID>
+                        <baseUID>0</baseUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
@@ -550,10 +551,11 @@
                         <targetRangeMax>0</targetRangeMax>
                         <targetRangeMin>0</targetRangeMin>
                         <currentTarget>0</currentTarget>
-                        <readyToFire>false</readyToFire>
+                        <readyToFire>true</readyToFire>
                         <showingLeadToTarget>true</showingLeadToTarget>
                         <fullyDeployed>false</fullyDeployed>
                         <leadToTargetUID>0</leadToTargetUID>
+                        <baseUID>0</baseUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
@@ -586,9 +588,7 @@
                     <instance-variables>
                         <listIndex>0</listIndex>
                         <effectsUID>0</effectsUID>
-                        <defaultSpeed>200</defaultSpeed>
-                        <ammoType>2</ammoType>
-                        <defaultFireRate>50</defaultFireRate>
+                        <cannonUID>0</cannonUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout" />
@@ -717,7 +717,7 @@
                 <instance type="NodeLabel">
                     <properties>
                         <text>Text</text>
-                        <initial-visibility>Visible</initial-visibility>
+                        <initial-visibility>Invisible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>0,0,0</color>
                         <horizontal-alignment>Left</horizontal-alignment>

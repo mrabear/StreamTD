@@ -40,11 +40,19 @@
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketTargetRangeMax&quot;</param>
-                            <param id="1" name="Value">125</param>
+                            <param id="1" name="Value">175</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketTargetRangeMin&quot;</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;rocketDefaultProjectileSpeed&quot;</param>
+                            <param id="1" name="Value">50</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;rocketLaunchBoost&quot;</param>
+                            <param id="1" name="Value">1000</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;beamAmmoType&quot;</param>
@@ -56,11 +64,15 @@
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;beamTargetRangeMax&quot;</param>
-                            <param id="1" name="Value">100</param>
+                            <param id="1" name="Value">150</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;beamTargetRangeMin&quot;</param>
                             <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;beamDefaultProjectileSpeed&quot;</param>
+                            <param id="1" name="Value">400</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;backgroundLayer&quot;</param>
@@ -183,9 +195,9 @@
             <sub-events>
                 <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <variable comment="The frequency (in seconds)  that a coordinate will be saved while drawing a new path" name="pathPollRate" type="number">0.1</variable>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-11" name="For Each" type="System">
+                        <condition disabled="1" id="-11" name="For Each" type="System">
                             <param id="0" name="Object">NodeLabel</param>
                         </condition>
                     </conditions>
@@ -1231,7 +1243,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A cannon that fires projectiles" title="Cannon">
+        <event-group description="A cannon that fires projectiles" title="Cannon">
             <sub-events>
                 <variable comment="the maximum rate of fire (shot/sec) for the cannon" name="maxFireRate" type="number">10</variable>
                 <variable comment="the minimum rate of fire (shot/sec) for the cannon" name="minFireRate" type="number">300</variable>
@@ -1247,10 +1259,7 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <comment></comment>
-                        <variable comment="the distance from the turret to the nearest minion" name="distanceToMinion" type="number">0</variable>
-                        <variable comment="has a target been found?" name="targetFound" type="number">0</variable>
-                        <comment>Sticky targeting keeps the gun trained on a minion until it is out of range</comment>
+                        <comment>If the cannon has been created, but not fully setup, create the additional components and setup all of the initial variables.</comment>
                         <event-block>
                             <conditions>
                                 <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Cannon">
@@ -1258,78 +1267,210 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="-3" name="Create object" type="System">
+                                <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">RangeFinder</param>
                                     <param id="1" name="Layer">Parameters.Entry(&quot;backgroundLayer&quot;)</param>
-                                    <param id="2" name="X">Cannon.X</param>
-                                    <param id="3" name="Y">Cannon.Y</param>
+                                    <param id="2" name="X">cannon.X</param>
+                                    <param id="3" name="Y">cannon.Y</param>
                                 </action>
-                                <action disabled="1" id="-7" name="Set size" type="RangeFinder">
-                                    <param id="0" name="Width">Cannon.targetRangeMax * 2</param>
-                                    <param id="1" name="Height">Cannon.targetRangeMax * 2</param>
+                                <action id="-25" name="Move to bottom" type="RangeFinder" />
+                                <action id="-10" name="Set value" type="RangeFinder">
+                                    <param id="0" name="Instance variable">baseUID</param>
+                                    <param id="1" name="Value">cannon.baseuid</param>
                                 </action>
-                                <action disabled="1" id="4" name="Set animation" type="RangeFinder">
-                                    <param id="0" name="Animation">&quot;Rocket&quot;</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                                <action disabled="1" id="-25" name="Move to bottom" type="RangeFinder" />
-                                <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="RangeFinder">
-                                    <param id="0" name="Pin to">Cannon</param>
-                                </action>
-                                <action disabled="1" id="-3" name="Create object" type="System">
+                                <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">TargetLeadBar</param>
                                     <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
                                     <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                     <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                 </action>
-                                <action disabled="1" id="-15" name="Set visible" type="TargetLeadBar">
+                                <action id="-15" name="Set visible" type="TargetLeadBar">
                                     <param id="0" name="Visibility">0</param>
                                 </action>
-                                <action disabled="1" id="-10" name="Set value" type="TargetLeadBar">
+                                <action id="-10" name="Set value" type="TargetLeadBar">
                                     <param id="0" name="Instance variable">listIndex</param>
                                     <param id="1" name="Value">cannon.listIndex</param>
                                 </action>
-                                <action disabled="1" id="3" name="Set at XY" type="ObjectMaster">
-                                    <param id="0" name="X">cannon.listindex</param>
+                                <action id="-10" name="Set value" type="TargetLeadBar">
+                                    <param id="0" name="Instance variable">baseUID</param>
+                                    <param id="1" name="Value">cannon.baseuid</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="ObjectMaster">
+                                    <param id="0" name="X">cannon.listIndex</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Value">TargetLeadBar.UID</param>
                                 </action>
-                                <action disabled="1" id="-3" name="Create object" type="System">
+                                <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">distanceToTarget</param>
                                     <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                                    <param id="2" name="X">turretbase.X</param>
-                                    <param id="3" name="Y">turretbase.Y</param>
+                                    <param id="2" name="X">cannon.X</param>
+                                    <param id="3" name="Y">cannon.Y</param>
                                 </action>
-                                <action disabled="1" id="-15" name="Set visible" type="distanceToTarget">
+                                <action id="-15" name="Set visible" type="distanceToTarget">
                                     <param id="0" name="Visibility">0</param>
                                 </action>
-                                <action disabled="1" id="-10" name="Set value" type="TargetLeadBar">
+                                <action id="-10" name="Set value" type="TargetLeadBar">
                                     <param id="0" name="Instance variable">labelUID</param>
                                     <param id="1" name="Value">distanceToTarget.UID</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <comment>Setup the rocket ammo</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Cannon">
+                                            <param id="0" name="Instance variable">activeAmmo</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Cannon">
+                                            <param id="0" name="Animation">&quot;Rocket&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">fireRate</param>
+                                            <param id="1" name="Value">Parameters.Entry(&quot;rocketDefaultFireRate&quot;)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">targetRangeMax</param>
+                                            <param id="1" name="Value">Parameters.Entry(&quot;rocketTargetRangeMax&quot;)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">targetRangeMin</param>
+                                            <param id="1" name="Value">Parameters.Entry(&quot;rocketTargetRangeMin&quot;)</param>
+                                        </action>
+                                        <action id="4" name="Set animation" type="RangeFinder">
+                                            <param id="0" name="Animation">&quot;Rocket&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Setup the beam ammo</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Cannon">
+                                            <param id="0" name="Instance variable">activeAmmo</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Cannon">
+                                            <param id="0" name="Animation">&quot;Beam&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">fireRate</param>
+                                            <param id="1" name="Value">Parameters.Entry(&quot;beamDefaultFireRate&quot;)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">targetRangeMax</param>
+                                            <param id="1" name="Value">Parameters.Entry(&quot;beamTargetRangeMax&quot;)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">targetRangeMin</param>
+                                            <param id="1" name="Value">Parameters.Entry(&quot;beamTargetRangeMin&quot;)</param>
+                                        </action>
+                                        <action id="4" name="Set animation" type="RangeFinder">
+                                            <param id="0" name="Animation">&quot;beam&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Pin the cannon and range finder to a turret (if that is the base)</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">TurretBase</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="TurretBase">
+                                            <param id="0" name="Unique ID">cannon.baseUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Pin" id="0" name="Pin to object" type="Cannon">
+                                            <param id="0" name="Pin to">TurretBase</param>
+                                        </action>
+                                        <action behavior="Pin" id="0" name="Pin to object" type="RangeFinder">
+                                            <param id="0" name="Pin to">TurretBase</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">listIndex</param>
+                                            <param id="1" name="Value">TurretBase.listindex</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Pin the cannon and range finder to a krullblade (if that is the base)</comment>
+                                <event-block disabled="1">
+                                    <conditions>
+                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="KrullBase">
+                                            <param id="0" name="Unique ID">cannon.baseUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="Cannon">
+                                            <param id="0" name="Pin to">TurretBase</param>
+                                        </action>
+                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="RangeFinder">
+                                            <param id="0" name="Pin to">TurretBase</param>
+                                        </action>
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
+                                            <param id="0" name="Instance variable">listIndex</param>
+                                            <param id="1" name="Value">krullblade.listIndex</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Finish up and mark the cannon as fully deployed</comment>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-7" name="Set size" type="RangeFinder">
+                                            <param id="0" name="Width">Cannon.targetRangeMax * 2</param>
+                                            <param id="1" name="Height">Cannon.targetRangeMax * 2</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" type="Cannon">
+                                            <param id="0" name="Instance variable">fullyDeployed</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="3" name="Set at XY" type="ObjectMaster">
+                                            <param id="0" name="X">cannon.listIndex</param>
+                                            <param id="1" name="Y">1</param>
+                                            <param id="2" name="Value">Cannon.UID</param>
+                                        </action>
+                                        <action id="-11" name="Add to" type="ObjectMaster">
+                                            <param id="0" name="Instance variable">total</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
-                        <event-block>
+                        <comment>Sticky targeting keeps the gun trained on a minion until it is out of range</comment>
+                        <variable comment="the distance from the turret to the nearest minion" name="distanceToMinion" type="number">0</variable>
+                        <variable comment="has a target been found?" name="targetFound" type="number">0</variable>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Minion">
+                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Minion">
                                     <param id="0" name="Unique ID">Cannon.currentTarget</param>
                                 </condition>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">clamp(distanceToMinion, cannon.targetRangeMin, cannon.targetRangeMax)</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">distanceToMinion</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">distanceToMinion</param>
                                     <param id="1" name="Value">distance( cannon.X, cannon.Y, minion.X, minion.Y)</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Cannon">
+                                <action disabled="1" id="-10" name="Set value" type="Cannon">
                                     <param id="0" name="Instance variable">currentTarget</param>
                                     <param id="1" name="Value">Minion.UID</param>
                                 </action>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">targetFound</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -1340,14 +1481,14 @@
                             </actions>
                         </event-block>
                         <comment>Default to the closest minion if there isn&apos;t a valid current target</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-14" name="Compare variable" type="System">
+                                <condition disabled="1" id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">targetFound</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
-                                <condition id="-15" name="Pick nearest/furthest" type="Minion">
+                                <condition disabled="1" id="-15" name="Pick nearest/furthest" type="Minion">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">Cannon.X</param>
                                     <param id="2" name="Y">Cannon.Y</param>
@@ -1358,11 +1499,11 @@
                                     <param id="0" name="Variable">debugMsg</param>
                                     <param id="1" name="Value">&quot;new target (&quot; &amp; minion.UID &amp; &quot;)&quot;&amp; tickcount &amp; newline &amp; debugMsg</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Cannon">
+                                <action disabled="1" id="-10" name="Set value" type="Cannon">
                                     <param id="0" name="Instance variable">currentTarget</param>
                                     <param id="1" name="Value">Minion.UID</param>
                                 </action>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">targetFound</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -1401,8 +1542,10 @@
                                         <comment>Check line of site</comment>
                                         <event-block>
                                             <conditions>
-                                                <condition id="-14" name="Pick by unique ID" type="TargetLeadBar">
-                                                    <param id="0" name="Unique ID">ObjectMaster.At( Cannon.listIndex, 2)</param>
+                                                <condition id="-7" name="Compare instance variable" type="TargetLeadBar">
+                                                    <param id="0" name="Instance variable">baseUID</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">cannon.baseUID</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
@@ -1540,7 +1683,7 @@
                                                             <param id="0" name="State">0</param>
                                                         </action>
                                                         <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
-                                                            <param id="0" name="Speed">Rocket.defaultSpeed</param>
+                                                            <param id="0" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
                                                         </action>
                                                         <action behavior="CustomMovement" id="12" name="Set enabled" type="Rocket">
                                                             <param id="0" name="State">1</param>
@@ -1550,11 +1693,11 @@
                                                         </action>
                                                         <action behavior="CustomMovement" id="2" name="Set speed" type="Rocket">
                                                             <param id="0" name="Which">0</param>
-                                                            <param id="1" name="Speed">Rocket.defaultSpeed</param>
+                                                            <param id="1" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
                                                         </action>
                                                         <action behavior="CustomMovement" id="3" name="Accelerate" type="Rocket">
                                                             <param id="0" name="Which">0</param>
-                                                            <param id="1" name="Acceleration">Rocket.rocketLaunchBoost</param>
+                                                            <param id="1" name="Acceleration">Parameters.Entry(&quot;rocketLaunchBoost&quot;)</param>
                                                         </action>
                                                         <action id="-3" name="Create object" type="System">
                                                             <param id="0" name="Object to create">RocketEffects</param>
@@ -1571,6 +1714,10 @@
                                                         </action>
                                                         <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
                                                             <param id="0" name="Pin to">Rocket</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="Rocket">
+                                                            <param id="0" name="Instance variable">cannonUID</param>
+                                                            <param id="1" name="Value">cannon.UID</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -1598,7 +1745,11 @@
                                                             <param id="1" name="Value">Cannon.listIndex</param>
                                                         </action>
                                                         <action behavior="Bullet" id="0" name="Set speed" type="Beam">
-                                                            <param id="0" name="Speed">Beam.defaultSpeed</param>
+                                                            <param id="0" name="Speed">Parameters.Entry(&quot;beamDefaultProjectileSpeed&quot;)</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="Beam">
+                                                            <param id="0" name="Instance variable">cannonUID</param>
+                                                            <param id="1" name="Value">cannon.UID</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -1629,8 +1780,10 @@
                                     <sub-events>
                                         <event-block>
                                             <conditions>
-                                                <condition id="-14" name="Pick by unique ID" type="TargetLeadBar">
-                                                    <param id="0" name="Unique ID">ObjectMaster.At( Cannon.listIndex, 2)</param>
+                                                <condition id="-7" name="Compare instance variable" type="TargetLeadBar">
+                                                    <param id="0" name="Instance variable">baseUID</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">cannon.baseUID</param>
                                                 </condition>
                                                 <condition id="-14" name="Pick by unique ID" type="distanceToTarget">
                                                     <param id="0" name="Unique ID">TargetLeadBar.labelUID</param>
@@ -1660,7 +1813,7 @@
                         <action id="-9" name="Destroy" type="Cannon" />
                     </actions>
                 </event-block>
-                <event-group collapsed="1" description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
+                <event-group description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
                     <sub-events>
                         <comment>Destroy any base hit by beams</comment>
                         <event-block>
@@ -1739,7 +1892,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+                <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
                     <sub-events>
                         <comment></comment>
                         <variable comment="The maximum number of time (in ticks) that a rocket can fly" name="maxFlight" type="number">100</variable>
@@ -1964,7 +2117,7 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A static turret that can act as a stationary weapons platform" title="Turret">
+        <event-group description="A static turret that can act as a stationary weapons platform" title="Turret">
             <sub-events>
                 <comment>Create a new rocket turret at the mouse location</comment>
                 <event-block>
@@ -1984,13 +2137,13 @@
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
-                        <action id="-10" name="Set value" type="TurretBase">
-                            <param id="0" name="Instance variable">listIndex</param>
-                            <param id="1" name="Value">ObjectMaster.total</param>
-                        </action>
                         <action id="4" name="Set animation" type="TurretBase">
                             <param id="0" name="Animation">&quot;Rocket&quot;</param>
                             <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="TurretBase">
+                            <param id="0" name="Instance variable">listIndex</param>
+                            <param id="1" name="Value">ObjectMaster.total</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Cannon</param>
@@ -2003,26 +2156,14 @@
                             <param id="1" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
-                            <param id="0" name="Instance variable">fireRate</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;rocketDefaultFireRate&quot;)</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Cannon">
-                            <param id="0" name="Instance variable">targetRangeMax</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;rocketTargetRangeMax&quot;)</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Cannon">
-                            <param id="0" name="Instance variable">targetRangeMin</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;rocketTargetRangeMin&quot;)</param>
+                            <param id="0" name="Instance variable">baseUID</param>
+                            <param id="1" name="Value">turretbase.UID</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">listIndex</param>
                             <param id="1" name="Value">TurretBase.listindex</param>
                         </action>
-                        <action id="4" name="Set animation" type="Cannon">
-                            <param id="0" name="Animation">&quot;Rocket&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="Cannon">
+                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="Cannon">
                             <param id="0" name="Pin to">TurretBase</param>
                         </action>
                         <action id="3" name="Set at XY" type="ObjectMaster">
@@ -2030,77 +2171,9 @@
                             <param id="1" name="Y">1</param>
                             <param id="2" name="Value">Cannon.UID</param>
                         </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">RangeFinder</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;backgroundLayer&quot;)</param>
-                            <param id="2" name="X">TurretBase.X</param>
-                            <param id="3" name="Y">TurretBase.Y</param>
-                        </action>
-                        <action id="-7" name="Set size" type="RangeFinder">
-                            <param id="0" name="Width">Cannon.targetRangeMax * 2</param>
-                            <param id="1" name="Height">Cannon.targetRangeMax * 2</param>
-                        </action>
-                        <action id="4" name="Set animation" type="RangeFinder">
-                            <param id="0" name="Animation">&quot;Rocket&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-25" name="Move to bottom" type="RangeFinder" />
-                        <action behavior="Pin" id="0" name="Pin to object" type="RangeFinder">
-                            <param id="0" name="Pin to">TurretBase</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">TargetLeadBar</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">Cannon.ImagePointX(1)</param>
-                            <param id="3" name="Y">Cannon.ImagePointY(1)</param>
-                        </action>
-                        <action id="-15" name="Set visible" type="TargetLeadBar">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-10" name="Set value" type="TargetLeadBar">
-                            <param id="0" name="Instance variable">listIndex</param>
-                            <param id="1" name="Value">cannon.listIndex</param>
-                        </action>
-                        <action id="3" name="Set at XY" type="ObjectMaster">
-                            <param id="0" name="X">TurretBase.listindex</param>
-                            <param id="1" name="Y">2</param>
-                            <param id="2" name="Value">TargetLeadBar.UID</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">distanceToTarget</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">turretbase.X</param>
-                            <param id="3" name="Y">turretbase.Y</param>
-                        </action>
-                        <action id="-15" name="Set visible" type="distanceToTarget">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-10" name="Set value" type="TargetLeadBar">
-                            <param id="0" name="Instance variable">labelUID</param>
-                            <param id="1" name="Value">distanceToTarget.UID</param>
-                        </action>
                         <action id="-11" name="Add to" type="ObjectMaster">
                             <param id="0" name="Instance variable">total</param>
                             <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
-                        <condition id="2" name="Key is down" type="Keyboard">
-                            <param id="0" name="Key">68 (D)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Turret</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                            <param id="2" name="X">mouse.X</param>
-                            <param id="3" name="Y">mouse.Y</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2141,82 +2214,20 @@
                             <param id="1" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
-                            <param id="0" name="Instance variable">fireRate</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;beamDefaultFireRate&quot;)</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Cannon">
-                            <param id="0" name="Instance variable">targetRangeMax</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;beamTargetRangeMax&quot;)</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Cannon">
-                            <param id="0" name="Instance variable">targetRangeMin</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;beamTargetRangeMin&quot;)</param>
+                            <param id="0" name="Instance variable">baseUID</param>
+                            <param id="1" name="Value">turretbase.UID</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">listIndex</param>
                             <param id="1" name="Value">TurretBase.listindex</param>
                         </action>
-                        <action id="4" name="Set animation" type="Cannon">
-                            <param id="0" name="Animation">&quot;Beam&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="Cannon">
+                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="Cannon">
                             <param id="0" name="Pin to">TurretBase</param>
                         </action>
                         <action id="3" name="Set at XY" type="ObjectMaster">
                             <param id="0" name="X">TurretBase.listindex</param>
                             <param id="1" name="Y">1</param>
                             <param id="2" name="Value">Cannon.UID</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">RangeFinder</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;backgroundLayer&quot;)</param>
-                            <param id="2" name="X">TurretBase.X</param>
-                            <param id="3" name="Y">TurretBase.Y</param>
-                        </action>
-                        <action id="-7" name="Set size" type="RangeFinder">
-                            <param id="0" name="Width">Cannon.targetRangeMax * 2</param>
-                            <param id="1" name="Height">Cannon.targetRangeMax * 2</param>
-                        </action>
-                        <action id="4" name="Set animation" type="RangeFinder">
-                            <param id="0" name="Animation">&quot;Beam&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-25" name="Move to bottom" type="RangeFinder" />
-                        <action behavior="Pin" id="0" name="Pin to object" type="RangeFinder">
-                            <param id="0" name="Pin to">TurretBase</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">TargetLeadBar</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">Cannon.ImagePointX(1)</param>
-                            <param id="3" name="Y">Cannon.ImagePointY(1)</param>
-                        </action>
-                        <action id="-15" name="Set visible" type="TargetLeadBar">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-25" name="Move to bottom" type="TargetLeadBar" />
-                        <action id="-10" name="Set value" type="TargetLeadBar">
-                            <param id="0" name="Instance variable">listIndex</param>
-                            <param id="1" name="Value">cannon.listIndex</param>
-                        </action>
-                        <action id="3" name="Set at XY" type="ObjectMaster">
-                            <param id="0" name="X">TurretBase.listindex</param>
-                            <param id="1" name="Y">2</param>
-                            <param id="2" name="Value">TargetLeadBar.UID</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">distanceToTarget</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">turretbase.X</param>
-                            <param id="3" name="Y">turretbase.Y</param>
-                        </action>
-                        <action id="-15" name="Set visible" type="distanceToTarget">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-10" name="Set value" type="TargetLeadBar">
-                            <param id="0" name="Instance variable">labelUID</param>
-                            <param id="1" name="Value">distanceToTarget.UID</param>
                         </action>
                         <action id="-11" name="Add to" type="ObjectMaster">
                             <param id="0" name="Instance variable">total</param>

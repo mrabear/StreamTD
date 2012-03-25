@@ -228,7 +228,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Rocket">
+        <object-folder expanded="1" name="Rocket">
             <object-type name="Rocket">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -236,11 +236,8 @@
                     <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
                     <instance-variable comment="the time (in ticks) when the rocket was launched" name="launchTime" type="number" />
                     <instance-variable comment="has the rocket cleared the cannon body?" name="armed" type="boolean" />
-                    <instance-variable comment="the default rocket speed" name="defaultSpeed" type="number" />
-                    <instance-variable name="rocketLaunchBoost" type="number" />
                     <instance-variable comment="should the rocket be detonated?" name="readyToDetonate" type="boolean" />
-                    <instance-variable comment="default fire rate for a gun loaded with this ammo" name="defaultFireRate" type="number" />
-                    <instance-variable comment="the ammo type value " name="ammoType" type="number" />
+                    <instance-variable name="cannonUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="DestroyOutsideLayout">
@@ -312,15 +309,13 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Beam">
+        <object-folder expanded="1" name="Beam">
             <object-type name="Beam">
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="the index of the enemy that spawned this beam" name="listIndex" type="number" />
                     <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
-                    <instance-variable comment="the default speed of the beam" name="defaultSpeed" type="number" />
-                    <instance-variable name="ammoType" type="number" />
-                    <instance-variable comment="the default rate of fire (ticks to wait per shot)" name="defaultFireRate" type="number" />
+                    <instance-variable comment="the uid of the cannon that fired the beam" name="cannonUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="DestroyOutsideLayout">
@@ -487,6 +482,7 @@
                     <instance-variable comment="should the ui paint the lead to target?" name="showingLeadToTarget" type="boolean" />
                     <instance-variable comment="does the cannon need to be setup?" name="fullyDeployed" type="boolean" />
                     <instance-variable comment="the UID of the target lead" name="leadToTargetUID" type="number" />
+                    <instance-variable comment="the UID of the base the cannon is attached to" name="baseUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Pin">
@@ -527,6 +523,9 @@
             </object-type>
             <object-type name="RangeFinder">
                 <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="baseUID" type="number" />
+                </instance-variables>
                 <behaviors>
                     <behavior-type name="Pin">
                         <behavior id="Pin" />
@@ -568,6 +567,7 @@
                 <instance-variables>
                     <instance-variable comment="the index of the parent object in the master list" name="listIndex" type="number" />
                     <instance-variable name="labelUID" type="number" />
+                    <instance-variable name="baseUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Pin">
