@@ -4,7 +4,7 @@
     <name>MainEvents</name>
     <events>
         <comment>Startup Events</comment>
-        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+        <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -48,6 +48,14 @@
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketMaxFlightTime&quot;</param>
                             <param id="1" name="Value">100</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;rocketImpactForce&quot;</param>
+                            <param id="1" name="Value">100</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;rocketImpactForceDecay&quot;</param>
+                            <param id="1" name="Value">50</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;beamAmmoType&quot;</param>
@@ -96,10 +104,6 @@
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;minionDefaultSpeed&quot;</param>
                             <param id="1" name="Value">100</param>
-                        </action>
-                        <action id="1" name="Set value by key string" type="Parameters">
-                            <param id="0" name="Key string">&quot;bonusFireRate&quot;</param>
-                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -202,13 +206,13 @@
         </event-group>
         <variable comment="the previous UID in the path" name="previousNodeUID" type="number">0</variable>
         <variable comment="the current UID in the path" name="currentNodeUID" type="number">0</variable>
-        <event-group collapsed="1" description="Path that minions follow" title="Path">
+        <event-group description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <variable comment="The frequency (in seconds)  that a coordinate will be saved while drawing a new path" name="pathPollRate" type="number">0.1</variable>
-                <event-block disabled="1">
+                <event-block>
                     <conditions>
-                        <condition disabled="1" id="-11" name="For Each" type="System">
+                        <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">NodeLabel</param>
                         </condition>
                     </conditions>
@@ -238,13 +242,13 @@
                             <param id="0" name="Object">Bar</param>
                         </condition>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
-                            <param id="0" name="Instance variable">currentlyMovingNode</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">Node</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                     </conditions>
                     <actions />
@@ -322,6 +326,10 @@
                                 </action>
                                 <action id="-13" name="Set boolean" type="Node">
                                     <param id="0" name="Instance variable">moving</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Node">
+                                    <param id="0" name="Instance variable">stuckToMouse</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
                                 <action id="-10" name="Set value" type="Node">
@@ -430,6 +438,10 @@
                                     <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -692,7 +704,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Point on the path, can be placed and manipulated" title="Node">
+        <event-group description="Point on the path, can be placed and manipulated" title="Node">
             <sub-events>
                 <comment>If a node is being moved, flag it as being updated (fires other events that updates the path)</comment>
                 <event-block>
@@ -731,26 +743,20 @@
                         <condition id="-8" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Node">
+                            <param id="0" name="Instance variable">moving</param>
+                        </condition>
                     </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Node</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Node">
-                                    <param id="0" name="Instance variable">moving</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Set position" type="Node">
-                                    <param id="0" name="X">mouse.X</param>
-                                    <param id="1" name="Y">mouse.Y</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
+                    <actions>
+                        <action id="-3" name="Set position" type="Node">
+                            <param id="0" name="X">mouse.X</param>
+                            <param id="1" name="Y">mouse.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">debugMsg</param>
+                            <param id="1" name="Value">node.moving</param>
+                        </action>
+                    </actions>
                 </event-block>
                 <comment>Finish moving the node</comment>
                 <event-block>
@@ -761,31 +767,49 @@
                         <condition id="-8" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Node">
+                            <param id="0" name="Instance variable">moving</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-13" name="Set boolean" type="Node">
                             <param id="0" name="Instance variable">moving</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Path">
-                            <param id="0" name="Instance variable">currentlyMovingNode</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
                         <action id="4" name="Set animation" type="Bar">
                             <param id="0" name="Animation">&quot;default&quot;</param>
                             <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Node">
+                            <param id="0" name="Instance variable">stuckToMouse</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">currentlyMovingNode</param>
+                            <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>If the node is being moved, update the bars</comment>
                 <variable comment="the saved UID of a node" name="nodeUID" type="number">0</variable>
+                <variable comment="the X value of the moving node" name="currentNodeX" type="number">0</variable>
+                <variable comment="the Y value of the moving node" name="currentNodeY" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
                             <param id="0" name="Instance variable">moving</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">currentNodeX</param>
+                            <param id="1" name="Value">node.X</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">currentNodeY</param>
+                            <param id="1" name="Value">node.Y</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <comment>If this isn&apos;t the first node, update the previous bar with the new current location (this is stored in prevBar in the current node)</comment>
                         <event-block>
@@ -835,7 +859,7 @@
                                                     <param id="1" name="Y">node.Y</param>
                                                 </action>
                                                 <action id="-5" name="Set width" type="Bar">
-                                                    <param id="0" name="Width">distance( mouse.X, mouse.Y, node.X, node.Y)</param>
+                                                    <param id="0" name="Width">distance( currentNodeX, currentNodeY, node.X, node.Y)</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -882,19 +906,16 @@
                                                     <param id="0" name="Animation">&quot;red&quot;</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
-                                                <action disabled="1" id="-6" name="Set height" type="Bar">
-                                                    <param id="0" name="Height">7</param>
-                                                </action>
                                                 <action id="-3" name="Set position" type="Bar">
                                                     <param id="0" name="X">node.X</param>
                                                     <param id="1" name="Y">node.Y</param>
                                                 </action>
                                                 <action id="-22" name="Set angle toward position" type="Bar">
-                                                    <param id="0" name="X">mouse.X</param>
-                                                    <param id="1" name="Y">mouse.Y</param>
+                                                    <param id="0" name="X">currentNodeX</param>
+                                                    <param id="1" name="Y">currentNodeY</param>
                                                 </action>
                                                 <action id="-5" name="Set width" type="Bar">
-                                                    <param id="0" name="Width">distance( node.X, node.Y, mouse.X, mouse.Y)</param>
+                                                    <param id="0" name="Width">distance( node.X, node.Y, currentNodeX, currentNodeY)</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -1640,301 +1661,363 @@
                         <action id="-9" name="Destroy" type="Cannon" />
                     </actions>
                 </event-block>
-                <event-group collapsed="1" description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
+            <sub-events>
+                <comment>Destroy any base hit by beams</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Beam">
+                            <param id="0" name="Object">Jesus</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Beam" />
+                    </actions>
                     <sub-events>
-                        <comment>Destroy any base hit by beams</comment>
                         <event-block>
                             <conditions>
-                                <condition id="0" name="On collision with another object" type="Beam">
-                                    <param id="0" name="Object">Jesus</param>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
+                                    <param id="0" name="Instance variable">bigJesus</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Beam" />
+                                <action id="-9" name="Destroy" type="Jesus" />
                             </actions>
-                            <sub-events>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                                            <param id="0" name="Instance variable">bigJesus</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Destroy" type="Jesus" />
-                                    </actions>
-                                </event-block>
-                            </sub-events>
                         </event-block>
-                        <comment>Destroy any minion hit by beams</comment>
+                    </sub-events>
+                </event-block>
+                <comment>Destroy any minion hit by beams</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Beam">
+                            <param id="0" name="Object">Minion</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Minion" />
+                    </actions>
+                    <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="0" name="On collision with another object" type="Beam">
-                                    <param id="0" name="Object">Minion</param>
+                                <condition id="-14" name="Pick by unique ID" type="Cannon">
+                                    <param id="0" name="Unique ID">beam.cannonUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action id="-11" name="Add to" type="Cannon">
+                                    <param id="0" name="Instance variable">fireRate</param>
+                                    <param id="1" name="Value">Cannon.fireRate * parameters.At( &quot;bonusFireRate&quot; )</param>
+                                </action>
+                                <action id="-11" name="Add to" type="Cannon">
+                                    <param id="0" name="Instance variable">minionsKilled</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
                             </actions>
-                            <sub-events>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" type="Cannon">
-                                            <param id="0" name="Unique ID">beam.cannonUID</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-11" name="Add to" type="Cannon">
-                                            <param id="0" name="Instance variable">fireRate</param>
-                                            <param id="1" name="Value">Cannon.fireRate * parameters.At( &quot;bonusFireRate&quot; )</param>
-                                        </action>
-                                        <action id="-11" name="Add to" type="Cannon">
-                                            <param id="0" name="Instance variable">minionsKilled</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions />
-                                    <actions>
-                                        <action id="-9" name="Destroy" type="Beam" />
-                                    </actions>
-                                </event-block>
-                            </sub-events>
                         </event-block>
-                        <comment>Destroy the beam if it hits a krull</comment>
                         <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Beam">
-                                    <param id="0" name="Object">KrullBlade</param>
-                                </condition>
-                            </conditions>
+                            <conditions />
                             <actions>
                                 <action id="-9" name="Destroy" type="Beam" />
                             </actions>
                         </event-block>
                     </sub-events>
-                </event-group>
-                <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+                </event-block>
+                <comment>Destroy the beam if it hits a krull</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Beam">
+                            <param id="0" name="Object">KrullBlade</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Beam" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+            <sub-events>
+                <comment>Destroy any base hit by rockets</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Rocket">
+                            <param id="0" name="Object">Jesus</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
+                            <param id="0" name="Instance variable">armed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Rocket">
+                            <param id="0" name="Instance variable">readyToDetonate</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Rocket">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
                     <sub-events>
-                        <comment>Destroy any base hit by rockets</comment>
                         <event-block>
                             <conditions>
-                                <condition id="0" name="On collision with another object" type="Rocket">
-                                    <param id="0" name="Object">Jesus</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                                    <param id="0" name="Instance variable">armed</param>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
+                                    <param id="0" name="Instance variable">bigJesus</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-13" name="Set boolean" type="Rocket">
-                                    <param id="0" name="Instance variable">readyToDetonate</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="Rocket">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                            </actions>
-                            <sub-events>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                                            <param id="0" name="Instance variable">bigJesus</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Destroy" type="Jesus" />
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                        <comment>Destroy any minions hit by rockets</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Rocket">
-                                    <param id="0" name="Object">Minion</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                                    <param id="0" name="Instance variable">armed</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
-                            </actions>
-                            <sub-events>
-                                <event-block disabled="1">
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" type="Cannon">
-                                            <param id="0" name="Unique ID">rocket.cannonUID</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-11" name="Add to" type="Cannon">
-                                            <param id="0" name="Instance variable">fireRate</param>
-                                            <param id="1" name="Value">Cannon.fireRate * parameters.At( &quot;bonusFireRate&quot; )</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions />
-                                    <actions>
-                                        <action id="-13" name="Set boolean" type="Rocket">
-                                            <param id="0" name="Instance variable">readyToDetonate</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="-15" name="Set visible" type="Rocket">
-                                            <param id="0" name="Visibility">0</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                        <comment>Destroy any krull that collides with an armed rocket</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Rocket">
-                                    <param id="0" name="Object">KrullBlade</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                                    <param id="0" name="Instance variable">armed</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                            <sub-events>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" type="KrullBase">
-                                            <param id="0" name="Unique ID">krullblade.baseUID</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Destroy" type="KrullBase" />
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions />
-                                    <actions>
-                                        <action id="-13" name="Set boolean" type="Rocket">
-                                            <param id="0" name="Instance variable">readyToDetonate</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="-15" name="Set visible" type="Rocket">
-                                            <param id="0" name="Visibility">0</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                        <comment>Kill any rocket that exceeds the maximum flight time</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Rocket</param>
-                                </condition>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">tickcount - Rocket.launchTime</param>
-                                    <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Second value">parameters.At( &quot;rocketMaxFlightTime&quot; )</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Rocket">
-                                    <param id="0" name="Instance variable">readyToDetonate</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="Rocket">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Arm the rocket once it&apos;s cleared the cannon</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="1" inverted="1" name="Is overlapping another object" type="Rocket">
-                                    <param id="0" name="Object">KrullBlade</param>
-                                </condition>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Rocket">
-                                    <param id="0" name="Instance variable">armed</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Rocket">
-                                    <param id="0" name="Instance variable">armed</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
-                                    <param id="0" name="State">1</param>
-                                </action>
-                                <action behavior="CustomMovement" id="12" name="Set enabled" type="Rocket">
-                                    <param id="0" name="State">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Bounce off other rockets (explicitly done because rockets aren&apos;t solid)</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="0" name="On collision with another object" type="Rocket">
-                                    <param id="0" name="Object">Rocket</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Rocket">
-                                    <param id="0" name="Instance variable">readyToDetonate</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="Rocket">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Destroy the rocket smoke trail if it ever becomes unpinned from a rocket (usually because the rocket is dead)</comment>
-                        <event-block>
-                            <conditions>
-                                <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="RocketEffects" />
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="RocketEffects" />
-                            </actions>
-                        </event-block>
-                        <comment></comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                                    <param id="0" name="Instance variable">readyToDetonate</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">RocketExplosion</param>
-                                    <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                                    <param id="2" name="X">rocket.X</param>
-                                    <param id="3" name="Y">rocket.Y</param>
-                                </action>
-                                <action id="-9" name="Destroy" type="Rocket" />
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="4" name="On finished" type="RocketExplosion">
-                                    <param id="0" name="Animation">&quot;default&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="RocketExplosion" />
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="1" name="Is overlapping another object" type="RocketExplosion">
-                                    <param id="0" name="Object">Minion</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action id="-9" name="Destroy" type="Jesus" />
                             </actions>
                         </event-block>
                     </sub-events>
-                </event-group>
+                </event-block>
+                <comment>Destroy any minions hit by rockets</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Rocket">
+                            <param id="0" name="Object">Minion</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
+                            <param id="0" name="Instance variable">armed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Minion" />
+                    </actions>
+                    <sub-events>
+                        <event-block disabled="1">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Cannon">
+                                    <param id="0" name="Unique ID">rocket.cannonUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" type="Cannon">
+                                    <param id="0" name="Instance variable">fireRate</param>
+                                    <param id="1" name="Value">Cannon.fireRate * parameters.At( &quot;bonusFireRate&quot; )</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Rocket">
+                                    <param id="0" name="Instance variable">readyToDetonate</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="Rocket">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Destroy any krull that collides with an armed rocket</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Rocket">
+                            <param id="0" name="Object">KrullBlade</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
+                            <param id="0" name="Instance variable">armed</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="KrullBase">
+                                    <param id="0" name="Unique ID">krullblade.baseUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="KrullBase" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Rocket">
+                                    <param id="0" name="Instance variable">readyToDetonate</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="Rocket">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Kill any rocket that exceeds the maximum flight time</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Rocket</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">tickcount - Rocket.launchTime</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">parameters.At( &quot;rocketMaxFlightTime&quot; )</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Rocket">
+                            <param id="0" name="Instance variable">readyToDetonate</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Rocket">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Arm the rocket once it&apos;s cleared the cannon</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="1" inverted="1" name="Is overlapping another object" type="Rocket">
+                            <param id="0" name="Object">KrullBlade</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Rocket">
+                            <param id="0" name="Instance variable">armed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Rocket">
+                            <param id="0" name="Instance variable">armed</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action behavior="CustomMovement" id="12" name="Set enabled" type="Rocket">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Bounce off other rockets (explicitly done because rockets aren&apos;t solid)</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Rocket">
+                            <param id="0" name="Object">Rocket</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Rocket">
+                            <param id="0" name="Instance variable">readyToDetonate</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Rocket">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Destroy the rocket smoke trail if it ever becomes unpinned from a rocket (usually because the rocket is dead)</comment>
+                <event-block>
+                    <conditions>
+                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="RocketEffects" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="RocketEffects" />
+                    </actions>
+                </event-block>
+                <comment></comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
+                            <param id="0" name="Instance variable">readyToDetonate</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">RocketExplosion</param>
+                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                            <param id="2" name="X">rocket.X</param>
+                            <param id="3" name="Y">rocket.Y</param>
+                        </action>
+                        <action id="-10" name="Set value" type="RocketExplosion">
+                            <param id="0" name="Instance variable">rocketUID</param>
+                            <param id="1" name="Value">rocket.UID</param>
+                        </action>
+                        <action id="-7" name="Set size" type="RocketExplosion">
+                            <param id="0" name="Width">100</param>
+                            <param id="1" name="Height">100</param>
+                        </action>
+                        <action id="-25" name="Move to bottom" type="RocketExplosion" />
+                        <action id="-9" name="Destroy" type="Rocket" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="4" name="On finished" type="RocketExplosion">
+                            <param id="0" name="Animation">&quot;default&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="RocketExplosion" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" type="RocketExplosion">
+                            <param id="0" name="Object">Minion</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Minion" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" type="RocketExplosion">
+                            <param id="0" name="Object">Node</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Rocket">
+                                    <param id="0" name="Unique ID">RocketExplosion.rocketUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-8" name="Set angle" type="Node">
+                                    <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
+                                </action>
+                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Node">
+                                    <param id="0" name="Angle">node.Angle</param>
+                                </action>
+                                <action behavior="CustomMovement" id="2" name="Set speed" type="Node">
+                                    <param id="0" name="Which">0</param>
+                                    <param id="1" name="Speed">parameters.At( &quot;rocketImpactForce&quot; )</param>
+                                </action>
+                                <action behavior="CustomMovement" id="3" name="Accelerate" type="Node">
+                                    <param id="0" name="Which">0</param>
+                                    <param id="1" name="Acceleration">-1 * parameters.At( &quot;rocketImpactForceDecay&quot; )</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Node">
+                                    <param id="0" name="Instance variable">moving</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block disabled="1">
+                    <conditions>
+                        <condition behavior="CustomMovement" disabled="1" id="1" name="Compare speed" type="Node">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Speed">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="CustomMovement" disabled="1" id="0" name="Stop" type="Node" />
+                        <action disabled="1" id="-13" name="Set boolean" type="Node">
+                            <param id="0" name="Instance variable">moving</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group collapsed="1" description="A static turret that can act as a stationary weapons platform" title="Turret">

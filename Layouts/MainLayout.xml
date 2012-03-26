@@ -97,9 +97,16 @@
                         <moving>false</moving>
                         <nextNode>0</nextNode>
                         <previousNode>0</previousNode>
+                        <stuckToMouse>false</stuckToMouse>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DragDrop" />
+                        <behavior-instance type="CustomMovement">
+                            <properties>
+                                <stepping-mode>None</stepping-mode>
+                                <pixels-per-step>5</pixels-per-step>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <world>
                         <x>-180.200149536</x>
@@ -222,6 +229,9 @@
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
+                    <instance-variables>
+                        <rocketUID>0</rocketUID>
+                    </instance-variables>
                     <world>
                         <x>-243</x>
                         <y>445</y>
@@ -682,8 +692,8 @@
                 </instance>
                 <instance type="NodeLabel">
                     <properties>
-                        <text>Text</text>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>0,0,0</color>
                         <horizontal-alignment>Left</horizontal-alignment>
