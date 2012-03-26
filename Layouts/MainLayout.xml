@@ -160,33 +160,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="LeadingBar">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <nodeIndex>0</nodeIndex>
-                        <nextNodeIndex>0</nextNodeIndex>
-                        <listIndex>0</listIndex>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-146</x>
-                        <y>240</y>
-                        <z>0</z>
-                        <width>4</width>
-                        <height>4</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="Rocket">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -194,7 +167,6 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <listIndex>0</listIndex>
                         <effectsUID>0</effectsUID>
                         <launchTime>0</launchTime>
                         <armed>false</armed>
@@ -271,7 +243,6 @@
                     </properties>
                     <instance-variables>
                         <totalMinionsKilled>0</totalMinionsKilled>
-                        <listIndex>0</listIndex>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Solid" />
@@ -322,7 +293,6 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <listIndex>0</listIndex>
                         <labelUID>0</labelUID>
                         <baseUID>0</baseUID>
                     </instance-variables>
@@ -475,7 +445,7 @@
                     </properties>
                     <instance-variables>
                         <minionsKilled>0</minionsKilled>
-                        <listIndex>0</listIndex>
+                        <baseUID>0</baseUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
@@ -507,7 +477,6 @@
                     </properties>
                     <instance-variables>
                         <totalMinionsKilled>0</totalMinionsKilled>
-                        <listIndex>0</listIndex>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -543,11 +512,9 @@
                     </properties>
                     <instance-variables>
                         <minionsKilled>0</minionsKilled>
-                        <listIndex>0</listIndex>
                         <fireRate>100</fireRate>
                         <lastFired>0</lastFired>
                         <activeAmmo>0</activeAmmo>
-                        <defaultSpinRate>50</defaultSpinRate>
                         <targetRangeMax>0</targetRangeMax>
                         <targetRangeMin>0</targetRangeMin>
                         <currentTarget>0</currentTarget>
@@ -586,7 +553,6 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <listIndex>0</listIndex>
                         <effectsUID>0</effectsUID>
                         <cannonUID>0</cannonUID>
                     </instance-variables>
@@ -774,16 +740,6 @@
         </layer>
     </layers>
     <nonworld-instances>
-        <instance type="ObjectMaster">
-            <properties>
-                <width>10</width>
-                <height>1</height>
-                <depth>1</depth>
-            </properties>
-            <instance-variables>
-                <total>0</total>
-            </instance-variables>
-        </instance>
         <instance type="Parameters">
             <properties>
                 <contains></contains>
