@@ -13,7 +13,6 @@
         <plugin id="Keyboard" version="1">Keyboard</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
         <plugin id="Text" version="1">Text</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
         <plugin id="Mouse" version="1">Mouse</plugin>
     </used-plugins>
@@ -51,7 +50,6 @@
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="# of minions killed by all the weapons attached to this enemy" name="totalMinionsKilled" type="number" />
-                    <instance-variable comment="the index of this enemy in the list" name="listIndex" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Bullet">
@@ -85,7 +83,7 @@
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="number of minions killed by the blade" name="minionsKilled" type="number" />
-                    <instance-variable comment="the index in the enemy list of this krull" name="listIndex" type="number" />
+                    <instance-variable name="baseUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Pin">
@@ -135,24 +133,6 @@
                         <frame duration="1" hotspotX="0" hotspotY="0.6">
                             <image-point name="Endpoint" x="1" y="0.6" />
                         </frame>
-                    </animation>
-                </animation-folder>
-            </object-type>
-            <object-type name="LeadingBar">
-                <plugin id="Sprite" />
-                <instance-variables>
-                    <instance-variable name="nodeIndex" type="number" />
-                    <instance-variable name="nextNodeIndex" type="number" />
-                    <instance-variable comment="the index of the parent object in the master list" name="listIndex" type="number" />
-                </instance-variables>
-                <behaviors>
-                    <behavior-type name="Pin">
-                        <behavior id="Pin" />
-                    </behavior-type>
-                </behaviors>
-                <animation-folder expanded="1">
-                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.5" />
                     </animation>
                 </animation-folder>
             </object-type>
@@ -232,7 +212,6 @@
             <object-type name="Rocket">
                 <plugin id="Sprite" />
                 <instance-variables>
-                    <instance-variable comment="the index of the enemy that spawned this beam" name="listIndex" type="number" />
                     <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
                     <instance-variable comment="the time (in ticks) when the rocket was launched" name="launchTime" type="number" />
                     <instance-variable comment="has the rocket cleared the cannon body?" name="armed" type="boolean" />
@@ -309,11 +288,10 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Beam">
+        <object-folder expanded="0" name="Beam">
             <object-type name="Beam">
                 <plugin id="Sprite" />
                 <instance-variables>
-                    <instance-variable comment="the index of the enemy that spawned this beam" name="listIndex" type="number" />
                     <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
                     <instance-variable comment="the uid of the cannon that fired the beam" name="cannonUID" type="number" />
                 </instance-variables>
@@ -341,13 +319,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Data Sources">
-            <object-type name="ObjectMaster">
-                <plugin id="Arr" />
-                <instance-variables>
-                    <instance-variable comment="The total number of enemies in this list" name="total" type="number" />
-                </instance-variables>
-            </object-type>
+        <object-folder expanded="0" name="Data Sources">
             <object-type name="Parameters">
                 <plugin id="Rex_Hash" />
             </object-type>
@@ -368,7 +340,6 @@
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="# of minions killed by all the weapons attached to this enemy" name="totalMinionsKilled" type="number" />
-                    <instance-variable comment="the index of this enemy in the list" name="listIndex" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Solid">
@@ -465,16 +436,14 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Cannon">
+        <object-folder expanded="0" name="Cannon">
             <object-type name="Cannon">
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="number of minions killed by the cannon" name="minionsKilled" type="number" />
-                    <instance-variable comment="the index in the enemy array of the parent krull" name="listIndex" type="number" />
                     <instance-variable comment="cannon rate of fire (# ticks delay between each shot)" name="fireRate" type="number" />
                     <instance-variable comment="time in game seconds when the cannon was fired last" name="lastFired" type="number" />
                     <instance-variable comment="the id of the active ammo" name="activeAmmo" type="number" />
-                    <instance-variable comment="the default spin rate (deg/sec) of the cannon" name="defaultSpinRate" type="number" />
                     <instance-variable comment="the maximum range (in px) that the cannon can aquire targets" name="targetRangeMax" type="number" />
                     <instance-variable comment="the minum range (in px) that the cannon can aquire targets" name="targetRangeMin" type="number" />
                     <instance-variable comment="the UId of the current target" name="currentTarget" type="number" />
@@ -565,7 +534,6 @@
             <object-type name="TargetLeadBar">
                 <plugin id="Sprite" />
                 <instance-variables>
-                    <instance-variable comment="the index of the parent object in the master list" name="listIndex" type="number" />
                     <instance-variable name="labelUID" type="number" />
                     <instance-variable name="baseUID" type="number" />
                 </instance-variables>
@@ -652,7 +620,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Barrier">
+        <object-folder expanded="0" name="Barrier">
             <object-type name="BarrierWall">
                 <plugin id="Sprite" />
                 <instance-variables>
