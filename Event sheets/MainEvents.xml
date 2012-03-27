@@ -3,8 +3,9 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>MainEvents</name>
     <events>
+        <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+        <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -12,6 +13,12 @@
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
                     <actions>
+                        <action id="0" name="Clear" type="Paths" />
+                        <action id="1" name="Set size" type="Paths">
+                            <param id="0" name="Width">100</param>
+                            <param id="1" name="Height">500</param>
+                            <param id="2" name="Depth">2</param>
+                        </action>
                         <action behavior="Bullet" id="5" name="Set enabled" type="Jesus">
                             <param id="0" name="State">0</param>
                         </action>
@@ -214,7 +221,7 @@
         </event-group>
         <variable comment="the previous UID in the path" name="previousNodeUID" type="number">0</variable>
         <variable comment="the current UID in the path" name="currentNodeUID" type="number">0</variable>
-        <event-group collapsed="1" description="Path that minions follow" title="Path">
+        <event-group description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
                 <event-block>
@@ -638,7 +645,7 @@
                             <param id="0" name="Instance variable">currentlyTracing</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="-9" name="Set value" type="System">
+                        <action disabled="1" id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">debugMsg</param>
                             <param id="1" name="Value">debugMsg &amp; &quot;tracing done (&quot; &amp; path.pathCount &amp; &quot;)&quot; &amp; newline</param>
                         </action>
@@ -657,7 +664,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">debugMsg</param>
                                     <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;found node &quot; &amp; node.nodeindex &amp; newline</param>
                                 </action>
@@ -674,7 +681,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="-9" name="Destroy" type="Bar" />
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">debugMsg</param>
                                             <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;found bar &quot; &amp; bar.uid &amp; newline</param>
                                         </action>
@@ -2450,8 +2457,7 @@
             </sub-events>
         </event-group>
         <comment>Debug Events</comment>
-        <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
-        <event-group collapsed="1" description="Various debug methods" title="Debug">
+        <event-group description="Various debug methods" title="Debug">
             <sub-events>
                 <variable comment="The rate (in seconds) to refresh debug information" name="debugPollRate" type="number">0.1</variable>
                 <event-block>
@@ -2462,10 +2468,7 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Set text" type="txtDebug">
-                            <param id="0" name="Text">objectcount &amp; &quot; sprites @ &quot; &amp; fps &amp; &quot; fps&quot; &amp; newline</param>
-                        </action>
-                        <action id="1" name="Append text" type="txtDebug">
-                            <param id="0" name="Text">Minion.Count &amp; &quot; minions&quot; &amp; newline</param>
+                            <param id="0" name="Text">objectcount &amp; &quot; sprites @ &quot; &amp; fps &amp; &quot; fps&quot; &amp; &quot;(&quot; &amp; renderer &amp; &quot;)&quot; &amp; newline</param>
                         </action>
                         <action id="1" name="Append text" type="txtDebug">
                             <param id="0" name="Text">debugMsg &amp; newline</param>

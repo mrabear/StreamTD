@@ -124,8 +124,8 @@
                         <width>6</width>
                         <height>6</height>
                         <depth>0</depth>
-                        <hotspotX>0.533333361</hotspotX>
-                        <hotspotY>0.533333361</hotspotY>
+                        <hotspotX>0.571428597</hotspotX>
+                        <hotspotY>0.571428597</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -763,6 +763,13 @@
         <instance type="Parameters">
             <properties>
                 <contains></contains>
+            </properties>
+        </instance>
+        <instance type="Paths">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
             </properties>
         </instance>
     </nonworld-instances>

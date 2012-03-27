@@ -7,14 +7,15 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8400</saved-with-version>
     <used-plugins>
-        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Rex_Branch" version="1">Branch</plugin>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
-        <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Sprite" version="1">Sprite</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -173,7 +174,7 @@
                         </frame>
                     </animation>
                     <animation framecount="1" loop="0" name="Green" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <frame duration="1" hotspotX="0.571429" hotspotY="0.571429">
                             <collision-poly>
                                 <point x="0.142857" y="0.142857" />
                                 <point x="0.428571" y="0" />
@@ -344,9 +345,12 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Data Sources">
+        <object-folder expanded="1" name="Data Sources">
             <object-type name="Parameters">
                 <plugin id="Rex_Hash" />
+            </object-type>
+            <object-type name="Paths">
+                <plugin id="Arr" />
             </object-type>
         </object-folder>
         <object-folder expanded="0" name="Input">
