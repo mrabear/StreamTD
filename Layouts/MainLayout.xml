@@ -97,7 +97,7 @@
                         <moving>false</moving>
                         <nextNode>0</nextNode>
                         <previousNode>0</previousNode>
-                        <stuckToMouse>false</stuckToMouse>
+                        <movingByObject>false</movingByObject>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DragDrop" />
@@ -105,6 +105,15 @@
                             <properties>
                                 <stepping-mode>None</stepping-mode>
                                 <pixels-per-step>5</pixels-per-step>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>0</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>Yes</bounce-off-solids>
+                                <set-angle>No</set-angle>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>

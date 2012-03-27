@@ -7,14 +7,14 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8400</saved-with-version>
     <used-plugins>
+        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="wastrel_or" version="1">OR</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
         <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
-        <plugin id="wastrel_or" version="1">OR</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Rex_Branch" version="1">Branch</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -144,7 +144,7 @@
                     <instance-variable comment="has the node been moved?" name="moving" type="boolean" />
                     <instance-variable comment="the next node in the path" name="nextNode" type="number" />
                     <instance-variable comment="the previous node in the path" name="previousNode" type="number" />
-                    <instance-variable name="stuckToMouse" type="boolean" />
+                    <instance-variable comment="is the node being moved by an object" name="movingByObject" type="boolean" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="DragDrop">
@@ -152,6 +152,9 @@
                     </behavior-type>
                     <behavior-type name="CustomMovement">
                         <behavior id="custom" />
+                    </behavior-type>
+                    <behavior-type name="Bullet">
+                        <behavior id="Bullet" />
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">

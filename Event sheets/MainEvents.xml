@@ -4,7 +4,7 @@
     <name>MainEvents</name>
     <events>
         <comment>Startup Events</comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -55,7 +55,7 @@
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketImpactForceDecay&quot;</param>
-                            <param id="1" name="Value">50</param>
+                            <param id="1" name="Value">-50</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;beamAmmoType&quot;</param>
@@ -250,6 +250,9 @@
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
+                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
+                            <param id="0" name="Object">TurretBase</param>
+                        </condition>
                     </conditions>
                     <actions />
                     <sub-events>
@@ -321,15 +324,14 @@
                                     <param id="2" name="X">mouse.X</param>
                                     <param id="3" name="Y">mouse.Y</param>
                                 </action>
+                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                                    <param id="0" name="State">0</param>
+                                </action>
                                 <action behavior="DragDrop" id="0" name="Set enabled" type="Node">
                                     <param id="0" name="State">1</param>
                                 </action>
                                 <action id="-13" name="Set boolean" type="Node">
                                     <param id="0" name="Instance variable">moving</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-13" name="Set boolean" type="Node">
-                                    <param id="0" name="Instance variable">stuckToMouse</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
                                 <action id="-10" name="Set value" type="Node">
@@ -504,6 +506,9 @@
                             <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                            <param id="0" name="State">0</param>
                         </action>
                         <action behavior="DragDrop" id="0" name="Set enabled" type="Node">
                             <param id="0" name="State">1</param>
@@ -780,10 +785,6 @@
                             <param id="0" name="Animation">&quot;default&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Node">
-                            <param id="0" name="Instance variable">stuckToMouse</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
                         <action id="-13" name="Set boolean" type="Path">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                             <param id="1" name="Value">0</param>
@@ -796,6 +797,9 @@
                 <variable comment="the Y value of the moving node" name="currentNodeY" type="number">0</variable>
                 <event-block>
                     <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Node</param>
+                        </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
                             <param id="0" name="Instance variable">moving</param>
                         </condition>
@@ -903,7 +907,7 @@
                                             </conditions>
                                             <actions>
                                                 <action id="4" name="Set animation" type="Bar">
-                                                    <param id="0" name="Animation">&quot;red&quot;</param>
+                                                    <param id="0" name="Animation">&quot;green&quot;</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
                                                 <action id="-3" name="Set position" type="Bar">
@@ -916,6 +920,75 @@
                                                 </action>
                                                 <action id="-5" name="Set width" type="Bar">
                                                     <param id="0" name="Width">distance( node.X, node.Y, currentNodeX, currentNodeY)</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition behavior="Bullet" id="0" name="Compare speed" type="Node">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Speed">0</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Node">
+                                    <param id="0" name="Instance variable">movingByObject</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Node">
+                                    <param id="0" name="Instance variable">moving</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Node">
+                                    <param id="0" name="Instance variable">movingByObject</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">nodeUID</param>
+                                    <param id="1" name="Value">node.previousNode</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Pick by unique ID" type="Bar">
+                                            <param id="0" name="Unique ID">node.barUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Bar">
+                                            <param id="0" name="Animation">&quot;default&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Node</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Node">
+                                            <param id="0" name="Unique ID">nodeUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-14" name="Pick by unique ID" type="Bar">
+                                                    <param id="0" name="Unique ID">node.barUID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" type="Bar">
+                                                    <param id="0" name="Animation">&quot;default&quot;</param>
+                                                    <param id="1" name="From">1</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -1938,8 +2011,8 @@
                             <param id="1" name="Value">rocket.UID</param>
                         </action>
                         <action id="-7" name="Set size" type="RocketExplosion">
-                            <param id="0" name="Width">100</param>
-                            <param id="1" name="Height">100</param>
+                            <param id="0" name="Width">250</param>
+                            <param id="1" name="Height">250</param>
                         </action>
                         <action id="-25" name="Move to bottom" type="RocketExplosion" />
                         <action id="-9" name="Destroy" type="Rocket" />
@@ -1980,43 +2053,29 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-8" name="Set angle" type="Node">
+                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                                    <param id="0" name="State">1</param>
+                                </action>
+                                <action behavior="Bullet" id="3" name="Set angle of motion" type="Node">
                                     <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
                                 </action>
-                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Node">
-                                    <param id="0" name="Angle">node.Angle</param>
+                                <action behavior="Bullet" id="0" name="Set speed" type="Node">
+                                    <param id="0" name="Speed">parameters.At( &quot;rocketImpactForce&quot; )</param>
                                 </action>
-                                <action behavior="CustomMovement" id="2" name="Set speed" type="Node">
-                                    <param id="0" name="Which">0</param>
-                                    <param id="1" name="Speed">parameters.At( &quot;rocketImpactForce&quot; )</param>
-                                </action>
-                                <action behavior="CustomMovement" id="3" name="Accelerate" type="Node">
-                                    <param id="0" name="Which">0</param>
-                                    <param id="1" name="Acceleration">-1 * parameters.At( &quot;rocketImpactForceDecay&quot; )</param>
+                                <action behavior="Bullet" id="1" name="Set acceleration" type="Node">
+                                    <param id="0" name="Acceleration">parameters.At( &quot;rocketImpactForceDecay&quot; )</param>
                                 </action>
                                 <action id="-13" name="Set boolean" type="Node">
                                     <param id="0" name="Instance variable">moving</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="-13" name="Set boolean" type="Node">
+                                    <param id="0" name="Instance variable">movingByObject</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
-                </event-block>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition behavior="CustomMovement" disabled="1" id="1" name="Compare speed" type="Node">
-                            <param id="0" name="Which">0</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Speed">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="CustomMovement" disabled="1" id="0" name="Stop" type="Node" />
-                        <action disabled="1" id="-13" name="Set boolean" type="Node">
-                            <param id="0" name="Instance variable">moving</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
