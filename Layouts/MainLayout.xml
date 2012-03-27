@@ -121,8 +121,8 @@
                         <x>-180.200149536</x>
                         <y>277.200134277</y>
                         <z>0</z>
-                        <width>12</width>
-                        <height>12</height>
+                        <width>6</width>
+                        <height>6</height>
                         <depth>0</depth>
                         <hotspotX>0.533333361</hotspotX>
                         <hotspotY>0.533333361</hotspotY>
@@ -188,6 +188,7 @@
                         <armed>false</armed>
                         <readyToDetonate>false</readyToDetonate>
                         <cannonUID>0</cannonUID>
+                        <explosionUID>0</explosionUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="DestroyOutsideLayout" />
@@ -730,12 +731,12 @@
                 </instance>
                 <instance type="Path">
                     <properties>
-                        <initial-visibility>Visible</initial-visibility>
+                        <initial-visibility>Invisible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <pathCount>-1</pathCount>
+                        <pathCount>0</pathCount>
                         <currentlyMovingNode>false</currentlyMovingNode>
                         <currentlyTracing>false</currentlyTracing>
                     </instance-variables>

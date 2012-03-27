@@ -159,16 +159,30 @@
                 </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
+                        <frame duration="1" hotspotX="0.571429" hotspotY="0.571429">
                             <collision-poly>
-                                <point x="0.2" y="0.2" />
-                                <point x="0.5" y="0.0666667" />
-                                <point x="0.8" y="0.2" />
-                                <point x="0.933333" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.933333" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.0666667" y="0.5" />
+                                <point x="0.142857" y="0.142857" />
+                                <point x="0.428571" y="0" />
+                                <point x="0.857143" y="0.142857" />
+                                <point x="1" y="0.428571" />
+                                <point x="0.857143" y="0.857143" />
+                                <point x="0.428571" y="1" />
+                                <point x="0.142857" y="0.857143" />
+                                <point x="0" y="0.428571" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Green" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.142857" y="0.142857" />
+                                <point x="0.428571" y="0" />
+                                <point x="0.857143" y="0.142857" />
+                                <point x="1" y="0.428571" />
+                                <point x="0.857143" y="0.857143" />
+                                <point x="0.428571" y="1" />
+                                <point x="0.142857" y="0.857143" />
+                                <point x="0" y="0.428571" />
                             </collision-poly>
                         </frame>
                     </animation>
@@ -224,6 +238,7 @@
                     <instance-variable comment="has the rocket cleared the cannon body?" name="armed" type="boolean" />
                     <instance-variable comment="should the rocket be detonated?" name="readyToDetonate" type="boolean" />
                     <instance-variable name="cannonUID" type="number" />
+                    <instance-variable name="explosionUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="DestroyOutsideLayout">
@@ -562,7 +577,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Misc">
+        <object-folder expanded="1" name="Misc">
             <object-type name="HiddenWall">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -630,7 +645,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Barrier">
+        <object-folder expanded="1" name="Barrier">
             <object-type name="BarrierWall">
                 <plugin id="Sprite" />
                 <instance-variables>
