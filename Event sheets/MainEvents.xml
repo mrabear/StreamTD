@@ -13,8 +13,8 @@
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
                     <actions>
-                        <action id="0" name="Clear" type="Paths" />
-                        <action id="1" name="Set size" type="Paths">
+                        <action id="0" name="Clear" type="Path" />
+                        <action disabled="1" id="1" name="Set size" type="Path">
                             <param id="0" name="Width">100</param>
                             <param id="1" name="Height">500</param>
                             <param id="2" name="Depth">3</param>
@@ -101,6 +101,10 @@
                             <param id="1" name="Value">2</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;pathPollRate&quot;</param>
+                            <param id="1" name="Value">0.05</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;minionAngleTolerance&quot;</param>
                             <param id="1" name="Value">5</param>
                         </action>
@@ -109,153 +113,340 @@
                             <param id="1" name="Value">50</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
-                            <param id="0" name="Key string">&quot;minionSpawnRate&quot;</param>
-                            <param id="1" name="Value">1</param>
+                            <param id="0" name="Key string">&quot;minionDefaultSpawnRate&quot;</param>
+                            <param id="1" name="Value">125</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;minionDefaultSpeed&quot;</param>
                             <param id="1" name="Value">100</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
-                            <param id="0" name="Key string">&quot;pathPollRate&quot;</param>
-                            <param id="1" name="Value">0.05</param>
-                        </action>
-                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">&quot;pathcount0&quot;</param>
-                        </action>
-                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">1</param>
-                            <param id="3" name="Value">&quot;nodex&quot;</param>
-                        </action>
-                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">2</param>
-                            <param id="3" name="Value">&quot;nodey&quot;</param>
-                        </action>
-                        <action disabled="1" id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">paths.at( 0 ) &amp; newline &amp; paths.at( 0,0,1 ) &amp; newline &amp; paths.at( 0,0,2 ) &amp; newline</param>
-                        </action>
-                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
-                            <param id="0" name="X">1</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">0</param>
-                            <param id="3" name="Value">&quot;pathcount1&quot;</param>
-                        </action>
-                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
-                            <param id="0" name="X">1</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">1</param>
-                            <param id="3" name="Value">&quot;nodex1&quot;</param>
-                        </action>
-                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
-                            <param id="0" name="X">1</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Z">2</param>
-                            <param id="3" name="Value">&quot;nodey1&quot;</param>
-                        </action>
-                        <action disabled="1" id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">debugMsg &amp; paths.at( 1 ) &amp; newline &amp; paths.at( 1,0,1 ) &amp; newline &amp; paths.at( 1,0,2 )</param>
+                            <param id="0" name="Key string">&quot;minionTypes&quot;</param>
+                            <param id="1" name="Value">&quot;greyMinion#redMinion#blueMinion&quot;</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
         <comment>Game Object Events</comment>
-        <event-group collapsed="1" description="Base that spawns minions" title="Jesus">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
-                <comment>Create new base</comment>
+                <comment>Create a new generator</comment>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">2</param>
+                            <param id="0" name="Mouse button">0</param>
                             <param id="1" name="Click type">0</param>
                         </condition>
-                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">Jesus</param>
+                        <condition id="2" name="Key is down" type="Keyboard">
+                            <param id="0" name="Key">81 (Q)</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Jesus</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">Mouse.X</param>
-                            <param id="3" name="Y">Mouse.Y</param>
+                            <param id="0" name="Object to create">Generator</param>
+                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="2" name="X">mouse.X</param>
+                            <param id="3" name="Y">mouse.Y</param>
                         </action>
-                        <action behavior="DragDrop" id="0" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">1</param>
+                        <action id="-10" name="Set value" type="Generator">
+                            <param id="0" name="Instance variable">minionType</param>
+                            <param id="1" name="Value">tokenat(parameters.At( &quot;minionTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Jesus">
-                            <param id="0" name="Instance variable">Active</param>
-                            <param id="1" name="Value">1</param>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Minion</param>
+                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="2" name="X">generator.X</param>
+                            <param id="3" name="Y">generator.Y</param>
                         </action>
-                        <action behavior="Solid" id="0" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">1</param>
+                        <action id="4" name="Set animation" type="Minion">
+                            <param id="0" name="Animation">&quot;disabled&quot;</param>
+                            <param id="1" name="From">1</param>
                         </action>
-                        <action id="-24" name="Move to top" type="Jesus" />
-                        <action id="2" name="Stop" type="Jesus" />
-                        <action id="-7" name="Set size" type="Jesus">
-                            <param id="0" name="Width">50</param>
-                            <param id="1" name="Height">50</param>
+                        <action id="-13" name="Set boolean" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
+                            <param id="1" name="Value">0</param>
                         </action>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">0</param>
+                        <action behavior="Pin" id="0" name="Pin to object" type="Minion">
+                            <param id="0" name="Pin to">Generator</param>
+                        </action>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Path</param>
+                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="2" name="X">-100</param>
+                            <param id="3" name="Y">-100</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Path">
+                            <param id="0" name="Instance variable">baseUID</param>
+                            <param id="1" name="Value">generator.UID</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Generator">
+                            <param id="0" name="Instance variable">pathUID</param>
+                            <param id="1" name="Value">path.UID</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Generator">
+                            <param id="0" name="Instance variable">labelUID</param>
+                            <param id="1" name="Value">Minion.UID</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Generator">
+                            <param id="0" name="Instance variable">spawnRate</param>
+                            <param id="1" name="Value">parameters.At( &quot;minionDefaultSpawnRate&quot; )</param>
+                        </action>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">PathStart</param>
+                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="2" name="X">generator.ImagePointX( 1 )</param>
+                            <param id="3" name="Y">generator.ImagePointY( 1 ) </param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" type="PathStart">
+                            <param id="0" name="Pin to">Generator</param>
+                        </action>
+                        <action id="-10" name="Set value" type="PathStart">
+                            <param id="0" name="Instance variable">baseUID</param>
+                            <param id="1" name="Value">generator.UID</param>
+                        </action>
+                        <action id="-16" name="Set opacity" type="PathStart">
+                            <param id="0" name="Opacity">0</param>
                         </action>
                     </actions>
                 </event-block>
-                <comment>Enable/Diable a base</comment>
+                <comment>Change the state of the generator (enable/disable it)</comment>
                 <event-block>
                     <conditions>
                         <condition id="6" name="On object clicked" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                             <param id="1" name="Click type">1</param>
-                            <param id="2" name="Object clicked">Jesus</param>
+                            <param id="2" name="Object clicked">Generator</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Grab the active label on the generator</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Minion">
+                                    <param id="0" name="Unique ID">generator.labelUID</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <comment>Shut the generator down</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                                            <param id="0" name="Instance variable">active</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Minion">
+                                            <param id="0" name="Animation">&quot;disabled&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="4" name="Set animation" type="Generator">
+                                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Activate the generator</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Generator">
+                                            <param id="0" name="Instance variable">active</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Generator">
+                                            <param id="0" name="Animation">&quot;InactiveReverse&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Generator">
+                                            <param id="0" name="Instance variable">minionType</param>
+                                            <param id="1" name="Value">tokenat(parameters.At( &quot;minionTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
+                                        </action>
+                                        <action id="4" name="Set animation" type="Minion">
+                                            <param id="0" name="Animation">generator.minionType</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <comment>Fade the starter node out</comment>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" type="PathStart">
+                                                    <param id="0" name="Instance variable">baseUID</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">generator.UID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" type="PathStart">
+                                                    <param id="0" name="Instance variable">fadingIn</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-14" name="Toggle boolean" type="Generator">
+                                    <param id="0" name="Instance variable">active</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Spawn a node pad in once the generator has finished shutting down</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="4" name="On finished" type="Generator">
+                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="PathStart">
+                                    <param id="0" name="Instance variable">baseUID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">generator.UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Set opacity" type="PathStart">
+                                    <param id="0" name="Opacity">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="PathStart">
+                                    <param id="0" name="Instance variable">fadingIn</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Once the generator has fully activated, switch the animation show minions spawning</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="4" name="On finished" type="Generator">
+                            <param id="0" name="Animation">&quot;InactiveReverse&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action behavior="Flash" id="0" name="Flash" type="Jesus">
-                            <param id="0" name="&apos;On&apos; time">0.25</param>
-                            <param id="1" name="&apos;Off&apos; time">0.1</param>
-                            <param id="2" name="Duration">0.5</param>
+                        <action id="4" name="Set animation" type="Generator">
+                            <param id="0" name="Animation">&quot;Spawning&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Fade starting node in</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" type="PathStart">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="Opacity">100</param>
+                        </condition>
+                        <condition id="-6" name="Every X seconds" type="System">
+                            <param id="0" name="Interval (seconds)">0.1</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="PathStart">
+                            <param id="0" name="Instance variable">fadingIn</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" type="PathStart">
+                            <param id="0" name="Opacity">min( 100, pathstart.opacity + 15 )</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Fade starting node out</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" type="PathStart">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Opacity">0</param>
+                        </condition>
+                        <condition id="-6" name="Every X seconds" type="System">
+                            <param id="0" name="Interval (seconds)">0.1</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="PathStart">
+                            <param id="0" name="Instance variable">fadingIn</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" type="PathStart">
+                            <param id="0" name="Opacity">max( pathstart.opacity - 15, 0 )</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Spawn minions from each of the generators</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-11" name="For Each" type="System">
+                            <param id="0" name="Object">Generator</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                            <param id="0" name="Instance variable">active</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" type="System">
+                            <param id="0" name="First value">tickcount - generator.spawnRate</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">generator.lastSpawn</param>
+                        </condition>
+                        <condition id="2" inverted="1" name="Is playing" type="Generator">
+                            <param id="0" name="Animation">&quot;InactiveReverse&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Start" type="Generator">
+                            <param id="0" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Generator">
+                            <param id="0" name="Instance variable">lastSpawn</param>
+                            <param id="1" name="Value">tickcount</param>
+                        </action>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Minion</param>
+                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                            <param id="2" name="X">generator.X</param>
+                            <param id="3" name="Y">generator.Y</param>
+                        </action>
+                        <action id="4" name="Set animation" type="Minion">
+                            <param id="0" name="Animation">generator.minionType</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="CustomMovement" id="2" name="Set speed" type="Minion">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="Speed">Parameters.Entry(&quot;minionDefaultSpeed&quot;)</param>
+                        </action>
+                        <action id="-24" name="Move to top" type="Minion" />
+                        <action id="3" name="Start" type="Minion">
+                            <param id="0" name="From">0</param>
                         </action>
                     </actions>
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" type="Jesus">
-                                    <param id="0" name="Instance variable">Active</param>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Node</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Minion.currentPathNode</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-16" name="Set opacity" type="Jesus">
-                                    <param id="0" name="Opacity">25</param>
+                                <action id="-22" name="Set angle toward position" type="Minion">
+                                    <param id="0" name="X">node.X</param>
+                                    <param id="1" name="Y">node.Y</param>
                                 </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                                    <param id="0" name="Instance variable">Active</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-16" name="Set opacity" type="Jesus">
-                                    <param id="0" name="Opacity">100</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-14" name="Toggle boolean" type="Jesus">
-                                    <param id="0" name="Instance variable">Active</param>
+                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                                    <param id="0" name="Angle">Minion.Angle</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -276,13 +467,13 @@
                         <condition id="7" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">Bar</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">Node</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
@@ -405,7 +596,7 @@
                                     <param id="0" name="Instance variable">nodeUID</param>
                                     <param id="1" name="Value">node.UID</param>
                                 </action>
-                                <action id="-11" name="Add to" type="Path">
+                                <action id="-11" name="Add to" type="OldPathStart">
                                     <param id="0" name="Instance variable">pathCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -473,7 +664,7 @@
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="-13" name="Set boolean" type="Path">
+                                <action id="-13" name="Set boolean" type="OldPathStart">
                                     <param id="0" name="Instance variable">currentlyMovingNode</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -487,17 +678,20 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="2" name="Key is down" type="Keyboard">
+                        <condition id="7" name="Cursor is over object" type="Mouse">
+                            <param id="0" name="Object">PathStart</param>
+                        </condition>
+                        <condition disabled="1" id="2" name="Key is down" type="Keyboard">
                             <param id="0" name="Key">32 (Space)</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" type="Node" />
                         <action id="-9" name="Destroy" type="Bar" />
-                        <action id="-10" name="Set value" type="Path">
+                        <action id="-10" name="Set value" type="OldPathStart">
                             <param id="0" name="Instance variable">pathCount</param>
                             <param id="1" name="Value">0</param>
                         </action>
@@ -505,7 +699,7 @@
                             <param id="0" name="Instance variable">currentPathNode</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Path">
+                        <action id="-13" name="Set boolean" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                             <param id="1" name="Value">1</param>
                         </action>
@@ -518,10 +712,10 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="2" name="Key is down" type="Keyboard">
+                        <condition disabled="1" id="2" name="Key is down" type="Keyboard">
                             <param id="0" name="Key">32 (Space)</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
@@ -549,7 +743,7 @@
                         </action>
                         <action id="-10" name="Set value" type="Node">
                             <param id="0" name="Instance variable">nodeIndex</param>
-                            <param id="1" name="Value">path.pathCount</param>
+                            <param id="1" name="Value">OldPathStart.pathCount</param>
                         </action>
                         <action id="-10" name="Set value" type="Node">
                             <param id="0" name="Instance variable">previousNode</param>
@@ -596,7 +790,7 @@
                         <variable comment="The y value of the current node" name="currentNodeY" type="number">0</variable>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Path">
+                                <condition id="-7" name="Compare instance variable" type="OldPathStart">
                                     <param id="0" name="Instance variable">pathCount</param>
                                     <param id="1" name="Comparison">4</param>
                                     <param id="2" name="Value">0</param>
@@ -666,7 +860,7 @@
                                     <param id="0" name="Variable">previousNodeUID</param>
                                     <param id="1" name="Value">currentNodeUID</param>
                                 </action>
-                                <action id="-11" name="Add to" type="Path">
+                                <action id="-11" name="Add to" type="OldPathStart">
                                     <param id="0" name="Instance variable">pathCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -680,18 +874,18 @@
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Path">
+                        <action id="-13" name="Set boolean" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                             <param id="1" name="Value">0</param>
                         </action>
                         <action disabled="1" id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">debugMsg &amp; &quot;tracing done (&quot; &amp; path.pathCount &amp; &quot;)&quot; &amp; newline</param>
+                            <param id="1" name="Value">debugMsg &amp; &quot;tracing done (&quot; &amp; OldPathStart.pathCount &amp; &quot;)&quot; &amp; newline</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -704,7 +898,7 @@
                                 <condition id="-7" name="Compare instance variable" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">path.pathCount - 1</param>
+                                    <param id="2" name="Value">OldPathStart.pathCount - 1</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -747,7 +941,7 @@
                 <comment>Smooths the animations of new paths while the player is drawing it</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                     </conditions>
@@ -764,7 +958,7 @@
                                 <condition id="-7" name="Compare instance variable" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value"> path.pathCount -1</param>
+                                    <param id="2" name="Value"> OldPathStart.pathCount -1</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -862,7 +1056,7 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
@@ -886,7 +1080,7 @@
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
@@ -906,7 +1100,7 @@
                             <param id="0" name="Animation">&quot;default&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Path">
+                        <action id="-13" name="Set boolean" type="OldPathStart">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
                             <param id="1" name="Value">0</param>
                         </action>
@@ -942,7 +1136,7 @@
                                 <condition id="-7" name="Compare instance variable" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Value">path.pathCount</param>
+                                    <param id="2" name="Value">OldPathStart.pathCount</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -1142,9 +1336,9 @@
         <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Spawn minions at each of the bases</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-6" name="Every X seconds" type="System">
+                        <condition disabled="1" id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">parameters.At( &quot;minionSpawnRate&quot; ) / Jesus.Count</param>
                         </condition>
                     </conditions>
@@ -1163,7 +1357,7 @@
                                         <condition id="-8" name="Is boolean instance variable set" type="Jesus">
                                             <param id="0" name="Instance variable">Active</param>
                                         </condition>
-                                        <condition id="-7" name="Compare instance variable" type="Path">
+                                        <condition id="-7" name="Compare instance variable" type="OldPathStart">
                                             <param id="0" name="Instance variable">pathCount</param>
                                             <param id="1" name="Comparison">4</param>
                                             <param id="2" name="Value">0</param>
@@ -1231,6 +1425,9 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">Minion.currentPathNode</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" type="System">
@@ -1271,7 +1468,12 @@
                         <condition id="-7" name="Compare instance variable" type="Minion">
                             <param id="0" name="Instance variable">currentPathNode</param>
                             <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">path.pathCount</param>
+                            <param id="2" name="Value">OldPathStart.pathCount</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="OldPathStart">
+                            <param id="0" name="Instance variable">pathCount</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -1293,6 +1495,9 @@
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">minion.currentPathNode</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
+                        </condition>
                     </conditions>
                     <actions />
                     <sub-events>
@@ -1311,7 +1516,7 @@
                             <actions>
                                 <action id="-10" name="Set value" type="Minion">
                                     <param id="0" name="Instance variable">currentPathNode</param>
-                                    <param id="1" name="Value">min( minion.currentPathNode + 1, path.pathCount -1 )</param>
+                                    <param id="1" name="Value">min( minion.currentPathNode + 1, OldPathStart.pathCount -1 )</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -2383,7 +2588,101 @@
             </sub-events>
         </event-group>
         <comment>Legacy Code</comment>
-        <event-group collapsed="1" description="Krull blade that kills minions while spinning around the map, aslo acts as a mobile weapons platform" title="KrullBlade (old code, needs updating)">
+        <event-group collapsed="1" description="Base that spawns minions" disabled="1" title="Jesus">
+            <sub-events>
+                <comment>Create new base</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On click" type="Mouse">
+                            <param id="0" name="Mouse button">2</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
+                            <param id="0" name="Object">Jesus</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Jesus</param>
+                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                            <param id="2" name="X">Mouse.X</param>
+                            <param id="3" name="Y">Mouse.Y</param>
+                        </action>
+                        <action behavior="DragDrop" id="0" name="Set enabled" type="Jesus">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Jesus">
+                            <param id="0" name="Instance variable">Active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action behavior="Solid" id="0" name="Set enabled" type="Jesus">
+                            <param id="0" name="State">1</param>
+                        </action>
+                        <action id="-24" name="Move to top" type="Jesus" />
+                        <action id="2" name="Stop" type="Jesus" />
+                        <action id="-7" name="Set size" type="Jesus">
+                            <param id="0" name="Width">50</param>
+                            <param id="1" name="Height">50</param>
+                        </action>
+                        <action behavior="Bullet" id="5" name="Set enabled" type="Jesus">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Enable/Diable a base</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="6" name="On object clicked" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">1</param>
+                            <param id="2" name="Object clicked">Jesus</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Flash" id="0" name="Flash" type="Jesus">
+                            <param id="0" name="&apos;On&apos; time">0.25</param>
+                            <param id="1" name="&apos;Off&apos; time">0.1</param>
+                            <param id="2" name="Duration">0.5</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" type="Jesus">
+                                    <param id="0" name="Instance variable">Active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Set opacity" type="Jesus">
+                                    <param id="0" name="Opacity">25</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
+                                    <param id="0" name="Instance variable">Active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Set opacity" type="Jesus">
+                                    <param id="0" name="Opacity">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-14" name="Toggle boolean" type="Jesus">
+                                    <param id="0" name="Instance variable">Active</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group collapsed="1" description="Krull blade that kills minions while spinning around the map, aslo acts as a mobile weapons platform" disabled="1" title="KrullBlade (old code, needs updating)">
             <sub-events>
                 <comment></comment>
                 <variable comment="the amount of rotation build (degrees/sec)" name="spinBuildAmount" type="number">50</variable>
@@ -2439,43 +2738,43 @@
                     </actions>
                 </event-block>
                 <comment>Create a new blade, the entry in the enemy array is (bodyUID, bladeUID)</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On click" type="Mouse">
+                        <condition disabled="1" id="0" name="On click" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                             <param id="1" name="Click type">0</param>
                         </condition>
-                        <condition id="2" name="Key is down" type="Keyboard">
+                        <condition disabled="1" id="2" name="Key is down" type="Keyboard">
                             <param id="0" name="Key">81 (Q)</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Create object" type="System">
+                        <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">KrullBase</param>
                             <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
-                        <action behavior="Bullet" id="0" name="Set speed" type="KrullBase">
+                        <action behavior="Bullet" disabled="1" id="0" name="Set speed" type="KrullBase">
                             <param id="0" name="Speed">random( minspeed, maxspeed)</param>
                         </action>
-                        <action id="-8" name="Set angle" type="KrullBase">
+                        <action disabled="1" id="-8" name="Set angle" type="KrullBase">
                             <param id="0" name="Angle">random( 0 , 360 )</param>
                         </action>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="KrullBase">
+                        <action behavior="Bullet" disabled="1" id="5" name="Set enabled" type="KrullBase">
                             <param id="0" name="State">0</param>
                         </action>
-                        <action id="-3" name="Create object" type="System">
+                        <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">KrullBlade</param>
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="X">KrullBase.X</param>
                             <param id="3" name="Y">KrullBase.Y</param>
                         </action>
-                        <action id="-10" name="Set value" type="KrullBlade">
+                        <action disabled="1" id="-10" name="Set value" type="KrullBlade">
                             <param id="0" name="Instance variable">baseUID</param>
                             <param id="1" name="Value">krullbase.UID</param>
                         </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="KrullBlade">
+                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="KrullBlade">
                             <param id="0" name="Pin to">KrullBase</param>
                         </action>
                         <action disabled="1" id="-3" name="Create object" type="System">

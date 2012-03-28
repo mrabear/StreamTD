@@ -651,6 +651,9 @@
                     </properties>
                     <instance-variables>
                         <currentPathNode>0</currentPathNode>
+                        <pathUID>0</pathUID>
+                        <active>true</active>
+                        <baseUID>0</baseUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
@@ -660,6 +663,7 @@
                             </properties>
                         </behavior-instance>
                         <behavior-instance type="DestroyOutsideLayout" />
+                        <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
                         <x>-178</x>
@@ -729,9 +733,9 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Path">
+                <instance type="OldPathStart">
                     <properties>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
@@ -756,31 +760,23 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Sprite">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <world>
-                        <x>-48</x>
-                        <y>45</y>
-                        <z>0</z>
-                        <width>36</width>
-                        <height>36</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="Generator">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
+                    <instance-variables>
+                        <pathUID>0</pathUID>
+                        <active>false</active>
+                        <labelUID>0</labelUID>
+                        <spawnRate>0</spawnRate>
+                        <lastSpawn>0</lastSpawn>
+                        <minionType>&quot;&quot;</minionType>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="DragDrop" />
+                    </behavior-instances>
                     <world>
                         <x>-255</x>
                         <y>133</y>
@@ -794,33 +790,28 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="MinionLabel">
+                <instance type="PathStart">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
-                        <currentPathNode>0</currentPathNode>
+                        <baseUID>0</baseUID>
+                        <fadingIn>false</fadingIn>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="CustomMovement">
-                            <properties>
-                                <stepping-mode>None</stepping-mode>
-                                <pixels-per-step>5</pixels-per-step>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="DestroyOutsideLayout" />
+                        <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-226</x>
-                        <y>-7</y>
+                        <x>-156</x>
+                        <y>315</y>
                         <z>0</z>
-                        <width>36</width>
-                        <height>36</height>
+                        <width>26</width>
+                        <height>30</height>
                         <depth>0</depth>
-                        <hotspotX>0.519999981</hotspotX>
-                        <hotspotY>0.519999981</hotspotY>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.400000006</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -834,12 +825,18 @@
                 <contains></contains>
             </properties>
         </instance>
-        <instance type="Paths">
+        <instance type="Path">
             <properties>
-                <width>10</width>
-                <height>1</height>
+                <width>500</width>
+                <height>3</height>
                 <depth>1</depth>
             </properties>
+            <instance-variables>
+                <pathCount>0</pathCount>
+                <currentlyMovingNode>false</currentlyMovingNode>
+                <currentlyTracing>false</currentlyTracing>
+                <baseUID>0</baseUID>
+            </instance-variables>
         </instance>
     </nonworld-instances>
 </c2layout>
