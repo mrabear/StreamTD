@@ -208,6 +208,10 @@
                         <action id="-16" name="Set opacity" type="PathStart">
                             <param id="0" name="Opacity">0</param>
                         </action>
+                        <action id="-13" name="Set boolean" type="PathStart">
+                            <param id="0" name="Instance variable">fadingIn</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Change the state of the generator (enable/disable it)</comment>
@@ -247,6 +251,26 @@
                                             <param id="1" name="From">1</param>
                                         </action>
                                     </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" type="PathStart">
+                                                    <param id="0" name="Instance variable">baseUID</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">generator.UID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-16" name="Set opacity" type="PathStart">
+                                                    <param id="0" name="Opacity">0</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="PathStart">
+                                                    <param id="0" name="Instance variable">fadingIn</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                                 <comment>Activate the generator</comment>
                                 <event-block>
@@ -295,35 +319,6 @@
                             <actions>
                                 <action id="-14" name="Toggle boolean" type="Generator">
                                     <param id="0" name="Instance variable">active</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <comment>Spawn a node pad in once the generator has finished shutting down</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="4" name="On finished" type="Generator">
-                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" type="PathStart">
-                                    <param id="0" name="Instance variable">baseUID</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">generator.UID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-16" name="Set opacity" type="PathStart">
-                                    <param id="0" name="Opacity">0</param>
-                                </action>
-                                <action id="-13" name="Set boolean" type="PathStart">
-                                    <param id="0" name="Instance variable">fadingIn</param>
-                                    <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
                         </event-block>

@@ -721,7 +721,7 @@
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">
-                    <animation framecount="16" loop="0" name="Inactive" pingpong="0" repeatcount="0" repeatto="0" speed="20">
+                    <animation framecount="16" loop="0" name="Inactive" pingpong="0" repeatcount="0" repeatto="0" speed="30">
                         <frame duration="1" hotspotX="0.256198" hotspotY="0.445946">
                             <image-point name="Imagepoint 1" x="0.809917" y="0.445946" />
                             <collision-poly>
@@ -931,7 +931,7 @@
                             </collision-poly>
                         </frame>
                     </animation>
-                    <animation framecount="17" loop="0" name="InactiveReverse" pingpong="0" repeatcount="0" repeatto="0" speed="20">
+                    <animation framecount="17" loop="0" name="InactiveReverse" pingpong="0" repeatcount="0" repeatto="0" speed="30">
                         <frame duration="1" hotspotX="0.256198" hotspotY="0.445946">
                             <image-point name="Spawn" x="0.603306" y="0.459459" />
                             <collision-poly>
