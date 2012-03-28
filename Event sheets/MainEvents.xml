@@ -17,7 +17,7 @@
                         <action id="1" name="Set size" type="Paths">
                             <param id="0" name="Width">100</param>
                             <param id="1" name="Height">500</param>
-                            <param id="2" name="Depth">2</param>
+                            <param id="2" name="Depth">3</param>
                         </action>
                         <action behavior="Bullet" id="5" name="Set enabled" type="Jesus">
                             <param id="0" name="State">0</param>
@@ -119,6 +119,50 @@
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;pathPollRate&quot;</param>
                             <param id="1" name="Value">0.05</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">&quot;pathcount0&quot;</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">1</param>
+                            <param id="3" name="Value">&quot;nodex&quot;</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">2</param>
+                            <param id="3" name="Value">&quot;nodey&quot;</param>
+                        </action>
+                        <action disabled="1" id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">debugMsg</param>
+                            <param id="1" name="Value">paths.at( 0 ) &amp; newline &amp; paths.at( 0,0,1 ) &amp; newline &amp; paths.at( 0,0,2 ) &amp; newline</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
+                            <param id="0" name="X">1</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">0</param>
+                            <param id="3" name="Value">&quot;pathcount1&quot;</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
+                            <param id="0" name="X">1</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">1</param>
+                            <param id="3" name="Value">&quot;nodex1&quot;</param>
+                        </action>
+                        <action disabled="1" id="4" name="Set at XYZ" type="Paths">
+                            <param id="0" name="X">1</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Z">2</param>
+                            <param id="3" name="Value">&quot;nodey1&quot;</param>
+                        </action>
+                        <action disabled="1" id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">debugMsg</param>
+                            <param id="1" name="Value">debugMsg &amp; paths.at( 1 ) &amp; newline &amp; paths.at( 1,0,1 ) &amp; newline &amp; paths.at( 1,0,2 )</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2457,7 +2501,7 @@
             </sub-events>
         </event-group>
         <comment>Debug Events</comment>
-        <event-group description="Various debug methods" title="Debug">
+        <event-group collapsed="1" description="Various debug methods" title="Debug">
             <sub-events>
                 <variable comment="The rate (in seconds) to refresh debug information" name="debugPollRate" type="number">0.1</variable>
                 <event-block>

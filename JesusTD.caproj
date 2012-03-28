@@ -671,14 +671,7 @@
             </object-type>
         </object-folder>
     </object-folder>
-    <families>
-        <family name="Turret" plugin-id="Sprite">
-            <members>
-                <member>Cannon</member>
-                <member>TurretBase</member>
-            </members>
-        </family>
-    </families>
+    <families />
     <layout-folder expanded="1">
         <layout>MainLayout.xml</layout>
     </layout-folder>
