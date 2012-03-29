@@ -45,30 +45,13 @@
                     </properties>
                     <instance-variables>
                         <Active>true</Active>
-                        <bigJesus>false</bigJesus>
+                        <bigJesus>true</bigJesus>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Solid" />
-                        <behavior-instance type="DragDrop" />
-                        <behavior-instance type="Flash" />
                         <behavior-instance type="BoundToLayout">
                             <properties>
                                 <bound-by>Edge</bound-by>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="CustomMovement">
-                            <properties>
-                                <stepping-mode>None</stepping-mode>
-                                <pixels-per-step>5</pixels-per-step>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>400</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>Yes</bounce-off-solids>
-                                <set-angle>Yes</set-angle>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>

@@ -13,20 +13,7 @@
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
                     <actions>
-                        <action id="0" name="Clear" type="Path" />
-                        <action disabled="1" id="1" name="Set size" type="Path">
-                            <param id="0" name="Width">100</param>
-                            <param id="1" name="Height">500</param>
-                            <param id="2" name="Depth">3</param>
-                        </action>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">0</param>
-                        </action>
                         <action id="2" name="Stop" type="Jesus" />
-                        <action id="-13" name="Set boolean" type="Jesus">
-                            <param id="0" name="Instance variable">bigJesus</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
                         <action id="4" name="Clean all" type="Parameters" />
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketAmmoType&quot;</param>
@@ -453,7 +440,7 @@
         </event-group>
         <variable comment="the previous UID in the path" name="previousNodeUID" type="number">0</variable>
         <variable comment="the current UID in the path" name="currentNodeUID" type="number">0</variable>
-        <event-group description="Path that minions follow" title="Path">
+        <event-group collapsed="1" description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
                 <event-block>
@@ -1428,58 +1415,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
-                <comment>Spawn minions at each of the bases</comment>
-                <comment>A minion has reached the next node in the path</comment>
-                <variable comment="the next node in the path" name="nextUID" type="number">0</variable>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On collision with another object" type="Minion">
-                            <param id="0" name="Object">Node</param>
-                        </condition>
-                        <condition disabled="1" id="-7" name="Compare instance variable" type="Node">
-                            <param id="0" name="Instance variable">nodeIndex</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">Minion.currentPathNode</param>
-                        </condition>
-                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
-                            <param id="0" name="Instance variable">active</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action disabled="1" id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">nextUID</param>
-                            <param id="1" name="Value">node.nextNode</param>
-                        </action>
-                        <action disabled="1" id="-11" name="Add to" type="Minion">
-                            <param id="0" name="Instance variable">currentPathNode</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <comment>If this node is the one we&apos;re looking for (the next node in sequence in the path), advance the minion to the next node</comment>
-                        <event-block disabled="1">
-                            <conditions>
-                                <condition disabled="1" id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Node</param>
-                                </condition>
-                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Node">
-                                    <param id="0" name="Unique ID">nextUID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action disabled="1" id="-22" name="Set angle toward position" type="Minion">
-                                    <param id="0" name="X">node.X</param>
-                                    <param id="1" name="Y">node.Y</param>
-                                </action>
-                                <action behavior="CustomMovement" disabled="1" id="6" name="Set angle of motion" type="Minion">
-                                    <param id="0" name="Angle">Minion.Angle</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
+                <comment>Manage all of the active minion</comment>
                 <variable comment="the minion&apos;s distance to it&apos;s next node" name="distanceToNode" type="number">0</variable>
                 <variable comment="the minion&apos;s angle to it&apos;s next node" name="angleToNode" type="number">0</variable>
                 <event-block>
@@ -1490,105 +1428,95 @@
                         <condition id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">minion.pathUID</param>
+                        </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">distanceToNode</param>
+                            <param id="1" name="Value">distance( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
+                        </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">angleToNode</param>
+                            <param id="1" name="Value">angle( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
+                        </action>
+                    </actions>
                     <sub-events>
+                        <comment>Advance the minion to the next node if it arrives at the current one</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Path</param>
-                                </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Path">
-                                    <param id="0" name="Unique ID">minion.pathUID</param>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">distanceToNode</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">Parameters.At(&quot;nodeSize&quot; )</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">distanceToNode</param>
-                                    <param id="1" name="Value">distance( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">angleToNode</param>
-                                    <param id="1" name="Value">angle( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
+                                <action id="-11" name="Add to" type="Minion">
+                                    <param id="0" name="Instance variable">currentPathNode</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
-                            <sub-events>
-                                <comment>Advance the minion to the next node if it arrives at the current one</comment>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">distanceToNode</param>
-                                            <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Value">Parameters.At(&quot;nodeSize&quot; )</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-11" name="Add to" type="Minion">
-                                            <param id="0" name="Instance variable">currentPathNode</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <comment>Destroy the minion if it reaches the end of the path</comment>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-7" name="Compare instance variable" type="Minion">
-                                            <param id="0" name="Instance variable">currentPathNode</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Value">path.pathCount</param>
-                                        </condition>
-                                        <condition id="4" name="Compare current value" type="Path">
-                                            <param id="0" name="Comparison">4</param>
-                                            <param id="1" name="Value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Destroy" type="Minion" />
-                                    </actions>
-                                </event-block>
-                                <comment>Reroute minions if they move off course (can happen because of unaccounted for collision or nodes being moved around rapidly)</comment>
-                                <comment>Off course is defined by BOTH: </comment>
-                                <comment>1: Beign too far away (distanceTolerance) from the target node AND</comment>
-                                <comment>2: Having a angle of motion that too wide (angleTolerance) to actually intersect the target node</comment>
-                                <comment>When a minion is corrected, it is advanced to the next node (or the final node if it is off the grid) and oriented toward the new node</comment>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-11" inverted="1" name="Is within angle" type="Minion">
-                                            <param id="0" name="Within">Parameters.At(&quot;minionAngleTolerance&quot; )</param>
-                                            <param id="1" name="Angle">angleToNode</param>
-                                        </condition>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">distanceToNode</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">parameters.At( &quot;minionDistanceTolerance&quot; )</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" type="Minion">
-                                            <param id="0" name="Instance variable">currentPathNode</param>
-                                            <param id="1" name="Value">min( minion.currentPathNode + 1, path.pathCount -1 )</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions />
-                                    <actions>
-                                        <action id="-22" name="Set angle toward position" type="Minion">
-                                            <param id="0" name="X">path.At( minion.currentPathNode, 0 )</param>
-                                            <param id="1" name="Y">path.At( minion.currentPathNode, 1 )</param>
-                                        </action>
-                                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
-                                            <param id="0" name="Angle">Minion.Angle</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
+                        </event-block>
+                        <comment>Destroy the minion if it reaches the end of the path</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" type="Minion">
+                                    <param id="0" name="Instance variable">currentPathNode</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">path.pathCount</param>
+                                </condition>
+                                <condition id="4" name="Compare current value" type="Path">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Minion" />
+                            </actions>
+                        </event-block>
+                        <comment>Reroute minions if they move off course (can happen because of unaccounted for collision or nodes being moved around rapidly)</comment>
+                        <comment>Off course is defined by BOTH: </comment>
+                        <comment>1: Beign too far away (distanceTolerance) from the target node AND</comment>
+                        <comment>2: Having a angle of motion that too wide (angleTolerance) to actually intersect the target node</comment>
+                        <comment>When a minion is corrected, it is advanced to the next node (or the final node if it is off the grid) and oriented toward the new node</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" inverted="1" name="Is within angle" type="Minion">
+                                    <param id="0" name="Within">Parameters.At(&quot;minionAngleTolerance&quot; )</param>
+                                    <param id="1" name="Angle">angleToNode</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">distanceToNode</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">parameters.At( &quot;minionDistanceTolerance&quot; )</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Minion">
+                                    <param id="0" name="Instance variable">currentPathNode</param>
+                                    <param id="1" name="Value">min( minion.currentPathNode + 1, path.pathCount -1 )</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-22" name="Set angle toward position" type="Minion">
+                                    <param id="0" name="X">path.At( minion.currentPathNode, 0 )</param>
+                                    <param id="1" name="Y">path.At( minion.currentPathNode, 1 )</param>
+                                </action>
+                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                                    <param id="0" name="Angle">Minion.Angle</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A cannon that fires projectiles" title="Cannon">
+        <event-group description="A cannon that fires projectiles" title="Cannon">
             <sub-events>
                 <comment>Fire the cannon with a defined ammo at a specific fire rate</comment>
                 <event-block>
@@ -1834,6 +1762,9 @@
                                     <param id="1" name="X">Cannon.X</param>
                                     <param id="2" name="Y">Cannon.Y</param>
                                 </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                                    <param id="0" name="Instance variable">active</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" type="System">
@@ -1995,6 +1926,9 @@
                                                         <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
                                                             <param id="0" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
                                                         </action>
+                                                        <action behavior="Bullet" id="3" name="Set angle of motion" type="Rocket">
+                                                            <param id="0" name="Angle">rocket.Angle</param>
+                                                        </action>
                                                         <action behavior="CustomMovement" id="12" name="Set enabled" type="Rocket">
                                                             <param id="0" name="State">1</param>
                                                         </action>
@@ -2020,7 +1954,7 @@
                                                             <param id="1" name="Value">RocketEffects.UID</param>
                                                         </action>
                                                         <action id="-8" name="Set angle" type="RocketEffects">
-                                                            <param id="0" name="Angle">200-beam.angle</param>
+                                                            <param id="0" name="Angle">200-rocket.angle</param>
                                                         </action>
                                                         <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
                                                             <param id="0" name="Pin to">Rocket</param>
@@ -2121,36 +2055,16 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
+        <event-group description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
             <sub-events>
-                <comment>Destroy any base hit by beams</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On collision with another object" type="Beam">
-                            <param id="0" name="Object">Jesus</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Beam" />
-                    </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                                    <param id="0" name="Instance variable">bigJesus</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Jesus" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
                 <comment>Destroy any minion hit by beams</comment>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Beam">
                             <param id="0" name="Object">Minion</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2182,53 +2096,10 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <comment>Destroy the beam if it hits a krull</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On collision with another object" type="Beam">
-                            <param id="0" name="Object">KrullBlade</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Beam" />
-                    </actions>
-                </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+        <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
             <sub-events>
-                <comment>Destroy any base hit by rockets</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On collision with another object" type="Rocket">
-                            <param id="0" name="Object">Jesus</param>
-                        </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                            <param id="0" name="Instance variable">armed</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
-                            <param id="0" name="Instance variable">readyToDetonate</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-15" name="Set visible" type="Rocket">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                                    <param id="0" name="Instance variable">bigJesus</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action disabled="1" id="-9" name="Destroy" type="Jesus" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
                 <comment>Destroy any minions hit by rockets</comment>
                 <event-block>
                     <conditions>
@@ -2238,73 +2109,20 @@
                         <condition id="-8" name="Is boolean instance variable set" type="Rocket">
                             <param id="0" name="Instance variable">armed</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Destroy" type="Minion" />
+                        <action id="-13" name="Set boolean" type="Rocket">
+                            <param id="0" name="Instance variable">readyToDetonate</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="Rocket">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                     </actions>
-                    <sub-events>
-                        <event-block disabled="1">
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Cannon">
-                                    <param id="0" name="Unique ID">rocket.cannonUID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-11" name="Add to" type="Cannon">
-                                    <param id="0" name="Instance variable">fireRate</param>
-                                    <param id="1" name="Value">Cannon.fireRate * parameters.At( &quot;bonusFireRate&quot; )</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Rocket">
-                                    <param id="0" name="Instance variable">readyToDetonate</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="Rocket">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <comment>Destroy any krull that collides with an armed rocket</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On collision with another object" type="Rocket">
-                            <param id="0" name="Object">KrullBlade</param>
-                        </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                            <param id="0" name="Instance variable">armed</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="KrullBase">
-                                    <param id="0" name="Unique ID">krullblade.baseUID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="KrullBase" />
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Rocket">
-                                    <param id="0" name="Instance variable">readyToDetonate</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="Rocket">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
                 <comment>Kill any rocket that exceeds the maximum flight time</comment>
                 <event-block>
@@ -2329,28 +2147,6 @@
                     </actions>
                 </event-block>
                 <comment>Arm the rocket once it&apos;s cleared the cannon</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="1" inverted="1" name="Is overlapping another object" type="Rocket">
-                            <param id="0" name="Object">KrullBlade</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Rocket">
-                            <param id="0" name="Instance variable">armed</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
-                            <param id="0" name="Instance variable">armed</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action behavior="CustomMovement" id="12" name="Set enabled" type="Rocket">
-                            <param id="0" name="State">0</param>
-                        </action>
-                    </actions>
-                </event-block>
                 <comment>Bounce off other rockets (explicitly done because rockets aren&apos;t solid)</comment>
                 <event-block>
                     <conditions>
@@ -2629,100 +2425,6 @@
             </sub-events>
         </event-group>
         <comment>Legacy Code</comment>
-        <event-group collapsed="1" description="Base that spawns minions" disabled="1" title="Jesus">
-            <sub-events>
-                <comment>Create new base</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">2</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
-                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">Jesus</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Jesus</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">Mouse.X</param>
-                            <param id="3" name="Y">Mouse.Y</param>
-                        </action>
-                        <action behavior="DragDrop" id="0" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action id="-13" name="Set boolean" type="Jesus">
-                            <param id="0" name="Instance variable">Active</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action behavior="Solid" id="0" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">1</param>
-                        </action>
-                        <action id="-24" name="Move to top" type="Jesus" />
-                        <action id="2" name="Stop" type="Jesus" />
-                        <action id="-7" name="Set size" type="Jesus">
-                            <param id="0" name="Width">50</param>
-                            <param id="1" name="Height">50</param>
-                        </action>
-                        <action behavior="Bullet" id="5" name="Set enabled" type="Jesus">
-                            <param id="0" name="State">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Enable/Diable a base</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="6" name="On object clicked" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">1</param>
-                            <param id="2" name="Object clicked">Jesus</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="Flash" id="0" name="Flash" type="Jesus">
-                            <param id="0" name="&apos;On&apos; time">0.25</param>
-                            <param id="1" name="&apos;Off&apos; time">0.1</param>
-                            <param id="2" name="Duration">0.5</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" name="Is boolean instance variable set" type="Jesus">
-                                    <param id="0" name="Instance variable">Active</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-16" name="Set opacity" type="Jesus">
-                                    <param id="0" name="Opacity">25</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                                    <param id="0" name="Instance variable">Active</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-16" name="Set opacity" type="Jesus">
-                                    <param id="0" name="Opacity">100</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-14" name="Toggle boolean" type="Jesus">
-                                    <param id="0" name="Instance variable">Active</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-group>
         <event-group collapsed="1" description="Krull blade that kills minions while spinning around the map, aslo acts as a mobile weapons platform" disabled="1" title="KrullBlade (old code, needs updating)">
             <sub-events>
                 <comment></comment>

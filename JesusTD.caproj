@@ -20,7 +20,6 @@
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
         <behavior id="DragnDrop" version="1">Drag &amp; Drop</behavior>
-        <behavior id="Flash" version="1">Flash</behavior>
         <behavior id="Physics" version="1">Physics</behavior>
         <behavior id="Pin" version="1">Pin</behavior>
         <behavior id="Rotate" version="1">Rotate</behavior>
@@ -395,20 +394,8 @@
                     <behavior-type name="Solid">
                         <behavior id="solid" />
                     </behavior-type>
-                    <behavior-type name="DragDrop">
-                        <behavior id="DragnDrop" />
-                    </behavior-type>
-                    <behavior-type name="Flash">
-                        <behavior id="Flash" />
-                    </behavior-type>
                     <behavior-type name="BoundToLayout">
                         <behavior id="bound" />
-                    </behavior-type>
-                    <behavior-type name="CustomMovement">
-                        <behavior id="custom" />
-                    </behavior-type>
-                    <behavior-type name="Bullet">
-                        <behavior id="Bullet" />
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">
@@ -643,12 +630,40 @@
                         </frame>
                     </animation>
                     <animation framecount="2" loop="1" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52" />
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52" />
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.255" y="0.035" />
+                                <point x="0.665" y="0.055" />
+                                <point x="0.665" y="0.895" />
+                                <point x="0.175" y="0.895" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.255" y="0.035" />
+                                <point x="0.665" y="0.055" />
+                                <point x="0.665" y="0.895" />
+                                <point x="0.175" y="0.895" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                     <animation framecount="2" loop="1" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52" />
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52" />
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.315" y="0.035" />
+                                <point x="0.695" y="0.035" />
+                                <point x="0.655" y="0.885" />
+                                <point x="0.145" y="0.915" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.315" y="0.035" />
+                                <point x="0.695" y="0.035" />
+                                <point x="0.655" y="0.885" />
+                                <point x="0.145" y="0.915" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
