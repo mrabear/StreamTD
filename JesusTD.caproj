@@ -145,6 +145,7 @@
                     <instance-variable comment="the previous node in the path" name="previousNode" type="number" />
                     <instance-variable comment="is the node being moved by an object" name="movingByObject" type="boolean" />
                     <instance-variable comment="the uid of the path this node is a part of" name="pathUID" type="number" />
+                    <instance-variable comment="is the node fully connected into the path?" name="fullyConnected" type="boolean" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="CustomMovement">

@@ -82,6 +82,7 @@
                         <previousNode>0</previousNode>
                         <movingByObject>false</movingByObject>
                         <pathUID>0</pathUID>
+                        <fullyConnected>false</fullyConnected>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">

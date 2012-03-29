@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -328,6 +328,53 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>Once the generator has gone fully offline, draw it&apos;s path</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="4" name="On finished" type="Generator">
+                            <param id="0" name="Animation">&quot;Inactive&quot;</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">generator.pathUID</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-10" name="For" type="System">
+                                    <param id="0" name="Name">&quot;Rebuild Path&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">path.pathCount</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Node</param>
+                                    <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
+                                    <param id="2" name="X">path.At( loopindex, 0 )</param>
+                                    <param id="3" name="Y">path.At( loopindex, 1 )</param>
+                                </action>
+                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Node">
+                                    <param id="0" name="Instance variable">pathUID</param>
+                                    <param id="1" name="Value">path.UID</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Value">loopindex</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Path">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">2</param>
+                                    <param id="2" name="Value">node.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <comment>Fade starting node in</comment>
                 <event-block>
                     <conditions>
@@ -438,8 +485,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <variable comment="the previous UID in the path" name="previousNodeUID" type="number">0</variable>
-        <variable comment="the current UID in the path" name="currentNodeUID" type="number">0</variable>
         <event-group description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
@@ -747,8 +792,6 @@
                     </sub-events>
                 </event-block>
                 <comment>Draw a new path</comment>
-                <variable comment="The x value of the current node" name="currentNodeX" type="number">0</variable>
-                <variable comment="The y value of the current node" name="currentNodeY" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="2" name="Mouse button is down" type="Mouse">
@@ -785,10 +828,39 @@
                             <param id="0" name="Instance variable">nodeIndex</param>
                             <param id="1" name="Value">path.pathCount</param>
                         </action>
-                        <action id="-10" name="Set value" type="Node">
-                            <param id="0" name="Instance variable">previousNode</param>
-                            <param id="1" name="Value">previousNodeUID</param>
+                        <action id="3" name="Set at XY" type="Path">
+                            <param id="0" name="X">path.pathCount</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Value">node.X</param>
                         </action>
+                        <action id="3" name="Set at XY" type="Path">
+                            <param id="0" name="X">path.pathCount</param>
+                            <param id="1" name="Y">1</param>
+                            <param id="2" name="Value">node.Y</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="Path">
+                            <param id="0" name="X">path.pathCount</param>
+                            <param id="1" name="Y">2</param>
+                            <param id="2" name="Value">node.UID</param>
+                        </action>
+                        <action id="-11" name="Add to" type="Path">
+                            <param id="0" name="Instance variable">pathCount</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>If a node has been created, but not fully connected into the path visually, create the connecting bars</comment>
+                <variable comment="The y value of the current node" name="currentNodeIndex" type="number">0</variable>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Node">
+                            <param id="0" name="Instance variable">fullyConnected</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">node.pathUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Bar</param>
                             <param id="1" name="Layer">Parameters.at(&quot;backgroundLayer&quot;)</param>
@@ -806,10 +878,6 @@
                             <param id="0" name="Instance variable">nodeUID</param>
                             <param id="1" name="Value">node.UID</param>
                         </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">currentNodeUID</param>
-                            <param id="1" name="Value">node.UID</param>
-                        </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">NodeLabel</param>
                             <param id="1" name="Layer">Parameters.at( &quot;turretLayer&quot; )</param>
@@ -823,35 +891,25 @@
                             <param id="0" name="Instance variable">parentNodeUID</param>
                             <param id="1" name="Value">node.UID</param>
                         </action>
-                        <action id="3" name="Set at XY" type="Path">
-                            <param id="0" name="X">path.pathCount</param>
-                            <param id="1" name="Y">0</param>
-                            <param id="2" name="Value">node.X</param>
-                        </action>
-                        <action id="3" name="Set at XY" type="Path">
-                            <param id="0" name="X">path.pathCount</param>
-                            <param id="1" name="Y">1</param>
-                            <param id="2" name="Value">node.Y</param>
-                        </action>
                     </actions>
                     <sub-events>
                         <comment>If this isn&apos;t the first node, connect the current node and it&apos;s previous one with a path bar (snaps the bar to the exact x,y coordinates since the mouse trace technique isn&apos;t totally accurate)</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Path">
-                                    <param id="0" name="Instance variable">pathCount</param>
+                                <condition id="-7" name="Compare instance variable" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">4</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">currentNodeX</param>
-                                    <param id="1" name="Value">node.X</param>
+                                    <param id="0" name="Variable">currentNodeIndex</param>
+                                    <param id="1" name="Value">node.nodeIndex</param>
                                 </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">currentNodeY</param>
-                                    <param id="1" name="Value">node.y</param>
+                                <action id="-10" name="Set value" type="Node">
+                                    <param id="0" name="Instance variable">previousNode</param>
+                                    <param id="1" name="Value">path.At( node.nodeIndex - 1 , 2 )</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -862,13 +920,13 @@
                                             <param id="0" name="Object">Node</param>
                                         </condition>
                                         <condition id="-14" name="Pick by unique ID" type="Node">
-                                            <param id="0" name="Unique ID">previousNodeUID</param>
+                                            <param id="0" name="Unique ID">path.At( currentNodeIndex - 1, 2 )</param>
                                         </condition>
                                     </conditions>
                                     <actions>
                                         <action id="-10" name="Set value" type="Node">
                                             <param id="0" name="Instance variable">nextNode</param>
-                                            <param id="1" name="Value">currentNodeUID</param>
+                                            <param id="1" name="Value">path.At( currentNodeIndex, 2 )</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -888,11 +946,11 @@
                                                     <param id="1" name="Y">node.Y</param>
                                                 </action>
                                                 <action id="-22" name="Set angle toward position" type="Bar">
-                                                    <param id="0" name="X">currentNodeX</param>
-                                                    <param id="1" name="Y">currentNodeY</param>
+                                                    <param id="0" name="X">path.At( currentNodeIndex, 0 )</param>
+                                                    <param id="1" name="Y">path.At( currentNodeIndex, 1 )</param>
                                                 </action>
                                                 <action id="-5" name="Set width" type="Bar">
-                                                    <param id="0" name="Width">distance( node.X, node.Y, currentNodeX, currentNodeY)</param>
+                                                    <param id="0" name="Width">distance( node.X, node.Y, path.At( currentNodeIndex, 0 ), path.At( currentNodeIndex, 1 ))</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -904,12 +962,8 @@
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">previousNodeUID</param>
-                                    <param id="1" name="Value">currentNodeUID</param>
-                                </action>
-                                <action id="-11" name="Add to" type="Path">
-                                    <param id="0" name="Instance variable">pathCount</param>
+                                <action id="-13" name="Set boolean" type="Node">
+                                    <param id="0" name="Instance variable">fullyConnected</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
@@ -1065,13 +1119,18 @@
                                     <param id="1" name="Y">1</param>
                                     <param id="2" name="Value">node.Y</param>
                                 </action>
+                                <action id="3" name="Set at XY" type="Path">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">2</param>
+                                    <param id="2" name="Value">node.UID</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Point on the path, can be placed and manipulated" title="Node">
+        <event-group collapsed="1" description="Point on the path, can be placed and manipulated" title="Node">
             <sub-events>
                 <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <event-block disabled="1">
@@ -2108,7 +2167,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
             <sub-events>
                 <comment>Destroy any minions hit by rockets</comment>
                 <event-block>
