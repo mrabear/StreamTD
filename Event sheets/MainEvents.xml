@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+        <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -120,7 +120,7 @@
             </sub-events>
         </event-group>
         <comment>Game Object Events</comment>
-        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Create a new generator</comment>
                 <event-block>
@@ -440,7 +440,7 @@
         </event-group>
         <variable comment="the previous UID in the path" name="previousNodeUID" type="number">0</variable>
         <variable comment="the current UID in the path" name="currentNodeUID" type="number">0</variable>
-        <event-group collapsed="1" description="Path that minions follow" title="Path">
+        <event-group description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
                 <event-block>
@@ -1071,7 +1071,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Point on the path, can be placed and manipulated" title="Node">
+        <event-group description="Point on the path, can be placed and manipulated" title="Node">
             <sub-events>
                 <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <event-block disabled="1">
@@ -1342,6 +1342,9 @@
                                 <condition id="-8" name="Is boolean instance variable set" type="Node">
                                     <param id="0" name="Instance variable">movingByObject</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Path">
+                                    <param id="0" name="Unique ID">node.pathUID</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action behavior="Bullet" id="5" name="Set enabled" type="Node">
@@ -1362,6 +1365,20 @@
                                 <action id="4" name="Set animation" type="Node">
                                     <param id="0" name="Animation">&quot;default&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Path">
+                                    <param id="0" name="Instance variable">validData</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Path">
+                                    <param id="0" name="X">node.nodeIndex</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Value">node.X</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Path">
+                                    <param id="0" name="X">node.nodeIndex</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Value">node.Y</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -1771,6 +1788,10 @@
                                     <param id="0" name="Variable">distanceToMinion</param>
                                     <param id="1" name="Value">distance( cannon.X, cannon.Y, minion.X, minion.Y)</param>
                                 </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">debugMsg</param>
+                                    <param id="1" name="Value">&quot;found&quot;</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <comment>Minion is close enough to target</comment>
@@ -2087,7 +2108,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+        <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
             <sub-events>
                 <comment>Destroy any minions hit by rockets</comment>
                 <event-block>

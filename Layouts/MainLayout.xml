@@ -617,7 +617,7 @@
                     <instance-variables>
                         <currentPathNode>0</currentPathNode>
                         <pathUID>0</pathUID>
-                        <active>true</active>
+                        <active>false</active>
                         <baseUID>0</baseUID>
                     </instance-variables>
                     <behavior-instances>
