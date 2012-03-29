@@ -98,9 +98,9 @@
                         <nextNode>0</nextNode>
                         <previousNode>0</previousNode>
                         <movingByObject>false</movingByObject>
+                        <pathUID>0</pathUID>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="DragDrop" />
                         <behavior-instance type="CustomMovement">
                             <properties>
                                 <stepping-mode>None</stepping-mode>
@@ -733,33 +733,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="OldPathStart">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <pathCount>0</pathCount>
-                        <currentlyMovingNode>false</currentlyMovingNode>
-                        <currentlyTracing>false</currentlyTracing>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="DragDrop" />
-                    </behavior-instances>
-                    <world>
-                        <x>-342</x>
-                        <y>265</y>
-                        <z>0</z>
-                        <width>30</width>
-                        <height>30</height>
-                        <depth>0</depth>
-                        <hotspotX>0.533333361</hotspotX>
-                        <hotspotY>0.533333361</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="Generator">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -774,9 +747,6 @@
                         <lastSpawn>0</lastSpawn>
                         <minionType>&quot;&quot;</minionType>
                     </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="DragDrop" />
-                    </behavior-instances>
                     <world>
                         <x>-255</x>
                         <y>133</y>
@@ -836,6 +806,7 @@
                 <currentlyMovingNode>false</currentlyMovingNode>
                 <currentlyTracing>false</currentlyTracing>
                 <baseUID>0</baseUID>
+                <validData>true</validData>
             </instance-variables>
         </instance>
     </nonworld-instances>

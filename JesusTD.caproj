@@ -146,11 +146,9 @@
                     <instance-variable comment="the next node in the path" name="nextNode" type="number" />
                     <instance-variable comment="the previous node in the path" name="previousNode" type="number" />
                     <instance-variable comment="is the node being moved by an object" name="movingByObject" type="boolean" />
+                    <instance-variable comment="the uid of the path this node is a part of" name="pathUID" type="number" />
                 </instance-variables>
                 <behaviors>
-                    <behavior-type name="DragDrop">
-                        <behavior id="DragnDrop" />
-                    </behavior-type>
                     <behavior-type name="CustomMovement">
                         <behavior id="custom" />
                     </behavior-type>
@@ -199,35 +197,6 @@
                         <behavior id="Pin" />
                     </behavior-type>
                 </behaviors>
-            </object-type>
-            <object-type name="OldPathStart">
-                <plugin id="Sprite" />
-                <instance-variables>
-                    <instance-variable comment="the total number of nodes in the path" name="pathCount" type="number" />
-                    <instance-variable comment="is a node in the path currently being moved?" name="currentlyMovingNode" type="boolean" />
-                    <instance-variable comment="is the path currently being traced?" name="currentlyTracing" type="boolean" />
-                </instance-variables>
-                <behaviors>
-                    <behavior-type name="DragDrop">
-                        <behavior id="DragnDrop" />
-                    </behavior-type>
-                </behaviors>
-                <animation-folder expanded="1">
-                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.533333" hotspotY="0.533333">
-                            <collision-poly>
-                                <point x="0.2" y="0.2" />
-                                <point x="0.5" y="0.0666667" />
-                                <point x="0.8" y="0.2" />
-                                <point x="0.933333" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.933333" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.0666667" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                </animation-folder>
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="Rocket">
@@ -356,6 +325,7 @@
                     <instance-variable comment="is a node in the path currently being moved by the user?" name="currentlyMovingNode" type="boolean" />
                     <instance-variable comment="is a new path currently being drawn?" name="currentlyTracing" type="boolean" />
                     <instance-variable comment="the UID of the base that owns this path" name="baseUID" type="number" />
+                    <instance-variable comment="is the data in the array valid?" name="validData" type="boolean" />
                 </instance-variables>
             </object-type>
         </object-folder>
@@ -715,11 +685,6 @@
                     <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
                     <instance-variable comment="the type of minion that this generator is spawning" name="minionType" type="string" />
                 </instance-variables>
-                <behaviors>
-                    <behavior-type name="DragDrop">
-                        <behavior id="DragnDrop" />
-                    </behavior-type>
-                </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="16" loop="0" name="Inactive" pingpong="0" repeatcount="0" repeatto="0" speed="30">
                         <frame duration="1" hotspotX="0.256198" hotspotY="0.445946">

@@ -124,6 +124,10 @@
                             <param id="0" name="Key string">&quot;minionTypes&quot;</param>
                             <param id="1" name="Value">&quot;greyMinion#redMinion#blueMinion&quot;</param>
                         </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;nodeSize&quot;</param>
+                            <param id="1" name="Value">5</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -223,7 +227,10 @@
                             <param id="2" name="Object clicked">Generator</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-9" name="Destroy" type="Node" />
+                        <action id="-9" name="Destroy" type="Bar" />
+                    </actions>
                     <sub-events>
                         <comment>Grab the active label on the generator</comment>
                         <event-block>
@@ -283,10 +290,6 @@
                                         <action id="4" name="Set animation" type="Generator">
                                             <param id="0" name="Animation">&quot;InactiveReverse&quot;</param>
                                             <param id="1" name="From">1</param>
-                                        </action>
-                                        <action id="-10" name="Set value" type="Generator">
-                                            <param id="0" name="Instance variable">minionType</param>
-                                            <param id="1" name="Value">tokenat(parameters.At( &quot;minionTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
                                         </action>
                                         <action id="4" name="Set animation" type="Minion">
                                             <param id="0" name="Animation">generator.minionType</param>
@@ -395,6 +398,9 @@
                         <condition id="2" inverted="1" name="Is playing" type="Generator">
                             <param id="0" name="Animation">&quot;InactiveReverse&quot;</param>
                         </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">generator.pathUID</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="3" name="Start" type="Generator">
@@ -422,30 +428,26 @@
                         <action id="3" name="Start" type="Minion">
                             <param id="0" name="From">0</param>
                         </action>
+                        <action id="-22" name="Set angle toward position" type="Minion">
+                            <param id="0" name="X">path.At( 0, 0 )</param>
+                            <param id="1" name="Y">path.At( 0, 1 )</param>
+                        </action>
+                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                            <param id="0" name="Angle">Minion.Angle</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Minion">
+                            <param id="0" name="Instance variable">pathUID</param>
+                            <param id="1" name="Value">path.UID</param>
+                        </action>
+                        <action id="-10" name="Set value" type="Minion">
+                            <param id="0" name="Instance variable">baseUID</param>
+                            <param id="1" name="Value">generator.UID</param>
+                        </action>
                     </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Node</param>
-                                </condition>
-                                <condition id="-7" name="Compare instance variable" type="Node">
-                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">Minion.currentPathNode</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-22" name="Set angle toward position" type="Minion">
-                                    <param id="0" name="X">node.X</param>
-                                    <param id="1" name="Y">node.Y</param>
-                                </action>
-                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
-                                    <param id="0" name="Angle">Minion.Angle</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
@@ -462,14 +464,8 @@
                         <condition id="7" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">Bar</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="OldPathStart">
-                            <param id="0" name="Instance variable">currentlyTracing</param>
-                        </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">Node</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="OldPathStart">
-                            <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">TurretBase</param>
@@ -501,141 +497,28 @@
                                     <param id="1" name="Value">node.UID</param>
                                 </action>
                             </actions>
-                        </event-block>
-                        <comment>Find the next node in the chain</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Node">
-                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">newNodeIndex + 1</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">newNodeIndex</param>
-                                    <param id="1" name="Value">Node.nodeIndex</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">nextNodeUID</param>
-                                    <param id="1" name="Value">node.UID</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Increment all of the nodes in front of the new one</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Node">
-                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                    <param id="1" name="Comparison">5</param>
-                                    <param id="2" name="Value">newNodeIndex</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-11" name="Add to" type="Node">
-                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Create a new node and bar attached to it</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Node</param>
-                                    <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
-                                    <param id="2" name="X">mouse.X</param>
-                                    <param id="3" name="Y">mouse.Y</param>
-                                </action>
-                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
-                                    <param id="0" name="State">0</param>
-                                </action>
-                                <action behavior="DragDrop" id="0" name="Set enabled" type="Node">
-                                    <param id="0" name="State">1</param>
-                                </action>
-                                <action id="-13" name="Set boolean" type="Node">
-                                    <param id="0" name="Instance variable">moving</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Node">
-                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                    <param id="1" name="Value">newNodeIndex</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Node">
-                                    <param id="0" name="Instance variable">nextNode</param>
-                                    <param id="1" name="Value">nextNodeUID</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Node">
-                                    <param id="0" name="Instance variable">previousNode</param>
-                                    <param id="1" name="Value">prevNodeUID</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">newNodeUID</param>
-                                    <param id="1" name="Value">node.UID</param>
-                                </action>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Bar</param>
-                                    <param id="1" name="Layer">Parameters.at(&quot;backgroundLayer&quot;)</param>
-                                    <param id="2" name="X">node.X</param>
-                                    <param id="3" name="Y">node.Y</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Node">
-                                    <param id="0" name="Instance variable">barUID</param>
-                                    <param id="1" name="Value">bar.UID</param>
-                                </action>
-                                <action id="-6" name="Set height" type="Bar">
-                                    <param id="0" name="Height">7</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Bar">
-                                    <param id="0" name="Instance variable">nodeUID</param>
-                                    <param id="1" name="Value">node.UID</param>
-                                </action>
-                                <action id="-11" name="Add to" type="OldPathStart">
-                                    <param id="0" name="Instance variable">pathCount</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">NodeLabel</param>
-                                    <param id="1" name="Layer">parameters.at( &quot;turretLayer&quot; )</param>
-                                    <param id="2" name="X">node.X</param>
-                                    <param id="3" name="Y">node.Y</param>
-                                </action>
-                                <action behavior="Pin" id="0" name="Pin to object" type="NodeLabel">
-                                    <param id="0" name="Pin to">Node</param>
-                                </action>
-                                <action id="-10" name="Set value" type="NodeLabel">
-                                    <param id="0" name="Instance variable">parentNodeUID</param>
-                                    <param id="1" name="Value">node.UID</param>
-                                </action>
-                            </actions>
                             <sub-events>
-                                <comment>Splice the new node into the existing path</comment>
                                 <event-block>
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Node</param>
                                         </condition>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Path</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Path">
+                                            <param id="0" name="Unique ID">node.pathUID</param>
+                                        </condition>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                                            <param id="0" name="Instance variable">currentlyMovingNode</param>
+                                        </condition>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                                            <param id="0" name="Instance variable">currentlyTracing</param>
+                                        </condition>
                                     </conditions>
                                     <actions />
                                     <sub-events>
-                                        <comment>Wire the previous node into the new node</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-7" name="Compare instance variable" type="Node">
-                                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">newNodeIndex -1</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-10" name="Set value" type="Node">
-                                                    <param id="0" name="Instance variable">nextNode</param>
-                                                    <param id="1" name="Value">newNodeUID</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Wire the next node back into the new node</comment>
+                                        <comment>Find the next node in the chain</comment>
                                         <event-block>
                                             <conditions>
                                                 <condition id="-7" name="Compare instance variable" type="Node">
@@ -645,25 +528,163 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">newNodeIndex</param>
+                                                    <param id="1" name="Value">Node.nodeIndex</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">nextNodeUID</param>
+                                                    <param id="1" name="Value">node.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Increment all of the nodes in front of the new one</comment>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" type="Node">
+                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Value">newNodeIndex</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-11" name="Add to" type="Node">
+                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Create a new node and bar attached to it</comment>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="-3" name="Create object" type="System">
+                                                    <param id="0" name="Object to create">Node</param>
+                                                    <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
+                                                    <param id="2" name="X">mouse.X</param>
+                                                    <param id="3" name="Y">mouse.Y</param>
+                                                </action>
+                                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                                                    <param id="0" name="State">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Node">
+                                                    <param id="0" name="Instance variable">pathUID</param>
+                                                    <param id="1" name="Value">path.UID</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Node">
+                                                    <param id="0" name="Instance variable">moving</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Node">
+                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                    <param id="1" name="Value">newNodeIndex</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Node">
+                                                    <param id="0" name="Instance variable">nextNode</param>
+                                                    <param id="1" name="Value">nextNodeUID</param>
+                                                </action>
                                                 <action id="-10" name="Set value" type="Node">
                                                     <param id="0" name="Instance variable">previousNode</param>
-                                                    <param id="1" name="Value">newNodeUID</param>
+                                                    <param id="1" name="Value">prevNodeUID</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">newNodeUID</param>
+                                                    <param id="1" name="Value">node.UID</param>
+                                                </action>
+                                                <action id="-3" name="Create object" type="System">
+                                                    <param id="0" name="Object to create">Bar</param>
+                                                    <param id="1" name="Layer">Parameters.at(&quot;backgroundLayer&quot;)</param>
+                                                    <param id="2" name="X">node.X</param>
+                                                    <param id="3" name="Y">node.Y</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Node">
+                                                    <param id="0" name="Instance variable">barUID</param>
+                                                    <param id="1" name="Value">bar.UID</param>
+                                                </action>
+                                                <action id="-6" name="Set height" type="Bar">
+                                                    <param id="0" name="Height">7</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Bar">
+                                                    <param id="0" name="Instance variable">nodeUID</param>
+                                                    <param id="1" name="Value">node.UID</param>
+                                                </action>
+                                                <action id="-11" name="Add to" type="Path">
+                                                    <param id="0" name="Instance variable">pathCount</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-3" name="Create object" type="System">
+                                                    <param id="0" name="Object to create">NodeLabel</param>
+                                                    <param id="1" name="Layer">parameters.at( &quot;turretLayer&quot; )</param>
+                                                    <param id="2" name="X">node.X</param>
+                                                    <param id="3" name="Y">node.Y</param>
+                                                </action>
+                                                <action behavior="Pin" id="0" name="Pin to object" type="NodeLabel">
+                                                    <param id="0" name="Pin to">Node</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="NodeLabel">
+                                                    <param id="0" name="Instance variable">parentNodeUID</param>
+                                                    <param id="1" name="Value">node.UID</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <comment>Splice the new node into the existing path</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-19" name="Pick all" type="System">
+                                                            <param id="0" name="Object">Node</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions />
+                                                    <sub-events>
+                                                        <comment>Wire the previous node into the new node</comment>
+                                                        <event-block>
+                                                            <conditions>
+                                                                <condition id="-7" name="Compare instance variable" type="Node">
+                                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                                    <param id="1" name="Comparison">0</param>
+                                                                    <param id="2" name="Value">newNodeIndex -1</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Set value" type="Node">
+                                                                    <param id="0" name="Instance variable">nextNode</param>
+                                                                    <param id="1" name="Value">newNodeUID</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                        <comment>Wire the next node back into the new node</comment>
+                                                        <event-block>
+                                                            <conditions>
+                                                                <condition id="-7" name="Compare instance variable" type="Node">
+                                                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                                                    <param id="1" name="Comparison">0</param>
+                                                                    <param id="2" name="Value">newNodeIndex + 1</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action id="-10" name="Set value" type="Node">
+                                                                    <param id="0" name="Instance variable">previousNode</param>
+                                                                    <param id="1" name="Value">newNodeUID</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <comment>Pin the new node to the mouse to allow the user to reposition it</comment>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="-13" name="Set boolean" type="Path">
+                                                    <param id="0" name="Instance variable">currentlyMovingNode</param>
+                                                    <param id="1" name="Value">1</param>
                                                 </action>
                                             </actions>
                                         </event-block>
                                     </sub-events>
                                 </event-block>
                             </sub-events>
-                        </event-block>
-                        <comment>Pin the new node to the mouse to allow the user to reposition it</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-13" name="Set boolean" type="OldPathStart">
-                                    <param id="0" name="Instance variable">currentlyMovingNode</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -676,45 +697,75 @@
                         <condition id="7" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">PathStart</param>
                         </condition>
-                        <condition disabled="1" id="2" name="Key is down" type="Keyboard">
-                            <param id="0" name="Key">32 (Space)</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="OldPathStart">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Node" />
-                        <action id="-9" name="Destroy" type="Bar" />
-                        <action id="-10" name="Set value" type="OldPathStart">
-                            <param id="0" name="Instance variable">pathCount</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Minion">
-                            <param id="0" name="Instance variable">currentPathNode</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="-13" name="Set boolean" type="OldPathStart">
-                            <param id="0" name="Instance variable">currentlyTracing</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-9" name="Destroy" type="NodeLabel" />
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Generator">
+                                    <param id="0" name="Unique ID">pathstart.baseUID</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Generator">
+                                    <param id="0" name="Instance variable">active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Node" />
+                                <action id="-9" name="Destroy" type="Bar" />
+                                <action id="-9" name="Destroy" type="NodeLabel" />
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Minion">
+                                            <param id="0" name="Instance variable">baseUID</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">generator.UID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action disabled="1" id="-10" name="Set value" type="Minion">
+                                            <param id="0" name="Instance variable">currentPathNode</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-9" name="Destroy" type="Minion" />
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Path</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Path">
+                                            <param id="0" name="Unique ID">generator.pathUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Clear" type="Path" />
+                                        <action id="-10" name="Set value" type="Path">
+                                            <param id="0" name="Instance variable">pathCount</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" type="Path">
+                                            <param id="0" name="Instance variable">currentlyTracing</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>Draw a new path</comment>
+                <variable comment="The x value of the current node" name="currentNodeX" type="number">0</variable>
+                <variable comment="The y value of the current node" name="currentNodeY" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
-                        </condition>
-                        <condition disabled="1" id="2" name="Key is down" type="Keyboard">
-                            <param id="0" name="Key">32 (Space)</param>
-                        </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
-                            <param id="0" name="Instance variable">currentlyTracing</param>
-                        </condition>
-                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
-                            <param id="0" name="Object">Jesus</param>
                         </condition>
                         <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
                             <param id="0" name="Object">Node</param>
@@ -722,23 +773,30 @@
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">parameters.At( &quot;pathPollRate&quot; )</param>
                         </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">currentlyTracing</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Generator">
+                            <param id="0" name="Unique ID">path.baseUID</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Node</param>
                             <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
-                            <param id="2" name="X">mouse.X</param>
-                            <param id="3" name="Y">mouse.Y</param>
+                            <param id="2" name="X">path.pathCount=0?generator.ImagePointX(1):mouse.X</param>
+                            <param id="3" name="Y">path.pathCount=0?generator.ImagePointY(1):mouse.Y</param>
                         </action>
                         <action behavior="Bullet" id="5" name="Set enabled" type="Node">
                             <param id="0" name="State">0</param>
                         </action>
-                        <action behavior="DragDrop" id="0" name="Set enabled" type="Node">
-                            <param id="0" name="State">1</param>
+                        <action id="-10" name="Set value" type="Node">
+                            <param id="0" name="Instance variable">pathUID</param>
+                            <param id="1" name="Value">path.UID</param>
                         </action>
                         <action id="-10" name="Set value" type="Node">
                             <param id="0" name="Instance variable">nodeIndex</param>
-                            <param id="1" name="Value">OldPathStart.pathCount</param>
+                            <param id="1" name="Value">path.pathCount</param>
                         </action>
                         <action id="-10" name="Set value" type="Node">
                             <param id="0" name="Instance variable">previousNode</param>
@@ -778,14 +836,22 @@
                             <param id="0" name="Instance variable">parentNodeUID</param>
                             <param id="1" name="Value">node.UID</param>
                         </action>
+                        <action id="3" name="Set at XY" type="Path">
+                            <param id="0" name="X">path.pathCount</param>
+                            <param id="1" name="Y">0</param>
+                            <param id="2" name="Value">node.X</param>
+                        </action>
+                        <action id="3" name="Set at XY" type="Path">
+                            <param id="0" name="X">path.pathCount</param>
+                            <param id="1" name="Y">1</param>
+                            <param id="2" name="Value">node.Y</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <comment>If this isn&apos;t the first node, connect the current node and it&apos;s previous one with a path bar (snaps the bar to the exact x,y coordinates since the mouse trace technique isn&apos;t totally accurate)</comment>
-                        <variable comment="The x value of the current node" name="currentNodeX" type="number">0</variable>
-                        <variable comment="The y value of the current node" name="currentNodeY" type="number">0</variable>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="OldPathStart">
+                                <condition id="-7" name="Compare instance variable" type="Path">
                                     <param id="0" name="Instance variable">pathCount</param>
                                     <param id="1" name="Comparison">4</param>
                                     <param id="2" name="Value">0</param>
@@ -855,7 +921,7 @@
                                     <param id="0" name="Variable">previousNodeUID</param>
                                     <param id="1" name="Value">currentNodeUID</param>
                                 </action>
-                                <action id="-11" name="Add to" type="OldPathStart">
+                                <action id="-11" name="Add to" type="Path">
                                     <param id="0" name="Instance variable">pathCount</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -869,18 +935,14 @@
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
+                        <condition id="-8" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="OldPathStart">
+                        <action id="-13" name="Set boolean" type="Path">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                             <param id="1" name="Value">0</param>
-                        </action>
-                        <action disabled="1" id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">debugMsg &amp; &quot;tracing done (&quot; &amp; OldPathStart.pathCount &amp; &quot;)&quot; &amp; newline</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -893,15 +955,10 @@
                                 <condition id="-7" name="Compare instance variable" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">OldPathStart.pathCount - 1</param>
+                                    <param id="2" name="Value">path.pathCount - 1</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action disabled="1" id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;found node &quot; &amp; node.nodeindex &amp; newline</param>
-                                </action>
-                            </actions>
+                            <actions />
                             <sub-events>
                                 <event-block>
                                     <conditions>
@@ -914,10 +971,6 @@
                                     </conditions>
                                     <actions>
                                         <action id="-9" name="Destroy" type="Bar" />
-                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">debugMsg</param>
-                                            <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;found bar &quot; &amp; bar.uid &amp; newline</param>
-                                        </action>
                                     </actions>
                                 </event-block>
                                 <event-block>
@@ -936,7 +989,7 @@
                 <comment>Smooths the animations of new paths while the player is drawing it</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
+                        <condition id="-8" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyTracing</param>
                         </condition>
                     </conditions>
@@ -953,7 +1006,7 @@
                                 <condition id="-7" name="Compare instance variable" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value"> OldPathStart.pathCount -1</param>
+                                    <param id="2" name="Value">path.pathCount -1</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -983,6 +1036,49 @@
                                     </actions>
                                 </event-block>
                             </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Rebuild the array indexes if the data in the array has become stale (typically because the nodes have been manipulated)</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">validData</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="0" name="Clear" type="Path" />
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">validData</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-10" name="For" type="System">
+                                    <param id="0" name="Name">&quot;Rebuild Path Indexes&quot;</param>
+                                    <param id="1" name="Start index">0</param>
+                                    <param id="2" name="End index">path.pathCount</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" type="Node">
+                                    <param id="0" name="Instance variable">nodeIndex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" type="Path">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Value">node.X</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="Path">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Value">node.Y</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -1016,32 +1112,33 @@
                 <comment>If a node is being moved, flag it as being updated (fires other events that updates the path)</comment>
                 <event-block>
                     <conditions>
-                        <condition behavior="DragDrop" id="1" name="On drag start" type="Node" />
+                        <condition id="2" name="Mouse button is down" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                        </condition>
+                        <condition id="7" name="Cursor is over object" type="Mouse">
+                            <param id="0" name="Object">Node</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Node">
+                            <param id="0" name="Instance variable">moving</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">node.pathUID</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">currentlyTracing</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">currentlyMovingNode</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-13" name="Set boolean" type="Node">
                             <param id="0" name="Instance variable">moving</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                    </actions>
-                </event-block>
-                <comment>Once a node is dropped, flag it as being stationary and reset the bar colors</comment>
-                <event-block>
-                    <conditions>
-                        <condition behavior="DragDrop" id="2" name="On drop" type="Node" />
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Bar">
-                            <param id="0" name="Animation">&quot;default&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="4" name="Set animation" type="Node">
-                            <param id="0" name="Animation">&quot;default&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-13" name="Set boolean" type="Node">
-                            <param id="0" name="Instance variable">moving</param>
-                            <param id="1" name="Value">0</param>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">currentlyMovingNode</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1051,21 +1148,17 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
-                            <param id="0" name="Instance variable">currentlyMovingNode</param>
-                        </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
                             <param id="0" name="Instance variable">moving</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Set position" type="Node">
                             <param id="0" name="X">mouse.X</param>
                             <param id="1" name="Y">mouse.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">node.moving</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1075,11 +1168,11 @@
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="OldPathStart">
-                            <param id="0" name="Instance variable">currentlyMovingNode</param>
-                        </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
                             <param id="0" name="Instance variable">moving</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">currentlyMovingNode</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -1095,8 +1188,12 @@
                             <param id="0" name="Animation">&quot;default&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="OldPathStart">
+                        <action id="-13" name="Set boolean" type="Path">
                             <param id="0" name="Instance variable">currentlyMovingNode</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">validData</param>
                             <param id="1" name="Value">0</param>
                         </action>
                     </actions>
@@ -1112,6 +1209,9 @@
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Node">
                             <param id="0" name="Instance variable">moving</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">node.pathUID</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -1131,7 +1231,7 @@
                                 <condition id="-7" name="Compare instance variable" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Value">OldPathStart.pathCount</param>
+                                    <param id="2" name="Value">path.pathCount</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -1328,167 +1428,64 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Spawn minions at each of the bases</comment>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="-6" name="Every X seconds" type="System">
-                            <param id="0" name="Interval (seconds)">parameters.At( &quot;minionSpawnRate&quot; ) / Jesus.Count</param>
-                        </condition>
-                    </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-16" name="Pick random instance" type="System">
-                                    <param id="0" name="Object">Jesus</param>
-                                </condition>
-                            </conditions>
-                            <actions />
-                            <sub-events>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Jesus">
-                                            <param id="0" name="Instance variable">Active</param>
-                                        </condition>
-                                        <condition id="-7" name="Compare instance variable" type="OldPathStart">
-                                            <param id="0" name="Instance variable">pathCount</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="5" name="Set frame" type="Jesus">
-                                            <param id="0" name="Frame number">1</param>
-                                        </action>
-                                        <action id="3" name="Start" type="Jesus">
-                                            <param id="0" name="From">0</param>
-                                        </action>
-                                        <action id="-3" name="Create object" type="System">
-                                            <param id="0" name="Object to create">Minion</param>
-                                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
-                                            <param id="2" name="X">Jesus.X</param>
-                                            <param id="3" name="Y">Jesus.Y</param>
-                                        </action>
-                                        <action behavior="CustomMovement" id="2" name="Set speed" type="Minion">
-                                            <param id="0" name="Which">0</param>
-                                            <param id="1" name="Speed">Parameters.Entry(&quot;minionDefaultSpeed&quot;)</param>
-                                        </action>
-                                        <action id="-24" name="Move to top" type="Minion" />
-                                        <action id="3" name="Start" type="Minion">
-                                            <param id="0" name="From">0</param>
-                                        </action>
-                                    </actions>
-                                    <sub-events>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-19" name="Pick all" type="System">
-                                                    <param id="0" name="Object">Node</param>
-                                                </condition>
-                                                <condition id="-7" name="Compare instance variable" type="Node">
-                                                    <param id="0" name="Instance variable">nodeIndex</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">Minion.currentPathNode</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-22" name="Set angle toward position" type="Minion">
-                                                    <param id="0" name="X">node.X</param>
-                                                    <param id="1" name="Y">node.Y</param>
-                                                </action>
-                                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
-                                                    <param id="0" name="Angle">Minion.Angle</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                            </sub-events>
-                        </event-block>
-                    </sub-events>
-                </event-block>
                 <comment>A minion has reached the next node in the path</comment>
                 <variable comment="the next node in the path" name="nextUID" type="number">0</variable>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Minion">
+                        <condition disabled="1" id="0" name="On collision with another object" type="Minion">
                             <param id="0" name="Object">Node</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" type="Node">
+                        <condition disabled="1" id="-7" name="Compare instance variable" type="Node">
                             <param id="0" name="Instance variable">nodeIndex</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">Minion.currentPathNode</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" type="System">
+                        <action disabled="1" id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">nextUID</param>
                             <param id="1" name="Value">node.nextNode</param>
                         </action>
-                        <action id="-11" name="Add to" type="Minion">
+                        <action disabled="1" id="-11" name="Add to" type="Minion">
                             <param id="0" name="Instance variable">currentPathNode</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                     <sub-events>
                         <comment>If this node is the one we&apos;re looking for (the next node in sequence in the path), advance the minion to the next node</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-19" name="Pick all" type="System">
+                                <condition disabled="1" id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">Node</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Node">
+                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Node">
                                     <param id="0" name="Unique ID">nextUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-22" name="Set angle toward position" type="Minion">
+                                <action disabled="1" id="-22" name="Set angle toward position" type="Minion">
                                     <param id="0" name="X">node.X</param>
                                     <param id="1" name="Y">node.Y</param>
                                 </action>
-                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                                <action behavior="CustomMovement" disabled="1" id="6" name="Set angle of motion" type="Minion">
                                     <param id="0" name="Angle">Minion.Angle</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
-                <comment>Destroy the minion if it reaches the end of the path</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" type="Minion">
-                            <param id="0" name="Instance variable">currentPathNode</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Value">OldPathStart.pathCount</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" type="OldPathStart">
-                            <param id="0" name="Instance variable">pathCount</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
-                    </actions>
-                </event-block>
-                <comment>Reroute minions if they move off course (can happen because of unaccounted for collision or nodes being moved around rapidly)</comment>
-                <comment>Off course is defined by BOTH: </comment>
-                <comment>1: Beign too far away (distanceTolerance) from the target node AND</comment>
-                <comment>2: Having a angle of motion that too wide (angleTolerance) to actually intersect the target node</comment>
-                <comment>When a minion is corrected, it is advanced to the next node (or the final node if it is off the grid) and oriented toward the new node</comment>
+                <variable comment="the minion&apos;s distance to it&apos;s next node" name="distanceToNode" type="number">0</variable>
+                <variable comment="the minion&apos;s angle to it&apos;s next node" name="angleToNode" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Minion</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" type="Node">
-                            <param id="0" name="Instance variable">nodeIndex</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">minion.currentPathNode</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
@@ -1498,38 +1495,87 @@
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">Parameters.At(&quot;minionDistanceTolerance&quot; )</param>
-                                    <param id="1" name="Comparison">2</param>
-                                    <param id="2" name="Second value">distance( minion.X, minion.Y, node.X, node.Y )</param>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Path</param>
                                 </condition>
-                                <condition id="-11" inverted="1" name="Is within angle" type="Minion">
-                                    <param id="0" name="Within">Parameters.At(&quot;minionAngleTolerance&quot; )</param>
-                                    <param id="1" name="Angle">angle( minion.X, minion.Y, node.X, node.Y )</param>
+                                <condition id="-14" name="Pick by unique ID" type="Path">
+                                    <param id="0" name="Unique ID">minion.pathUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="Minion">
-                                    <param id="0" name="Instance variable">currentPathNode</param>
-                                    <param id="1" name="Value">min( minion.currentPathNode + 1, OldPathStart.pathCount -1 )</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">distanceToNode</param>
+                                    <param id="1" name="Value">distance( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">angleToNode</param>
+                                    <param id="1" name="Value">angle( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
                                 </action>
                             </actions>
                             <sub-events>
+                                <comment>Advance the minion to the next node if it arrives at the current one</comment>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Node</param>
-                                        </condition>
-                                        <condition id="-7" name="Compare instance variable" type="Node">
-                                            <param id="0" name="Instance variable">nodeIndex</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">minion.currentPathNode</param>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">distanceToNode</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">Parameters.At(&quot;nodeSize&quot; )</param>
                                         </condition>
                                     </conditions>
                                     <actions>
+                                        <action id="-11" name="Add to" type="Minion">
+                                            <param id="0" name="Instance variable">currentPathNode</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>Destroy the minion if it reaches the end of the path</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" type="Minion">
+                                            <param id="0" name="Instance variable">currentPathNode</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Value">path.pathCount</param>
+                                        </condition>
+                                        <condition id="4" name="Compare current value" type="Path">
+                                            <param id="0" name="Comparison">4</param>
+                                            <param id="1" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" type="Minion" />
+                                    </actions>
+                                </event-block>
+                                <comment>Reroute minions if they move off course (can happen because of unaccounted for collision or nodes being moved around rapidly)</comment>
+                                <comment>Off course is defined by BOTH: </comment>
+                                <comment>1: Beign too far away (distanceTolerance) from the target node AND</comment>
+                                <comment>2: Having a angle of motion that too wide (angleTolerance) to actually intersect the target node</comment>
+                                <comment>When a minion is corrected, it is advanced to the next node (or the final node if it is off the grid) and oriented toward the new node</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-11" inverted="1" name="Is within angle" type="Minion">
+                                            <param id="0" name="Within">Parameters.At(&quot;minionAngleTolerance&quot; )</param>
+                                            <param id="1" name="Angle">angleToNode</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">distanceToNode</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">parameters.At( &quot;minionDistanceTolerance&quot; )</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="Minion">
+                                            <param id="0" name="Instance variable">currentPathNode</param>
+                                            <param id="1" name="Value">min( minion.currentPathNode + 1, path.pathCount -1 )</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
                                         <action id="-22" name="Set angle toward position" type="Minion">
-                                            <param id="0" name="X">node.X</param>
-                                            <param id="1" name="Y">node.Y</param>
+                                            <param id="0" name="X">path.At( minion.currentPathNode, 0 )</param>
+                                            <param id="1" name="Y">path.At( minion.currentPathNode, 1 )</param>
                                         </action>
                                         <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
                                             <param id="0" name="Angle">Minion.Angle</param>
