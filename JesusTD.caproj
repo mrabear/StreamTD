@@ -20,7 +20,6 @@
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
         <behavior id="DragnDrop" version="1">Drag &amp; Drop</behavior>
-        <behavior id="Physics" version="1">Physics</behavior>
         <behavior id="Pin" version="1">Pin</behavior>
         <behavior id="Rotate" version="1">Rotate</behavior>
         <behavior id="bound" version="1">Bound to layout</behavior>
@@ -215,12 +214,6 @@
                     </behavior-type>
                     <behavior-type name="Bullet">
                         <behavior id="Bullet" />
-                    </behavior-type>
-                    <behavior-type name="CustomMovement">
-                        <behavior id="custom" />
-                    </behavior-type>
-                    <behavior-type name="Physics">
-                        <behavior id="Physics" />
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">

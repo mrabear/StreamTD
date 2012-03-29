@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -33,15 +33,15 @@
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketDefaultProjectileSpeed&quot;</param>
-                            <param id="1" name="Value">50</param>
+                            <param id="1" name="Value">150</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketLaunchBoost&quot;</param>
-                            <param id="1" name="Value">1000</param>
+                            <param id="1" name="Value">100</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketMaxFlightTime&quot;</param>
-                            <param id="1" name="Value">100</param>
+                            <param id="1" name="Value">30</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;rocketImpactForce&quot;</param>
@@ -120,7 +120,7 @@
             </sub-events>
         </event-group>
         <comment>Game Object Events</comment>
-        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Create a new generator</comment>
                 <event-block>
@@ -399,7 +399,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
                             <param id="2" name="X">generator.X</param>
                             <param id="3" name="Y">generator.Y</param>
                         </action>
@@ -1516,7 +1516,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A cannon that fires projectiles" title="Cannon">
+        <event-group collapsed="1" description="A cannon that fires projectiles" title="Cannon">
             <sub-events>
                 <comment>Fire the cannon with a defined ammo at a specific fire rate</comment>
                 <event-block>
@@ -1921,7 +1921,7 @@
                                                             <param id="1" name="Value">tickcount</param>
                                                         </action>
                                                         <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
-                                                            <param id="0" name="State">0</param>
+                                                            <param id="0" name="State">1</param>
                                                         </action>
                                                         <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
                                                             <param id="0" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
@@ -1929,19 +1929,8 @@
                                                         <action behavior="Bullet" id="3" name="Set angle of motion" type="Rocket">
                                                             <param id="0" name="Angle">rocket.Angle</param>
                                                         </action>
-                                                        <action behavior="CustomMovement" id="12" name="Set enabled" type="Rocket">
-                                                            <param id="0" name="State">1</param>
-                                                        </action>
-                                                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Rocket">
-                                                            <param id="0" name="Angle">rocket.Angle</param>
-                                                        </action>
-                                                        <action behavior="CustomMovement" id="2" name="Set speed" type="Rocket">
-                                                            <param id="0" name="Which">0</param>
-                                                            <param id="1" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
-                                                        </action>
-                                                        <action behavior="CustomMovement" id="3" name="Accelerate" type="Rocket">
-                                                            <param id="0" name="Which">0</param>
-                                                            <param id="1" name="Acceleration">Parameters.Entry(&quot;rocketLaunchBoost&quot;)</param>
+                                                        <action behavior="Bullet" id="1" name="Set acceleration" type="Rocket">
+                                                            <param id="0" name="Acceleration">Parameters.Entry(&quot;rocketLaunchBoost&quot;)</param>
                                                         </action>
                                                         <action id="-3" name="Create object" type="System">
                                                             <param id="0" name="Object to create">RocketEffects</param>
@@ -1954,7 +1943,7 @@
                                                             <param id="1" name="Value">RocketEffects.UID</param>
                                                         </action>
                                                         <action id="-8" name="Set angle" type="RocketEffects">
-                                                            <param id="0" name="Angle">200-rocket.angle</param>
+                                                            <param id="0" name="Angle">rocket.angle</param>
                                                         </action>
                                                         <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
                                                             <param id="0" name="Pin to">Rocket</param>
@@ -2055,7 +2044,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
+        <event-group collapsed="1" description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
             <sub-events>
                 <comment>Destroy any minion hit by beams</comment>
                 <event-block>
@@ -2098,7 +2087,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
             <sub-events>
                 <comment>Destroy any minions hit by rockets</comment>
                 <event-block>
@@ -2155,22 +2144,13 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="-15" name="Set visible" type="Rocket">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
                         <action id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-15" name="Set visible" type="Rocket">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Destroy the rocket smoke trail if it ever becomes unpinned from a rocket (usually because the rocket is dead)</comment>
-                <event-block>
-                    <conditions>
-                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="RocketEffects" />
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="RocketEffects" />
                     </actions>
                 </event-block>
                 <comment>If the rocket is ready to detonate (and it hasn&apos;t already exploded), create an explosion</comment>
@@ -2209,8 +2189,20 @@
                             <param id="1" name="Value">rocketexplosion.UID</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="RocketEffects">
+                                    <param id="0" name="Unique ID">Rocket.effectsUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="RocketEffects" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
-                <comment>Get rid of the rocket and explosion once the explosion animation is finished</comment>
+                <comment>Get rid of the rocket, smoke,  and explosion once the explosion animation is finished</comment>
                 <event-block>
                     <conditions>
                         <condition id="4" name="On finished" type="RocketExplosion">
@@ -2238,6 +2230,9 @@
                     <conditions>
                         <condition id="0" name="On collision with another object" type="RocketExplosion">
                             <param id="0" name="Object">Minion</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
