@@ -149,20 +149,20 @@
                             <param id="1" name="Value">tokenat(parameters.At( &quot;minionTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Minion</param>
+                            <param id="0" name="Object to create">OldMinion</param>
                             <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
                             <param id="2" name="X">generator.X</param>
                             <param id="3" name="Y">generator.Y</param>
                         </action>
-                        <action id="4" name="Set animation" type="Minion">
+                        <action id="4" name="Set animation" type="OldMinion">
                             <param id="0" name="Animation">&quot;disabled&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action id="-13" name="Set boolean" type="OldMinion">
                             <param id="0" name="Instance variable">active</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="Minion">
+                        <action behavior="Pin" id="0" name="Pin to object" type="OldMinion">
                             <param id="0" name="Pin to">Generator</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
@@ -181,7 +181,7 @@
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">labelUID</param>
-                            <param id="1" name="Value">Minion.UID</param>
+                            <param id="1" name="Value">OldMinion.UID</param>
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">spawnRate</param>
@@ -226,7 +226,7 @@
                         <comment>Grab the active label on the generator</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Minion">
+                                <condition id="-14" name="Pick by unique ID" type="OldMinion">
                                     <param id="0" name="Unique ID">generator.labelUID</param>
                                 </condition>
                             </conditions>
@@ -240,7 +240,7 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="4" name="Set animation" type="Minion">
+                                        <action id="4" name="Set animation" type="OldMinion">
                                             <param id="0" name="Animation">&quot;disabled&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
@@ -282,7 +282,7 @@
                                             <param id="0" name="Animation">&quot;InactiveReverse&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="Minion">
+                                        <action id="4" name="Set animation" type="OldMinion">
                                             <param id="0" name="Animation">generator.minionType</param>
                                             <param id="1" name="From">1</param>
                                         </action>
@@ -454,47 +454,53 @@
                             <param id="1" name="Value">tickcount</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Minion</param>
+                            <param id="0" name="Object to create">OldMinion</param>
                             <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
                             <param id="2" name="X">generator.ImagePointX(1)</param>
                             <param id="3" name="Y">generator.ImagePointY(1)</param>
                         </action>
-                        <action id="4" name="Set animation" type="Minion">
+                        <action id="4" name="Set animation" type="OldMinion">
                             <param id="0" name="Animation">generator.minionType</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action behavior="CustomMovement" id="2" name="Set speed" type="Minion">
+                        <action behavior="CustomMovement" id="2" name="Set speed" type="OldMinion">
                             <param id="0" name="Which">0</param>
                             <param id="1" name="Speed">Parameters.Entry(&quot;minionDefaultSpeed&quot;)</param>
                         </action>
-                        <action id="-24" name="Move to top" type="Minion" />
-                        <action id="3" name="Start" type="Minion">
+                        <action id="-24" name="Move to top" type="OldMinion" />
+                        <action id="3" name="Start" type="OldMinion">
                             <param id="0" name="From">0</param>
                         </action>
-                        <action id="-22" name="Set angle toward position" type="Minion">
+                        <action id="-22" name="Set angle toward position" type="OldMinion">
                             <param id="0" name="X">path.At( 0, 0 )</param>
                             <param id="1" name="Y">path.At( 0, 1 )</param>
                         </action>
-                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
-                            <param id="0" name="Angle">Minion.Angle</param>
+                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="OldMinion">
+                            <param id="0" name="Angle">OldMinion.Angle</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action id="-13" name="Set boolean" type="OldMinion">
                             <param id="0" name="Instance variable">active</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="OldMinion">
                             <param id="0" name="Instance variable">pathUID</param>
                             <param id="1" name="Value">path.UID</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="OldMinion">
                             <param id="0" name="Instance variable">baseUID</param>
                             <param id="1" name="Value">generator.UID</param>
+                        </action>
+                        <action disabled="1" id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">Minion</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">0</param>
+                            <param id="3" name="Y">0</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Path that minions follow" title="Path">
+        <event-group description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
                 <event-block>
@@ -754,18 +760,18 @@
                             <sub-events>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-7" name="Compare instance variable" type="Minion">
+                                        <condition id="-7" name="Compare instance variable" type="OldMinion">
                                             <param id="0" name="Instance variable">baseUID</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">generator.UID</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action disabled="1" id="-10" name="Set value" type="Minion">
+                                        <action disabled="1" id="-10" name="Set value" type="OldMinion">
                                             <param id="0" name="Instance variable">currentPathNode</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
-                                        <action id="-9" name="Destroy" type="Minion" />
+                                        <action id="-9" name="Destroy" type="OldMinion" />
                                     </actions>
                                 </event-block>
                                 <event-block>
@@ -1468,7 +1474,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Manage all of the active minion</comment>
                 <variable comment="the minion&apos;s distance to it&apos;s next node" name="distanceToNode" type="number">0</variable>
@@ -1476,30 +1482,30 @@
                 <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">OldMinion</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldMinion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                         <condition id="-14" name="Pick by unique ID" type="Path">
-                            <param id="0" name="Unique ID">minion.pathUID</param>
+                            <param id="0" name="Unique ID">OldMinion.pathUID</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">distanceToNode</param>
-                            <param id="1" name="Value">distance( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
+                            <param id="1" name="Value">distance( OldMinion.X, OldMinion.Y, path.At( OldMinion.currentPathNode, 0 ), path.At( OldMinion.currentPathNode, 1 ) )</param>
                         </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">angleToNode</param>
-                            <param id="1" name="Value">angle( minion.X, minion.Y, path.At( minion.currentPathNode, 0 ), path.At( minion.currentPathNode, 1 ) )</param>
+                            <param id="1" name="Value">angle( OldMinion.X, OldMinion.Y, path.At( OldMinion.currentPathNode, 0 ), path.At( OldMinion.currentPathNode, 1 ) )</param>
                         </action>
                     </actions>
                     <sub-events>
                         <comment>Drop a trailing spot behind the minon</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Minion">
+                                <condition id="-7" name="Compare instance variable" type="OldMinion">
                                     <param id="0" name="Instance variable">trailTimeStamp</param>
                                     <param id="1" name="Comparison">3</param>
                                     <param id="2" name="Value">tickcount - parameters.At( &quot;minionTrailDropRate&quot; )</param>
@@ -1507,22 +1513,22 @@
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">MinionTrail</param>
+                                    <param id="0" name="Object to create">OldMinionTrail</param>
                                     <param id="1" name="Layer">parameters.At( &quot;defaultLayer&quot; )</param>
-                                    <param id="2" name="X">minion.X</param>
-                                    <param id="3" name="Y">minion.Y</param>
+                                    <param id="2" name="X">OldMinion.X</param>
+                                    <param id="3" name="Y">OldMinion.Y</param>
                                 </action>
-                                <action id="4" name="Set animation" type="MinionTrail">
-                                    <param id="0" name="Animation">minion.AnimationName</param>
+                                <action id="4" name="Set animation" type="OldMinionTrail">
+                                    <param id="0" name="Animation">OldMinion.AnimationName</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Minion">
+                                <action id="-10" name="Set value" type="OldMinion">
                                     <param id="0" name="Instance variable">trailTimeStamp</param>
                                     <param id="1" name="Value">tickcount</param>
                                 </action>
-                                <action id="-7" name="Set size" type="MinionTrail">
-                                    <param id="0" name="Width">7</param>
-                                    <param id="1" name="Height">7</param>
+                                <action id="-7" name="Set size" type="OldMinionTrail">
+                                    <param id="0" name="Width">4</param>
+                                    <param id="1" name="Height">4</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1536,7 +1542,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-11" name="Add to" type="Minion">
+                                <action id="-11" name="Add to" type="OldMinion">
                                     <param id="0" name="Instance variable">currentPathNode</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -1545,7 +1551,7 @@
                         <comment>Destroy the minion if it reaches the end of the path</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" type="Minion">
+                                <condition id="-7" name="Compare instance variable" type="OldMinion">
                                     <param id="0" name="Instance variable">currentPathNode</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">path.pathCount</param>
@@ -1556,7 +1562,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action id="-9" name="Destroy" type="OldMinion" />
                             </actions>
                         </event-block>
                         <comment>Reroute minions if they move off course (can happen because of unaccounted for collision or nodes being moved around rapidly)</comment>
@@ -1566,7 +1572,7 @@
                         <comment>When a minion is corrected, it is advanced to the next node (or the final node if it is off the grid) and oriented toward the new node</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-11" inverted="1" name="Is within angle" type="Minion">
+                                <condition id="-11" inverted="1" name="Is within angle" type="OldMinion">
                                     <param id="0" name="Within">Parameters.At(&quot;minionAngleTolerance&quot; )</param>
                                     <param id="1" name="Angle">angleToNode</param>
                                 </condition>
@@ -1577,21 +1583,21 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="Minion">
+                                <action id="-10" name="Set value" type="OldMinion">
                                     <param id="0" name="Instance variable">currentPathNode</param>
-                                    <param id="1" name="Value">min( minion.currentPathNode + 1, path.pathCount -1 )</param>
+                                    <param id="1" name="Value">min( OldMinion.currentPathNode + 1, path.pathCount -1 )</param>
                                 </action>
                             </actions>
                         </event-block>
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="-22" name="Set angle toward position" type="Minion">
-                                    <param id="0" name="X">path.At( minion.currentPathNode, 0 )</param>
-                                    <param id="1" name="Y">path.At( minion.currentPathNode, 1 )</param>
+                                <action id="-22" name="Set angle toward position" type="OldMinion">
+                                    <param id="0" name="X">path.At( OldMinion.currentPathNode, 0 )</param>
+                                    <param id="1" name="Y">path.At( OldMinion.currentPathNode, 1 )</param>
                                 </action>
-                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
-                                    <param id="0" name="Angle">Minion.Angle</param>
+                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="OldMinion">
+                                    <param id="0" name="Angle">OldMinion.Angle</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1600,7 +1606,7 @@
                 <comment>Fade the minion trail out over time</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-10" name="Compare opacity" type="MinionTrail">
+                        <condition id="-10" name="Compare opacity" type="OldMinionTrail">
                             <param id="0" name="Comparison">4</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
@@ -1609,21 +1615,21 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" type="MinionTrail">
-                            <param id="0" name="Opacity">miniontrail.Opacity - 10</param>
+                        <action id="-16" name="Set opacity" type="OldMinionTrail">
+                            <param id="0" name="Opacity">OldMinionTrail.Opacity - 10</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Destroy the minion trail node as soon as it fades out</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-10" name="Compare opacity" type="MinionTrail">
+                        <condition id="-10" name="Compare opacity" type="OldMinionTrail">
                             <param id="0" name="Comparison">3</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="MinionTrail" />
+                        <action id="-9" name="Destroy" type="OldMinionTrail" />
                     </actions>
                 </event-block>
             </sub-events>
@@ -1806,7 +1812,7 @@
                         <variable comment="has a target been found?" name="targetFound" type="number">0</variable>
                         <event-block disabled="1">
                             <conditions>
-                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Minion">
+                                <condition disabled="1" id="-14" name="Pick by unique ID" type="OldMinion">
                                     <param id="0" name="Unique ID">Cannon.currentTarget</param>
                                 </condition>
                                 <condition disabled="1" id="-8" name="Compare two values" type="System">
@@ -1818,11 +1824,11 @@
                             <actions>
                                 <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">distanceToMinion</param>
-                                    <param id="1" name="Value">distance( cannon.X, cannon.Y, minion.X, minion.Y)</param>
+                                    <param id="1" name="Value">distance( cannon.X, cannon.Y, OldMinion.X, OldMinion.Y)</param>
                                 </action>
                                 <action disabled="1" id="-10" name="Set value" type="Cannon">
                                     <param id="0" name="Instance variable">currentTarget</param>
-                                    <param id="1" name="Value">Minion.UID</param>
+                                    <param id="1" name="Value">OldMinion.UID</param>
                                 </action>
                                 <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">targetFound</param>
@@ -1830,7 +1836,7 @@
                                 </action>
                                 <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">&quot;current target (&quot; &amp; minion.UID &amp; &quot;) &quot; &amp; tickcount &amp; newline &amp; debugMsg</param>
+                                    <param id="1" name="Value">&quot;current target (&quot; &amp; OldMinion.UID &amp; &quot;) &quot; &amp; tickcount &amp; newline &amp; debugMsg</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1842,7 +1848,7 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">0</param>
                                 </condition>
-                                <condition disabled="1" id="-15" name="Pick nearest/furthest" type="Minion">
+                                <condition disabled="1" id="-15" name="Pick nearest/furthest" type="OldMinion">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">Cannon.X</param>
                                     <param id="2" name="Y">Cannon.Y</param>
@@ -1851,11 +1857,11 @@
                             <actions>
                                 <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">&quot;new target (&quot; &amp; minion.UID &amp; &quot;)&quot;&amp; tickcount &amp; newline &amp; debugMsg</param>
+                                    <param id="1" name="Value">&quot;new target (&quot; &amp; OldMinion.UID &amp; &quot;)&quot;&amp; tickcount &amp; newline &amp; debugMsg</param>
                                 </action>
                                 <action disabled="1" id="-10" name="Set value" type="Cannon">
                                     <param id="0" name="Instance variable">currentTarget</param>
-                                    <param id="1" name="Value">Minion.UID</param>
+                                    <param id="1" name="Value">OldMinion.UID</param>
                                 </action>
                                 <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">targetFound</param>
@@ -1866,22 +1872,22 @@
                         <comment>See if there are any minions to target</comment>
                         <event-block>
                             <conditions>
-                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Minion">
+                                <condition disabled="1" id="-14" name="Pick by unique ID" type="OldMinion">
                                     <param id="0" name="Unique ID">Cannon.currentTarget</param>
                                 </condition>
-                                <condition id="-15" name="Pick nearest/furthest" type="Minion">
+                                <condition id="-15" name="Pick nearest/furthest" type="OldMinion">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">Cannon.X</param>
                                     <param id="2" name="Y">Cannon.Y</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                                <condition id="-8" name="Is boolean instance variable set" type="OldMinion">
                                     <param id="0" name="Instance variable">active</param>
                                 </condition>
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">distanceToMinion</param>
-                                    <param id="1" name="Value">distance( cannon.X, cannon.Y, minion.X, minion.Y)</param>
+                                    <param id="1" name="Value">distance( cannon.X, cannon.Y, OldMinion.X, OldMinion.Y)</param>
                                 </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">debugMsg</param>
@@ -1918,11 +1924,11 @@
                                                     <param id="1" name="Y">Cannon.ImagePointY(1)</param>
                                                 </action>
                                                 <action id="-22" name="Set angle toward position" type="TargetLeadBar">
-                                                    <param id="0" name="X">minion.X</param>
-                                                    <param id="1" name="Y">minion.Y</param>
+                                                    <param id="0" name="X">OldMinion.X</param>
+                                                    <param id="1" name="Y">OldMinion.Y</param>
                                                 </action>
                                                 <action id="-7" name="Set size" type="TargetLeadBar">
-                                                    <param id="0" name="Width">distance( Cannon.ImagePointX(1), Cannon.ImagePointY(1), minion.X, minion.Y )</param>
+                                                    <param id="0" name="Width">distance( Cannon.ImagePointX(1), Cannon.ImagePointY(1), OldMinion.X, OldMinion.Y )</param>
                                                     <param id="1" name="Height">1</param>
                                                 </action>
                                             </actions>
@@ -1936,8 +1942,8 @@
                                                     </conditions>
                                                     <actions>
                                                         <action id="-3" name="Set position" type="distanceToTarget">
-                                                            <param id="0" name="X">( cannon.ImagePointX(1) + minion.X ) / 2 </param>
-                                                            <param id="1" name="Y">( cannon.ImagePointY(1) + minion.Y ) / 2 </param>
+                                                            <param id="0" name="X">( cannon.ImagePointX(1) + OldMinion.X ) / 2 </param>
+                                                            <param id="1" name="Y">( cannon.ImagePointY(1) + OldMinion.Y ) / 2 </param>
                                                         </action>
                                                         <action id="-8" name="Set angle" type="distanceToTarget">
                                                             <param id="0" name="Angle">TargetLeadBar.Angle</param>
@@ -1965,11 +1971,11 @@
                                                                     <param id="0" name="Color">rgb(58, 206, 65)</param>
                                                                 </action>
                                                                 <action id="-8" name="Set angle" type="Cannon">
-                                                                    <param id="0" name="Angle">angle( Cannon.X, Cannon.Y, minion.X, minion.Y )</param>
+                                                                    <param id="0" name="Angle">angle( Cannon.X, Cannon.Y, OldMinion.X, OldMinion.Y )</param>
                                                                 </action>
                                                                 <action id="-10" name="Set value" type="Cannon">
                                                                     <param id="0" name="Instance variable">currentTarget</param>
-                                                                    <param id="1" name="Value">minion.UID</param>
+                                                                    <param id="1" name="Value">OldMinion.UID</param>
                                                                 </action>
                                                             </actions>
                                                         </event-block>
@@ -2166,14 +2172,14 @@
                 <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Beam">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">OldMinion</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldMinion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
+                        <action id="-9" name="Destroy" type="OldMinion" />
                     </actions>
                     <sub-events>
                         <event-block>
@@ -2209,17 +2215,17 @@
                 <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Rocket">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">OldMinion</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Rocket">
                             <param id="0" name="Instance variable">armed</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldMinion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
+                        <action id="-9" name="Destroy" type="OldMinion" />
                         <action id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
@@ -2345,14 +2351,14 @@
                 <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="RocketExplosion">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">OldMinion</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="OldMinion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
+                        <action id="-9" name="Destroy" type="OldMinion" />
                     </actions>
                 </event-block>
                 <comment>Move any nodes caught in the shockwave</comment>

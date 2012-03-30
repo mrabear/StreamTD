@@ -562,16 +562,148 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Minion">
-            <object-type name="Minion">
+        <object-folder expanded="1" name="Minion">
+            <object-type name="RedMinion">
                 <plugin id="Sprite" />
-                <instance-variables>
-                    <instance-variable name="currentPathNode" type="number" />
-                    <instance-variable comment="the uid of the path array that this minion is following" name="pathUID" type="number" />
-                    <instance-variable comment="is the minion actively following a path?" name="active" type="boolean" />
-                    <instance-variable name="baseUID" type="number" />
-                    <instance-variable comment="the time stamp of the last trail node" name="trailTimeStamp" type="number" />
-                </instance-variables>
+                <behaviors>
+                    <behavior-type name="CustomMovement">
+                        <behavior id="custom" />
+                    </behavior-type>
+                    <behavior-type name="DestroyOutsideLayout">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="1" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.255" y="0.035" />
+                                <point x="0.665" y="0.055" />
+                                <point x="0.665" y="0.895" />
+                                <point x="0.175" y="0.895" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.255" y="0.035" />
+                                <point x="0.665" y="0.055" />
+                                <point x="0.665" y="0.895" />
+                                <point x="0.175" y="0.895" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.21" y="0.345" />
+                                <point x="0.41" y="0.04" />
+                                <point x="0.545" y="0.05" />
+                                <point x="0.67" y="0.335" />
+                                <point x="0.625" y="0.55" />
+                                <point x="0.66" y="0.88" />
+                                <point x="0.18" y="0.9" />
+                                <point x="0.285" y="0.51" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.21" y="0.345" />
+                                <point x="0.41" y="0.04" />
+                                <point x="0.545" y="0.05" />
+                                <point x="0.67" y="0.335" />
+                                <point x="0.625" y="0.55" />
+                                <point x="0.66" y="0.88" />
+                                <point x="0.18" y="0.9" />
+                                <point x="0.285" y="0.51" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.138889" y="0.138889" />
+                                <point x="0.5" y="0" />
+                                <point x="0.833333" y="0.166667" />
+                                <point x="0.972222" y="0.5" />
+                                <point x="0.833333" y="0.833333" />
+                                <point x="0.5" y="0.972222" />
+                                <point x="0.166667" y="0.833333" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.315" y="0.035" />
+                                <point x="0.695" y="0.035" />
+                                <point x="0.655" y="0.885" />
+                                <point x="0.145" y="0.915" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.315" y="0.035" />
+                                <point x="0.695" y="0.035" />
+                                <point x="0.655" y="0.885" />
+                                <point x="0.145" y="0.915" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="RedMinionTrail">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="GreyMinion">
+                <plugin id="Sprite" />
                 <behaviors>
                     <behavior-type name="CustomMovement">
                         <behavior id="custom" />
@@ -662,7 +794,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="MinionTrail">
+            <object-type name="GreyMinionTrail">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -1300,8 +1432,170 @@
                 </animation-folder>
             </object-type>
         </object-folder>
+        <object-folder expanded="1" name="Old Minion">
+            <object-type name="OldMinion">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="currentPathNode" type="number" />
+                    <instance-variable comment="the uid of the path array that this minion is following" name="pathUID" type="number" />
+                    <instance-variable comment="is the minion actively following a path?" name="active" type="boolean" />
+                    <instance-variable name="baseUID" type="number" />
+                    <instance-variable comment="the time stamp of the last trail node" name="trailTimeStamp" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="CustomMovement">
+                        <behavior id="custom" />
+                    </behavior-type>
+                    <behavior-type name="DestroyOutsideLayout">
+                        <behavior id="destroy" />
+                    </behavior-type>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="2" loop="1" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.21" y="0.345" />
+                                <point x="0.41" y="0.04" />
+                                <point x="0.545" y="0.05" />
+                                <point x="0.67" y="0.335" />
+                                <point x="0.625" y="0.55" />
+                                <point x="0.66" y="0.88" />
+                                <point x="0.18" y="0.9" />
+                                <point x="0.285" y="0.51" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.21" y="0.345" />
+                                <point x="0.41" y="0.04" />
+                                <point x="0.545" y="0.05" />
+                                <point x="0.67" y="0.335" />
+                                <point x="0.625" y="0.55" />
+                                <point x="0.66" y="0.88" />
+                                <point x="0.18" y="0.9" />
+                                <point x="0.285" y="0.51" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.138889" y="0.138889" />
+                                <point x="0.5" y="0" />
+                                <point x="0.833333" y="0.166667" />
+                                <point x="0.972222" y="0.5" />
+                                <point x="0.833333" y="0.833333" />
+                                <point x="0.5" y="0.972222" />
+                                <point x="0.166667" y="0.833333" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.255" y="0.035" />
+                                <point x="0.665" y="0.055" />
+                                <point x="0.665" y="0.895" />
+                                <point x="0.175" y="0.895" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.255" y="0.035" />
+                                <point x="0.665" y="0.055" />
+                                <point x="0.665" y="0.895" />
+                                <point x="0.175" y="0.895" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="1" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.315" y="0.035" />
+                                <point x="0.695" y="0.035" />
+                                <point x="0.655" y="0.885" />
+                                <point x="0.145" y="0.915" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <collision-poly>
+                                <point x="0.315" y="0.035" />
+                                <point x="0.695" y="0.035" />
+                                <point x="0.655" y="0.885" />
+                                <point x="0.145" y="0.915" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="OldMinionTrail">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
     </object-folder>
-    <families />
+    <families>
+        <family name="Minion" plugin-id="Sprite">
+            <members>
+                <member>GreyMinion</member>
+                <member>RedMinion</member>
+            </members>
+            <instance-variables>
+                <instance-variable comment="the current node of the path that the minion is on" name="currentPathNode" type="number" />
+                <instance-variable comment="the path UID that the minion is following" name="pathUID" type="number" />
+                <instance-variable comment="is the minion active?" name="active" type="boolean" />
+                <instance-variable comment="the UID of the base that spawned this minion" name="baseUID" type="number" />
+                <instance-variable comment="the time stamp since the last trail breadcrumb was dropped" name="trailTimeStamp" type="number" />
+            </instance-variables>
+        </family>
+    </families>
     <layout-folder expanded="1">
         <layout>MainLayout.xml</layout>
     </layout-folder>
