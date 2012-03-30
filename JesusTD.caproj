@@ -44,7 +44,7 @@
         <prop name="Sampling">Linear</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="Krull">
+        <object-folder expanded="0" name="Krull (legacy)">
             <object-type name="KrullBase">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -110,7 +110,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Path">
+        <object-folder expanded="0" name="Path">
             <object-type name="Bar">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -198,7 +198,7 @@
                 </behaviors>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Rocket">
+        <object-folder expanded="0" name="Rocket">
             <object-type name="Rocket">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -307,7 +307,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Data Sources">
+        <object-folder expanded="0" name="Data Sources">
             <object-type name="Parameters">
                 <plugin id="Rex_Hash" />
             </object-type>
@@ -330,7 +330,7 @@
                 <plugin id="Mouse" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Turret">
+        <object-folder expanded="0" name="Turret">
             <object-type name="distanceToTarget">
                 <plugin id="Text" />
             </object-type>
@@ -377,7 +377,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Jesus">
+        <object-folder expanded="0" name="Jesus (legacy)">
             <object-type name="Jesus">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -422,7 +422,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Cannon">
+        <object-folder expanded="0" name="Cannon">
             <object-type name="Cannon">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -538,7 +538,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Misc">
+        <object-folder expanded="0" name="Misc">
             <object-type name="HiddenWall">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -562,7 +562,7 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Minion">
+        <object-folder expanded="0" name="Minion">
             <object-type name="Minion">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -710,7 +710,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Barrier">
+        <object-folder expanded="0" name="Barrier">
             <object-type name="BarrierWall">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -731,7 +731,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Generator">
+        <object-folder expanded="0" name="Generator">
             <object-type name="Generator">
                 <plugin id="Sprite" />
                 <instance-variables>

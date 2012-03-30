@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -124,7 +124,7 @@
             </sub-events>
         </event-group>
         <comment>Game Object Events</comment>
-        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Create a new generator</comment>
                 <event-block>
@@ -439,6 +439,11 @@
                         <condition id="-14" name="Pick by unique ID" type="Path">
                             <param id="0" name="Unique ID">generator.pathUID</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" type="Path">
+                            <param id="0" name="Instance variable">pathCount</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="3" name="Start" type="Generator">
@@ -451,8 +456,8 @@
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
                             <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                            <param id="2" name="X">generator.X</param>
-                            <param id="3" name="Y">generator.Y</param>
+                            <param id="2" name="X">generator.ImagePointX(1)</param>
+                            <param id="3" name="Y">generator.ImagePointY(1)</param>
                         </action>
                         <action id="4" name="Set animation" type="Minion">
                             <param id="0" name="Animation">generator.minionType</param>
