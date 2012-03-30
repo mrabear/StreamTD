@@ -522,6 +522,15 @@
                                 <condition id="-14" name="Pick by unique ID" type="Node">
                                     <param id="0" name="Unique ID">bar.nodeUID</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Path">
+                                    <param id="0" name="Unique ID">node.pathUID</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                                    <param id="0" name="Instance variable">currentlyMovingNode</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
+                                    <param id="0" name="Instance variable">currentlyTracing</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-9" name="Set value" type="System">
@@ -538,18 +547,6 @@
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Node</param>
-                                        </condition>
-                                        <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Path</param>
-                                        </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="Path">
-                                            <param id="0" name="Unique ID">node.pathUID</param>
-                                        </condition>
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
-                                            <param id="0" name="Instance variable">currentlyMovingNode</param>
-                                        </condition>
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Path">
-                                            <param id="0" name="Instance variable">currentlyTracing</param>
                                         </condition>
                                     </conditions>
                                     <actions />
@@ -627,23 +624,6 @@
                                                     <param id="0" name="Variable">newNodeUID</param>
                                                     <param id="1" name="Value">node.UID</param>
                                                 </action>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Bar</param>
-                                                    <param id="1" name="Layer">Parameters.at(&quot;backgroundLayer&quot;)</param>
-                                                    <param id="2" name="X">node.X</param>
-                                                    <param id="3" name="Y">node.Y</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Node">
-                                                    <param id="0" name="Instance variable">barUID</param>
-                                                    <param id="1" name="Value">bar.UID</param>
-                                                </action>
-                                                <action id="-6" name="Set height" type="Bar">
-                                                    <param id="0" name="Height">7</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Bar">
-                                                    <param id="0" name="Instance variable">nodeUID</param>
-                                                    <param id="1" name="Value">node.UID</param>
-                                                </action>
                                                 <action id="-11" name="Add to" type="Path">
                                                     <param id="0" name="Instance variable">pathCount</param>
                                                     <param id="1" name="Value">1</param>
@@ -670,7 +650,12 @@
                                                             <param id="0" name="Object">Node</param>
                                                         </condition>
                                                     </conditions>
-                                                    <actions />
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">debugMsg</param>
+                                                            <param id="1" name="Value">debugMsg &amp; newNodeIndex &amp; newline</param>
+                                                        </action>
+                                                    </actions>
                                                     <sub-events>
                                                         <comment>Wire the previous node into the new node</comment>
                                                         <event-block>
@@ -682,6 +667,10 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
+                                                                <action id="-9" name="Set value" type="System">
+                                                                    <param id="0" name="Variable">debugMsg</param>
+                                                                    <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;&quot; &amp; node.nodeIndex &amp; newline</param>
+                                                                </action>
                                                                 <action id="-10" name="Set value" type="Node">
                                                                     <param id="0" name="Instance variable">nextNode</param>
                                                                     <param id="1" name="Value">newNodeUID</param>
@@ -712,6 +701,10 @@
                                         <event-block>
                                             <conditions />
                                             <actions>
+                                                <action id="-13" name="Set boolean" type="Path">
+                                                    <param id="0" name="Instance variable">validData</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
                                                 <action id="-13" name="Set boolean" type="Path">
                                                     <param id="0" name="Instance variable">currentlyMovingNode</param>
                                                     <param id="1" name="Value">1</param>
@@ -968,11 +961,6 @@
                                     </sub-events>
                                 </event-block>
                             </sub-events>
-                        </event-block>
-                        <comment>Always increment the global node counter</comment>
-                        <event-block>
-                            <conditions />
-                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -1308,32 +1296,14 @@
                                             <param id="0" name="X">node.X</param>
                                             <param id="1" name="Y">node.Y</param>
                                         </action>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">nodeUID</param>
-                                            <param id="1" name="Value">node.nextNode</param>
+                                        <action id="-22" name="Set angle toward position" type="Bar">
+                                            <param id="0" name="X">path.At( node.nodeIndex + 1, 0 )</param>
+                                            <param id="1" name="Y">path.At( node.nodeIndex + 1, 1 )</param>
+                                        </action>
+                                        <action id="-5" name="Set width" type="Bar">
+                                            <param id="0" name="Width">distance( currentNodeX, currentNodeY, path.At( node.nodeIndex + 1, 0 ), path.At( node.nodeIndex + 1, 1 ))</param>
                                         </action>
                                     </actions>
-                                    <sub-events>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-19" name="Pick all" type="System">
-                                                    <param id="0" name="Object">Node</param>
-                                                </condition>
-                                                <condition id="-14" name="Pick by unique ID" type="Node">
-                                                    <param id="0" name="Unique ID">nodeUID</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-22" name="Set angle toward position" type="Bar">
-                                                    <param id="0" name="X">node.X</param>
-                                                    <param id="1" name="Y">node.Y</param>
-                                                </action>
-                                                <action id="-5" name="Set width" type="Bar">
-                                                    <param id="0" name="Width">distance( currentNodeX, currentNodeY, node.X, node.Y)</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
@@ -1373,10 +1343,6 @@
                                             </conditions>
                                             <actions>
                                                 <action id="4" name="Set animation" type="Bar">
-                                                    <param id="0" name="Animation">&quot;green&quot;</param>
-                                                    <param id="1" name="From">1</param>
-                                                </action>
-                                                <action id="4" name="Set animation" type="Node">
                                                     <param id="0" name="Animation">&quot;green&quot;</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
@@ -1497,7 +1463,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Manage all of the active minion</comment>
                 <variable comment="the minion&apos;s distance to it&apos;s next node" name="distanceToNode" type="number">0</variable>
@@ -2232,7 +2198,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
             <sub-events>
                 <comment>Destroy any minions hit by rockets</comment>
                 <event-block>
@@ -2560,124 +2526,6 @@
                         <action id="-18" name="Rotate clockwise" type="BarrierWall">
                             <param id="0" name="Degrees">90</param>
                         </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <comment>Legacy Code</comment>
-        <event-group collapsed="1" description="Krull blade that kills minions while spinning around the map, aslo acts as a mobile weapons platform" disabled="1" title="KrullBlade (old code, needs updating)">
-            <sub-events>
-                <comment></comment>
-                <variable comment="the amount of rotation build (degrees/sec)" name="spinBuildAmount" type="number">50</variable>
-                <variable comment="the amount of rotation decay (degrees/sec)" name="spinDecayAmount" type="number">25</variable>
-                <variable comment="the maximum acceleration (pixels/sec) the rng will use" name="maxAcceleration" type="number">20</variable>
-                <variable comment="the minimum speed (pixels/sec) that the krull can travel" name="minSpeed" type="number">40</variable>
-                <variable comment="the max speed (pixels/sec) that the krull can travel" name="maxSpeed" type="number">60</variable>
-                <variable comment="the rate (decay/sec) that the krull blade spin decays" name="spinDecayRate" type="number">2</variable>
-                <comment>A base has been hit by the blade, destroy it</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On collision with another object" type="KrullBlade">
-                            <param id="0" name="Object">Jesus</param>
-                        </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Jesus">
-                            <param id="0" name="Instance variable">bigJesus</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Jesus" />
-                    </actions>
-                </event-block>
-                <comment>A minion has been hit by the blade</comment>
-                <comment>Spin the rotation of the blade and cannon up as a result of the minion kill</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On collision with another object" type="KrullBlade">
-                            <param id="0" name="Object">Minion</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
-                        <action behavior="Rotate" id="0" name="Set speed" type="KrullBlade">
-                            <param id="0" name="Speed">min( 360, KrullBlade.Rotate.Speed + spinBuildAmount )</param>
-                        </action>
-                        <action id="-11" name="Add to" type="KrullBlade">
-                            <param id="0" name="Instance variable">minionsKilled</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Decay the rotation rate of the blade and cannon at a set interval</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="-6" name="Every X seconds" type="System">
-                            <param id="0" name="Interval (seconds)">spinDecayRate</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="Rotate" id="0" name="Set speed" type="KrullBlade">
-                            <param id="0" name="Speed">max( 0, KrullBlade.Rotate.Speed - spinDecayAmount )</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Create a new blade, the entry in the enemy array is (bodyUID, bladeUID)</comment>
-                <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
-                        <condition disabled="1" id="2" name="Key is down" type="Keyboard">
-                            <param id="0" name="Key">81 (Q)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action disabled="1" id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">KrullBase</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                            <param id="2" name="X">mouse.X</param>
-                            <param id="3" name="Y">mouse.Y</param>
-                        </action>
-                        <action behavior="Bullet" disabled="1" id="0" name="Set speed" type="KrullBase">
-                            <param id="0" name="Speed">random( minspeed, maxspeed)</param>
-                        </action>
-                        <action disabled="1" id="-8" name="Set angle" type="KrullBase">
-                            <param id="0" name="Angle">random( 0 , 360 )</param>
-                        </action>
-                        <action behavior="Bullet" disabled="1" id="5" name="Set enabled" type="KrullBase">
-                            <param id="0" name="State">0</param>
-                        </action>
-                        <action disabled="1" id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">KrullBlade</param>
-                            <param id="1" name="Layer">1</param>
-                            <param id="2" name="X">KrullBase.X</param>
-                            <param id="3" name="Y">KrullBase.Y</param>
-                        </action>
-                        <action disabled="1" id="-10" name="Set value" type="KrullBlade">
-                            <param id="0" name="Instance variable">baseUID</param>
-                            <param id="1" name="Value">krullbase.UID</param>
-                        </action>
-                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="KrullBlade">
-                            <param id="0" name="Pin to">KrullBase</param>
-                        </action>
-                        <action disabled="1" id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Cannon</param>
-                            <param id="1" name="Layer">parameters.Entry( &quot;turretlayer&quot; )</param>
-                            <param id="2" name="X">krullbase.X</param>
-                            <param id="3" name="Y">krullbase.Y</param>
-                        </action>
-                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="Cannon">
-                            <param id="0" name="Pin to">KrullBase</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>If the blade becomes unpinned, destroy it (probably because the platform it was on was previously destroyed)</comment>
-                <event-block>
-                    <conditions>
-                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="KrullBlade" />
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="KrullBlade" />
                     </actions>
                 </event-block>
             </sub-events>

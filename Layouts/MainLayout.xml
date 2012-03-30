@@ -105,11 +105,11 @@
                         <x>-180.200149536</x>
                         <y>277.200134277</y>
                         <z>0</z>
-                        <width>6</width>
-                        <height>6</height>
+                        <width>7</width>
+                        <height>7</height>
                         <depth>0</depth>
-                        <hotspotX>0.571428597</hotspotX>
-                        <hotspotY>0.571428597</hotspotY>
+                        <hotspotX>0.600000024</hotspotX>
+                        <hotspotY>0.600000024</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
