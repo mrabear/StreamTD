@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -132,7 +132,7 @@
             </sub-events>
         </event-group>
         <comment>Game Object Events</comment>
-        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Create a new generator</comment>
                 <event-block>
@@ -227,8 +227,6 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-9" name="Destroy" type="Node" />
-                        <action disabled="1" id="-9" name="Destroy" type="Bar" />
                         <action id="-14" name="Set object time scale" type="System">
                             <param id="0" name="Object">Node</param>
                             <param id="1" name="Time scale">1.0</param>
@@ -334,6 +332,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <comment>Switch the active path to the generator that&apos;s been clicked on</comment>
                 <event-block>
                     <conditions>
                         <condition id="6" name="On object clicked" type="Mouse">
@@ -346,10 +345,6 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Path">
-                            <param id="0" name="Instance variable">redrawPath</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
                         <action id="-14" name="Set object time scale" type="System">
                             <param id="0" name="Object">Node</param>
                             <param id="1" name="Time scale">1.5</param>
@@ -358,8 +353,16 @@
                             <param id="0" name="Object">Bar</param>
                             <param id="1" name="Time scale">1.5</param>
                         </action>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">redrawPath</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-16" name="Wait" type="System">
+                            <param id="0" name="Seconds">parameters.At( &quot;pathPreviewTime&quot; )</param>
+                        </action>
                     </actions>
                     <sub-events>
+                        <comment>If the generator was active, flash out the path after a specified wait time</comment>
                         <event-block>
                             <conditions>
                                 <condition id="-8" name="Is boolean instance variable set" type="Generator">
@@ -367,9 +370,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">parameters.At( &quot;pathPreviewTime&quot; )</param>
-                                </action>
                                 <action id="-14" name="Set object time scale" type="System">
                                     <param id="0" name="Object">Node</param>
                                     <param id="1" name="Time scale">1.5</param>
@@ -420,10 +420,6 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">&quot;&quot;</param>
-                        </action>
                         <action id="-13" name="Set boolean" type="Path">
                             <param id="0" name="Instance variable">redrawPath</param>
                             <param id="1" name="Value">0</param>
@@ -464,10 +460,6 @@
                                     <param id="0" name="X">loopindex</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Value">node.UID</param>
-                                </action>
-                                <action disabled="1" id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">debugMsg &amp; &quot;creating node &quot; &amp; node.nodeIndex &amp; newline</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -588,7 +580,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Path that minions follow" title="Path">
+        <event-group collapsed="1" description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
                 <event-block>
@@ -731,19 +723,6 @@
                                                     <param id="0" name="Instance variable">pathCount</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">NodeLabel</param>
-                                                    <param id="1" name="Layer">parameters.at( &quot;turretLayer&quot; )</param>
-                                                    <param id="2" name="X">node.X</param>
-                                                    <param id="3" name="Y">node.Y</param>
-                                                </action>
-                                                <action behavior="Pin" id="0" name="Pin to object" type="NodeLabel">
-                                                    <param id="0" name="Pin to">Node</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="NodeLabel">
-                                                    <param id="0" name="Instance variable">parentNodeUID</param>
-                                                    <param id="1" name="Value">node.UID</param>
-                                                </action>
                                             </actions>
                                             <sub-events>
                                                 <comment>Splice the new node into the existing path</comment>
@@ -753,12 +732,7 @@
                                                             <param id="0" name="Object">Node</param>
                                                         </condition>
                                                     </conditions>
-                                                    <actions>
-                                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                                            <param id="0" name="Variable">debugMsg</param>
-                                                            <param id="1" name="Value">debugMsg &amp; newNodeIndex &amp; newline</param>
-                                                        </action>
-                                                    </actions>
+                                                    <actions />
                                                     <sub-events>
                                                         <comment>Wire the previous node into the new node</comment>
                                                         <event-block>
@@ -770,10 +744,6 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action disabled="1" id="-9" name="Set value" type="System">
-                                                                    <param id="0" name="Variable">debugMsg</param>
-                                                                    <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;&quot; &amp; node.nodeIndex &amp; newline</param>
-                                                                </action>
                                                                 <action id="-10" name="Set value" type="Node">
                                                                     <param id="0" name="Instance variable">nextNode</param>
                                                                     <param id="1" name="Value">newNodeUID</param>
@@ -859,10 +829,6 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action disabled="1" id="-10" name="Set value" type="OldMinion">
-                                            <param id="0" name="Instance variable">currentPathNode</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
                                         <action id="-9" name="Destroy" type="OldMinion" />
                                     </actions>
                                 </event-block>
@@ -1235,7 +1201,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Point on the path, can be placed and manipulated" title="Node">
+        <event-group collapsed="1" description="Point on the path, can be placed and manipulated" title="Node">
             <sub-events>
                 <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <event-block disabled="1">
@@ -1259,6 +1225,15 @@
                             </actions>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <comment>Destroy a node label if the node underneath it was destroyed</comment>
+                <event-block>
+                    <conditions>
+                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="NodeLabel" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="NodeLabel" />
+                    </actions>
                 </event-block>
                 <comment>If a node is being moved, flag it as being updated (fires other events that updates the path)</comment>
                 <event-block>
@@ -1574,7 +1549,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Manage all of the active minion</comment>
                 <variable comment="the minion&apos;s distance to it&apos;s next node" name="distanceToNode" type="number">0</variable>
@@ -1875,22 +1850,6 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <comment>Pin the cannon and range finder to a krullblade (if that is the base)</comment>
-                                <event-block disabled="1">
-                                    <conditions>
-                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="KrullBase">
-                                            <param id="0" name="Unique ID">cannon.baseUID</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="Cannon">
-                                            <param id="0" name="Pin to">TurretBase</param>
-                                        </action>
-                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="RangeFinder">
-                                            <param id="0" name="Pin to">TurretBase</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
                                 <comment>Finish up and mark the cannon as fully deployed</comment>
                                 <event-block>
                                     <conditions />
@@ -2078,6 +2037,123 @@
                                                                     <param id="1" name="Value">OldMinion.UID</param>
                                                                 </action>
                                                             </actions>
+                                                            <sub-events>
+                                                                <comment>Fire whatever ammo is active:</comment>
+                                                                <event-block>
+                                                                    <conditions>
+                                                                        <condition id="-8" name="Compare two values" type="System">
+                                                                            <param id="0" name="First value">tickcount - Cannon.lastFired</param>
+                                                                            <param id="1" name="Comparison">5</param>
+                                                                            <param id="2" name="Second value">Cannon.fireRate</param>
+                                                                        </condition>
+                                                                        <condition id="-8" name="Is boolean instance variable set" type="Cannon">
+                                                                            <param id="0" name="Instance variable">readyToFire</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions />
+                                                                    <sub-events>
+                                                                        <comment>Fire a rocket</comment>
+                                                                        <event-block>
+                                                                            <conditions>
+                                                                                <condition id="-7" name="Compare instance variable" type="Cannon">
+                                                                                    <param id="0" name="Instance variable">activeAmmo</param>
+                                                                                    <param id="1" name="Comparison">0</param>
+                                                                                    <param id="2" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
+                                                                                </condition>
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="-3" name="Create object" type="System">
+                                                                                    <param id="0" name="Object to create">Rocket</param>
+                                                                                    <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                                                                                    <param id="2" name="X">Cannon.ImagePointX(1)</param>
+                                                                                    <param id="3" name="Y">Cannon.ImagePointY(1)</param>
+                                                                                </action>
+                                                                                <action id="-8" name="Set angle" type="Rocket">
+                                                                                    <param id="0" name="Angle">Cannon.Angle</param>
+                                                                                </action>
+                                                                                <action id="-10" name="Set value" type="Rocket">
+                                                                                    <param id="0" name="Instance variable">launchTime</param>
+                                                                                    <param id="1" name="Value">tickcount</param>
+                                                                                </action>
+                                                                                <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
+                                                                                    <param id="0" name="State">1</param>
+                                                                                </action>
+                                                                                <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
+                                                                                    <param id="0" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
+                                                                                </action>
+                                                                                <action behavior="Bullet" id="3" name="Set angle of motion" type="Rocket">
+                                                                                    <param id="0" name="Angle">rocket.Angle</param>
+                                                                                </action>
+                                                                                <action behavior="Bullet" id="1" name="Set acceleration" type="Rocket">
+                                                                                    <param id="0" name="Acceleration">Parameters.Entry(&quot;rocketLaunchBoost&quot;)</param>
+                                                                                </action>
+                                                                                <action id="-3" name="Create object" type="System">
+                                                                                    <param id="0" name="Object to create">RocketEffects</param>
+                                                                                    <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                                                                                    <param id="2" name="X">rocket.imagepointX(2)</param>
+                                                                                    <param id="3" name="Y">rocket.imagepointY(2)</param>
+                                                                                </action>
+                                                                                <action id="-10" name="Set value" type="Rocket">
+                                                                                    <param id="0" name="Instance variable">effectsUID</param>
+                                                                                    <param id="1" name="Value">RocketEffects.UID</param>
+                                                                                </action>
+                                                                                <action id="-8" name="Set angle" type="RocketEffects">
+                                                                                    <param id="0" name="Angle">rocket.angle</param>
+                                                                                </action>
+                                                                                <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
+                                                                                    <param id="0" name="Pin to">Rocket</param>
+                                                                                </action>
+                                                                                <action id="-10" name="Set value" type="Rocket">
+                                                                                    <param id="0" name="Instance variable">cannonUID</param>
+                                                                                    <param id="1" name="Value">cannon.UID</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <comment>Fire a beam</comment>
+                                                                        <event-block>
+                                                                            <conditions>
+                                                                                <condition id="-7" name="Compare instance variable" type="Cannon">
+                                                                                    <param id="0" name="Instance variable">activeAmmo</param>
+                                                                                    <param id="1" name="Comparison">0</param>
+                                                                                    <param id="2" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
+                                                                                </condition>
+                                                                            </conditions>
+                                                                            <actions>
+                                                                                <action id="-3" name="Create object" type="System">
+                                                                                    <param id="0" name="Object to create">Beam</param>
+                                                                                    <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                                                                                    <param id="2" name="X">Cannon.ImagePointX(1)</param>
+                                                                                    <param id="3" name="Y">Cannon.ImagePointY(1)</param>
+                                                                                </action>
+                                                                                <action id="-8" name="Set angle" type="Beam">
+                                                                                    <param id="0" name="Angle">Cannon.Angle</param>
+                                                                                </action>
+                                                                                <action behavior="Bullet" id="0" name="Set speed" type="Beam">
+                                                                                    <param id="0" name="Speed">Parameters.Entry(&quot;beamDefaultProjectileSpeed&quot;)</param>
+                                                                                </action>
+                                                                                <action id="-10" name="Set value" type="Beam">
+                                                                                    <param id="0" name="Instance variable">cannonUID</param>
+                                                                                    <param id="1" name="Value">cannon.UID</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                        <comment>Register fired shot</comment>
+                                                                        <event-block>
+                                                                            <conditions />
+                                                                            <actions>
+                                                                                <action id="-10" name="Set value" type="Cannon">
+                                                                                    <param id="0" name="Instance variable">lastFired</param>
+                                                                                    <param id="1" name="Value">tickcount</param>
+                                                                                </action>
+                                                                            </actions>
+                                                                        </event-block>
+                                                                    </sub-events>
+                                                                </event-block>
+                                                                <event-block>
+                                                                    <conditions />
+                                                                    <actions />
+                                                                </event-block>
+                                                            </sub-events>
                                                         </event-block>
                                                         <event-block>
                                                             <conditions>
@@ -2102,117 +2178,6 @@
                                                             </actions>
                                                         </event-block>
                                                     </sub-events>
-                                                </event-block>
-                                            </sub-events>
-                                        </event-block>
-                                        <comment>Fire whatever ammo is active:</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-8" name="Compare two values" type="System">
-                                                    <param id="0" name="First value">tickcount - Cannon.lastFired</param>
-                                                    <param id="1" name="Comparison">5</param>
-                                                    <param id="2" name="Second value">Cannon.fireRate</param>
-                                                </condition>
-                                                <condition id="-8" name="Is boolean instance variable set" type="Cannon">
-                                                    <param id="0" name="Instance variable">readyToFire</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions />
-                                            <sub-events>
-                                                <comment>Fire a rocket</comment>
-                                                <event-block>
-                                                    <conditions>
-                                                        <condition id="-7" name="Compare instance variable" type="Cannon">
-                                                            <param id="0" name="Instance variable">activeAmmo</param>
-                                                            <param id="1" name="Comparison">0</param>
-                                                            <param id="2" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
-                                                        </condition>
-                                                    </conditions>
-                                                    <actions>
-                                                        <action id="-3" name="Create object" type="System">
-                                                            <param id="0" name="Object to create">Rocket</param>
-                                                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                                                            <param id="2" name="X">Cannon.ImagePointX(1)</param>
-                                                            <param id="3" name="Y">Cannon.ImagePointY(1)</param>
-                                                        </action>
-                                                        <action id="-8" name="Set angle" type="Rocket">
-                                                            <param id="0" name="Angle">Cannon.Angle</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Rocket">
-                                                            <param id="0" name="Instance variable">launchTime</param>
-                                                            <param id="1" name="Value">tickcount</param>
-                                                        </action>
-                                                        <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
-                                                            <param id="0" name="State">1</param>
-                                                        </action>
-                                                        <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
-                                                            <param id="0" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
-                                                        </action>
-                                                        <action behavior="Bullet" id="3" name="Set angle of motion" type="Rocket">
-                                                            <param id="0" name="Angle">rocket.Angle</param>
-                                                        </action>
-                                                        <action behavior="Bullet" id="1" name="Set acceleration" type="Rocket">
-                                                            <param id="0" name="Acceleration">Parameters.Entry(&quot;rocketLaunchBoost&quot;)</param>
-                                                        </action>
-                                                        <action id="-3" name="Create object" type="System">
-                                                            <param id="0" name="Object to create">RocketEffects</param>
-                                                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                                                            <param id="2" name="X">rocket.imagepointX(2)</param>
-                                                            <param id="3" name="Y">rocket.imagepointY(2)</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Rocket">
-                                                            <param id="0" name="Instance variable">effectsUID</param>
-                                                            <param id="1" name="Value">RocketEffects.UID</param>
-                                                        </action>
-                                                        <action id="-8" name="Set angle" type="RocketEffects">
-                                                            <param id="0" name="Angle">rocket.angle</param>
-                                                        </action>
-                                                        <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
-                                                            <param id="0" name="Pin to">Rocket</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Rocket">
-                                                            <param id="0" name="Instance variable">cannonUID</param>
-                                                            <param id="1" name="Value">cannon.UID</param>
-                                                        </action>
-                                                    </actions>
-                                                </event-block>
-                                                <comment>Fire a beam</comment>
-                                                <event-block>
-                                                    <conditions>
-                                                        <condition id="-7" name="Compare instance variable" type="Cannon">
-                                                            <param id="0" name="Instance variable">activeAmmo</param>
-                                                            <param id="1" name="Comparison">0</param>
-                                                            <param id="2" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
-                                                        </condition>
-                                                    </conditions>
-                                                    <actions>
-                                                        <action id="-3" name="Create object" type="System">
-                                                            <param id="0" name="Object to create">Beam</param>
-                                                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
-                                                            <param id="2" name="X">Cannon.ImagePointX(1)</param>
-                                                            <param id="3" name="Y">Cannon.ImagePointY(1)</param>
-                                                        </action>
-                                                        <action id="-8" name="Set angle" type="Beam">
-                                                            <param id="0" name="Angle">Cannon.Angle</param>
-                                                        </action>
-                                                        <action behavior="Bullet" id="0" name="Set speed" type="Beam">
-                                                            <param id="0" name="Speed">Parameters.Entry(&quot;beamDefaultProjectileSpeed&quot;)</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Beam">
-                                                            <param id="0" name="Instance variable">cannonUID</param>
-                                                            <param id="1" name="Value">cannon.UID</param>
-                                                        </action>
-                                                    </actions>
-                                                </event-block>
-                                                <comment>Register fired shot</comment>
-                                                <event-block>
-                                                    <conditions />
-                                                    <actions>
-                                                        <action id="-10" name="Set value" type="Cannon">
-                                                            <param id="0" name="Instance variable">lastFired</param>
-                                                            <param id="1" name="Value">tickcount</param>
-                                                        </action>
-                                                    </actions>
                                                 </event-block>
                                             </sub-events>
                                         </event-block>
@@ -2657,6 +2622,12 @@
                         </action>
                         <action id="1" name="Append text" type="txtDebug">
                             <param id="0" name="Text">debugMsg &amp; newline</param>
+                        </action>
+                        <action id="0" name="Set text" type="txtObjectCounts">
+                            <param id="0" name="Text">&quot;nodes: &quot; &amp; node.Count &amp; &quot;  bars: &quot; &amp; bar.Count &amp; &quot;  Minions: &quot; &amp; OldMinion.Count &amp; &quot;  MinionTrails: &quot; &amp; OldMinionTrail.Count &amp; &quot;  node labels: &quot; &amp; nodelabel.Count &amp;  newline</param>
+                        </action>
+                        <action disabled="1" id="1" name="Append text" type="txtObjectCounts">
+                            <param id="0" name="Text">&quot;nodes: &quot; &amp; node.Count &amp; &quot;  bars: &quot; &amp; bar.Count &amp; &quot;  Minions: &quot; &amp; OldMinion.Count  &amp; newline</param>
                         </action>
                     </actions>
                 </event-block>
