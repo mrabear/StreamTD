@@ -111,7 +111,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Path">
+        <object-folder expanded="0" name="Path">
             <object-type name="Bar">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -285,7 +285,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Beam">
+        <object-folder expanded="0" name="Beam">
             <object-type name="Beam">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -316,7 +316,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Data Sources">
+        <object-folder expanded="0" name="Data Sources">
             <object-type name="Parameters">
                 <plugin id="Rex_Hash" />
             </object-type>
@@ -432,7 +432,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Cannon">
+        <object-folder expanded="0" name="Cannon">
             <object-type name="Cannon">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -548,7 +548,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Misc">
+        <object-folder expanded="0" name="Misc">
             <object-type name="HiddenWall">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -575,7 +575,7 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Minion">
+        <object-folder expanded="0" name="Minion">
             <object-type name="RedMinion">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -1445,7 +1445,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Old Minion">
+        <object-folder expanded="0" name="Old Minion">
             <object-type name="OldMinion">
                 <plugin id="Sprite" />
                 <instance-variables>

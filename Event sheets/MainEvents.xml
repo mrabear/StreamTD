@@ -13,6 +13,29 @@
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
                     <actions>
+                        <action id="-9" name="Destroy" type="Bar" />
+                        <action id="-9" name="Destroy" type="BarrierWall" />
+                        <action id="-9" name="Destroy" type="Beam" />
+                        <action id="-9" name="Destroy" type="Cannon" />
+                        <action id="-9" name="Destroy" type="distanceToTarget" />
+                        <action id="-9" name="Destroy" type="Generator" />
+                        <action id="-9" name="Destroy" type="GreyMinion" />
+                        <action id="-9" name="Destroy" type="GreyMinionTrail" />
+                        <action id="-9" name="Destroy" type="KrullBase" />
+                        <action id="-9" name="Destroy" type="KrullBlade" />
+                        <action id="-9" name="Destroy" type="Node" />
+                        <action id="-9" name="Destroy" type="NodeLabel" />
+                        <action id="-9" name="Destroy" type="OldMinion" />
+                        <action id="-9" name="Destroy" type="OldMinionTrail" />
+                        <action id="-9" name="Destroy" type="PathStart" />
+                        <action id="-9" name="Destroy" type="RangeFinder" />
+                        <action id="-9" name="Destroy" type="RedMinion" />
+                        <action id="-9" name="Destroy" type="RedMinionTrail" />
+                        <action id="-9" name="Destroy" type="Rocket" />
+                        <action id="-9" name="Destroy" type="RocketEffects" />
+                        <action id="-9" name="Destroy" type="RocketExplosion" />
+                        <action id="-9" name="Destroy" type="TargetLeadBar" />
+                        <action id="-9" name="Destroy" type="TurretBase" />
                         <action id="2" name="Stop" type="Jesus" />
                         <action id="4" name="Clean all" type="Parameters" />
                         <action id="1" name="Set value by key string" type="Parameters">
@@ -2623,7 +2646,7 @@
                         <action id="1" name="Append text" type="txtDebug">
                             <param id="0" name="Text">debugMsg &amp; newline</param>
                         </action>
-                        <action id="0" name="Set text" type="txtObjectCounts">
+                        <action disabled="1" id="0" name="Set text" type="txtObjectCounts">
                             <param id="0" name="Text">&quot;nodes: &quot; &amp; node.Count &amp; &quot;  bars: &quot; &amp; bar.Count &amp; &quot;  Minions: &quot; &amp; OldMinion.Count &amp; &quot;  MinionTrails: &quot; &amp; OldMinionTrail.Count &amp; &quot;  node labels: &quot; &amp; nodelabel.Count &amp;  newline</param>
                         </action>
                         <action disabled="1" id="1" name="Append text" type="txtObjectCounts">
