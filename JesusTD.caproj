@@ -316,7 +316,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Data Sources">
+        <object-folder expanded="1" name="Data Sources">
             <object-type name="Parameters">
                 <plugin id="Rex_Hash" />
             </object-type>
@@ -328,6 +328,7 @@
                     <instance-variable comment="is a new path currently being drawn?" name="currentlyTracing" type="boolean" />
                     <instance-variable comment="the UID of the base that owns this path" name="baseUID" type="number" />
                     <instance-variable comment="is the data in the array valid?" name="validData" type="boolean" />
+                    <instance-variable comment="does the path need to be redrawn?" name="redrawPath" type="boolean" />
                 </instance-variables>
             </object-type>
         </object-folder>

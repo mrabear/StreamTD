@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+        <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -101,7 +101,7 @@
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;minionDefaultSpawnRate&quot;</param>
-                            <param id="1" name="Value">125</param>
+                            <param id="1" name="Value">25</param>
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;minionDefaultSpeed&quot;</param>
@@ -121,14 +121,18 @@
                         </action>
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;minionTrailDecayRate&quot;</param>
-                            <param id="1" name="Value">0.2</param>
+                            <param id="1" name="Value">0.02</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;pathPreviewTime&quot;</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
         <comment>Game Object Events</comment>
-        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Create a new generator</comment>
                 <event-block>
@@ -330,6 +334,54 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="6" name="On object clicked" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                            <param id="2" name="Object clicked">Generator</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="Path">
+                            <param id="0" name="Unique ID">generator.pathUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">redrawPath</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-14" name="Set object time scale" type="System">
+                            <param id="0" name="Object">Node</param>
+                            <param id="1" name="Time scale">1.5</param>
+                        </action>
+                        <action id="-14" name="Set object time scale" type="System">
+                            <param id="0" name="Object">Bar</param>
+                            <param id="1" name="Time scale">1.5</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                                    <param id="0" name="Instance variable">active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">parameters.At( &quot;pathPreviewTime&quot; )</param>
+                                </action>
+                                <action id="-14" name="Set object time scale" type="System">
+                                    <param id="0" name="Object">Node</param>
+                                    <param id="1" name="Time scale">1.5</param>
+                                </action>
+                                <action id="-14" name="Set object time scale" type="System">
+                                    <param id="0" name="Object">Bar</param>
+                                    <param id="1" name="Time scale">1.5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <comment>Once the generator has fully activated, switch the animation show minions spawning</comment>
                 <event-block>
                     <conditions>
@@ -354,7 +406,29 @@
                             <param id="0" name="Unique ID">generator.pathUID</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">redrawPath</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Path">
+                            <param id="0" name="Instance variable">redrawPath</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">debugMsg</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="-13" name="Set boolean" type="Path">
+                            <param id="0" name="Instance variable">redrawPath</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <event-block>
                             <conditions>
@@ -378,6 +452,10 @@
                                     <param id="0" name="Instance variable">pathUID</param>
                                     <param id="1" name="Value">path.UID</param>
                                 </action>
+                                <action id="-14" name="Set object time scale" type="System">
+                                    <param id="0" name="Object">Node</param>
+                                    <param id="1" name="Time scale">0</param>
+                                </action>
                                 <action id="-10" name="Set value" type="Node">
                                     <param id="0" name="Instance variable">nodeIndex</param>
                                     <param id="1" name="Value">loopindex</param>
@@ -386,6 +464,10 @@
                                     <param id="0" name="X">loopindex</param>
                                     <param id="1" name="Y">2</param>
                                     <param id="2" name="Value">node.UID</param>
+                                </action>
+                                <action disabled="1" id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">debugMsg</param>
+                                    <param id="1" name="Value">debugMsg &amp; &quot;creating node &quot; &amp; node.nodeIndex &amp; newline</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -502,17 +584,11 @@
                             <param id="0" name="Instance variable">baseUID</param>
                             <param id="1" name="Value">generator.UID</param>
                         </action>
-                        <action disabled="1" id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Minion</param>
-                            <param id="1" name="Layer">0</param>
-                            <param id="2" name="X">0</param>
-                            <param id="3" name="Y">0</param>
-                        </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Path that minions follow" title="Path">
+        <event-group description="Path that minions follow" title="Path">
             <sub-events>
                 <comment>If a bar is clicked on, add a new node to the path at that location</comment>
                 <event-block>
@@ -678,7 +754,7 @@
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="-9" name="Set value" type="System">
+                                                        <action disabled="1" id="-9" name="Set value" type="System">
                                                             <param id="0" name="Variable">debugMsg</param>
                                                             <param id="1" name="Value">debugMsg &amp; newNodeIndex &amp; newline</param>
                                                         </action>
@@ -694,7 +770,7 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="-9" name="Set value" type="System">
+                                                                <action disabled="1" id="-9" name="Set value" type="System">
                                                                     <param id="0" name="Variable">debugMsg</param>
                                                                     <param id="1" name="Value">debugMsg &amp; &quot;&gt;&gt;&gt;&quot; &amp; node.nodeIndex &amp; newline</param>
                                                                 </action>
@@ -1159,7 +1235,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Point on the path, can be placed and manipulated" title="Node">
+        <event-group description="Point on the path, can be placed and manipulated" title="Node">
             <sub-events>
                 <comment>Updates the debug text on the nodes (safe to disable)</comment>
                 <event-block disabled="1">
@@ -1498,7 +1574,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Manage all of the active minion</comment>
                 <variable comment="the minion&apos;s distance to it&apos;s next node" name="distanceToNode" type="number">0</variable>
@@ -1536,7 +1612,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-3" name="Create object" type="System">
+                                <action disabled="1" id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">OldMinionTrail</param>
                                     <param id="1" name="Layer">parameters.At( &quot;defaultLayer&quot; )</param>
                                     <param id="2" name="X">OldMinion.X</param>

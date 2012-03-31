@@ -921,6 +921,7 @@
                 <currentlyTracing>false</currentlyTracing>
                 <baseUID>0</baseUID>
                 <validData>true</validData>
+                <redrawPath>false</redrawPath>
             </instance-variables>
         </instance>
     </nonworld-instances>
