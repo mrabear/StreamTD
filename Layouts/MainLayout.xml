@@ -50,6 +50,25 @@
                         <effect>(none)</effect>
                     </properties>
                     <world>
+                        <x>-161</x>
+                        <y>-148</y>
+                        <z>0</z>
+                        <width>50</width>
+                        <height>50</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="grid">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <effect>(none)</effect>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <world>
                         <x>0</x>
                         <y>0</y>
                         <z>0</z>
@@ -59,7 +78,7 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.050000001</opacity>
                     </world>
                 </instance>
             </instances>
@@ -109,7 +128,7 @@
                 </instance>
                 <instance type="Node">
                     <properties>
-                        <initial-visibility>Visible</initial-visibility>
+                        <initial-visibility>Invisible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
@@ -158,7 +177,7 @@
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.5</opacity>
                     </world>
                 </instance>
                 <instance type="txtDebug">
@@ -226,7 +245,6 @@
                     <instance-variables>
                         <effectsUID>0</effectsUID>
                         <launchTime>0</launchTime>
-                        <armed>false</armed>
                         <readyToDetonate>false</readyToDetonate>
                         <cannonUID>0</cannonUID>
                         <explosionUID>0</explosionUID>
@@ -238,7 +256,7 @@
                                 <speed>50</speed>
                                 <acceleration>100</acceleration>
                                 <gravity>0</gravity>
-                                <bounce-off-solids>Yes</bounce-off-solids>
+                                <bounce-off-solids>No</bounce-off-solids>
                                 <set-angle>Yes</set-angle>
                             </properties>
                         </behavior-instance>
@@ -326,7 +344,7 @@
                         <hotspotX>0.505747139</hotspotX>
                         <hotspotY>0.505747139</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.100000001</opacity>
+                        <opacity>0.25</opacity>
                     </world>
                 </instance>
                 <instance type="TargetLeadBar">
@@ -700,11 +718,11 @@
                         <x>-178</x>
                         <y>240</y>
                         <z>0</z>
-                        <width>25</width>
-                        <height>25</height>
+                        <width>23</width>
+                        <height>13</height>
                         <depth>0</depth>
-                        <hotspotX>0.519999981</hotspotX>
-                        <hotspotY>0.519999981</hotspotY>
+                        <hotspotX>0.521739125</hotspotX>
+                        <hotspotY>0.538461566</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1039,7 +1057,7 @@
                         <x>127</x>
                         <y>536</y>
                         <z>0</z>
-                        <width>286</width>
+                        <width>172</width>
                         <height>50</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>

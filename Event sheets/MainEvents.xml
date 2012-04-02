@@ -7,7 +7,10 @@
         <comment>To Do:</comment>
         <comment>1. Smart targeting (by minion health / adjusted angle), Sticky targeting</comment>
         <comment>2. Status window updated with information on the currently selected object</comment>
-        <comment>3. Steamline a drawn path to optimize storage and reduce sprite usage (maybe try to form fit a line)</comment>
+        <comment>3. Snap newly drawn paths to a grid in order to lower the storage/sprite costs and make gameplay more predictable to design around</comment>
+        <comment>4. Add hud menu above each generator to let you control it</comment>
+        <comment>5. Have minions merge together whenever their paths cross, perhaps they can change color/size when this happens</comment>
+        <comment></comment>
         <comment></comment>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
@@ -20,11 +23,11 @@
                     </conditions>
                     <actions>
                         <action id="4" name="Clean all" type="Parameters" />
-                        <action id="-3" name="Set position" type="SandyBackground">
+                        <action id="-3" name="Set position" type="grid">
                             <param id="0" name="X">0</param>
                             <param id="1" name="Y">0</param>
                         </action>
-                        <action id="-7" name="Set size" type="SandyBackground">
+                        <action id="-7" name="Set size" type="grid">
                             <param id="0" name="Width">LayoutWidth</param>
                             <param id="1" name="Height">LayoutHeight</param>
                         </action>
@@ -192,8 +195,8 @@
                                     <param id="1" name="Value">100</param>
                                 </action>
                                 <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionTypes&quot;</param>
-                                    <param id="1" name="Value">&quot;greyMinion#redMinion#blueMinion&quot;</param>
+                                    <param id="0" name="Key string">&quot;minionDefaultTypes&quot;</param>
+                                    <param id="1" name="Value">&quot;red#blue#yellow&quot;</param>
                                 </action>
                                 <action id="1" name="Set value by key string" type="Parameters">
                                     <param id="0" name="Key string">&quot;minionNodeArrivalDistance&quot;</param>
@@ -266,6 +269,26 @@
                                 <action id="1" name="Set value by key string" type="Parameters">
                                     <param id="0" name="Key string">&quot;cannonShowTargetLead&quot;</param>
                                     <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Generator parameters</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="1" name="Set value by key string" type="Parameters">
+                                    <param id="0" name="Key string">&quot;generatorPathStartMaxOpacity&quot;</param>
+                                    <param id="1" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Grid parameters</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="1" name="Set value by key string" type="Parameters">
+                                    <param id="0" name="Key string">&quot;gridScale&quot;</param>
+                                    <param id="1" name="Value">40</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -407,7 +430,7 @@
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">minionType</param>
-                            <param id="1" name="Value">tokenat(parameters.At( &quot;minionTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
+                            <param id="1" name="Value">tokenat(parameters.At( &quot;minionDefaultTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionDefaultTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
@@ -624,15 +647,8 @@
                         <condition id="-14" name="Pick by unique ID" type="Path">
                             <param id="0" name="Unique ID">generator.pathUID</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Generator">
-                            <param id="0" name="Instance variable">currentlySelected</param>
-                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Generator">
-                            <param id="0" name="Instance variable">currentlySelected</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
                         <action id="0" name="Set text" type="CurrentlySelected">
                             <param id="0" name="Text">&quot;Generator &quot; &amp; generator.UID &amp; &quot; selected&quot; </param>
                         </action>
@@ -642,6 +658,9 @@
                             <conditions>
                                 <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Generator">
                                     <param id="0" name="Instance variable">active</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Generator">
+                                    <param id="0" name="Instance variable">currentlySelected</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -655,6 +674,43 @@
                                 </action>
                                 <action id="-13" name="Set boolean" type="Path">
                                     <param id="0" name="Instance variable">redrawPath</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                                    <param id="0" name="Instance variable">active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">minionType</param>
+                                    <param id="1" name="Value">tokenat(parameters.At( &quot;minionDefaultTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionDefaultTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Pick by unique ID" type="Minion">
+                                            <param id="0" name="Unique ID">generator.labelUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" type="Minion">
+                                            <param id="0" name="Animation">generator.minionType</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">currentlySelected</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
@@ -767,7 +823,7 @@
                     <conditions>
                         <condition id="-10" name="Compare opacity" type="PathStart">
                             <param id="0" name="Comparison">2</param>
-                            <param id="1" name="Opacity">100</param>
+                            <param id="1" name="Opacity">parameters.At( &quot;generatorPathStartMaxOpacity&quot; )</param>
                         </condition>
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">0.1</param>
@@ -778,7 +834,7 @@
                     </conditions>
                     <actions>
                         <action id="-16" name="Set opacity" type="PathStart">
-                            <param id="0" name="Opacity">min( 100, pathstart.opacity + 15 )</param>
+                            <param id="0" name="Opacity">min( parameters.At( &quot;generatorPathStartMaxOpacity&quot; ), pathstart.opacity + 15 )</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2138,7 +2194,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A cannon that fires projectiles" title="Cannon">
+        <event-group collapsed="1" description="A cannon that fires projectiles" title="Cannon">
             <sub-events>
                 <comment>Fire the cannon with a defined ammo at a specific fire rate</comment>
                 <event-block>
@@ -2667,7 +2723,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A laser fired from a cannon (activeAmmo = 0)" title="Beam">
+        <event-group collapsed="1" description="A laser fired from a cannon" title="Beam">
             <sub-events>
                 <comment>Destroy any minion hit by beams</comment>
                 <event-block>
@@ -2708,16 +2764,13 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage (activeAmmo = 1)" title="Rocket">
+        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage" title="Rocket">
             <sub-events>
                 <comment>Destroy any minions hit by rockets</comment>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On collision with another object" type="Rocket">
                             <param id="0" name="Object">Minion</param>
-                        </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                            <param id="0" name="Instance variable">armed</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>

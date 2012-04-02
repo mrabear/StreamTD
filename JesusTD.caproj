@@ -7,16 +7,16 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8400</saved-with-version>
     <used-plugins>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
-        <plugin id="Sprite" version="1">Sprite</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Particles" version="1">Particles</plugin>
-        <plugin id="Rex_Branch" version="1">Branch</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Text" version="1">Text</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
-        <plugin id="Text" version="1">Text</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
+        <plugin id="Sprite" version="1">Sprite</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -185,14 +185,17 @@
                     </behavior-type>
                 </behaviors>
             </object-type>
+            <object-type name="grid">
+                <plugin id="TiledBg" />
+                <texture />
+            </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Rocket">
+        <object-folder expanded="1" name="Rocket">
             <object-type name="Rocket">
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="the uid of the attached beam effects" name="effectsUID" type="number" />
                     <instance-variable comment="the time (in ticks) when the rocket was launched" name="launchTime" type="number" />
-                    <instance-variable comment="has the rocket cleared the cannon body?" name="armed" type="boolean" />
                     <instance-variable comment="should the rocket be detonated?" name="readyToDetonate" type="boolean" />
                     <instance-variable name="cannonUID" type="number" />
                     <instance-variable name="explosionUID" type="number" />
@@ -425,7 +428,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Cannon">
+        <object-folder expanded="1" name="Cannon">
             <object-type name="Cannon">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -872,7 +875,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Generator">
+        <object-folder expanded="1" name="Generator">
             <object-type name="Generator">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -1445,7 +1448,7 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Minion">
+        <object-folder expanded="1" name="Minion">
             <object-type name="Minion">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -1471,33 +1474,15 @@
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">
-                    <animation framecount="2" loop="1" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                    <animation framecount="3" loop="1" name="red" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
                             <image-point name="Health Bar" x="0" y="0" />
-                            <collision-poly>
-                                <point x="0.21" y="0.345" />
-                                <point x="0.41" y="0.04" />
-                                <point x="0.545" y="0.05" />
-                                <point x="0.67" y="0.335" />
-                                <point x="0.625" y="0.55" />
-                                <point x="0.66" y="0.88" />
-                                <point x="0.18" y="0.9" />
-                                <point x="0.285" y="0.51" />
-                            </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
-                            <image-point name="healthbar" x="0" y="0" />
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
                             <image-point name="Health Bar" x="0" y="0" />
-                            <collision-poly>
-                                <point x="0.21" y="0.345" />
-                                <point x="0.41" y="0.04" />
-                                <point x="0.545" y="0.05" />
-                                <point x="0.67" y="0.335" />
-                                <point x="0.625" y="0.55" />
-                                <point x="0.66" y="0.88" />
-                                <point x="0.18" y="0.9" />
-                                <point x="0.285" y="0.51" />
-                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
                         </frame>
                     </animation>
                     <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -1515,45 +1500,70 @@
                             </collision-poly>
                         </frame>
                     </animation>
-                    <animation framecount="2" loop="1" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                    <animation framecount="3" loop="1" name="blue" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
                             <image-point name="Health Bar" x="0" y="0" />
-                            <collision-poly>
-                                <point x="0.255" y="0.035" />
-                                <point x="0.665" y="0.055" />
-                                <point x="0.665" y="0.895" />
-                                <point x="0.175" y="0.895" />
-                            </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
-                            <image-point name="Imagepoint 1" x="0" y="0" />
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
                             <image-point name="Health Bar" x="0" y="0" />
-                            <collision-poly>
-                                <point x="0.255" y="0.035" />
-                                <point x="0.665" y="0.055" />
-                                <point x="0.665" y="0.895" />
-                                <point x="0.175" y="0.895" />
-                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
                         </frame>
                     </animation>
-                    <animation framecount="2" loop="1" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                    <animation framecount="3" loop="1" name="yellow" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
                             <image-point name="Health Bar" x="0" y="0" />
-                            <collision-poly>
-                                <point x="0.315" y="0.035" />
-                                <point x="0.695" y="0.035" />
-                                <point x="0.655" y="0.885" />
-                                <point x="0.145" y="0.915" />
-                            </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="0.52" hotspotY="0.52">
-                            <image-point name="Health bar" x="0" y="0" />
-                            <collision-poly>
-                                <point x="0.315" y="0.035" />
-                                <point x="0.695" y="0.035" />
-                                <point x="0.655" y="0.885" />
-                                <point x="0.145" y="0.915" />
-                            </collision-poly>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="3" loop="1" name="green" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="3" loop="1" name="purple" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="3" loop="1" name="orange" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                    </animation>
+                    <animation framecount="3" loop="1" name="grey" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.521739" hotspotY="0.538462">
+                            <image-point name="Health Bar" x="0" y="0" />
                         </frame>
                     </animation>
                 </animation-folder>
@@ -1661,7 +1671,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Background">
+        <object-folder expanded="1" name="Background">
             <object-type name="SandyBackground">
                 <plugin id="TiledBg" />
                 <texture />
