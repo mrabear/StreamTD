@@ -3,6 +3,12 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>MainEvents</name>
     <events>
+        <comment>JesusTD - Brian Hebert</comment>
+        <comment>To Do:</comment>
+        <comment>1. Smart targeting (by minion health / adjusted angle), Sticky targeting</comment>
+        <comment>2. Status window updated with information on the currently selected object</comment>
+        <comment>3. Steamline a drawn path to optimize storage and reduce sprite usage</comment>
+        <comment></comment>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
         <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
