@@ -5,7 +5,7 @@
     <events>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <comment>Startup Events</comment>
-        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+        <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -149,6 +149,30 @@
                         <action id="1" name="Set value by key string" type="Parameters">
                             <param id="0" name="Key string">&quot;pathPreviewTime&quot;</param>
                             <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;zoomMinScale&quot;</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;zoomMaxScale&quot;</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;zoomScaleChange&quot;</param>
+                            <param id="1" name="Value">0.05</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;zoomResetDelay&quot;</param>
+                            <param id="1" name="Value">0.75</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;zoomSlowRate&quot;</param>
+                            <param id="1" name="Value">0.75</param>
+                        </action>
+                        <action id="1" name="Set value by key string" type="Parameters">
+                            <param id="0" name="Key string">&quot;zoomScaleDelay&quot;</param>
+                            <param id="1" name="Value">0.1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2646,10 +2670,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <variable comment="should the camera zoom in?" name="zoomIn" type="number">0</variable>
-        <variable comment="the x value to zoom into" name="zoomX" type="number">0</variable>
-        <variable comment="the y value to zoom into" name="zoomY" type="number">0</variable>
-        <variable comment="the total distance the camera has to scroll to" name="zoomDistance" type="number">0</variable>
         <event-group description="The camera that watches overhead" title="Camera">
             <sub-events>
                 <comment>Zoom the camera into the spot that was clicked</comment>
@@ -2659,118 +2679,96 @@
                         <condition id="2" name="Key is down" type="Keyboard">
                             <param id="0" name="Key">87 (W)</param>
                         </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="ZoomPoint">
+                            <param id="0" name="Instance variable">zooming</param>
+                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">zoomX</param>
-                            <param id="1" name="Value">mouse.X</param>
+                        <action id="-3" name="Set position" type="ZoomPoint">
+                            <param id="0" name="X">mouse.X</param>
+                            <param id="1" name="Y">mouse.Y</param>
                         </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">zoomY</param>
-                            <param id="1" name="Value">mouse.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">zoomDistance</param>
-                            <param id="1" name="Value">distance( WindowWidth / 2, WindowHeight / 2, zoomX, zoomY )</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">zoomIn</param>
+                        <action id="-13" name="Set boolean" type="ZoomPoint">
+                            <param id="0" name="Instance variable">zooming</param>
                             <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">KrullBlade</param>
-                            <param id="1" name="Layer">0</param>
-                            <param id="2" name="X">mouse.X</param>
-                            <param id="3" name="Y">mouse.Y</param>
-                        </action>
-                        <action id="-7" name="Set size" type="KrullBlade">
-                            <param id="0" name="Width">10</param>
-                            <param id="1" name="Height">10</param>
                         </action>
                     </actions>
                 </event-block>
-                <comment>Zoom in</comment>
+                <comment>Zoom in, gradually scroll camera to the target location</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">zoomIn</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
+                        <condition id="-8" name="Is boolean instance variable set" type="ZoomPoint">
+                            <param id="0" name="Instance variable">zooming</param>
                         </condition>
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">LayoutScale</param>
                             <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Second value">3</param>
+                            <param id="2" name="Second value">parameters.At( &quot;zoomMaxScale&quot; )</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-20" name="Set layout scale" type="System">
-                            <param id="0" name="Scale">LayoutScale + 0.05</param>
+                            <param id="0" name="Scale">LayoutScale + parameters.At( &quot;zoomScaleChange&quot; )</param>
                         </action>
                         <action id="-7" name="Scroll to position" type="System">
-                            <param id="0" name="X">scrollx + (( zoomX - ( WindowWidth / 2 ))  / 40 )</param>
-                            <param id="1" name="Y">scrolly + (( zoomY - ( WindowHeight / 2 ))  / 40 )</param>
+                            <param id="0" name="X">scrollx + (( ZoomPoint.X - ( WindowWidth / 2 ))  / ( (parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; )) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
+                            <param id="1" name="Y">scrolly + (( ZoomPoint.Y - ( WindowHeight / 2 ))  /( (parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; )) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
                         </action>
                         <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">0.1</param>
+                            <param id="0" name="Seconds">parameters.At( &quot;zoomScaleDelay&quot; )</param>
                         </action>
                         <action id="-13" name="Set time scale" type="System">
-                            <param id="0" name="Time scale">timescale - 0.01875</param>
+                            <param id="0" name="Time scale">timescale - ( parameters.At( &quot;zoomSlowRate&quot; ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; )))</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Once max zoom has been reached, wait, then zoom out</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">zoomIn</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
-                        </condition>
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">LayoutScale</param>
                             <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Second value">3</param>
+                            <param id="2" name="Second value">parameters.At( &quot;zoomMaxScale&quot; )</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="ZoomPoint">
+                            <param id="0" name="Instance variable">zooming</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">0.75</param>
+                            <param id="0" name="Seconds">parameters.At( &quot;zoomResetDelay&quot; )</param>
                         </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">zoomIn</param>
+                        <action id="-13" name="Set boolean" type="ZoomPoint">
+                            <param id="0" name="Instance variable">zooming</param>
                             <param id="1" name="Value">0</param>
                         </action>
-                        <action id="-9" name="Destroy" type="KrullBlade" />
                     </actions>
                 </event-block>
-                <comment>Zoom out</comment>
+                <comment>Zoom out, gradually scroll camera back to center</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-14" name="Compare variable" type="System">
-                            <param id="0" name="Variable">zoomIn</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">0</param>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="ZoomPoint">
+                            <param id="0" name="Instance variable">zooming</param>
                         </condition>
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">LayoutScale</param>
                             <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Second value">1</param>
+                            <param id="2" name="Second value">parameters.At( &quot;zoomMinScale&quot; )</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-20" name="Set layout scale" type="System">
-                            <param id="0" name="Scale">LayoutScale - 0.05</param>
+                            <param id="0" name="Scale">LayoutScale - parameters.At( &quot;zoomScaleChange&quot; )</param>
                         </action>
                         <action id="-7" name="Scroll to position" type="System">
-                            <param id="0" name="X">scrollx + ((( WindowWidth / 2 ) - zoomX ) / 40)</param>
-                            <param id="1" name="Y">scrolly + ((( WindowHeight / 2 )  - zoomY ) / 40)</param>
+                            <param id="0" name="X">scrollx + ((( WindowWidth / 2 ) - ZoomPoint.X ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
+                            <param id="1" name="Y">scrolly + ((( WindowHeight / 2 )  - ZoomPoint.Y ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
                         </action>
                         <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">0.1</param>
+                            <param id="0" name="Seconds">parameters.At( &quot;zoomScaleDelay&quot; )</param>
                         </action>
                         <action id="-13" name="Set time scale" type="System">
-                            <param id="0" name="Time scale">timescale + 0.01875</param>
+                            <param id="0" name="Time scale">timescale + ( parameters.At( &quot;zoomSlowRate&quot; ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; )))</param>
                         </action>
                     </actions>
                 </event-block>
