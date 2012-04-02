@@ -45,7 +45,7 @@
         <prop name="Sampling">Linear</prop>
     </configuration-settings>
     <object-folder expanded="1">
-        <object-folder expanded="1" name="Krull (legacy)">
+        <object-folder expanded="0" name="(legacy) Krull">
             <object-type name="KrullBase">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -111,7 +111,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Path">
+        <object-folder expanded="0" name="Path">
             <object-type name="Bar">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -185,7 +185,7 @@
                 </behaviors>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Rocket">
+        <object-folder expanded="1" name="Rocket">
             <object-type name="Rocket">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -263,7 +263,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Beam">
+        <object-folder expanded="1" name="Beam">
             <object-type name="Beam">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -318,10 +318,7 @@
                 <plugin id="Mouse" />
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Turret">
-            <object-type name="distanceToTarget">
-                <plugin id="Text" />
-            </object-type>
+        <object-folder expanded="1" name="Turret">
             <object-type name="TurretBase">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -365,7 +362,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Jesus (legacy)">
+        <object-folder expanded="0" name="(legacy) Jesus">
             <object-type name="Jesus">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -381,7 +378,21 @@
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">
-                    <animation framecount="2" loop="0" name="Default" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                    <animation framecount="1" loop="0" name="Default" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="1" hotspotY="0.3025">
+                            <collision-poly>
+                                <point x="0.28" y="0.15125" />
+                                <point x="0.4225" y="0.16125" />
+                                <point x="0.63" y="0.28125" />
+                                <point x="1" y="0.26625" />
+                                <point x="0.905" y="0.99375" />
+                                <point x="0.5" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0.0075" y="0.56125" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="2" loop="0" name="Animation2" pingpong="1" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="1" hotspotY="0.3025">
                             <collision-poly>
                                 <point x="0.28" y="0.15125" />
@@ -410,7 +421,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Cannon">
+        <object-folder expanded="1" name="Cannon">
             <object-type name="Cannon">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -476,30 +487,30 @@
                 </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Rocket" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <frame duration="1" hotspotX="0.505747" hotspotY="0.505747">
                             <collision-poly>
-                                <point x="0.21" y="0.21" />
-                                <point x="0.5" y="0.09" />
-                                <point x="0.79" y="0.21" />
-                                <point x="0.92" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.93" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.08" y="0.5" />
+                                <point x="0.16092" y="0.16092" />
+                                <point x="0.494253" y="0.0229885" />
+                                <point x="0.827586" y="0.16092" />
+                                <point x="0.977012" y="0.494253" />
+                                <point x="0.83908" y="0.83908" />
+                                <point x="0.494253" y="0.988506" />
+                                <point x="0.149425" y="0.83908" />
+                                <point x="0.0114943" y="0.494253" />
                             </collision-poly>
                         </frame>
                     </animation>
                     <animation framecount="1" loop="0" name="Beam" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <frame duration="1" hotspotX="0.494253" hotspotY="0.494253">
                             <collision-poly>
-                                <point x="0.21" y="0.21" />
-                                <point x="0.5" y="0.09" />
-                                <point x="0.79" y="0.21" />
-                                <point x="0.92" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.93" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.08" y="0.5" />
+                                <point x="0.16092" y="0.16092" />
+                                <point x="0.494253" y="0.0229885" />
+                                <point x="0.827586" y="0.16092" />
+                                <point x="0.977012" y="0.494253" />
+                                <point x="0.83908" y="0.83908" />
+                                <point x="0.494253" y="0.988506" />
+                                <point x="0.149425" y="0.83908" />
+                                <point x="0.0114943" y="0.494253" />
                             </collision-poly>
                         </frame>
                     </animation>
@@ -525,8 +536,11 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="distanceToTarget">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Misc">
+        <object-folder expanded="1" name="Misc">
             <object-type name="HiddenWall">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -553,7 +567,7 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Minion">
+        <object-folder expanded="0" name="(legacy) Broken Minion">
             <object-type name="RedMinion">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -864,6 +878,7 @@
                     <instance-variable comment="the spawn rate (minions/sec) of the generator" name="spawnRate" type="number" />
                     <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
                     <instance-variable comment="the type of minion that this generator is spawning" name="minionType" type="string" />
+                    <instance-variable name="currentlySelected" type="boolean" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="16" loop="0" name="Inactive" pingpong="0" repeatcount="0" repeatto="0" speed="30">
@@ -1422,9 +1437,12 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="CurrentlySelected">
+                <plugin id="Text" />
+            </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Old Minion">
-            <object-type name="OldMinion">
+        <object-folder expanded="1" name="Minion">
+            <object-type name="Minion">
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable name="currentPathNode" type="number" />
@@ -1432,6 +1450,10 @@
                     <instance-variable comment="is the minion actively following a path?" name="active" type="boolean" />
                     <instance-variable name="baseUID" type="number" />
                     <instance-variable comment="the time stamp of the last trail node" name="trailTimeStamp" type="number" />
+                    <instance-variable comment="the current helath of the minion" name="health" type="number" />
+                    <instance-variable comment="the max health of the minion" name="maxHealth" type="number" />
+                    <instance-variable comment="is the health bar attached?" name="healthbarAttached" type="boolean" />
+                    <instance-variable comment="the UID of the health bar" name="healthBarUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="CustomMovement">
@@ -1447,6 +1469,7 @@
                 <animation-folder expanded="1">
                     <animation framecount="2" loop="1" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <image-point name="Health Bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.21" y="0.345" />
                                 <point x="0.41" y="0.04" />
@@ -1459,6 +1482,8 @@
                             </collision-poly>
                         </frame>
                         <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <image-point name="healthbar" x="0" y="0" />
+                            <image-point name="Health Bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.21" y="0.345" />
                                 <point x="0.41" y="0.04" />
@@ -1473,6 +1498,7 @@
                     </animation>
                     <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Health Bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.138889" y="0.138889" />
                                 <point x="0.5" y="0" />
@@ -1487,6 +1513,7 @@
                     </animation>
                     <animation framecount="2" loop="1" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <image-point name="Health Bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.255" y="0.035" />
                                 <point x="0.665" y="0.055" />
@@ -1495,6 +1522,8 @@
                             </collision-poly>
                         </frame>
                         <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <image-point name="Imagepoint 1" x="0" y="0" />
+                            <image-point name="Health Bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.255" y="0.035" />
                                 <point x="0.665" y="0.055" />
@@ -1505,6 +1534,7 @@
                     </animation>
                     <animation framecount="2" loop="1" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <image-point name="Health Bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.315" y="0.035" />
                                 <point x="0.695" y="0.035" />
@@ -1513,6 +1543,7 @@
                             </collision-poly>
                         </frame>
                         <frame duration="1" hotspotX="0.52" hotspotY="0.52">
+                            <image-point name="Health bar" x="0" y="0" />
                             <collision-poly>
                                 <point x="0.315" y="0.035" />
                                 <point x="0.695" y="0.035" />
@@ -1523,7 +1554,7 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="OldMinionTrail">
+            <object-type name="MinionTrail">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -1571,7 +1602,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Camera">
+        <object-folder expanded="0" name="Camera">
             <object-type name="ZoomPoint">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -1581,36 +1612,53 @@
                     <animation framecount="1" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="1">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                             <collision-poly>
-                                <point x="0.208333" y="0.228261" />
-                                <point x="0.469203" y="0.115942" />
-                                <point x="0.762681" y="0.184783" />
-                                <point x="0.903986" y="0.481884" />
-                                <point x="0.79529" y="0.764493" />
-                                <point x="0.516304" y="0.884058" />
-                                <point x="0.244565" y="0.778986" />
-                                <point x="0.103261" y="0.51087" />
+                                <point x="0.25" y="0.25" />
+                                <point x="0.5" y="0.125" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.875" y="0.5" />
+                                <point x="0.8125" y="0.8125" />
+                                <point x="0.5" y="0.9375" />
+                                <point x="0.1875" y="0.8125" />
+                                <point x="0.125" y="0.5" />
                             </collision-poly>
                         </frame>
                     </animation>
                 </animation-folder>
             </object-type>
         </object-folder>
+        <object-folder expanded="1" name="Health Bar">
+            <object-type name="HealthBorder">
+                <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="HealthBar">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="startingWidth" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
     </object-folder>
-    <families>
-        <family name="Minion" plugin-id="Sprite">
-            <members>
-                <member>GreyMinion</member>
-                <member>RedMinion</member>
-            </members>
-            <instance-variables>
-                <instance-variable comment="the current node of the path that the minion is on" name="currentPathNode" type="number" />
-                <instance-variable comment="the path UID that the minion is following" name="pathUID" type="number" />
-                <instance-variable comment="is the minion active?" name="active" type="boolean" />
-                <instance-variable comment="the UID of the base that spawned this minion" name="baseUID" type="number" />
-                <instance-variable comment="the time stamp since the last trail breadcrumb was dropped" name="trailTimeStamp" type="number" />
-            </instance-variables>
-        </family>
-    </families>
+    <families />
     <layout-folder expanded="1">
         <layout>MainLayout.xml</layout>
     </layout-folder>

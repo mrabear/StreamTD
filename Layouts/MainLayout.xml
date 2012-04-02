@@ -281,11 +281,11 @@
                         <x>-294</x>
                         <y>359</y>
                         <z>0</z>
-                        <width>29.239765167</width>
-                        <height>29.32551384</height>
+                        <width>25.438594818</width>
+                        <height>25.513196945</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0.505747139</hotspotX>
+                        <hotspotY>0.505747139</hotspotY>
                         <angle>0</angle>
                         <opacity>0.5</opacity>
                     </world>
@@ -313,7 +313,7 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.600000024</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.5</opacity>
                     </world>
                 </instance>
                 <instance type="distanceToTarget">
@@ -336,7 +336,7 @@
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.5</opacity>
                     </world>
                 </instance>
             </instances>
@@ -627,7 +627,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="OldMinion">
+                <instance type="Minion">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -639,6 +639,10 @@
                         <active>false</active>
                         <baseUID>0</baseUID>
                         <trailTimeStamp>0</trailTimeStamp>
+                        <health>0</health>
+                        <maxHealth>0</maxHealth>
+                        <healthbarAttached>false</healthbarAttached>
+                        <healthBarUID>0</healthBarUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
@@ -731,6 +735,7 @@
                         <spawnRate>0</spawnRate>
                         <lastSpawn>0</lastSpawn>
                         <minionType>&quot;&quot;</minionType>
+                        <currentlySelected>false</currentlySelected>
                     </instance-variables>
                     <world>
                         <x>-255</x>
@@ -771,7 +776,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="OldMinionTrail">
+                <instance type="MinionTrail">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -796,13 +801,6 @@
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
-                    <instance-variables>
-                        <currentPathNode>0</currentPathNode>
-                        <pathUID>0</pathUID>
-                        <active>false</active>
-                        <baseUID>0</baseUID>
-                        <trailTimeStamp>0</trailTimeStamp>
-                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
                             <properties>
@@ -832,13 +830,6 @@
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
-                    <instance-variables>
-                        <currentPathNode>0</currentPathNode>
-                        <pathUID>0</pathUID>
-                        <active>false</active>
-                        <baseUID>0</baseUID>
-                        <trailTimeStamp>0</trailTimeStamp>
-                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
                             <properties>
@@ -881,7 +872,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="OldMinionTrail">
+                <instance type="MinionTrail">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -911,8 +902,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>277</x>
-                        <y>493</y>
+                        <x>7</x>
+                        <y>8</y>
                         <z>0</z>
                         <width>512</width>
                         <height>98</height>
@@ -925,7 +916,7 @@
                 </instance>
                 <instance type="ZoomPoint">
                     <properties>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
@@ -936,11 +927,81 @@
                         <x>-187</x>
                         <y>-4</y>
                         <z>0</z>
-                        <width>10</width>
-                        <height>10</height>
+                        <width>16</width>
+                        <height>16</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="HealthBar">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <startingWidth>0</startingWidth>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>3</x>
+                        <y>-55</y>
+                        <z>0</z>
+                        <width>5</width>
+                        <height>5</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HealthBorder">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>94</x>
+                        <y>-37</y>
+                        <z>0</z>
+                        <width>5</width>
+                        <height>5</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="CurrentlySelected">
+                    <properties>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                    </properties>
+                    <world>
+                        <x>127</x>
+                        <y>536</y>
+                        <z>0</z>
+                        <width>286</width>
+                        <height>50</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
