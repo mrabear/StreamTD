@@ -23,7 +23,46 @@
             <zoom-rate>1</zoom-rate>
             <opacity>1</opacity>
             <force-own-texture>0</force-own-texture>
-            <instances />
+            <instances>
+                <instance type="SandyBackground">
+                    <properties>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <effect>(none)</effect>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <world>
+                        <x>152</x>
+                        <y>-219</y>
+                        <z>0</z>
+                        <width>206</width>
+                        <height>197</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.75</opacity>
+                    </world>
+                </instance>
+                <instance type="SpaceBackground">
+                    <properties>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <world>
+                        <x>0</x>
+                        <y>0</y>
+                        <z>0</z>
+                        <width>800</width>
+                        <height>600</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
         </layer>
         <layer name="Default">
             <initially-visible>1</initially-visible>
@@ -175,7 +214,7 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.600000024</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.5</opacity>
                     </world>
                 </instance>
                 <instance type="Rocket">
@@ -287,7 +326,7 @@
                         <hotspotX>0.505747139</hotspotX>
                         <hotspotY>0.505747139</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.5</opacity>
+                        <opacity>0.100000001</opacity>
                     </world>
                 </instance>
                 <instance type="TargetLeadBar">
@@ -776,7 +815,7 @@
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.400000006</hotspotY>
                         <angle>0</angle>
-                        <opacity>1</opacity>
+                        <opacity>0.5</opacity>
                     </world>
                 </instance>
                 <instance type="MinionTrail">
