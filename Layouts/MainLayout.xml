@@ -576,8 +576,8 @@
                         <x>-288</x>
                         <y>684</y>
                         <z>0</z>
-                        <width>25</width>
-                        <height>10</height>
+                        <width>12</width>
+                        <height>5</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -610,6 +610,9 @@
                         <destroy-mode>Fade to invisible</destroy-mode>
                         <timeout>0.25</timeout>
                     </properties>
+                    <instance-variables>
+                        <rocketUID>0</rocketUID>
+                    </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pin" />
                         <behavior-instance type="DestroyOutsideLayout" />

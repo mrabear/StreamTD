@@ -225,6 +225,9 @@
             </object-type>
             <object-type name="RocketEffects">
                 <plugin id="Particles" />
+                <instance-variables>
+                    <instance-variable name="rocketUID" type="number" />
+                </instance-variables>
                 <behaviors>
                     <behavior-type name="Pin">
                         <behavior id="Pin" />

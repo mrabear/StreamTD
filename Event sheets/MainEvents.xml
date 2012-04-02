@@ -2510,6 +2510,10 @@
                                                                         <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
                                                                             <param id="0" name="Pin to">Rocket</param>
                                                                         </action>
+                                                                        <action id="-10" name="Set value" type="RocketEffects">
+                                                                            <param id="0" name="Instance variable">rocketUID</param>
+                                                                            <param id="1" name="Value">rocket.uid</param>
+                                                                        </action>
                                                                         <action id="-10" name="Set value" type="Rocket">
                                                                             <param id="0" name="Instance variable">cannonUID</param>
                                                                             <param id="1" name="Value">cannon.UID</param>
@@ -2666,33 +2670,10 @@
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">max( 0, minion.health - parameters.at( &quot;beamDamage&quot; ) )</param>
                         </action>
+                        <action id="-9" name="Destroy" type="Beam" />
                     </actions>
-                    <sub-events>
-                        <event-block disabled="1">
-                            <conditions>
-                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Cannon">
-                                    <param id="0" name="Unique ID">beam.cannonUID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action disabled="1" id="-11" name="Add to" type="Cannon">
-                                    <param id="0" name="Instance variable">fireRate</param>
-                                    <param id="1" name="Value">Cannon.fireRate * parameters.At( &quot;bonusFireRate&quot; )</param>
-                                </action>
-                                <action disabled="1" id="-11" name="Add to" type="Cannon">
-                                    <param id="0" name="Instance variable">minionsKilled</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-9" name="Destroy" type="Beam" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
+                <comment>Destroy the beam if it exceeds max range</comment>
                 <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
@@ -2733,9 +2714,6 @@
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-15" name="Set visible" type="Rocket">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
                     </actions>
                 </event-block>
                 <comment>Kill any rocket that exceeds the maximum flight time</comment>
@@ -2755,9 +2733,6 @@
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-15" name="Set visible" type="Rocket">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
                     </actions>
                 </event-block>
                 <comment>Arm the rocket once it&apos;s cleared the cannon</comment>
@@ -2769,63 +2744,11 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" type="Rocket">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
                         <action id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
-                </event-block>
-                <comment>If the rocket is ready to detonate (and it hasn&apos;t already exploded), create an explosion</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
-                            <param id="0" name="Instance variable">readyToDetonate</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" type="Rocket">
-                            <param id="0" name="Instance variable">explosionUID</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
-                            <param id="0" name="Instance variable">armed</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">RocketExplosion</param>
-                            <param id="1" name="Layer">Parameters.at(&quot;turretLayer&quot;)</param>
-                            <param id="2" name="X">rocket.X</param>
-                            <param id="3" name="Y">rocket.Y</param>
-                        </action>
-                        <action id="-10" name="Set value" type="RocketExplosion">
-                            <param id="0" name="Instance variable">rocketUID</param>
-                            <param id="1" name="Value">rocket.UID</param>
-                        </action>
-                        <action id="-7" name="Set size" type="RocketExplosion">
-                            <param id="0" name="Width">parameters.At( &quot;rocketExplosionDiameter&quot; )</param>
-                            <param id="1" name="Height">parameters.At( &quot;rocketExplosionDiameter&quot; )</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Rocket">
-                            <param id="0" name="Instance variable">explosionUID</param>
-                            <param id="1" name="Value">rocketexplosion.UID</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="RocketEffects">
-                                    <param id="0" name="Unique ID">Rocket.effectsUID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="RocketEffects" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
                 <comment>Get rid of the rocket, smoke,  and explosion once the explosion animation is finished</comment>
                 <event-block>
@@ -2837,18 +2760,6 @@
                     <actions>
                         <action id="-9" name="Destroy" type="RocketExplosion" />
                     </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Rocket">
-                                    <param id="0" name="Unique ID">RocketExplosion.rocketUID</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Rocket" />
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
                 <comment>Kill any minions caught in the shockwave</comment>
                 <event-block>
@@ -2910,6 +2821,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <comment>Destroy the rocket if it goes past max distance</comment>
                 <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
@@ -2925,13 +2837,49 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" type="Rocket">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
                         <action id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                    </actions>
+                </event-block>
+                <comment>If a rocket exhaust becomes unpinned from a rocket, destroy it</comment>
+                <event-block>
+                    <conditions>
+                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="RocketEffects" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="RocketEffects" />
+                    </actions>
+                </event-block>
+                <comment>If the rocket is ready to detonate (and it hasn&apos;t already exploded), create an explosion</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
+                            <param id="0" name="Instance variable">readyToDetonate</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" type="Rocket">
+                            <param id="0" name="Instance variable">explosionUID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" type="System">
+                            <param id="0" name="Object to create">RocketExplosion</param>
+                            <param id="1" name="Layer">Parameters.at(&quot;turretLayer&quot;)</param>
+                            <param id="2" name="X">rocket.X</param>
+                            <param id="3" name="Y">rocket.Y</param>
+                        </action>
+                        <action id="-10" name="Set value" type="RocketExplosion">
+                            <param id="0" name="Instance variable">rocketUID</param>
+                            <param id="1" name="Value">rocket.UID</param>
+                        </action>
+                        <action id="-7" name="Set size" type="RocketExplosion">
+                            <param id="0" name="Width">parameters.At( &quot;rocketExplosionDiameter&quot; )</param>
+                            <param id="1" name="Height">parameters.At( &quot;rocketExplosionDiameter&quot; )</param>
+                        </action>
+                        <action id="-9" name="Destroy" type="Rocket" />
                     </actions>
                 </event-block>
             </sub-events>
