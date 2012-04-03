@@ -24,44 +24,6 @@
             <opacity>1</opacity>
             <force-own-texture>0</force-own-texture>
             <instances>
-                <instance type="SandyBackground">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <effect>(none)</effect>
-                        <hotspot>Top-left</hotspot>
-                    </properties>
-                    <world>
-                        <x>152</x>
-                        <y>-219</y>
-                        <z>0</z>
-                        <width>206</width>
-                        <height>197</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.75</opacity>
-                    </world>
-                </instance>
-                <instance type="SpaceBackground">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <world>
-                        <x>-161</x>
-                        <y>-148</y>
-                        <z>0</z>
-                        <width>50</width>
-                        <height>50</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="grid">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -78,7 +40,7 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.050000001</opacity>
+                        <opacity>0.079999998</opacity>
                     </world>
                 </instance>
             </instances>
@@ -95,37 +57,6 @@
             <opacity>1</opacity>
             <force-own-texture>0</force-own-texture>
             <instances>
-                <instance type="Jesus">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <Active>true</Active>
-                        <bigJesus>true</bigJesus>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Solid" />
-                        <behavior-instance type="BoundToLayout">
-                            <properties>
-                                <bound-by>Edge</bound-by>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <world>
-                        <x>106.075447083</x>
-                        <y>526.512390137</y>
-                        <z>0</z>
-                        <width>106.075447083</width>
-                        <height>106.075447083</height>
-                        <depth>0</depth>
-                        <hotspotX>1</hotspotX>
-                        <hotspotY>0.30250001</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="Node">
                     <properties>
                         <initial-visibility>Invisible</initial-visibility>
@@ -396,9 +327,31 @@
                         <opacity>0.5</opacity>
                     </world>
                 </instance>
+                <instance type="gridBlock">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>405</x>
+                        <y>-122</y>
+                        <z>0</z>
+                        <width>10</width>
+                        <height>10</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
         </layer>
-        <layer name="TopLayer">
+        <layer name="Active">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
@@ -703,6 +656,7 @@
                         <maxHealth>0</maxHealth>
                         <healthbarAttached>false</healthbarAttached>
                         <healthBarUID>0</healthBarUID>
+                        <updateHealthBar>false</updateHealthBar>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
@@ -789,23 +743,24 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
+                        <updateActiveHUDObject>false</updateActiveHUDObject>
                         <pathUID>0</pathUID>
                         <active>false</active>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
                         <lastSpawn>0</lastSpawn>
                         <minionType>&quot;&quot;</minionType>
-                        <currentlySelected>false</currentlySelected>
+                        <selected>false</selected>
                     </instance-variables>
                     <world>
                         <x>-255</x>
                         <y>133</y>
                         <z>0</z>
-                        <width>121</width>
-                        <height>74</height>
+                        <width>63</width>
+                        <height>51</height>
                         <depth>0</depth>
-                        <hotspotX>0.256198347</hotspotX>
-                        <hotspotY>0.445945948</hotspotY>
+                        <hotspotX>0.412698418</hotspotX>
+                        <hotspotY>0.509803951</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -845,83 +800,6 @@
                     <world>
                         <x>-155</x>
                         <y>401</y>
-                        <z>0</z>
-                        <width>10</width>
-                        <height>10</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="GreyMinion">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="CustomMovement">
-                            <properties>
-                                <stepping-mode>None</stepping-mode>
-                                <pixels-per-step>5</pixels-per-step>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="DestroyOutsideLayout" />
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>4</x>
-                        <y>-99</y>
-                        <z>0</z>
-                        <width>25</width>
-                        <height>25</height>
-                        <depth>0</depth>
-                        <hotspotX>0.519999981</hotspotX>
-                        <hotspotY>0.519999981</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="RedMinion">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="CustomMovement">
-                            <properties>
-                                <stepping-mode>None</stepping-mode>
-                                <pixels-per-step>5</pixels-per-step>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="DestroyOutsideLayout" />
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>99</x>
-                        <y>-96</y>
-                        <z>0</z>
-                        <width>25</width>
-                        <height>25</height>
-                        <depth>0</depth>
-                        <hotspotX>0.519999981</hotspotX>
-                        <hotspotY>0.519999981</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="RedMinionTrail">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <world>
-                        <x>-71</x>
-                        <y>-124</y>
                         <z>0</z>
                         <width>10</width>
                         <height>10</height>
@@ -1037,31 +915,145 @@
                         <width>5</width>
                         <height>5</height>
                         <depth>0</depth>
+                        <hotspotX>0.600000024</hotspotX>
+                        <hotspotY>0.600000024</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+        </layer>
+        <layer name="HUD">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <instances>
+                <instance type="HUD">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <effect>(none)</effect>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <instance-variables>
+                        <selectionUID>0</selectionUID>
+                    </instance-variables>
+                    <world>
+                        <x>0</x>
+                        <y>535</y>
+                        <z>0</z>
+                        <width>800</width>
+                        <height>65</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="Jesus">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <Active>true</Active>
+                        <bigJesus>true</bigJesus>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Solid" />
+                        <behavior-instance type="BoundToLayout">
+                            <properties>
+                                <bound-by>Edge</bound-by>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <world>
+                        <x>106.075447083</x>
+                        <y>526.512390137</y>
+                        <z>0</z>
+                        <width>106.075447083</width>
+                        <height>106.075447083</height>
+                        <depth>0</depth>
+                        <hotspotX>1</hotspotX>
+                        <hotspotY>0.30250001</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="currentlySelected">
+                    <properties>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Calibri,-16,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                    </properties>
+                    <world>
+                        <x>120</x>
+                        <y>544</y>
+                        <z>0</z>
+                        <width>89</width>
+                        <height>50</height>
+                        <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="CurrentlySelected">
+                <instance type="Redirect">
                     <properties>
-                        <text></text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
                     </properties>
+                    <instance-variables>
+                        <updateActiveHUDObject>false</updateActiveHUDObject>
+                    </instance-variables>
                     <world>
-                        <x>127</x>
-                        <y>536</y>
+                        <x>187</x>
+                        <y>-83</y>
                         <z>0</z>
-                        <width>172</width>
-                        <height>50</height>
+                        <width>25</width>
+                        <height>25</height>
                         <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
+                        <hotspotX>0.519999981</hotspotX>
+                        <hotspotY>0.519999981</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="flowAnchor">
+                    <properties>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <baseUID>0</baseUID>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>67</x>
+                        <y>-78</y>
+                        <z>0</z>
+                        <width>1</width>
+                        <height>1</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

@@ -36,9 +36,8 @@
         <comment>Minion parameters</comment>
         <variable comment="The maximum angle (in degrees) of approach that a minion can be while still being considered on course" name="minionAngleTolerance" type="number">5</variable>
         <variable comment="The maximum distance (in px) that a minion can be from the next node and still be considered on course" name="minionDistanceTolerance" type="number">50</variable>
-        <variable comment="The default spawn rate (in minions/sec) for each generator" name="minionDefaultSpawnRate" type="number">0.75</variable>
-        <variable comment="The default speed of the minion" name="minionDefaultSpeed" type="number">100</variable>
-        <variable comment="A # seperated list of each starting minion type" name="minionDefaultTypes" type="text">&quot;red#blue#yellow&quot;</variable>
+        <variable comment="The default speed of the minion" name="minionDefaultSpeed" type="number">75</variable>
+        <variable comment="A # seperated list of each starting minion type" name="minionDefaultTypes" type="text">red#blue#yellow</variable>
         <variable comment="How close (in px) the minion has to be to a target point for it to be considered a match" name="minionNodeArrivalDistance" type="number">5</variable>
         <variable comment="The frequency (in ticks) that a breadcrumb drops from the minion" name="minionTrailDropRate" type="number">10</variable>
         <variable comment="The time (in sec) that the breadcrumb stays alive" name="minionTrailDecayRate" type="number">0.02</variable>
@@ -49,43 +48,90 @@
         <comment>Layer parameters</comment>
         <variable comment="The background layer" name="backgroundLayer" type="number">0</variable>
         <variable comment="The default layer that most objects spawn on" name="defaultLayer" type="number">1</variable>
-        <variable comment="The active layer where high priority objects are placed" name="turretLayer" type="number">2</variable>
+        <variable comment="The active layer where high priority objects are placed" name="activeLayer" type="number">2</variable>
+        <variable comment="The layer the HUD is drawn on" name="HUDLayer" type="number">3</variable>
         <comment>Health Bar parameters</comment>
         <variable comment="The height (in px) of the health bar" name="healthBarHeight" type="number">4</variable>
+        <variable comment="The height (in px) of the health bar" name="healthBarWidth" type="number">18</variable>
         <variable comment="The border (in px) between the black background and the green health bar foreground" name="healthBarBorder" type="number">1</variable>
         <comment>Cannon parameters</comment>
         <variable comment="Set to 1 to show the leading line from the cannon to it&apos;s current target" name="cannonShowTargetLead" type="number">0</variable>
         <comment>Grid parameters</comment>
         <variable comment="The distance (in px) between each of the points in the grid" name="gridScale" type="number">40</variable>
+        <variable comment="The width of the grid line" name="gridLineWidth" type="number">1</variable>
         <comment>Generator parameters</comment>
         <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
-        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">0.75</variable>
-        <comment>Key bindings (doesn&apos;t work yet)</comment>
-        <variable comment="Places a generator" name="KEY_placeGenerator" type="text">q</variable>
-        <variable comment="Zooms the camera in and slows the game down" name="KEY_zoomIn" type="text">w</variable>
-        <variable comment="Places a rocket turret" name="KEY_placeRocketTurret" type="text">a</variable>
-        <variable comment="Places a beam turret" name="KEY_placeBeamTurret" type="text">s</variable>
-        <variable comment="Places a horizontal barrier" name="KEY_placeHBarrier" type="text">z</variable>
-        <variable comment="Places a vertical barrier" name="KEY_placeVBarrier" type="text">x</variable>
+        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
+        <comment>HUD parameters</comment>
+        <variable comment="The height (in px) of the HUD" name="HUDheight" type="number">65</variable>
         <comment></comment>
-        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+        <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
                     <conditions>
                         <condition id="-2" name="On start of layout" type="System" />
                     </conditions>
-                    <actions>
-                        <action id="-3" name="Set position" type="grid">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                        </action>
-                        <action id="-7" name="Set size" type="grid">
-                            <param id="0" name="Width">LayoutWidth</param>
-                            <param id="1" name="Height">LayoutHeight</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <comment>Setup the grid</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-3" name="Set position" type="grid">
+                                    <param id="0" name="X">0</param>
+                                    <param id="1" name="Y">0</param>
+                                </action>
+                                <action id="-7" name="Set size" type="grid">
+                                    <param id="0" name="Width">LayoutWidth</param>
+                                    <param id="1" name="Height">LayoutHeight</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Setup the HUD</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-3" name="Set position" type="HUD">
+                                    <param id="0" name="X">0</param>
+                                    <param id="1" name="Y">WindowHeight - HUDHeight</param>
+                                </action>
+                                <action id="-7" name="Set size" type="HUD">
+                                    <param id="0" name="Width">WindowWidth</param>
+                                    <param id="1" name="Height">HUDHeight</param>
+                                </action>
+                                <action id="-16" name="Set opacity" type="HUD">
+                                    <param id="0" name="Opacity">50</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>Add a gutter to block out whatever lines the HUD is over</comment>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">gridBlock</param>
+                                            <param id="1" name="Layer">defaultLayer</param>
+                                            <param id="2" name="X">0</param>
+                                            <param id="3" name="Y">HUD.Y - ( gridScale - ( HUD.Height % gridScale ) - gridLineWidth )</param>
+                                        </action>
+                                        <action id="4" name="Set animation" type="gridBlock">
+                                            <param id="0" name="Animation">&quot;TopLeft&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-7" name="Set size" type="gridBlock">
+                                            <param id="0" name="Width">HUD.Width</param>
+                                            <param id="1" name="Height">gridBlock.Y - gridLineWidth</param>
+                                        </action>
+                                        <action id="-24" name="Move to top" type="gridBlock" />
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions />
+                                    <actions />
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <comment>Destroy initial instances of most sprites</comment>
                         <event-block>
                             <conditions />
@@ -96,8 +142,6 @@
                                 <action id="-9" name="Destroy" type="Cannon" />
                                 <action id="-9" name="Destroy" type="distanceToTarget" />
                                 <action id="-9" name="Destroy" type="Generator" />
-                                <action id="-9" name="Destroy" type="GreyMinion" />
-                                <action id="-9" name="Destroy" type="GreyMinionTrail" />
                                 <action id="-9" name="Destroy" type="KrullBase" />
                                 <action id="-9" name="Destroy" type="KrullBlade" />
                                 <action id="-9" name="Destroy" type="Node" />
@@ -106,8 +150,6 @@
                                 <action id="-9" name="Destroy" type="MinionTrail" />
                                 <action id="-9" name="Destroy" type="PathStart" />
                                 <action id="-9" name="Destroy" type="RangeFinder" />
-                                <action id="-9" name="Destroy" type="RedMinion" />
-                                <action id="-9" name="Destroy" type="RedMinionTrail" />
                                 <action id="-9" name="Destroy" type="Rocket" />
                                 <action id="-9" name="Destroy" type="RocketEffects" />
                                 <action id="-9" name="Destroy" type="RocketExplosion" />
