@@ -15,7 +15,6 @@
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
         <plugin id="Rex_Branch" version="1">Branch</plugin>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
     </used-plugins>
     <used-behaviors>
@@ -189,6 +188,17 @@
                 <plugin id="TiledBg" />
                 <texture />
             </object-type>
+            <object-type name="Path">
+                <plugin id="Arr" />
+                <instance-variables>
+                    <instance-variable comment="the number of nodes in the path" name="pathCount" type="number" />
+                    <instance-variable comment="is a node in the path currently being moved by the user?" name="currentlyMovingNode" type="boolean" />
+                    <instance-variable comment="is a new path currently being drawn?" name="currentlyTracing" type="boolean" />
+                    <instance-variable comment="the UID of the base that owns this path" name="baseUID" type="number" />
+                    <instance-variable comment="is the data in the array valid?" name="validData" type="boolean" />
+                    <instance-variable comment="does the path need to be redrawn?" name="redrawPath" type="boolean" />
+                </instance-variables>
+            </object-type>
         </object-folder>
         <object-folder expanded="1" name="Rocket">
             <object-type name="Rocket">
@@ -299,22 +309,6 @@
                         </frame>
                     </animation>
                 </animation-folder>
-            </object-type>
-        </object-folder>
-        <object-folder expanded="0" name="Data Sources">
-            <object-type name="Parameters">
-                <plugin id="Rex_Hash" />
-            </object-type>
-            <object-type name="Path">
-                <plugin id="Arr" />
-                <instance-variables>
-                    <instance-variable comment="the number of nodes in the path" name="pathCount" type="number" />
-                    <instance-variable comment="is a node in the path currently being moved by the user?" name="currentlyMovingNode" type="boolean" />
-                    <instance-variable comment="is a new path currently being drawn?" name="currentlyTracing" type="boolean" />
-                    <instance-variable comment="the UID of the base that owns this path" name="baseUID" type="number" />
-                    <instance-variable comment="is the data in the array valid?" name="validData" type="boolean" />
-                    <instance-variable comment="does the path need to be redrawn?" name="redrawPath" type="boolean" />
-                </instance-variables>
             </object-type>
         </object-folder>
         <object-folder expanded="0" name="Input">
@@ -1692,6 +1686,7 @@
     </layout-folder>
     <event-folder expanded="1">
         <event-sheet>MainEvents.xml</event-sheet>
+        <event-sheet>Initialize.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" />

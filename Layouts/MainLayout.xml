@@ -1070,11 +1070,6 @@
         </layer>
     </layers>
     <nonworld-instances>
-        <instance type="Parameters">
-            <properties>
-                <contains></contains>
-            </properties>
-        </instance>
         <instance type="Path">
             <properties>
                 <width>500</width>

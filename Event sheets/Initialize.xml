@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Initialize</name>
+    <events>
+        <comment>Project: JesusTD</comment>
+        <comment>Author: Brian Hebert</comment>
+        <comment>File: Game initialization</comment>
+        <comment></comment>
+        <comment>Rocket parameters</comment>
+        <variable comment="The internal numeric code for the rocket ammo" name="rocketAmmoType" type="number">1</variable>
+        <variable comment="The default fire rate (in shots/sec) of the rocket cannon" name="rocketDefaultFireRate" type="number">1</variable>
+        <variable comment="The max range that a rocket can fly (also the max range the cannon can aquire a target)" name="rocketTargetRangeMax" type="number">125</variable>
+        <variable comment="The minimum distance that a minion can be targetd by the rocket cannon" name="rocketTargetRangeMin" type="number">0</variable>
+        <variable comment="The default speed of the rocket" name="rocketDefaultProjectileSpeed" type="number">300</variable>
+        <variable comment="The initial acceleration of a rocket" name="rocketLaunchBoost" type="number">100</variable>
+        <variable comment="the maximum amount of time a rocket can be active before it explodes" name="rocketMaxFlightTime" type="number">30</variable>
+        <variable comment="The force (px/sec) of impact that a rocket explosion has on another object" name="rocketImpactForce" type="number">100</variable>
+        <variable comment="The (usually negative) acceleration applied to any object moved by a rocket explosion" name="rocketImpactForceDecay" type="number">-50</variable>
+        <variable comment="The diameter (in px) of the rocket explosion" name="rocketExplosionDiameter" type="number">25</variable>
+        <variable comment="The amount of damage caused by a rocket" name="rocketDamage" type="number">250</variable>
+        <comment>Beam parameters</comment>
+        <variable comment="The internal numeric code for the beam ammo" name="beamAmmoType" type="number">2</variable>
+        <variable comment="The default fire rate (in shots/sec) of the beam cannon" name="beamDefaultFireRate" type="number">0.15</variable>
+        <variable comment="The max range that a beam can fly (also the max range the cannon can aquire a target)" name="beamTargetRangeMax" type="number">100</variable>
+        <variable comment="The minimum distance that a minion can be targetd by the beam cannon" name="beamTargetRangeMin" type="number">0</variable>
+        <variable comment="The default speed of the beam" name="beamDefaultProjectileSpeed" type="number">400</variable>
+        <variable comment="The amount of damage caused by a beam" name="beamDamage" type="number">100</variable>
+        <comment>Camera zoom effect parameters</comment>
+        <variable comment="The default layout scale" name="zoomMinScale" type="number">1</variable>
+        <variable comment="The maximum scale to stop the zoom effect at" name="zoomMaxScale" type="number">3</variable>
+        <variable comment="The rate of scale change for the zoom effect" name="zoomScaleChange" type="number">0.05</variable>
+        <variable comment="The maximum slow down effect" name="zoomSlowRate" type="number">0.75</variable>
+        <variable comment="The amount of time (sec) to wait between each gradual camera zoom" name="zoomScaleDelay" type="number">0.1</variable>
+        <variable comment="The amount of time (sec) to wait between before zooming back out" name="zoomResetDelay" type="number">1</variable>
+        <comment>Minion parameters</comment>
+        <variable comment="The maximum angle (in degrees) of approach that a minion can be while still being considered on course" name="minionAngleTolerance" type="number">5</variable>
+        <variable comment="The maximum distance (in px) that a minion can be from the next node and still be considered on course" name="minionDistanceTolerance" type="number">50</variable>
+        <variable comment="The default spawn rate (in minions/sec) for each generator" name="minionDefaultSpawnRate" type="number">0.75</variable>
+        <variable comment="The default speed of the minion" name="minionDefaultSpeed" type="number">100</variable>
+        <variable comment="A # seperated list of each starting minion type" name="minionDefaultTypes" type="text">&quot;red#blue#yellow&quot;</variable>
+        <variable comment="How close (in px) the minion has to be to a target point for it to be considered a match" name="minionNodeArrivalDistance" type="number">5</variable>
+        <variable comment="The frequency (in ticks) that a breadcrumb drops from the minion" name="minionTrailDropRate" type="number">10</variable>
+        <variable comment="The time (in sec) that the breadcrumb stays alive" name="minionTrailDecayRate" type="number">0.02</variable>
+        <variable comment="The default health of the minion" name="minionDefaultHealth" type="number">1000</variable>
+        <comment>Path parameters</comment>
+        <variable comment="The frequency (in sec) that a node is dropped while the player is tracing" name="pathPollRate" type="number">0.02</variable>
+        <variable comment="The amount of time (sec) that a path appears when a path is being previewed" name="pathPreviewTime" type="number">1</variable>
+        <comment>Layer parameters</comment>
+        <variable comment="The background layer" name="backgroundLayer" type="number">0</variable>
+        <variable comment="The default layer that most objects spawn on" name="defaultLayer" type="number">1</variable>
+        <variable comment="The active layer where high priority objects are placed" name="turretLayer" type="number">2</variable>
+        <comment>Health Bar parameters</comment>
+        <variable comment="The height (in px) of the health bar" name="healthBarHeight" type="number">4</variable>
+        <variable comment="The border (in px) between the black background and the green health bar foreground" name="healthBarBorder" type="number">1</variable>
+        <comment>Cannon parameters</comment>
+        <variable comment="Set to 1 to show the leading line from the cannon to it&apos;s current target" name="cannonShowTargetLead" type="number">0</variable>
+        <comment>Grid parameters</comment>
+        <variable comment="The distance (in px) between each of the points in the grid" name="gridScale" type="number">40</variable>
+        <comment>Generator parameters</comment>
+        <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
+        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">0.75</variable>
+        <comment>Key bindings (doesn&apos;t work yet)</comment>
+        <variable comment="Places a generator" name="KEY_placeGenerator" type="text">q</variable>
+        <variable comment="Zooms the camera in and slows the game down" name="KEY_zoomIn" type="text">w</variable>
+        <variable comment="Places a rocket turret" name="KEY_placeRocketTurret" type="text">a</variable>
+        <variable comment="Places a beam turret" name="KEY_placeBeamTurret" type="text">s</variable>
+        <variable comment="Places a horizontal barrier" name="KEY_placeHBarrier" type="text">z</variable>
+        <variable comment="Places a vertical barrier" name="KEY_placeVBarrier" type="text">x</variable>
+        <comment></comment>
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
+            <sub-events>
+                <comment>Startup layout</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-2" name="On start of layout" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" type="grid">
+                            <param id="0" name="X">0</param>
+                            <param id="1" name="Y">0</param>
+                        </action>
+                        <action id="-7" name="Set size" type="grid">
+                            <param id="0" name="Width">LayoutWidth</param>
+                            <param id="1" name="Height">LayoutHeight</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Destroy initial instances of most sprites</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Destroy" type="Bar" />
+                                <action id="-9" name="Destroy" type="BarrierWall" />
+                                <action id="-9" name="Destroy" type="Beam" />
+                                <action id="-9" name="Destroy" type="Cannon" />
+                                <action id="-9" name="Destroy" type="distanceToTarget" />
+                                <action id="-9" name="Destroy" type="Generator" />
+                                <action id="-9" name="Destroy" type="GreyMinion" />
+                                <action id="-9" name="Destroy" type="GreyMinionTrail" />
+                                <action id="-9" name="Destroy" type="KrullBase" />
+                                <action id="-9" name="Destroy" type="KrullBlade" />
+                                <action id="-9" name="Destroy" type="Node" />
+                                <action id="-9" name="Destroy" type="NodeLabel" />
+                                <action id="-9" name="Destroy" type="Minion" />
+                                <action id="-9" name="Destroy" type="MinionTrail" />
+                                <action id="-9" name="Destroy" type="PathStart" />
+                                <action id="-9" name="Destroy" type="RangeFinder" />
+                                <action id="-9" name="Destroy" type="RedMinion" />
+                                <action id="-9" name="Destroy" type="RedMinionTrail" />
+                                <action id="-9" name="Destroy" type="Rocket" />
+                                <action id="-9" name="Destroy" type="RocketEffects" />
+                                <action id="-9" name="Destroy" type="RocketExplosion" />
+                                <action id="-9" name="Destroy" type="TargetLeadBar" />
+                                <action id="-9" name="Destroy" type="TurretBase" />
+                                <action id="-9" name="Destroy" type="HealthBorder" />
+                                <action id="-9" name="Destroy" type="HealthBar" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

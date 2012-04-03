@@ -3,7 +3,10 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>MainEvents</name>
     <events>
-        <comment>JesusTD - Brian Hebert</comment>
+        <comment>Project: JesusTD</comment>
+        <comment>Author: Brian Hebert</comment>
+        <comment>File: Main event sheet</comment>
+        <comment></comment>
         <comment>To Do:</comment>
         <comment>1. Smart targeting (by minion health / adjusted angle), Sticky targeting</comment>
         <comment>2. Status window updated with information on the currently selected object</comment>
@@ -13,289 +16,7 @@
         <comment></comment>
         <comment></comment>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
-        <comment>Startup Events</comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
-            <sub-events>
-                <comment>Startup layout</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="-2" name="On start of layout" type="System" />
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Clean all" type="Parameters" />
-                        <action id="-3" name="Set position" type="grid">
-                            <param id="0" name="X">0</param>
-                            <param id="1" name="Y">0</param>
-                        </action>
-                        <action id="-7" name="Set size" type="grid">
-                            <param id="0" name="Width">LayoutWidth</param>
-                            <param id="1" name="Height">LayoutHeight</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <comment>Destroy initial instances of most sprites</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-9" name="Destroy" type="Bar" />
-                                <action id="-9" name="Destroy" type="BarrierWall" />
-                                <action id="-9" name="Destroy" type="Beam" />
-                                <action id="-9" name="Destroy" type="Cannon" />
-                                <action id="-9" name="Destroy" type="distanceToTarget" />
-                                <action id="-9" name="Destroy" type="Generator" />
-                                <action id="-9" name="Destroy" type="GreyMinion" />
-                                <action id="-9" name="Destroy" type="GreyMinionTrail" />
-                                <action id="-9" name="Destroy" type="KrullBase" />
-                                <action id="-9" name="Destroy" type="KrullBlade" />
-                                <action id="-9" name="Destroy" type="Node" />
-                                <action id="-9" name="Destroy" type="NodeLabel" />
-                                <action id="-9" name="Destroy" type="Minion" />
-                                <action id="-9" name="Destroy" type="MinionTrail" />
-                                <action id="-9" name="Destroy" type="PathStart" />
-                                <action id="-9" name="Destroy" type="RangeFinder" />
-                                <action id="-9" name="Destroy" type="RedMinion" />
-                                <action id="-9" name="Destroy" type="RedMinionTrail" />
-                                <action id="-9" name="Destroy" type="Rocket" />
-                                <action id="-9" name="Destroy" type="RocketEffects" />
-                                <action id="-9" name="Destroy" type="RocketExplosion" />
-                                <action id="-9" name="Destroy" type="TargetLeadBar" />
-                                <action id="-9" name="Destroy" type="TurretBase" />
-                                <action id="-9" name="Destroy" type="HealthBorder" />
-                                <action id="-9" name="Destroy" type="HealthBar" />
-                            </actions>
-                        </event-block>
-                        <comment>Rocket parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketAmmoType&quot;</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketDefaultFireRate&quot;</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketTargetRangeMax&quot;</param>
-                                    <param id="1" name="Value">125</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketTargetRangeMin&quot;</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketDefaultProjectileSpeed&quot;</param>
-                                    <param id="1" name="Value">300</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketLaunchBoost&quot;</param>
-                                    <param id="1" name="Value">100</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketMaxFlightTime&quot;</param>
-                                    <param id="1" name="Value">30</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketImpactForce&quot;</param>
-                                    <param id="1" name="Value">100</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketImpactForceDecay&quot;</param>
-                                    <param id="1" name="Value">-50</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketExplosionDiameter&quot;</param>
-                                    <param id="1" name="Value">25</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;rocketDamage&quot;</param>
-                                    <param id="1" name="Value">250</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Beam parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;beamAmmoType&quot;</param>
-                                    <param id="1" name="Value">2</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;beamDefaultFireRate&quot;</param>
-                                    <param id="1" name="Value">0.15</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;beamTargetRangeMax&quot;</param>
-                                    <param id="1" name="Value">100</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;beamTargetRangeMin&quot;</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;beamDefaultProjectileSpeed&quot;</param>
-                                    <param id="1" name="Value">400</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;beamDamage&quot;</param>
-                                    <param id="1" name="Value">100</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Camera zoom effect parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;zoomMinScale&quot;</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;zoomMaxScale&quot;</param>
-                                    <param id="1" name="Value">3</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;zoomScaleChange&quot;</param>
-                                    <param id="1" name="Value">0.05</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;zoomResetDelay&quot;</param>
-                                    <param id="1" name="Value">0.75</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;zoomSlowRate&quot;</param>
-                                    <param id="1" name="Value">0.75</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;zoomScaleDelay&quot;</param>
-                                    <param id="1" name="Value">0.1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Minion parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionAngleTolerance&quot;</param>
-                                    <param id="1" name="Value">5</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionDistanceTolerance&quot;</param>
-                                    <param id="1" name="Value">50</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionDefaultSpawnRate&quot;</param>
-                                    <param id="1" name="Value">0.75</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionDefaultSpeed&quot;</param>
-                                    <param id="1" name="Value">100</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionDefaultTypes&quot;</param>
-                                    <param id="1" name="Value">&quot;red#blue#yellow&quot;</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionNodeArrivalDistance&quot;</param>
-                                    <param id="1" name="Value">5</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionTrailDropRate&quot;</param>
-                                    <param id="1" name="Value">10</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionTrailDecayRate&quot;</param>
-                                    <param id="1" name="Value">0.02</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;minionDefaultHealth&quot;</param>
-                                    <param id="1" name="Value">1000</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Path parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;pathPollRate&quot;</param>
-                                    <param id="1" name="Value">0.02</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;pathPreviewTime&quot;</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Layer parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;backgroundLayer&quot;</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;defaultLayer&quot;</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;turretLayer&quot;</param>
-                                    <param id="1" name="Value">2</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Health Bar parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;healthBarHeight&quot;</param>
-                                    <param id="1" name="Value">4</param>
-                                </action>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;healthBarBorder&quot;</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Cannon parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;cannonShowTargetLead&quot;</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Generator parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;generatorPathStartMaxOpacity&quot;</param>
-                                    <param id="1" name="Value">100</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Grid parameters</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="1" name="Set value by key string" type="Parameters">
-                                    <param id="0" name="Key string">&quot;gridScale&quot;</param>
-                                    <param id="1" name="Value">40</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-            </sub-events>
-        </event-group>
+        <include>Initialize</include>
         <comment>Game Object Events</comment>
         <event-group collapsed="1" description="The camera that watches overhead" title="Camera">
             <sub-events>
@@ -334,22 +55,22 @@
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">LayoutScale</param>
                             <param id="1" name="Comparison">2</param>
-                            <param id="2" name="Second value">parameters.At( &quot;zoomMaxScale&quot; )</param>
+                            <param id="2" name="Second value">zoomMaxScale</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-20" name="Set layout scale" type="System">
-                            <param id="0" name="Scale">LayoutScale + parameters.At( &quot;zoomScaleChange&quot; )</param>
+                            <param id="0" name="Scale">LayoutScale + zoomScaleChange</param>
                         </action>
                         <action id="-7" name="Scroll to position" type="System">
-                            <param id="0" name="X">scrollx + (( ZoomPoint.X - ( WindowWidth / 2 ))  / ( (parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; )) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
-                            <param id="1" name="Y">scrolly + (( ZoomPoint.Y - ( WindowHeight / 2 ))  /( (parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; )) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
+                            <param id="0" name="X">scrollx + (( ZoomPoint.X - ( WindowWidth / 2 ))  / ( (zoomMaxScale-zoomMinScale) / zoomScaleChange ))</param>
+                            <param id="1" name="Y">scrolly + (( ZoomPoint.Y - ( WindowHeight / 2 ))  /( (zoomMaxScale-zoomMinScale) / zoomScaleChange ))</param>
                         </action>
                         <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">parameters.At( &quot;zoomScaleDelay&quot; )</param>
+                            <param id="0" name="Seconds">zoomScaleDelay</param>
                         </action>
                         <action id="-13" name="Set time scale" type="System">
-                            <param id="0" name="Time scale">timescale - ( parameters.At( &quot;zoomSlowRate&quot; ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; )))</param>
+                            <param id="0" name="Time scale">timescale - ( zoomSlowRate / (( zoomMaxScale-zoomMinScale ) / zoomScaleChange))</param>
                         </action>
                     </actions>
                 </event-block>
@@ -359,7 +80,7 @@
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">LayoutScale</param>
                             <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Second value">parameters.At( &quot;zoomMaxScale&quot; )</param>
+                            <param id="2" name="Second value">zoomMaxScale</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="ZoomPoint">
                             <param id="0" name="Instance variable">zooming</param>
@@ -367,7 +88,7 @@
                     </conditions>
                     <actions>
                         <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">parameters.At( &quot;zoomResetDelay&quot; )</param>
+                            <param id="0" name="Seconds">zoomResetDelay</param>
                         </action>
                         <action id="-13" name="Set boolean" type="ZoomPoint">
                             <param id="0" name="Instance variable">zooming</param>
@@ -387,22 +108,22 @@
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">LayoutScale</param>
                             <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Second value">parameters.At( &quot;zoomMinScale&quot; )</param>
+                            <param id="2" name="Second value">zoomMinScale</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-20" name="Set layout scale" type="System">
-                            <param id="0" name="Scale">LayoutScale - parameters.At( &quot;zoomScaleChange&quot; )</param>
+                            <param id="0" name="Scale">LayoutScale - zoomScaleChange</param>
                         </action>
                         <action id="-7" name="Scroll to position" type="System">
-                            <param id="0" name="X">scrollx + ((( WindowWidth / 2 ) - ZoomPoint.X ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
-                            <param id="1" name="Y">scrolly + ((( WindowHeight / 2 )  - ZoomPoint.Y ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; ) ))</param>
+                            <param id="0" name="X">scrollx + ((( WindowWidth / 2 ) - ZoomPoint.X ) / (( zoomMaxScale-zoomMinScale ) / zoomScaleChange ))</param>
+                            <param id="1" name="Y">scrolly + ((( WindowHeight / 2 )  - ZoomPoint.Y ) / (( zoomMaxScale-zoomMinScale ) / zoomScaleChange ))</param>
                         </action>
                         <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">parameters.At( &quot;zoomScaleDelay&quot; )</param>
+                            <param id="0" name="Seconds">zoomScaleDelay</param>
                         </action>
                         <action id="-13" name="Set time scale" type="System">
-                            <param id="0" name="Time scale">timescale + ( parameters.At( &quot;zoomSlowRate&quot; ) / (( parameters.At( &quot;zoomMaxScale&quot; )-parameters.At( &quot;zoomMinScale&quot; ) ) / parameters.At( &quot;zoomScaleChange&quot; )))</param>
+                            <param id="0" name="Time scale">timescale + ( zoomSlowRate / (( zoomMaxScale-zoomMinScale ) / zoomScaleChange))</param>
                         </action>
                     </actions>
                 </event-block>
@@ -424,17 +145,17 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Generator</param>
-                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">minionType</param>
-                            <param id="1" name="Value">tokenat(parameters.At( &quot;minionDefaultTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionDefaultTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
+                            <param id="1" name="Value">tokenat(minionDefaultTypes, random( 0, tokencount(minionDefaultTypes, &quot;#&quot;)), &quot;#&quot;)</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
-                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">generator.X</param>
                             <param id="3" name="Y">generator.Y</param>
                         </action>
@@ -451,7 +172,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Path</param>
-                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">-100</param>
                             <param id="3" name="Y">-100</param>
                         </action>
@@ -469,11 +190,11 @@
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">spawnRate</param>
-                            <param id="1" name="Value">parameters.At( &quot;minionDefaultSpawnRate&quot; )</param>
+                            <param id="1" name="Value">generatorSpawnRate</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">PathStart</param>
-                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">generator.ImagePointX( 1 )</param>
                             <param id="3" name="Y">generator.ImagePointY( 1 ) </param>
                         </action>
@@ -687,7 +408,7 @@
                             <actions>
                                 <action id="-10" name="Set value" type="Generator">
                                     <param id="0" name="Instance variable">minionType</param>
-                                    <param id="1" name="Value">tokenat(parameters.At( &quot;minionDefaultTypes&quot; ), random( 0, tokencount(parameters.At( &quot;minionDefaultTypes&quot; ), &quot;#&quot;)), &quot;#&quot;)</param>
+                                    <param id="1" name="Value">tokenat(minionDefaultTypes, random( 0, tokencount(minionDefaultTypes, &quot;#&quot;)), &quot;#&quot;)</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -790,7 +511,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Node</param>
-                                    <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
                                     <param id="2" name="X">path.At( loopindex, 0 )</param>
                                     <param id="3" name="Y">path.At( loopindex, 1 )</param>
                                 </action>
@@ -823,7 +544,7 @@
                     <conditions>
                         <condition id="-10" name="Compare opacity" type="PathStart">
                             <param id="0" name="Comparison">2</param>
-                            <param id="1" name="Opacity">parameters.At( &quot;generatorPathStartMaxOpacity&quot; )</param>
+                            <param id="1" name="Opacity">generatorPathStartMaxOpacity</param>
                         </condition>
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">0.1</param>
@@ -834,7 +555,7 @@
                     </conditions>
                     <actions>
                         <action id="-16" name="Set opacity" type="PathStart">
-                            <param id="0" name="Opacity">min( parameters.At( &quot;generatorPathStartMaxOpacity&quot; ), pathstart.opacity + 15 )</param>
+                            <param id="0" name="Opacity">min( generatorPathStartMaxOpacity, pathstart.opacity + 15 )</param>
                         </action>
                     </actions>
                 </event-block>
@@ -894,7 +615,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">generator.ImagePointX(1)</param>
                             <param id="3" name="Y">generator.ImagePointY(1)</param>
                         </action>
@@ -904,7 +625,7 @@
                         </action>
                         <action behavior="CustomMovement" id="2" name="Set speed" type="Minion">
                             <param id="0" name="Which">0</param>
-                            <param id="1" name="Speed">Parameters.Entry(&quot;minionDefaultSpeed&quot;)</param>
+                            <param id="1" name="Speed">minionDefaultSpeed</param>
                         </action>
                         <action id="-24" name="Move to top" type="Minion" />
                         <action id="3" name="Start" type="Minion">
@@ -931,7 +652,7 @@
                         </action>
                         <action id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">maxHealth</param>
-                            <param id="1" name="Value">parameters.At( &quot;minionDefaultHealth&quot; )</param>
+                            <param id="1" name="Value">minionDefaultHealth</param>
                         </action>
                         <action id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">health</param>
@@ -1045,7 +766,7 @@
                                             <actions>
                                                 <action id="-3" name="Create object" type="System">
                                                     <param id="0" name="Object to create">Node</param>
-                                                    <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
+                                                    <param id="1" name="Layer">defaultLayer</param>
                                                     <param id="2" name="X">mouse.X</param>
                                                     <param id="3" name="Y">mouse.Y</param>
                                                 </action>
@@ -1228,7 +949,7 @@
                             <param id="0" name="Object">Node</param>
                         </condition>
                         <condition id="-6" name="Every X seconds" type="System">
-                            <param id="0" name="Interval (seconds)">parameters.At( &quot;pathPollRate&quot; )</param>
+                            <param id="0" name="Interval (seconds)">pathPollRate</param>
                         </condition>
                         <condition id="-8" name="Is boolean instance variable set" type="Path">
                             <param id="0" name="Instance variable">currentlyTracing</param>
@@ -1240,7 +961,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Node</param>
-                            <param id="1" name="Layer">Parameters.at(&quot;defaultLayer&quot;)</param>
+                            <param id="1" name="Layer">defaultLayer</param>
                             <param id="2" name="X">path.pathCount=0?generator.ImagePointX(1):mouse.X</param>
                             <param id="3" name="Y">path.pathCount=0?generator.ImagePointY(1):mouse.Y</param>
                         </action>
@@ -1301,7 +1022,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Bar</param>
-                            <param id="1" name="Layer">Parameters.at(&quot;backgroundLayer&quot;)</param>
+                            <param id="1" name="Layer">backgroundLayer</param>
                             <param id="2" name="X">node.X</param>
                             <param id="3" name="Y">node.Y</param>
                         </action>
@@ -1322,7 +1043,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">NodeLabel</param>
-                            <param id="1" name="Layer">Parameters.at( &quot;turretLayer&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">node.X</param>
                             <param id="3" name="Y">node.Y</param>
                         </action>
@@ -1979,13 +1700,13 @@
                                 <condition id="-7" name="Compare instance variable" type="Minion">
                                     <param id="0" name="Instance variable">trailTimeStamp</param>
                                     <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">tickcount - parameters.At( &quot;minionTrailDropRate&quot; )</param>
+                                    <param id="2" name="Value">tickcount - minionTrailDropRate</param>
                                 </condition>
                             </conditions>
                             <actions>
                                 <action disabled="1" id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">MinionTrail</param>
-                                    <param id="1" name="Layer">parameters.At( &quot;defaultLayer&quot; )</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
                                     <param id="2" name="X">Minion.X</param>
                                     <param id="3" name="Y">Minion.Y</param>
                                 </action>
@@ -2009,7 +1730,7 @@
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">distanceToNode</param>
                                     <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">Parameters.At( &quot;minionNodeArrivalDistance&quot; )</param>
+                                    <param id="2" name="Value">minionNodeArrivalDistance</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -2044,13 +1765,13 @@
                         <event-block>
                             <conditions>
                                 <condition id="-11" inverted="1" name="Is within angle" type="Minion">
-                                    <param id="0" name="Within">Parameters.At(&quot;minionAngleTolerance&quot; )</param>
+                                    <param id="0" name="Within">minionAngleTolerance</param>
                                     <param id="1" name="Angle">angleToNode</param>
                                 </condition>
                                 <condition id="-14" name="Compare variable" type="System">
                                     <param id="0" name="Variable">distanceToNode</param>
                                     <param id="1" name="Comparison">4</param>
-                                    <param id="2" name="Value">parameters.At( &quot;minionDistanceTolerance&quot; )</param>
+                                    <param id="2" name="Value">minionDistanceTolerance</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -2082,7 +1803,7 @@
                             <param id="1" name="Opacity">0</param>
                         </condition>
                         <condition id="-6" name="Every X seconds" type="System">
-                            <param id="0" name="Interval (seconds)">parameters.Entry( &quot;minionTrailDecayRate&quot; )</param>
+                            <param id="0" name="Interval (seconds)">minionTrailDecayRate</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2136,33 +1857,33 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">HealthBorder</param>
-                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">minion.ImagePointX( 1 )</param>
-                            <param id="3" name="Y">minion.ImagePointY( 1 ) - parameters.At( &quot;healthBarHeight&quot; ) - parameters.at( &quot;healthBarBorder&quot; ) * 2</param>
+                            <param id="3" name="Y">minion.ImagePointY( 1 ) - healthBarHeight - healthBarBorder * 2</param>
                         </action>
                         <action behavior="Pin" id="0" name="Pin to object" type="HealthBorder">
                             <param id="0" name="Pin to">Minion</param>
                         </action>
                         <action id="-7" name="Set size" type="HealthBorder">
                             <param id="0" name="Width">minion.Width</param>
-                            <param id="1" name="Height">parameters.At( &quot;healthBarHeight&quot; )</param>
+                            <param id="1" name="Height">healthBarHeight</param>
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">HealthBar</param>
-                            <param id="1" name="Layer">parameters.At( &quot;turretLayer&quot; )</param>
-                            <param id="2" name="X">HealthBorder.X + parameters.At( &quot;healthBarBorder&quot; )</param>
-                            <param id="3" name="Y">HealthBorder.Y + parameters.At( &quot;healthBarBorder&quot; )</param>
+                            <param id="1" name="Layer">turretLayer</param>
+                            <param id="2" name="X">HealthBorder.X + healthBarBorder</param>
+                            <param id="3" name="Y">HealthBorder.Y + healthBarBorder</param>
                         </action>
                         <action behavior="Pin" id="0" name="Pin to object" type="HealthBar">
                             <param id="0" name="Pin to">HealthBorder</param>
                         </action>
                         <action id="-10" name="Set value" type="HealthBar">
                             <param id="0" name="Instance variable">startingWidth</param>
-                            <param id="1" name="Value">HealthBorder.Width - parameters.At( &quot;healthBarBorder&quot; ) * 2</param>
+                            <param id="1" name="Value">HealthBorder.Width - healthBarBorder * 2</param>
                         </action>
                         <action id="-7" name="Set size" type="HealthBar">
                             <param id="0" name="Width">HealthBar.startingWidth</param>
-                            <param id="1" name="Height">parameters.At( &quot;healthBarHeight&quot; ) - parameters.At( &quot;healthBarBorder&quot; ) * 2</param>
+                            <param id="1" name="Height">healthBarHeight - healthBarBorder * 2</param>
                         </action>
                         <action id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">healthBarUID</param>
@@ -2215,7 +1936,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">RangeFinder</param>
-                                    <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
                                     <param id="2" name="X">cannon.X</param>
                                     <param id="3" name="Y">cannon.Y</param>
                                 </action>
@@ -2226,7 +1947,7 @@
                                 </action>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">TargetLeadBar</param>
-                                    <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
                                     <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                     <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                 </action>
@@ -2246,7 +1967,7 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">parameters.At( &quot;cannonShowTargetLead&quot; )</param>
+                                            <param id="0" name="First value">cannonShowTargetLead</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">1</param>
                                         </condition>
@@ -2254,7 +1975,7 @@
                                     <actions>
                                         <action id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">distanceToTarget</param>
-                                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                                            <param id="1" name="Layer">defaultLayer</param>
                                             <param id="2" name="X">cannon.X</param>
                                             <param id="3" name="Y">cannon.Y</param>
                                         </action>
@@ -2276,7 +1997,7 @@
                                         <condition id="-7" name="Compare instance variable" type="Cannon">
                                             <param id="0" name="Instance variable">activeAmmo</param>
                                             <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
+                                            <param id="2" name="Value">rocketAmmoType</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -2286,15 +2007,15 @@
                                         </action>
                                         <action id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">fireRate</param>
-                                            <param id="1" name="Value">Parameters.Entry(&quot;rocketDefaultFireRate&quot;)</param>
+                                            <param id="1" name="Value">rocketDefaultFireRate</param>
                                         </action>
                                         <action id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMax</param>
-                                            <param id="1" name="Value">Parameters.Entry(&quot;rocketTargetRangeMax&quot;)</param>
+                                            <param id="1" name="Value">rocketTargetRangeMax</param>
                                         </action>
                                         <action id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMin</param>
-                                            <param id="1" name="Value">Parameters.Entry(&quot;rocketTargetRangeMin&quot;)</param>
+                                            <param id="1" name="Value">rocketTargetRangeMin</param>
                                         </action>
                                         <action id="4" name="Set animation" type="RangeFinder">
                                             <param id="0" name="Animation">&quot;Rocket&quot;</param>
@@ -2308,7 +2029,7 @@
                                         <condition id="-7" name="Compare instance variable" type="Cannon">
                                             <param id="0" name="Instance variable">activeAmmo</param>
                                             <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
+                                            <param id="2" name="Value">beamAmmoType</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -2318,15 +2039,15 @@
                                         </action>
                                         <action id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">fireRate</param>
-                                            <param id="1" name="Value">Parameters.Entry(&quot;beamDefaultFireRate&quot;)</param>
+                                            <param id="1" name="Value">beamDefaultFireRate</param>
                                         </action>
                                         <action id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMax</param>
-                                            <param id="1" name="Value">Parameters.Entry(&quot;beamTargetRangeMax&quot;)</param>
+                                            <param id="1" name="Value">beamTargetRangeMax</param>
                                         </action>
                                         <action id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMin</param>
-                                            <param id="1" name="Value">Parameters.Entry(&quot;beamTargetRangeMin&quot;)</param>
+                                            <param id="1" name="Value">beamTargetRangeMin</param>
                                         </action>
                                         <action id="4" name="Set animation" type="RangeFinder">
                                             <param id="0" name="Animation">&quot;beam&quot;</param>
@@ -2535,13 +2256,13 @@
                                                                         <condition id="-7" name="Compare instance variable" type="Cannon">
                                                                             <param id="0" name="Instance variable">activeAmmo</param>
                                                                             <param id="1" name="Comparison">0</param>
-                                                                            <param id="2" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
+                                                                            <param id="2" name="Value">rocketAmmoType</param>
                                                                         </condition>
                                                                     </conditions>
                                                                     <actions>
                                                                         <action id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">Rocket</param>
-                                                                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                                                                            <param id="1" name="Layer">turretLayer</param>
                                                                             <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                                                             <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                                                         </action>
@@ -2556,17 +2277,17 @@
                                                                             <param id="0" name="State">1</param>
                                                                         </action>
                                                                         <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
-                                                                            <param id="0" name="Speed">Parameters.Entry(&quot;rocketDefaultProjectileSpeed&quot;)</param>
+                                                                            <param id="0" name="Speed">rocketDefaultProjectileSpeed</param>
                                                                         </action>
                                                                         <action behavior="Bullet" id="3" name="Set angle of motion" type="Rocket">
                                                                             <param id="0" name="Angle">rocket.Angle</param>
                                                                         </action>
                                                                         <action behavior="Bullet" id="1" name="Set acceleration" type="Rocket">
-                                                                            <param id="0" name="Acceleration">Parameters.Entry(&quot;rocketLaunchBoost&quot;)</param>
+                                                                            <param id="0" name="Acceleration">rocketLaunchBoost</param>
                                                                         </action>
                                                                         <action id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">RocketEffects</param>
-                                                                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                                                                            <param id="1" name="Layer">turretLayer</param>
                                                                             <param id="2" name="X">rocket.imagepointX(2)</param>
                                                                             <param id="3" name="Y">rocket.imagepointY(2)</param>
                                                                         </action>
@@ -2596,13 +2317,13 @@
                                                                         <condition id="-7" name="Compare instance variable" type="Cannon">
                                                                             <param id="0" name="Instance variable">activeAmmo</param>
                                                                             <param id="1" name="Comparison">0</param>
-                                                                            <param id="2" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
+                                                                            <param id="2" name="Value">beamAmmoType</param>
                                                                         </condition>
                                                                     </conditions>
                                                                     <actions>
                                                                         <action id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">Beam</param>
-                                                                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                                                                            <param id="1" name="Layer">turretLayer</param>
                                                                             <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                                                             <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                                                         </action>
@@ -2610,7 +2331,7 @@
                                                                             <param id="0" name="Angle">Cannon.Angle</param>
                                                                         </action>
                                                                         <action behavior="Bullet" id="0" name="Set speed" type="Beam">
-                                                                            <param id="0" name="Speed">Parameters.Entry(&quot;beamDefaultProjectileSpeed&quot;)</param>
+                                                                            <param id="0" name="Speed">beamDefaultProjectileSpeed</param>
                                                                         </action>
                                                                         <action id="-10" name="Set value" type="Beam">
                                                                             <param id="0" name="Instance variable">cannonUID</param>
@@ -2738,7 +2459,7 @@
                     <actions>
                         <action id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">health</param>
-                            <param id="1" name="Value">max( 0, minion.health - parameters.at( &quot;beamDamage&quot; ) )</param>
+                            <param id="1" name="Value">max( 0, minion.health - beamDamage )</param>
                         </action>
                         <action id="-9" name="Destroy" type="Beam" />
                     </actions>
@@ -2755,7 +2476,7 @@
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">abs( distance( beam.X, beam.Y, cannon.X, cannon.Y ) )</param>
                             <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Second value">parameters.At( &quot;beamTargetRangeMax&quot; )</param>
+                            <param id="2" name="Second value">beamTargetRangeMax</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2792,7 +2513,7 @@
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">time - Rocket.launchTime</param>
                             <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Second value">parameters.At( &quot;rocketMaxFlightTime&quot; )</param>
+                            <param id="2" name="Second value">rocketMaxFlightTime</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2841,7 +2562,7 @@
                     <actions>
                         <action id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">health</param>
-                            <param id="1" name="Value">max( 0, minion.health - parameters.at( &quot;rocketDamage&quot; ) )</param>
+                            <param id="1" name="Value">max( 0, minion.health - rocketDamage )</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2871,10 +2592,10 @@
                                     <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
                                 </action>
                                 <action behavior="Bullet" id="0" name="Set speed" type="Node">
-                                    <param id="0" name="Speed">parameters.At( &quot;rocketImpactForce&quot; )</param>
+                                    <param id="0" name="Speed">rocketImpactForce</param>
                                 </action>
                                 <action behavior="Bullet" id="1" name="Set acceleration" type="Node">
-                                    <param id="0" name="Acceleration">parameters.At( &quot;rocketImpactForceDecay&quot; )</param>
+                                    <param id="0" name="Acceleration">rocketImpactForceDecay</param>
                                 </action>
                                 <action id="-13" name="Set boolean" type="Node">
                                     <param id="0" name="Instance variable">moving</param>
@@ -2900,7 +2621,7 @@
                         <condition id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">abs( distance( rocket.X, rocket.Y, cannon.X, cannon.Y ) )</param>
                             <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Second value">parameters.At( &quot;rocketTargetRangeMax&quot; )</param>
+                            <param id="2" name="Second value">rocketTargetRangeMax</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2934,7 +2655,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">RocketExplosion</param>
-                            <param id="1" name="Layer">Parameters.at(&quot;turretLayer&quot;)</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">rocket.X</param>
                             <param id="3" name="Y">rocket.Y</param>
                         </action>
@@ -2943,8 +2664,8 @@
                             <param id="1" name="Value">rocket.UID</param>
                         </action>
                         <action id="-7" name="Set size" type="RocketExplosion">
-                            <param id="0" name="Width">parameters.At( &quot;rocketExplosionDiameter&quot; )</param>
-                            <param id="1" name="Height">parameters.At( &quot;rocketExplosionDiameter&quot; )</param>
+                            <param id="0" name="Width">rocketExplosionDiameter</param>
+                            <param id="1" name="Height">rocketExplosionDiameter</param>
                         </action>
                         <action id="-9" name="Destroy" type="Rocket" />
                     </actions>
@@ -2967,7 +2688,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">TurretBase</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
@@ -2977,13 +2698,13 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Cannon</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">TurretBase.X</param>
                             <param id="3" name="Y">TurretBase.Y</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">activeAmmo</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;rocketAmmoType&quot;)</param>
+                            <param id="1" name="Value">rocketAmmoType</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">baseUID</param>
@@ -3005,7 +2726,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">TurretBase</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
@@ -3015,13 +2736,13 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Cannon</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;turretLayer&quot;)</param>
+                            <param id="1" name="Layer">turretLayer</param>
                             <param id="2" name="X">TurretBase.X</param>
                             <param id="3" name="Y">TurretBase.Y</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">activeAmmo</param>
-                            <param id="1" name="Value">Parameters.Entry(&quot;beamAmmoType&quot;)</param>
+                            <param id="1" name="Value">beamAmmoType</param>
                         </action>
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">baseUID</param>
@@ -3047,7 +2768,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">BarrierWall</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                            <param id="1" name="Layer">defaultLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
@@ -3071,7 +2792,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">BarrierWall</param>
-                            <param id="1" name="Layer">Parameters.Entry(&quot;defaultLayer&quot;)</param>
+                            <param id="1" name="Layer">defaultLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
