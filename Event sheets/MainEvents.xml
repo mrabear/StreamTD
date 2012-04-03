@@ -130,7 +130,7 @@
             </sub-events>
         </event-group>
         <event-group description="A grid that objects snap to" title="Grid" />
-        <event-group collapsed="1" description="Flow objects direct minions around the map" title="Flow">
+        <event-group description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -214,7 +214,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Create a new generator</comment>
                 <event-block>
@@ -478,7 +478,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Fade the minion trail out over time</comment>
                 <event-block>
@@ -572,13 +572,163 @@
                             <param id="0" name="Object">Redirect</param>
                             <param id="1" name="Image point (optional)">0</param>
                         </action>
-                        <action id="-8" name="Set angle" type="Minion">
+                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
                             <param id="0" name="Angle">redirect.Angle</param>
                         </action>
-                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
-                            <param id="0" name="Angle">minion.Angle</param>
-                        </action>
                     </actions>
+                </event-block>
+                <variable comment="The two colors of the minions that collided" name="colorCombo" type="text"></variable>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Minion">
+                            <param id="0" name="Object">Minion</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" type="System">
+                                    <param id="0" name="Object">Minion</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">colorCombo</param>
+                                    <param id="1" name="Value">minion.AnimationName</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" type="System">
+                                    <param id="0" name="Object">Minion</param>
+                                    <param id="1" name="Instance">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">colorCombo</param>
+                                    <param id="1" name="Value">colorCombo &amp; &quot;#&quot; &amp; minion.AnimationName</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">tokenat( colorCombo, 0, &quot;#&quot; )</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">tokenat( colorCombo, 1, &quot;#&quot; )</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Minion" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">find( colorCombo, &quot;red&quot; )</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( colorCombo, &quot;blue&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">colorCombo</param>
+                                            <param id="1" name="Value">&quot;purple&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( colorCombo, &quot;yellow&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">colorCombo</param>
+                                            <param id="1" name="Value">&quot;orange&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">find( colorCombo, &quot;blue&quot; )</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">find( colorCombo, &quot;yellow&quot; )</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">colorCombo</param>
+                                    <param id="1" name="Value">&quot;green&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">find(colorCombo, &quot;#&quot;)</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">colorCombo</param>
+                                    <param id="1" name="Value">&quot;grey&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" type="System">
+                                    <param id="0" name="Object">Minion</param>
+                                    <param id="1" name="Instance">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Minion">
+                                    <param id="0" name="Animation">colorCombo</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" type="System">
+                                    <param id="0" name="Object">Minion</param>
+                                    <param id="1" name="Instance">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Minion" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
