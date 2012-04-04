@@ -10,7 +10,7 @@
         <horizontal>500</horizontal>
         <vertical>500</vertical>
     </margins>
-    <unbounded-scrolling>1</unbounded-scrolling>
+    <unbounded-scrolling>0</unbounded-scrolling>
     <layers>
         <layer name="Background">
             <initially-visible>1</initially-visible>
@@ -751,6 +751,7 @@
                         <lastSpawn>0</lastSpawn>
                         <minionType>&quot;&quot;</minionType>
                         <selected>false</selected>
+                        <color></color>
                     </instance-variables>
                     <world>
                         <x>-255</x>
@@ -1019,6 +1020,8 @@
                     </properties>
                     <instance-variables>
                         <updateActiveHUDObject>false</updateActiveHUDObject>
+                        <updated>false</updated>
+                        <colorsConnected></colorsConnected>
                     </instance-variables>
                     <world>
                         <x>187</x>
@@ -1054,6 +1057,29 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Stream">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <sourceUID>0</sourceUID>
+                        <fullyConnected>false</fullyConnected>
+                    </instance-variables>
+                    <world>
+                        <x>-87</x>
+                        <y>336</y>
+                        <z>0</z>
+                        <width>1</width>
+                        <height>13</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0.538461566</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

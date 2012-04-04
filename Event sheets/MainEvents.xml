@@ -130,6 +130,174 @@
             </sub-events>
         </event-group>
         <event-group description="A grid that objects snap to" title="Grid" />
+        <event-group description="A stream that flows out from a generator" title="Stream">
+            <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Stream">
+                            <param id="0" name="Instance variable">fullyConnected</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" type="Stream">
+                            <param id="0" name="Instance variable">fullyConnected</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable comment="The two colors of the minions that collided" name="colorCombo" type="text"></variable>
+                        <event-block>
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" type="Stream">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block collapsed="1" disabled="1">
+                                    <conditions />
+                                    <actions />
+                                    <sub-events>
+                                        <event-block disabled="1">
+                                            <conditions>
+                                                <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">find( colorCombo, &quot;red&quot; )</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                                            <param id="0" name="First value">find( colorCombo, &quot;blue&quot; )</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Second value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">colorCombo</param>
+                                                            <param id="1" name="Value">&quot;purple&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                                            <param id="0" name="First value">find( colorCombo, &quot;yellow&quot; )</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Second value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">colorCombo</param>
+                                                            <param id="1" name="Value">&quot;orange&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block disabled="1">
+                                            <conditions>
+                                                <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">find( colorCombo, &quot;blue&quot; )</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                                <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">find( colorCombo, &quot;yellow&quot; )</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action disabled="1" id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">colorCombo</param>
+                                                    <param id="1" name="Value">&quot;green&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block disabled="1">
+                                            <conditions>
+                                                <condition disabled="1" id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">find(colorCombo, &quot;#&quot;)</param>
+                                                    <param id="1" name="Comparison">4</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action disabled="1" id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">colorCombo</param>
+                                                    <param id="1" name="Value">&quot;grey&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block disabled="1">
+                                    <conditions />
+                                    <actions>
+                                        <action disabled="1" id="4" name="Set animation" type="Stream">
+                                            <param id="0" name="Animation">colorCombo</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-5" name="Set width" type="Stream">
+                                    <param id="0" name="Width">max( WindowHeight, WindowWidth )</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" type="Stream">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">flow.UID</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Second value">stream.sourceUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-5" name="Set width" type="Stream">
+                                    <param id="0" name="Width">distance( stream.X, stream.Y, flow.X, flow.Y )</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">flow.colorsConnected &amp; &quot;#&quot; &amp; stream.AnimationName</param>
+                                </action>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Stream</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">flow.X</param>
+                                    <param id="3" name="Y">flow.Y</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Stream">
+                                    <param id="0" name="Instance variable">sourceUID</param>
+                                    <param id="1" name="Value">flow.UID</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Stream">
+                                    <param id="0" name="Angle">flow.Angle</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions />
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
                 <event-block>
@@ -161,6 +329,10 @@
                         <action behavior="Pin" id="0" name="Pin to object" type="flowAnchor">
                             <param id="0" name="Pin to">Redirect</param>
                         </action>
+                        <action id="-13" name="Set boolean" type="Flow">
+                            <param id="0" name="Instance variable">updated</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block>
@@ -175,11 +347,15 @@
                         <action id="-18" name="Rotate clockwise" type="Redirect">
                             <param id="0" name="Degrees">90</param>
                         </action>
+                        <action id="-13" name="Set boolean" type="Flow">
+                            <param id="0" name="Instance variable">updated</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <event-block>
                     <conditions>
@@ -336,6 +512,10 @@
                                             <param id="0" name="Instance variable">active</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
+                                        <action id="-13" name="Set boolean" type="Flow">
+                                            <param id="0" name="Instance variable">updated</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
                                         <action id="4" name="Set animation" type="Minion">
                                             <param id="0" name="Animation">&quot;disabled&quot;</param>
                                             <param id="1" name="From">1</param>
@@ -395,6 +575,10 @@
                             <param id="0" name="Instance variable">active</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                        <action id="-13" name="Set boolean" type="Flow">
+                            <param id="0" name="Instance variable">updated</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <comment>Once the spawn point has closed, draw it into the generator</comment>
@@ -412,69 +596,120 @@
                     </actions>
                 </event-block>
                 <comment>Spawn minions from each of the generators</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-11" name="For Each" type="System">
+                        <condition disabled="1" id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Generator</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Generator">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" type="System">
+                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">time - generator.spawnRate</param>
                             <param id="1" name="Comparison">5</param>
                             <param id="2" name="Second value">generator.lastSpawn</param>
                         </condition>
-                        <condition id="2" inverted="1" name="Is playing" type="Generator">
+                        <condition disabled="1" id="2" inverted="1" name="Is playing" type="Generator">
                             <param id="0" name="Animation">&quot;Activate&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-10" name="Set value" type="Generator">
+                        <action disabled="1" id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">lastSpawn</param>
                             <param id="1" name="Value">time</param>
                         </action>
-                        <action id="-3" name="Create object" type="System">
+                        <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
                             <param id="1" name="Layer">activeLayer</param>
                             <param id="2" name="X">generator.ImagePointX( 1 )</param>
                             <param id="3" name="Y">generator.Y</param>
                         </action>
-                        <action id="4" name="Set animation" type="Minion">
+                        <action disabled="1" id="4" name="Set animation" type="Minion">
                             <param id="0" name="Animation">generator.minionType</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action behavior="CustomMovement" id="2" name="Set speed" type="Minion">
+                        <action behavior="CustomMovement" disabled="1" id="2" name="Set speed" type="Minion">
                             <param id="0" name="Which">0</param>
                             <param id="1" name="Speed">minionDefaultSpeed</param>
                         </action>
-                        <action id="-24" name="Move to top" type="Minion" />
-                        <action id="3" name="Start" type="Minion">
+                        <action disabled="1" id="-24" name="Move to top" type="Minion" />
+                        <action disabled="1" id="3" name="Start" type="Minion">
                             <param id="0" name="From">0</param>
                         </action>
-                        <action id="-8" name="Set angle" type="Minion">
+                        <action disabled="1" id="-8" name="Set angle" type="Minion">
                             <param id="0" name="Angle">0</param>
                         </action>
-                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                        <action behavior="CustomMovement" disabled="1" id="6" name="Set angle of motion" type="Minion">
                             <param id="0" name="Angle">Minion.Angle</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">baseUID</param>
                             <param id="1" name="Value">generator.UID</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">maxHealth</param>
                             <param id="1" name="Value">minionDefaultHealth</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">minion.maxHealth</param>
                         </action>
                     </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                            <param id="0" name="Instance variable">updated</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Stream" />
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Flow">
+                                    <param id="0" name="Instance variable">updated</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Generator</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                                    <param id="0" name="Instance variable">active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Stream</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">generator.ImagePointX( 1 )</param>
+                                    <param id="3" name="Y">generator.Y</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Stream">
+                                    <param id="0" name="Animation">generator.minionType</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>

@@ -5,24 +5,24 @@
     <version>1.0</version>
     <author></author>
     <unique-id>3lwefwx8ssrq4</unique-id>
-    <saved-with-version>8400</saved-with-version>
+    <saved-with-version>8500</saved-with-version>
     <used-plugins>
         <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Text" version="1">Text</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Particles" version="1">Particles</plugin>
-        <plugin id="Rex_Branch" version="1">Branch</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
+        <plugin id="Text" version="1">Text</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Particles" version="1">Particles</plugin>
     </used-plugins>
     <used-behaviors>
+        <behavior id="Rotate" version="1">Rotate</behavior>
         <behavior id="Bullet" version="1">Bullet</behavior>
         <behavior id="DragnDrop" version="1">Drag &amp; Drop</behavior>
         <behavior id="Fade" version="1">Fade</behavior>
         <behavior id="Pin" version="1">Pin</behavior>
-        <behavior id="Rotate" version="1">Rotate</behavior>
         <behavior id="bound" version="1">Bound to layout</behavior>
         <behavior id="custom" version="1">Custom Movement</behavior>
         <behavior id="destroy" version="1">Destroy outside layout</behavior>
@@ -111,7 +111,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Path">
+        <object-folder expanded="0" name="Path">
             <object-type name="Bar">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -196,7 +196,7 @@
                 </instance-variables>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Rocket">
+        <object-folder expanded="0" name="Rocket">
             <object-type name="Rocket">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -418,7 +418,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Cannon">
+        <object-folder expanded="0" name="Cannon">
             <object-type name="Cannon">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -596,75 +596,83 @@
                     <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
                     <instance-variable comment="the type of minion that this generator is spawning" name="minionType" type="string" />
                     <instance-variable name="selected" type="boolean" />
+                    <instance-variable comment="the current color of the generator" name="color" type="string" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="8" loop="0" name="Deactivate" pingpong="0" repeatcount="0" repeatto="0" speed="12">
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                     </animation>
                     <animation framecount="8" loop="0" name="Activate" pingpong="0" repeatcount="0" repeatto="0" speed="12">
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                     </animation>
                     <animation framecount="5" loop="0" name="Spawning" pingpong="0" repeatcount="0" repeatto="0" speed="15">
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                     </animation>
                     <animation framecount="1" loop="0" name="Neutral" pingpong="0" repeatcount="1" repeatto="0" speed="5">
@@ -683,20 +691,20 @@
                     </animation>
                     <animation framecount="5" loop="0" name="SpawnClose" pingpong="0" repeatcount="0" repeatto="0" speed="15">
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
                             <image-point name="Imagepoint 1" x="0.507937" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.857143" y="0.509804" />
+                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
                         </frame>
                     </animation>
                 </animation-folder>
@@ -923,7 +931,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Health Bar">
+        <object-folder expanded="0" name="Health Bar">
             <object-type name="HealthBorder">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -1115,6 +1123,58 @@
                 </animation-folder>
             </object-type>
         </object-folder>
+        <object-folder expanded="1" name="Stream">
+            <object-type name="Stream">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the uid of the flow element that this stream flows from" name="sourceUID" type="number" />
+                    <instance-variable comment="is the stream fully connected" name="fullyConnected" type="boolean" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="3" loop="1" name="blue" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    </animation>
+                    <animation framecount="3" loop="1" name="red" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    </animation>
+                    <animation framecount="3" loop="1" name="yellow" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    </animation>
+                    <animation framecount="3" loop="1" name="orange" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    </animation>
+                    <animation framecount="3" loop="1" name="purple" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    </animation>
+                    <animation framecount="3" loop="1" name="green" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="grey" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <collision-poly>
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="1" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
     </object-folder>
     <families>
         <family name="HUDobject" plugin-id="Sprite">
@@ -1130,6 +1190,10 @@
             <members>
                 <member>Redirect</member>
             </members>
+            <instance-variables>
+                <instance-variable comment="has the flow control element been modified" name="updated" type="boolean" />
+                <instance-variable comment="the # seperated list of colors connected to this flow node" name="colorsConnected" type="string" />
+            </instance-variables>
         </family>
     </families>
     <layout-folder expanded="1">
