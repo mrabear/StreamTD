@@ -133,6 +133,8 @@
         <event-group description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <variable comment="The two colors of the minions that collided" name="color" type="text"></variable>
+                <variable comment="how far is the flow object from the stream?" name="minDistanceFromStream" type="number">0</variable>
+                <variable comment="the UID of the closest flow object" name="closestFlowUID" type="number">0</variable>
                 <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
@@ -158,6 +160,10 @@
                         <action id="-5" name="Set width" type="Stream">
                             <param id="0" name="Width">max( WindowHeight, WindowWidth )</param>
                         </action>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">minDistanceFromStream</param>
+                            <param id="1" name="Value">max( WindowHeight, WindowWidth )</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -169,6 +175,53 @@
                                     <param id="0" name="First value">flow.UID</param>
                                     <param id="1" name="Comparison">1</param>
                                     <param id="2" name="Second value">stream.sourceUID</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-11" name="For Each" type="System">
+                                            <param id="0" name="Object">Flow</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">distance( stream.X, stream.Y, flow.X, flow.Y )</param>
+                                                    <param id="1" name="Comparison">2</param>
+                                                    <param id="2" name="Second value">minDistanceFromStream</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">debugMsg</param>
+                                                    <param id="1" name="Value">debugMsg &amp; &quot;prev min: &quot; &amp; minDistanceFromStream</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">minDistanceFromStream</param>
+                                                    <param id="1" name="Value">distance( stream.X, stream.Y, flow.X, flow.Y )</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">debugMsg</param>
+                                                    <param id="1" name="Value">debugMsg &amp; &quot;cur min: &quot; &amp; minDistanceFromStream &amp; newline</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">closestFlowUID</param>
+                                                    <param id="1" name="Value">flow.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">closestFlowUID</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -219,7 +272,8 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block>
+                        <comment>Figure out what color to set the outgoing stream to</comment>
+                        <event-block collapsed="1">
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" type="Flow">
                                     <param id="0" name="Unique ID">stream.sourceUID</param>
@@ -232,6 +286,51 @@
                                 </action>
                             </actions>
                             <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;purple&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">color</param>
+                                            <param id="1" name="Value">&quot;purple&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;orange&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">color</param>
+                                            <param id="1" name="Value">&quot;orange&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;green&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">color</param>
+                                            <param id="1" name="Value">&quot;green&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <event-block>
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
@@ -366,6 +465,74 @@
         </event-group>
         <event-group description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                            <param id="0" name="Instance variable">updated</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" type="System">
+                            <param id="0" name="Variable">debugMsg</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Stream</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Stream" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Flow">
+                                    <param id="0" name="Instance variable">updated</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">streamOutUID</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Generator</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Generator">
+                                    <param id="0" name="Instance variable">active</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Stream</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">generator.ImagePointX( 1 )</param>
+                                    <param id="3" name="Y">generator.Y</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Stream">
+                                    <param id="0" name="Animation">generator.color</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
                 <event-block>
@@ -381,11 +548,11 @@
                     <actions>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">gridX</param>
-                            <param id="1" name="Value">round( mouse.X / gridScale ) * gridScale</param>
+                            <param id="1" name="Value">floor( mouse.X / gridScale ) * gridScale + ( gridScale / 2 )</param>
                         </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">gridY</param>
-                            <param id="1" name="Value">round( mouse.Y / gridScale ) * gridScale</param>
+                            <param id="1" name="Value">floor( mouse.Y / gridScale ) * gridScale + ( gridScale / 2 )</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -448,6 +615,38 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">46 (Delete)</param>
+                        </condition>
+                        <condition id="-14" name="Pick by unique ID" type="HUDobject">
+                            <param id="0" name="Unique ID">hud.selectionUID</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="HUDobject" />
+                        <action id="-10" name="Set value" type="HUD">
+                            <param id="0" name="Instance variable">selectionUID</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Flow">
+                                    <param id="0" name="Instance variable">updated</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
@@ -466,6 +665,17 @@
                             <param id="0" name="Instance variable">selectionUID</param>
                             <param id="1" name="Value">HUDobject.UID</param>
                         </action>
+                        <action id="-3" name="Set position" type="selectionBox">
+                            <param id="0" name="X">HUDobject.X</param>
+                            <param id="1" name="Y">HUDobject.Y</param>
+                        </action>
+                        <action id="-7" name="Set size" type="selectionBox">
+                            <param id="0" name="Width">gridScale</param>
+                            <param id="1" name="Height">gridScale</param>
+                        </action>
+                        <action id="-15" name="Set visible" type="selectionBox">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
                     </actions>
                     <sub-events>
                         <event-block>
@@ -481,12 +691,89 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Generator">
+                                    <param id="0" name="Unique ID">HUD.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="attributes">
+                                    <param id="0" name="Text">&quot;Active: &quot; &amp; generator.active &amp; newline &amp; &quot;Color:&quot; &amp; generator.color</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">HUD.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" type="attributes">
+                                    <param id="0" name="Text">&quot;Color:&quot; &amp; newline &amp; flow.colorsConnected</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On click" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                            <param id="1" name="Click type">0</param>
+                        </condition>
+                        <condition id="7" inverted="1" name="Cursor is over object" type="Mouse">
+                            <param id="0" name="Object">HUDobject</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="HUD">
+                            <param id="0" name="Instance variable">selectionUID</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" type="HUD">
+                            <param id="0" name="Instance variable">selectionUID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" type="selectionBox">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="0" name="Set text" type="currentlySelected">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" type="attributes">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
         <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
+                <event-block>
+                    <conditions>
+                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="GeneratorLabel" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="GeneratorLabel" />
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="gridBlock" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="gridBlock" />
+                    </actions>
+                </event-block>
                 <comment>Create a new generator</comment>
                 <event-block>
                     <conditions>
@@ -502,50 +789,37 @@
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Generator</param>
                             <param id="1" name="Layer">activeLayer</param>
-                            <param id="2" name="X">round( mouse.X / gridScale ) * gridScale</param>
-                            <param id="3" name="Y">round( mouse.Y / gridScale ) * gridScale</param>
+                            <param id="2" name="X">( floor( mouse.X / gridScale ) * gridScale ) + gridScale / 2</param>
+                            <param id="3" name="Y">( floor( mouse.Y / gridScale ) * gridScale ) + gridScale / 2</param>
                         </action>
                         <action id="-10" name="Set value" type="Generator">
-                            <param id="0" name="Instance variable">minionType</param>
+                            <param id="0" name="Instance variable">color</param>
                             <param id="1" name="Value">tokenat(minionDefaultTypes, random( 0, tokencount(minionDefaultTypes, &quot;#&quot;)), &quot;#&quot;)</param>
                         </action>
+                        <action id="-7" name="Set size" type="Generator">
+                            <param id="0" name="Width">31</param>
+                            <param id="1" name="Height">25</param>
+                        </action>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Minion</param>
+                            <param id="0" name="Object to create">GeneratorLabel</param>
                             <param id="1" name="Layer">activeLayer</param>
                             <param id="2" name="X">generator.X</param>
                             <param id="3" name="Y">generator.Y</param>
                         </action>
-                        <action id="4" name="Set animation" type="Minion">
+                        <action id="4" name="Set animation" type="GeneratorLabel">
                             <param id="0" name="Animation">&quot;disabled&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
-                            <param id="0" name="Instance variable">active</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="Minion">
+                        <action behavior="Pin" id="0" name="Pin to object" type="GeneratorLabel">
                             <param id="0" name="Pin to">Generator</param>
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">labelUID</param>
-                            <param id="1" name="Value">Minion.UID</param>
+                            <param id="1" name="Value">GeneratorLabel.UID</param>
                         </action>
                         <action id="-10" name="Set value" type="Generator">
                             <param id="0" name="Instance variable">spawnRate</param>
                             <param id="1" name="Value">generatorSpawnRate</param>
-                        </action>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">gridBlock</param>
-                            <param id="1" name="Layer">defaultLayer</param>
-                            <param id="2" name="X">generator.X</param>
-                            <param id="3" name="Y">generator.Y</param>
-                        </action>
-                        <action id="-7" name="Set size" type="gridBlock">
-                            <param id="0" name="Width">(gridScale * 2) - gridLineWidth * 2</param>
-                            <param id="1" name="Height">(gridScale * 2) - gridLineWidth * 2</param>
-                        </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="gridBlock">
-                            <param id="0" name="Pin to">Generator</param>
                         </action>
                     </actions>
                 </event-block>
@@ -571,7 +845,7 @@
                         <comment>Grab the active label on the generator</comment>
                         <event-block>
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Minion">
+                                <condition id="-14" name="Pick by unique ID" type="GeneratorLabel">
                                     <param id="0" name="Unique ID">generator.labelUID</param>
                                 </condition>
                             </conditions>
@@ -589,8 +863,8 @@
                                             <param id="0" name="Animation">&quot;Activate&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="Minion">
-                                            <param id="0" name="Animation">generator.minionType</param>
+                                        <action id="4" name="Set animation" type="GeneratorLabel">
+                                            <param id="0" name="Animation">generator.color</param>
                                             <param id="1" name="From">1</param>
                                         </action>
                                     </actions>
@@ -611,7 +885,7 @@
                                             <param id="0" name="Instance variable">updated</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="Minion">
+                                        <action id="4" name="Set animation" type="GeneratorLabel">
                                             <param id="0" name="Animation">&quot;disabled&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
@@ -631,10 +905,7 @@
                         <condition id="6" name="On object clicked" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                             <param id="1" name="Click type">0</param>
-                            <param id="2" name="Object clicked">Generator</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="HUDobject">
-                            <param id="0" name="Unique ID">generator.UID</param>
+                            <param id="2" name="Object clicked">HUDobject</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -720,7 +991,7 @@
                             <param id="3" name="Y">generator.Y</param>
                         </action>
                         <action disabled="1" id="4" name="Set animation" type="Minion">
-                            <param id="0" name="Animation">generator.minionType</param>
+                            <param id="0" name="Animation">generator.color</param>
                             <param id="1" name="From">1</param>
                         </action>
                         <action behavior="CustomMovement" disabled="1" id="2" name="Set speed" type="Minion">
@@ -754,65 +1025,6 @@
                             <param id="1" name="Value">minion.maxHealth</param>
                         </action>
                     </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
-                            <param id="0" name="Instance variable">updated</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Stream" />
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">&quot;&quot;</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <event-block>
-                            <conditions>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-13" name="Set boolean" type="Flow">
-                                    <param id="0" name="Instance variable">updated</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Flow">
-                                    <param id="0" name="Instance variable">colorsConnected</param>
-                                    <param id="1" name="Value">&quot;&quot;</param>
-                                </action>
-                                <action id="-10" name="Set value" type="Flow">
-                                    <param id="0" name="Instance variable">streamOutUID</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block>
-                            <conditions>
-                                <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Generator</param>
-                                </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Generator">
-                                    <param id="0" name="Instance variable">active</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" type="System">
-                                    <param id="0" name="Object to create">Stream</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
-                                    <param id="2" name="X">generator.ImagePointX( 1 )</param>
-                                    <param id="3" name="Y">generator.Y</param>
-                                </action>
-                                <action id="4" name="Set animation" type="Stream">
-                                    <param id="0" name="Animation">generator.minionType</param>
-                                    <param id="1" name="From">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>

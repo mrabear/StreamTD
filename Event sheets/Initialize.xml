@@ -110,20 +110,20 @@
                                     <conditions />
                                     <actions>
                                         <action id="-3" name="Create object" type="System">
-                                            <param id="0" name="Object to create">gridBlock</param>
-                                            <param id="1" name="Layer">defaultLayer</param>
+                                            <param id="0" name="Object to create">HUDbackground</param>
+                                            <param id="1" name="Layer">HUDLayer</param>
                                             <param id="2" name="X">0</param>
                                             <param id="3" name="Y">HUD.Y - ( gridScale - ( HUD.Height % gridScale ) - gridLineWidth )</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="gridBlock">
+                                        <action id="4" name="Set animation" type="HUDbackground">
                                             <param id="0" name="Animation">&quot;TopLeft&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
-                                        <action id="-7" name="Set size" type="gridBlock">
+                                        <action id="-7" name="Set size" type="HUDbackground">
                                             <param id="0" name="Width">HUD.Width</param>
                                             <param id="1" name="Height">gridBlock.Y - gridLineWidth</param>
                                         </action>
-                                        <action id="-24" name="Move to top" type="gridBlock" />
+                                        <action id="-25" name="Move to bottom" type="HUDbackground" />
                                     </actions>
                                 </event-block>
                                 <event-block>
