@@ -7,15 +7,15 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8500</saved-with-version>
     <used-plugins>
-        <plugin id="Text" version="1">Text</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="Keyboard" version="1">Keyboard</plugin>
         <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
         <plugin id="Rex_Branch" version="1">Branch</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Text" version="1">Text</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -1060,7 +1060,7 @@
                 </instance-variables>
                 <texture />
             </object-type>
-            <object-type name="currentlySelected">
+            <object-type name="HUDcurrentlySelected">
                 <plugin id="Text" />
             </object-type>
             <object-type name="HUDbackground">
@@ -1083,14 +1083,14 @@
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.518519" hotspotY="0.518519" />
+                        <frame duration="1" hotspotX="0.525" hotspotY="0.525" />
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="attributes">
+            <object-type name="HUDattributes">
                 <plugin id="Text" />
             </object-type>
-            <object-type name="textBackground">
+            <object-type name="HUDtextBackground">
                 <plugin id="Sprite" />
                 <behaviors>
                     <behavior-type name="Pin">
@@ -1189,10 +1189,12 @@
                 <instance-variables>
                     <instance-variable comment="the uid of the flow element that this stream flows from" name="sourceUID" type="number" />
                     <instance-variable comment="is the stream fully connected" name="fullyConnected" type="boolean" />
+                    <instance-variable comment="has the color been updated?" name="updateColor" type="boolean" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="grey" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
                             <collision-poly>
                                 <point x="0" y="0" />
                                 <point x="1" y="0" />
@@ -1202,35 +1204,35 @@
                             </collision-poly>
                         </frame>
                     </animation>
-                    <animation framecount="3" loop="1" name="blue" pingpong="1" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    <animation framecount="1" loop="1" name="blue" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                        </frame>
                     </animation>
-                    <animation framecount="3" loop="1" name="red" pingpong="1" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    <animation framecount="1" loop="1" name="red" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                        </frame>
                     </animation>
-                    <animation framecount="3" loop="1" name="yellow" pingpong="1" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    <animation framecount="1" loop="1" name="yellow" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                        </frame>
                     </animation>
-                    <animation framecount="3" loop="1" name="orange" pingpong="1" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    <animation framecount="1" loop="1" name="orange" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                        </frame>
                     </animation>
-                    <animation framecount="3" loop="1" name="purple" pingpong="1" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    <animation framecount="1" loop="1" name="purple" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                        </frame>
                     </animation>
-                    <animation framecount="3" loop="1" name="green" pingpong="1" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
-                        <frame duration="1" hotspotX="0" hotspotY="0.538462" />
+                    <animation framecount="1" loop="1" name="green" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.538462">
+                            <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
