@@ -600,112 +600,86 @@
                     <instance-variable name="selected" type="boolean" />
                 </instance-variables>
                 <animation-folder expanded="1">
-                    <animation framecount="8" loop="0" name="Deactivate" pingpong="0" repeatcount="0" repeatto="0" speed="12">
+                    <animation framecount="13" loop="0" name="Deactivate" pingpong="0" repeatcount="0" repeatto="0" speed="12">
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.857143" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
-                        </frame>
-                    </animation>
-                    <animation framecount="8" loop="0" name="Activate" pingpong="0" repeatcount="0" repeatto="0" speed="12">
-                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
-                        </frame>
-                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
-                        </frame>
-                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.809524" y="0.509804" />
                         </frame>
                     </animation>
-                    <animation framecount="5" loop="0" name="Spawning" pingpong="0" repeatcount="0" repeatto="0" speed="15">
+                    <animation framecount="13" loop="0" name="Activate" pingpong="0" repeatcount="0" repeatto="0" speed="12">
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
-                        </frame>
-                    </animation>
-                    <animation framecount="1" loop="0" name="Neutral" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <collision-poly>
-                                <point x="0.126984" y="0.156863" />
-                                <point x="0.492063" y="0.0392157" />
-                                <point x="0.761905" y="0.294118" />
-                                <point x="1" y="0.490196" />
-                                <point x="0.761905" y="0.705882" />
-                                <point x="0.492063" y="0.980392" />
-                                <point x="0.126984" y="0.843137" />
-                                <point x="0.015873" y="0.490196" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                    <animation framecount="5" loop="0" name="SpawnClose" pingpong="0" repeatcount="0" repeatto="0" speed="15">
-                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                         <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
-                            <image-point name="Imagepoint 1" x="0.507937" y="0.509804" />
-                            <image-point name="Spawn Point" x="0.793651" y="0.509804" />
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.412698" hotspotY="0.509804">
+                            <image-point name="Imagepoint 1" x="0.825397" y="0.509804" />
                         </frame>
                     </animation>
                 </animation-folder>

@@ -1238,13 +1238,16 @@
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
+                                <action id="5" name="Set frame" type="Generator">
+                                    <param id="0" name="Frame number">Generator.AnimationFrameCount</param>
+                                </action>
                                 <action id="-10" name="Set value" type="Generator">
                                     <param id="0" name="Instance variable">color</param>
                                     <param id="1" name="Value">tokenat(minionDefaultTypes, random( 0, tokencount(minionDefaultTypes, &quot;#&quot;)), &quot;#&quot;)</param>
                                 </action>
                                 <action id="-7" name="Set size" type="Generator">
-                                    <param id="0" name="Width">31</param>
-                                    <param id="1" name="Height">25</param>
+                                    <param id="0" name="Width">38</param>
+                                    <param id="1" name="Height">31</param>
                                 </action>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">GeneratorLabel</param>
@@ -1253,8 +1256,8 @@
                                     <param id="3" name="Y">generator.Y</param>
                                 </action>
                                 <action id="-7" name="Set size" type="GeneratorLabel">
-                                    <param id="0" name="Width">15</param>
-                                    <param id="1" name="Height">15</param>
+                                    <param id="0" name="Width">20</param>
+                                    <param id="1" name="Height">20</param>
                                 </action>
                                 <action id="4" name="Set animation" type="GeneratorLabel">
                                     <param id="0" name="Animation">&quot;disabled&quot;</param>
@@ -1294,6 +1297,7 @@
                     </actions>
                     <sub-events>
                         <comment>Grab the active label on the generator</comment>
+                        <variable name="generatorToggled" type="number">0</variable>
                         <event-block>
                             <conditions>
                                 <condition id="-14" name="Pick by unique ID" type="GeneratorLabel">
@@ -1305,8 +1309,8 @@
                                 <comment>Activate the generator</comment>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Generator">
-                                            <param id="0" name="Instance variable">active</param>
+                                        <condition id="2" name="Is playing" type="Generator">
+                                            <param id="0" name="Animation">&quot;Deactivate&quot;</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -1318,13 +1322,19 @@
                                             <param id="0" name="Animation">generator.color</param>
                                             <param id="1" name="From">1</param>
                                         </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">generatorToggled</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                                 <comment>Shut the generator down</comment>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Generator">
-                                            <param id="0" name="Instance variable">active</param>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">generatorToggled</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -1337,7 +1347,7 @@
                                             <param id="1" name="From">1</param>
                                         </action>
                                         <action id="4" name="Set animation" type="Generator">
-                                            <param id="0" name="Animation">&quot;SpawnClose&quot;</param>
+                                            <param id="0" name="Animation">&quot;Deactivate&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
                                         <action id="7" name="Execute commands" type="f">
@@ -1357,40 +1367,12 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="4" name="Set animation" type="Generator">
-                            <param id="0" name="Animation">&quot;Spawning&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Activate the generator once the spawn point has fully opened</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="4" name="On finished" type="Generator">
-                            <param id="0" name="Animation">&quot;Spawning&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
                         <action id="-13" name="Set boolean" type="Generator">
                             <param id="0" name="Instance variable">active</param>
                             <param id="1" name="Value">1</param>
                         </action>
                         <action id="7" name="Execute commands" type="f">
                             <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Once the spawn point has closed, draw it into the generator</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="4" name="On finished" type="Generator">
-                            <param id="0" name="Animation">&quot;SpawnClose&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Generator">
-                            <param id="0" name="Animation">&quot;Deactivate&quot;</param>
-                            <param id="1" name="From">1</param>
                         </action>
                     </actions>
                 </event-block>
