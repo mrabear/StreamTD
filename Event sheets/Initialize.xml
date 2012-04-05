@@ -64,6 +64,15 @@
         <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
         <comment>HUD parameters</comment>
         <variable comment="The height (in px) of the HUD" name="HUDheight" type="number">65</variable>
+        <comment>Funcation name mappings</comment>
+        <variable comment="( ) Deletes all streams and rebuilds them from scratch" name="fnResetStream" type="text">resetStream</variable>
+        <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>
+        <variable comment="( ) hide all visual elements of the HUD" name="fnResetHUDDisplay" type="text">resetHUDDisplay</variable>
+        <variable comment="(streamUID) Extend a stingle stream out to the closest flow object" name="fnUpdateStream" type="text">updateStream</variable>
+        <variable comment="(layoutCoord) returns a coordinate value rounded to the nearest grid square center" name="fnGetGridCoordinate" type="text">getGridCoordinate</variable>
+        <variable comment="(UID) update the currently selected object in the HUD" name="fnUpdateHUDSelection" type="text">updateHUDSelection</variable>
+        <variable comment="(x,y) return UID of object at location, else 0" name="fnGridOjbectAt" type="text">gridObjectAt</variable>
+        <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <comment></comment>
         <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
@@ -126,9 +135,71 @@
                                         <action id="-25" name="Move to bottom" type="HUDbackground" />
                                     </actions>
                                 </event-block>
+                                <comment>Setup the color options in the bottom of the HUD</comment>
                                 <event-block>
                                     <conditions />
-                                    <actions />
+                                    <actions>
+                                        <action id="-13" name="Set boolean" type="GeneratorLabel">
+                                            <param id="0" name="Instance variable">HUDobject</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-15" name="Set visible" type="GeneratorLabel">
+                                            <param id="0" name="Visibility">0</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-13" name="Pick nth instance" type="System">
+                                                    <param id="0" name="Object">GeneratorLabel</param>
+                                                    <param id="1" name="Instance">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" type="GeneratorLabel">
+                                                    <param id="0" name="Animation">&quot;blue&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-13" name="Pick nth instance" type="System">
+                                                    <param id="0" name="Object">GeneratorLabel</param>
+                                                    <param id="1" name="Instance">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" type="GeneratorLabel">
+                                                    <param id="0" name="Animation">&quot;red&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-13" name="Pick nth instance" type="System">
+                                                    <param id="0" name="Object">GeneratorLabel</param>
+                                                    <param id="1" name="Instance">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" type="GeneratorLabel">
+                                                    <param id="0" name="Animation">&quot;yellow&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <comment>Initialize the HUD</comment>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="7" name="Execute commands" type="f">
+                                            <param id="0" name="Commands">fnResetHUD</param>
+                                        </action>
+                                    </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
