@@ -1030,6 +1030,16 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="overlapTester">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="grey" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0" hotspotY="0.6">
+                            <image-point name="Imagepoint 1" x="1" y="0.6" />
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-folder expanded="1" name="HUD">
             <object-type name="HUD">
@@ -1269,7 +1279,7 @@
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="System Objects">
-            <object-type name="f">
+            <object-type name="fn">
                 <plugin id="Rex_Function" />
             </object-type>
             <object-type name="while">
@@ -1286,6 +1296,7 @@
         </family>
         <family name="Flow" plugin-id="Sprite">
             <members>
+                <member>Generator</member>
                 <member>Redirect</member>
             </members>
             <instance-variables>

@@ -762,6 +762,8 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
+                        <colorsConnected></colorsConnected>
+                        <streamOutUID>0</streamOutUID>
                         <pathUID>0</pathUID>
                         <active>false</active>
                         <labelUID>0</labelUID>
@@ -1329,6 +1331,25 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="overlapTester">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <world>
+                        <x>-212.558898926</x>
+                        <y>172.37852478</y>
+                        <z>0</z>
+                        <width>10</width>
+                        <height>10</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0.600000024</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
         </layer>
     </layers>
@@ -1348,7 +1369,7 @@
                 <redrawPath>false</redrawPath>
             </instance-variables>
         </instance>
-        <instance type="f">
+        <instance type="fn">
             <properties>
                 <debug-mode>Off</debug-mode>
             </properties>
