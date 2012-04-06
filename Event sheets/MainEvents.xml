@@ -338,6 +338,9 @@
                         <variable name="nextUID" type="number">0</variable>
                         <event-block>
                             <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Generator</param>
+                                </condition>
                                 <condition id="-11" name="For Each" type="System">
                                     <param id="0" name="Object">Generator</param>
                                 </condition>
@@ -375,34 +378,37 @@
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">flow.UID</param>
                                         </action>
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
                                         </action>
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
                                         </action>
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
                                         </action>
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
+                                        </action>
+                                        <action id="1" name="Set condition value" type="while">
+                                            <param id="0" name="Value">1</param>
                                         </action>
                                     </actions>
                                     <sub-events>
-                                        <event-block disabled="1">
+                                        <event-block>
                                             <conditions>
-                                                <condition disabled="1" id="1" name="While" type="while" />
+                                                <condition id="1" name="While" type="while" />
                                             </conditions>
                                             <actions>
-                                                <action disabled="1" id="-9" name="Set value" type="System">
+                                                <action id="-9" name="Set value" type="System">
                                                     <param id="0" name="Variable">nextUID</param>
                                                     <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
                                                 </action>
-                                                <action disabled="1" id="1" name="Set condition value" type="while">
+                                                <action id="1" name="Set condition value" type="while">
                                                     <param id="0" name="Value">nextUID</param>
                                                 </action>
                                             </actions>
@@ -760,6 +766,9 @@
                                     <sub-events>
                                         <event-block>
                                             <conditions>
+                                                <condition id="-19" name="Pick all" type="System">
+                                                    <param id="0" name="Object">Flow</param>
+                                                </condition>
                                                 <condition id="-14" name="Pick by unique ID" type="Flow">
                                                     <param id="0" name="Unique ID">closestFlowUID</param>
                                                 </condition>
@@ -767,7 +776,7 @@
                                             <actions>
                                                 <action id="-10" name="Set value" type="Flow">
                                                     <param id="0" name="Instance variable">colorsConnected</param>
-                                                    <param id="1" name="Value">flow.colorsConnected &amp; &quot;#&quot; &amp; color</param>
+                                                    <param id="1" name="Value">color &amp; &quot;#&quot; &amp; flow.colorsConnected </param>
                                                 </action>
                                                 <action id="-9" name="Set value" type="System">
                                                     <param id="0" name="Variable">debugMsg</param>
