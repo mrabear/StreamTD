@@ -50,8 +50,8 @@
                         <effect>(none)</effect>
                     </properties>
                     <world>
-                        <x>-148</x>
-                        <y>449</y>
+                        <x>1064</x>
+                        <y>977</y>
                         <z>0</z>
                         <width>40</width>
                         <height>40</height>
@@ -118,8 +118,8 @@
                         </behavior-instance>
                     </behavior-instances>
                     <world>
-                        <x>-180.200149536</x>
-                        <y>277.200134277</y>
+                        <x>1032</x>
+                        <y>806</y>
                         <z>0</z>
                         <width>7</width>
                         <height>7</height>
@@ -174,8 +174,8 @@
                         </behavior-instance>
                     </behavior-instances>
                     <world>
-                        <x>-147</x>
-                        <y>271</y>
+                        <x>1065</x>
+                        <y>799</y>
                         <z>0</z>
                         <width>2</width>
                         <height>2</height>
@@ -212,8 +212,8 @@
                         </behavior-instance>
                     </behavior-instances>
                     <world>
-                        <x>-288</x>
-                        <y>654</y>
+                        <x>-371</x>
+                        <y>-348</y>
                         <z>0</z>
                         <width>25</width>
                         <height>10</height>
@@ -234,8 +234,8 @@
                         <rocketUID>0</rocketUID>
                     </instance-variables>
                     <world>
-                        <x>-243</x>
-                        <y>445</y>
+                        <x>969</x>
+                        <y>973</y>
                         <z>0</z>
                         <width>16</width>
                         <height>16</height>
@@ -260,8 +260,8 @@
                         <behavior-instance type="DragDrop" />
                     </behavior-instances>
                     <world>
-                        <x>-274</x>
-                        <y>360</y>
+                        <x>938</x>
+                        <y>888</y>
                         <z>0</z>
                         <width>50</width>
                         <height>50</height>
@@ -285,8 +285,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-294</x>
-                        <y>359</y>
+                        <x>918</x>
+                        <y>887</y>
                         <z>0</z>
                         <width>25.438594818</width>
                         <height>25.513196945</height>
@@ -311,8 +311,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-219</x>
-                        <y>71</y>
+                        <x>-201</x>
+                        <y>-250</y>
                         <z>0</z>
                         <width>5</width>
                         <height>5</height>
@@ -334,8 +334,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>-337</x>
-                        <y>-15</y>
+                        <x>-290</x>
+                        <y>-419</y>
                         <z>0</z>
                         <width>44</width>
                         <height>25</height>
@@ -356,8 +356,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>405</x>
-                        <y>-122</y>
+                        <x>1170</x>
+                        <y>827</y>
                         <z>0</z>
                         <width>10</width>
                         <height>10</height>
@@ -490,8 +490,8 @@
                         </behavior-instance>
                     </behavior-instances>
                     <world>
-                        <x>-96</x>
-                        <y>-56</y>
+                        <x>-78</x>
+                        <y>-377</y>
                         <z>0</z>
                         <width>50</width>
                         <height>50</height>
@@ -525,8 +525,8 @@
                         <behavior-instance type="DragDrop" />
                     </behavior-instances>
                     <world>
-                        <x>-118</x>
-                        <y>145</y>
+                        <x>-100</x>
+                        <y>-176</y>
                         <z>0</z>
                         <width>50</width>
                         <height>50</height>
@@ -567,8 +567,8 @@
                         </behavior-instance>
                     </behavior-instances>
                     <world>
-                        <x>-296</x>
-                        <y>581</y>
+                        <x>-379</x>
+                        <y>-421</y>
                         <z>0</z>
                         <width>50</width>
                         <height>50</height>
@@ -602,8 +602,8 @@
                         </behavior-instance>
                     </behavior-instances>
                     <world>
-                        <x>-288</x>
-                        <y>684</y>
+                        <x>-371</x>
+                        <y>-318</y>
                         <z>0</z>
                         <width>12</width>
                         <height>5</height>
@@ -647,8 +647,8 @@
                         <behavior-instance type="DestroyOutsideLayout" />
                     </behavior-instances>
                     <world>
-                        <x>-345</x>
-                        <y>790</y>
+                        <x>-428</x>
+                        <y>-212</y>
                         <z>0</z>
                         <width>128</width>
                         <height>128</height>
@@ -688,8 +688,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-178</x>
-                        <y>240</y>
+                        <x>1034</x>
+                        <y>768</y>
                         <z>0</z>
                         <width>23</width>
                         <height>13</height>
@@ -714,8 +714,8 @@
                         <behavior-instance type="DragDrop" />
                     </behavior-instances>
                     <world>
-                        <x>-132</x>
-                        <y>62</y>
+                        <x>-114</x>
+                        <y>-259</y>
                         <z>0</z>
                         <width>20</width>
                         <height>200</height>
@@ -743,8 +743,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-274</x>
-                        <y>142</y>
+                        <x>938</x>
+                        <y>670</y>
                         <z>0</z>
                         <width>200</width>
                         <height>30</height>
@@ -773,8 +773,8 @@
                         <selected>false</selected>
                     </instance-variables>
                     <world>
-                        <x>-255</x>
-                        <y>133</y>
+                        <x>-196</x>
+                        <y>-466</y>
                         <z>0</z>
                         <width>63</width>
                         <height>51</height>
@@ -799,8 +799,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-156</x>
-                        <y>315</y>
+                        <x>1056</x>
+                        <y>843</y>
                         <z>0</z>
                         <width>26</width>
                         <height>30</height>
@@ -818,8 +818,8 @@
                         <effect>(none)</effect>
                     </properties>
                     <world>
-                        <x>-155</x>
-                        <y>401</y>
+                        <x>1057</x>
+                        <y>929</y>
                         <z>0</z>
                         <width>10</width>
                         <height>10</height>
@@ -837,8 +837,8 @@
                         <effect>(none)</effect>
                     </properties>
                     <world>
-                        <x>42</x>
-                        <y>-148</y>
+                        <x>-264</x>
+                        <y>-254</y>
                         <z>0</z>
                         <width>10</width>
                         <height>10</height>
@@ -882,8 +882,8 @@
                         <zooming>false</zooming>
                     </instance-variables>
                     <world>
-                        <x>-187</x>
-                        <y>-4</y>
+                        <x>-169</x>
+                        <y>-325</y>
                         <z>0</z>
                         <width>16</width>
                         <height>16</height>
@@ -907,8 +907,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>3</x>
-                        <y>-55</y>
+                        <x>-303</x>
+                        <y>-161</y>
                         <z>0</z>
                         <width>5</width>
                         <height>5</height>
@@ -929,8 +929,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>94</x>
-                        <y>-37</y>
+                        <x>-212</x>
+                        <y>-143</y>
                         <z>0</z>
                         <width>5</width>
                         <height>5</height>
@@ -1042,8 +1042,8 @@
                         <streamOutUID>0</streamOutUID>
                     </instance-variables>
                     <world>
-                        <x>-138</x>
-                        <y>-134</y>
+                        <x>-120</x>
+                        <y>-455</y>
                         <z>0</z>
                         <width>25</width>
                         <height>25</height>
@@ -1067,8 +1067,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>67</x>
-                        <y>-78</y>
+                        <x>-239</x>
+                        <y>-184</y>
                         <z>0</z>
                         <width>1</width>
                         <height>1</height>
@@ -1091,8 +1091,8 @@
                         <updateColor>false</updateColor>
                     </instance-variables>
                     <world>
-                        <x>-87</x>
-                        <y>336</y>
+                        <x>1125</x>
+                        <y>864</y>
                         <z>0</z>
                         <width>1</width>
                         <height>13</height>
@@ -1113,8 +1113,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>-124</x>
-                        <y>232</y>
+                        <x>1088</x>
+                        <y>760</y>
                         <z>0</z>
                         <width>10</width>
                         <height>10</height>
@@ -1319,8 +1319,8 @@
                         <effect>(none)</effect>
                     </properties>
                     <world>
-                        <x>900.979858398</x>
-                        <y>542.911621094</y>
+                        <x>-239</x>
+                        <y>-340</y>
                         <z>0</z>
                         <width>25</width>
                         <height>25</height>
@@ -1338,8 +1338,8 @@
                         <effect>(none)</effect>
                     </properties>
                     <world>
-                        <x>-212.558898926</x>
-                        <y>172.37852478</y>
+                        <x>1000</x>
+                        <y>701</y>
                         <z>0</z>
                         <width>10</width>
                         <height>10</height>

@@ -231,7 +231,8 @@
                                 <action id="-9" name="Destroy" type="HealthBorder" />
                                 <action id="-9" name="Destroy" type="HealthBar" />
                                 <action id="-9" name="Destroy" type="Stream" />
-                                <action disabled="1" id="-9" name="Destroy" type="overlapTester" />
+                                <action id="-9" name="Destroy" type="HUDselection" />
+                                <action id="-9" name="Destroy" type="Flow" />
                             </actions>
                         </event-block>
                     </sub-events>

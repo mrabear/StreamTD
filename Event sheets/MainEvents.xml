@@ -348,7 +348,12 @@
                                     <param id="0" name="Instance variable">active</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">debugMsg</param>
+                                    <param id="1" name="Value">debugMsg &amp; &quot;top of loop&quot; &amp;newline</param>
+                                </action>
+                            </actions>
                             <sub-events>
                                 <event-block>
                                     <conditions>
@@ -378,22 +383,6 @@
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">flow.UID</param>
                                         </action>
-                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">nextUID</param>
-                                            <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
-                                        </action>
-                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">nextUID</param>
-                                            <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
-                                        </action>
-                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">nextUID</param>
-                                            <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
-                                        </action>
-                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">nextUID</param>
-                                            <param id="1" name="Value">fn.Call( fnLinkStream, nextUID )</param>
-                                        </action>
                                         <action id="1" name="Set condition value" type="while">
                                             <param id="0" name="Value">1</param>
                                         </action>
@@ -410,6 +399,15 @@
                                                 </action>
                                                 <action id="1" name="Set condition value" type="while">
                                                     <param id="0" name="Value">nextUID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">debugMsg</param>
+                                                    <param id="1" name="Value">debugMsg &amp; &quot;out of loop&quot; &amp;newline</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -431,6 +429,9 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="6" name="Set result" type="fn">
+                            <param id="0" name="Value">0</param>
+                        </action>
                         <action id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">debugMsg</param>
                             <param id="1" name="Value">debugMsg &amp; &quot;****&quot; &amp; fn.Param(0) &amp; &quot;*&quot;</param>
@@ -457,9 +458,6 @@
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">closestFlowUID</param>
                                     <param id="1" name="Value">fn.Ret(0)</param>
-                                </action>
-                                <action id="6" name="Set result" type="fn">
-                                    <param id="0" name="Value">closestFlowUID</param>
                                 </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">distanceToClosestObject</param>
@@ -592,10 +590,6 @@
                                                             <param id="0" name="Variable">color</param>
                                                             <param id="1" name="Value">&quot;grey&quot;</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Flow">
-                                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                                            <param id="1" name="Value">color</param>
-                                                        </action>
                                                     </actions>
                                                 </event-block>
                                                 <event-block>
@@ -610,10 +604,6 @@
                                                         <action id="-9" name="Set value" type="System">
                                                             <param id="0" name="Variable">color</param>
                                                             <param id="1" name="Value">&quot;green&quot;</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Flow">
-                                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                                            <param id="1" name="Value">color</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -738,20 +728,20 @@
                                                 </action>
                                             </actions>
                                         </event-block>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-14" name="Pick by unique ID" type="Stream">
+                                                    <param id="0" name="Unique ID">flow.streamOutUID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" type="Stream">
+                                                    <param id="0" name="Animation">color</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
                                     </sub-events>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Pick by unique ID" type="Stream">
-                                            <param id="0" name="Unique ID">flow.streamOutUID</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="4" name="Set animation" type="Stream">
-                                            <param id="0" name="Animation">color</param>
-                                            <param id="1" name="From">1</param>
-                                        </action>
-                                    </actions>
                                 </event-block>
                                 <comment>Create a new stream (unless it is being directed back at a point)</comment>
                                 <event-block>
@@ -781,6 +771,9 @@
                                                 <action id="-9" name="Set value" type="System">
                                                     <param id="0" name="Variable">debugMsg</param>
                                                     <param id="1" name="Value">debugMsg &amp; flow.colorsConnected &amp; &quot;=&quot; &amp; color &amp; newline</param>
+                                                </action>
+                                                <action id="6" name="Set result" type="fn">
+                                                    <param id="0" name="Value">closestFlowUID</param>
                                                 </action>
                                             </actions>
                                         </event-block>
