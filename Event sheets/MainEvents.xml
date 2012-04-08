@@ -360,7 +360,6 @@
                             <sub-events>
                                 <comment>Loop through each generator and start a stream chain for each</comment>
                                 <variable name="nextUID" type="number">0</variable>
-                                <variable comment="a list of the flow objects passed on this chain" name="flowObjectsPassed" type="text"></variable>
                                 <event-block>
                                     <conditions>
                                         <condition id="-11" name="For Each" type="System">
@@ -382,16 +381,13 @@
                                             <param id="0" name="Value">1</param>
                                         </action>
                                         <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">debugMsg</param>
-                                            <param id="1" name="Value">debugMsg &amp; find( flowObjectsPassed, &quot;#&quot; &amp; nextUID ) &amp; newline</param>
-                                        </action>
-                                        <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">flow.UID</param>
                                         </action>
                                     </actions>
                                     <sub-events>
                                         <comment>Loop through the entire chain of streams until there are no more flow objects to bounce off of</comment>
+                                        <variable comment="a list of the flow objects passed on this chain" name="flowObjectsPassed" type="text"></variable>
                                         <event-block>
                                             <conditions>
                                                 <condition id="1" name="While" type="while" />
@@ -459,7 +455,7 @@
                     <actions>
                         <action disabled="1" id="-9" name="Set value" type="System">
                             <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">debugMsg &amp; &quot;****&quot; &amp; fn.Param(0) &amp; &quot;*&quot;</param>
+                            <param id="1" name="Value">debugMsg &amp; &quot;****&quot; &amp; fn.Param(0) &amp; &quot;****&quot; &amp; newline</param>
                         </action>
                         <action id="6" name="Set result" type="fn">
                             <param id="0" name="Value">0</param>
@@ -521,7 +517,7 @@
                             </actions>
                         </event-block>
                         <comment>Find the correct color</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions />
                             <actions>
                                 <action id="-9" name="Set value" type="System">
@@ -534,7 +530,17 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;purple&quot; )</param>
+                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;red&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;blue&quot; )</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" type="System">
+                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;yellow&quot; )</param>
                                             <param id="1" name="Comparison">5</param>
                                             <param id="2" name="Second value">0</param>
                                         </condition>
@@ -542,93 +548,13 @@
                                     <actions>
                                         <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">color</param>
-                                            <param id="1" name="Value">&quot;purple&quot;</param>
+                                            <param id="1" name="Value">&quot;grey&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Flow">
+                                            <param id="0" name="Instance variable">colorsConnected</param>
+                                            <param id="1" name="Value">&quot;red#blue#yellow&quot;</param>
                                         </action>
                                     </actions>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;orange&quot; )</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Second value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-14" inverted="1" name="Compare variable" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Value">&quot;grey&quot;</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-14" name="Compare variable" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Value">&quot;orange&quot;</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">find( flow.colorsConnected, &quot;green&quot; )</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Second value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-14" inverted="1" name="Compare variable" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Value">&quot;grey&quot;</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="-14" name="Compare variable" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">color</param>
-                                                    <param id="1" name="Value">&quot;green&quot;</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
                                 </event-block>
                                 <event-block>
                                     <conditions>
@@ -663,6 +589,10 @@
                                                     <param id="0" name="Variable">color</param>
                                                     <param id="1" name="Value">&quot;purple&quot;</param>
                                                 </action>
+                                                <action id="-10" name="Set value" type="Flow">
+                                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                                    <param id="1" name="Value">&quot;red#blue#&quot;</param>
+                                                </action>
                                             </actions>
                                         </event-block>
                                         <event-block>
@@ -677,6 +607,10 @@
                                                 <action id="-9" name="Set value" type="System">
                                                     <param id="0" name="Variable">color</param>
                                                     <param id="1" name="Value">&quot;orange&quot;</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Flow">
+                                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                                    <param id="1" name="Value">&quot;red#yellow#&quot;</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -714,6 +648,10 @@
                                                 <action id="-9" name="Set value" type="System">
                                                     <param id="0" name="Variable">color</param>
                                                     <param id="1" name="Value">&quot;green&quot;</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Flow">
+                                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                                    <param id="1" name="Value">&quot;blue#yellow#&quot;</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -764,6 +702,14 @@
                                         <action id="4" name="Set animation" type="Stream">
                                             <param id="0" name="Animation">color</param>
                                             <param id="1" name="From">1</param>
+                                        </action>
+                                        <action disabled="1" id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">debugMsg</param>
+                                            <param id="1" name="Value">debugMsg &amp; flow.colorsConnected &amp; &quot;==&gt;&quot; &amp; color &amp; newline</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">color</param>
+                                            <param id="1" name="Value">flow.colorsConnected</param>
                                         </action>
                                     </actions>
                                 </event-block>

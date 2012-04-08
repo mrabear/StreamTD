@@ -769,6 +769,9 @@
                         <sourceStream>false</sourceStream>
                         <active>true</active>
                         <sourceColor>&quot;&quot;</sourceColor>
+                        <redConnected>false</redConnected>
+                        <blueConnected>false</blueConnected>
+                        <yellowConnected>false</yellowConnected>
                         <pathUID>0</pathUID>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
@@ -1048,6 +1051,9 @@
                         <sourceStream>false</sourceStream>
                         <active>true</active>
                         <sourceColor>&quot;&quot;</sourceColor>
+                        <redConnected>false</redConnected>
+                        <blueConnected>false</blueConnected>
+                        <yellowConnected>false</yellowConnected>
                     </instance-variables>
                     <world>
                         <x>-120</x>

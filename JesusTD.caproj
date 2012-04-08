@@ -1305,6 +1305,9 @@
                 <instance-variable comment="acts as an original source for a stream" name="sourceStream" type="boolean" />
                 <instance-variable comment="is this flow object enabled?" name="active" type="boolean" />
                 <instance-variable comment="the source color of the flow object" name="sourceColor" type="string" />
+                <instance-variable comment="is a red stream connected to this flow?" name="redConnected" type="boolean" />
+                <instance-variable comment="is a blue stream connected to this object" name="blueConnected" type="boolean" />
+                <instance-variable comment="is a yellow stream connected to this object?" name="yellowConnected" type="boolean" />
             </instance-variables>
         </family>
     </families>
