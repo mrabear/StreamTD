@@ -1302,6 +1302,7 @@
             <instance-variables>
                 <instance-variable comment="the # seperated list of colors connected to this flow node" name="colorsConnected" type="string" />
                 <instance-variable comment="the UID of the outgoing stream" name="streamOutUID" type="number" />
+                <instance-variable comment="does the flow object forward the stream?" name="forwardsStream" type="boolean" />
             </instance-variables>
         </family>
     </families>

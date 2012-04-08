@@ -764,6 +764,7 @@
                     <instance-variables>
                         <colorsConnected></colorsConnected>
                         <streamOutUID>0</streamOutUID>
+                        <forwardsStream>true</forwardsStream>
                         <pathUID>0</pathUID>
                         <active>false</active>
                         <labelUID>0</labelUID>
@@ -1040,6 +1041,7 @@
                     <instance-variables>
                         <colorsConnected></colorsConnected>
                         <streamOutUID>0</streamOutUID>
+                        <forwardsStream>true</forwardsStream>
                     </instance-variables>
                     <world>
                         <x>-120</x>
