@@ -49,6 +49,9 @@
                         <initial-frame>0</initial-frame>
                         <effect>(none)</effect>
                     </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
                     <world>
                         <x>1064</x>
                         <y>977</y>
@@ -769,9 +772,9 @@
                         <sourceStream>false</sourceStream>
                         <active>true</active>
                         <sourceColor>&quot;&quot;</sourceColor>
-                        <redConnected>false</redConnected>
-                        <blueConnected>false</blueConnected>
-                        <yellowConnected>false</yellowConnected>
+                        <moving>false</moving>
+                        <mouseAngle>0</mouseAngle>
+                        <mouseDist>0</mouseDist>
                         <pathUID>0</pathUID>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
@@ -1051,9 +1054,9 @@
                         <sourceStream>false</sourceStream>
                         <active>true</active>
                         <sourceColor>&quot;&quot;</sourceColor>
-                        <redConnected>false</redConnected>
-                        <blueConnected>false</blueConnected>
-                        <yellowConnected>false</yellowConnected>
+                        <moving>false</moving>
+                        <mouseAngle>0</mouseAngle>
+                        <mouseDist>0</mouseDist>
                     </instance-variables>
                     <world>
                         <x>-120</x>

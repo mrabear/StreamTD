@@ -1068,6 +1068,11 @@
             </object-type>
             <object-type name="selectionBox">
                 <plugin id="Sprite" />
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.525" hotspotY="0.525" />
@@ -1305,9 +1310,9 @@
                 <instance-variable comment="acts as an original source for a stream" name="sourceStream" type="boolean" />
                 <instance-variable comment="is this flow object enabled?" name="active" type="boolean" />
                 <instance-variable comment="the source color of the flow object" name="sourceColor" type="string" />
-                <instance-variable comment="is a red stream connected to this flow?" name="redConnected" type="boolean" />
-                <instance-variable comment="is a blue stream connected to this object" name="blueConnected" type="boolean" />
-                <instance-variable comment="is a yellow stream connected to this object?" name="yellowConnected" type="boolean" />
+                <instance-variable comment="is the object being moved?" name="moving" type="boolean" />
+                <instance-variable comment="the angle from the center point of the object to the mouse (used for smooth mouse moving)" name="mouseAngle" type="number" />
+                <instance-variable comment="the distance from the object center to the mouse (used for object moving)" name="mouseDist" type="number" />
             </instance-variables>
         </family>
     </families>
