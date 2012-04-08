@@ -59,6 +59,10 @@
         <comment>Grid parameters</comment>
         <variable comment="The distance (in px) between each of the points in the grid" name="gridScale" type="number">40</variable>
         <variable comment="The width of the grid line" name="gridLineWidth" type="number">1</variable>
+        <variable comment="The maximum y value of an object on the grid (calculated at runtime)" name="gridMaxY" type="number">0</variable>
+        <variable comment="The maximum x value of an object on the grid (calculated at runtime)" name="gridMaxX" type="number">0</variable>
+        <variable comment="The minimum x value of an object on the grid (calculated at runtime)" name="gridMinX" type="number">0</variable>
+        <variable comment="The minimum y value of an object on the grid (calculated at runtime)" name="gridMinY" type="number">0</variable>
         <comment>Generator parameters</comment>
         <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
         <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
@@ -75,6 +79,7 @@
         <variable comment="(x,y) return UID of object at location, else 0" name="fnGridOjbectAt" type="text">gridObjectAt</variable>
         <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
+        <variable comment="(x,y) returns true if the coordinates given are on the grid" name="fnIsOnGrid" type="text">isOnGrid</variable>
         <comment></comment>
         <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
@@ -88,16 +93,38 @@
                         <comment>Setup the grid</comment>
                         <event-block>
                             <conditions />
-                            <actions>
-                                <action id="-3" name="Set position" type="grid">
-                                    <param id="0" name="X">0</param>
-                                    <param id="1" name="Y">0</param>
-                                </action>
-                                <action id="-7" name="Set size" type="grid">
-                                    <param id="0" name="Width">LayoutWidth</param>
-                                    <param id="1" name="Height">LayoutHeight</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-3" name="Set position" type="grid">
+                                            <param id="0" name="X">0</param>
+                                            <param id="1" name="Y">0</param>
+                                        </action>
+                                        <action id="-7" name="Set size" type="grid">
+                                            <param id="0" name="Width">LayoutWidth</param>
+                                            <param id="1" name="Height">LayoutHeight</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">gridMaxY</param>
+                                            <param id="1" name="Value">HUD.Y - ( gridScale - ( HUDHeight % gridScale ) - gridLineWidth )</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">gridMinY</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">gridMinX</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">gridMaxX</param>
+                                            <param id="1" name="Value">WindowWidth</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <comment>Setup the HUD</comment>
                         <event-block>
@@ -206,34 +233,40 @@
                             </sub-events>
                         </event-block>
                         <comment>Destroy initial instances of most sprites</comment>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions />
-                            <actions>
-                                <action id="-9" name="Destroy" type="Bar" />
-                                <action id="-9" name="Destroy" type="BarrierWall" />
-                                <action id="-9" name="Destroy" type="Beam" />
-                                <action id="-9" name="Destroy" type="Cannon" />
-                                <action id="-9" name="Destroy" type="distanceToTarget" />
-                                <action id="-9" name="Destroy" type="Generator" />
-                                <action id="-9" name="Destroy" type="KrullBase" />
-                                <action id="-9" name="Destroy" type="KrullBlade" />
-                                <action id="-9" name="Destroy" type="Node" />
-                                <action id="-9" name="Destroy" type="NodeLabel" />
-                                <action id="-9" name="Destroy" type="Minion" />
-                                <action id="-9" name="Destroy" type="MinionTrail" />
-                                <action id="-9" name="Destroy" type="PathStart" />
-                                <action id="-9" name="Destroy" type="RangeFinder" />
-                                <action id="-9" name="Destroy" type="Rocket" />
-                                <action id="-9" name="Destroy" type="RocketEffects" />
-                                <action id="-9" name="Destroy" type="RocketExplosion" />
-                                <action id="-9" name="Destroy" type="TargetLeadBar" />
-                                <action id="-9" name="Destroy" type="TurretBase" />
-                                <action id="-9" name="Destroy" type="HealthBorder" />
-                                <action id="-9" name="Destroy" type="HealthBar" />
-                                <action id="-9" name="Destroy" type="Stream" />
-                                <action id="-9" name="Destroy" type="HUDselection" />
-                                <action id="-9" name="Destroy" type="Flow" />
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action id="-9" name="Destroy" type="Bar" />
+                                        <action id="-9" name="Destroy" type="BarrierWall" />
+                                        <action id="-9" name="Destroy" type="Beam" />
+                                        <action id="-9" name="Destroy" type="Cannon" />
+                                        <action id="-9" name="Destroy" type="distanceToTarget" />
+                                        <action id="-9" name="Destroy" type="Generator" />
+                                        <action id="-9" name="Destroy" type="KrullBase" />
+                                        <action id="-9" name="Destroy" type="KrullBlade" />
+                                        <action id="-9" name="Destroy" type="Node" />
+                                        <action id="-9" name="Destroy" type="NodeLabel" />
+                                        <action id="-9" name="Destroy" type="Minion" />
+                                        <action id="-9" name="Destroy" type="MinionTrail" />
+                                        <action id="-9" name="Destroy" type="PathStart" />
+                                        <action id="-9" name="Destroy" type="RangeFinder" />
+                                        <action id="-9" name="Destroy" type="Rocket" />
+                                        <action id="-9" name="Destroy" type="RocketEffects" />
+                                        <action id="-9" name="Destroy" type="RocketExplosion" />
+                                        <action id="-9" name="Destroy" type="TargetLeadBar" />
+                                        <action id="-9" name="Destroy" type="TurretBase" />
+                                        <action id="-9" name="Destroy" type="HealthBorder" />
+                                        <action id="-9" name="Destroy" type="HealthBar" />
+                                        <action id="-9" name="Destroy" type="Stream" />
+                                        <action id="-9" name="Destroy" type="HUDselection" />
+                                        <action id="-9" name="Destroy" type="Flow" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
