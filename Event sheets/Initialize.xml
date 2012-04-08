@@ -59,15 +59,17 @@
         <comment>Grid parameters</comment>
         <variable comment="The distance (in px) between each of the points in the grid" name="gridScale" type="number">40</variable>
         <variable comment="The width of the grid line" name="gridLineWidth" type="number">1</variable>
-        <variable comment="The maximum y value of an object on the grid (calculated at runtime)" name="gridMaxY" type="number">0</variable>
-        <variable comment="The maximum x value of an object on the grid (calculated at runtime)" name="gridMaxX" type="number">0</variable>
-        <variable comment="The minimum x value of an object on the grid (calculated at runtime)" name="gridMinX" type="number">0</variable>
-        <variable comment="The minimum y value of an object on the grid (calculated at runtime)" name="gridMinY" type="number">0</variable>
+        <variable comment="The maximum y value of an object on the grid (calculated at runtime)" name="gridMaxY" type="number">-1</variable>
+        <variable comment="The maximum x value of an object on the grid (calculated at runtime)" name="gridMaxX" type="number">-1</variable>
+        <variable comment="The minimum x value of an object on the grid (calculated at runtime)" name="gridMinX" type="number">-1</variable>
+        <variable comment="The minimum y value of an object on the grid (calculated at runtime)" name="gridMinY" type="number">-1</variable>
         <comment>Generator parameters</comment>
         <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
         <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
         <comment>HUD parameters</comment>
         <variable comment="The height (in px) of the HUD" name="HUDheight" type="number">65</variable>
+        <comment>Flow parameters</comment>
+        <variable comment="The amount of time (in sec) to wait before redrawing a path around a moving flow object" name="flowMoveRedrawDelay" type="number">0.1</variable>
         <comment>Funcation name mappings</comment>
         <variable comment="( ) Deletes all streams and rebuilds them from scratch" name="fnResetStream" type="text">resetStream</variable>
         <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>
@@ -79,6 +81,7 @@
         <variable comment="(x,y) return UID of object at location, else 0" name="fnGridOjbectAt" type="text">gridObjectAt</variable>
         <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
+        <variable comment="(uid) toggles the active status of the provided genrator" name="fnToggleGenerator" type="text">toggleGenerator</variable>
         <variable comment="(x,y) returns true if the coordinates given are on the grid" name="fnIsOnGrid" type="text">isOnGrid</variable>
         <comment></comment>
         <event-group description="Events that run to setup the game environments" title="Initialization">
@@ -220,6 +223,11 @@
                                             </actions>
                                         </event-block>
                                     </sub-events>
+                                </event-block>
+                                <comment>Setup the object activator section of the HUD</comment>
+                                <event-block>
+                                    <conditions />
+                                    <actions />
                                 </event-block>
                                 <comment>Initialize the HUD</comment>
                                 <event-block>

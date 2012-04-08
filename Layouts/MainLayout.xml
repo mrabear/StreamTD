@@ -65,6 +65,25 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="moveTarget">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <world>
+                        <x>973.107788086</x>
+                        <y>803.184082031</y>
+                        <z>0</z>
+                        <width>40</width>
+                        <height>40</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.200000003</opacity>
+                    </world>
+                </instance>
             </instances>
         </layer>
         <layer name="Default">
@@ -775,6 +794,7 @@
                         <moving>false</moving>
                         <mouseAngle>0</mouseAngle>
                         <mouseDist>0</mouseDist>
+                        <previousActiveState>0</previousActiveState>
                         <pathUID>0</pathUID>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
@@ -1057,6 +1077,7 @@
                         <moving>false</moving>
                         <mouseAngle>0</mouseAngle>
                         <mouseDist>0</mouseDist>
+                        <previousActiveState>0</previousActiveState>
                     </instance-variables>
                     <world>
                         <x>-120</x>
@@ -1363,6 +1384,70 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.600000024</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDactivatorBackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>617.199279785</x>
+                        <y>541</y>
+                        <z>0</z>
+                        <width>78.180664063</width>
+                        <height>55</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDactivatorButton">
+                    <properties>
+                        <text></text>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <id-optional></id-optional>
+                    </properties>
+                    <world>
+                        <x>623.199401855</x>
+                        <y>548.638549805</y>
+                        <z>0</z>
+                        <width>66.540161133</width>
+                        <height>41.270812988</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="HUDactivatorLabel">
+                    <properties>
+                        <text></text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Calibri,-16,400,0</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                    </properties>
+                    <world>
+                        <x>624.012817383</x>
+                        <y>561.000854492</y>
+                        <z>0</z>
+                        <width>64.544250488</width>
+                        <height>23.637695313</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
