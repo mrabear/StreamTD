@@ -592,11 +592,9 @@
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="the UID of the path array that the minions of this generator follow" name="pathUID" type="number" />
-                    <instance-variable comment="is the generator actively spawning?" name="active" type="boolean" />
                     <instance-variable comment="the uid of the spawn label" name="labelUID" type="number" />
                     <instance-variable comment="the spawn rate (minions/sec) of the generator" name="spawnRate" type="number" />
                     <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
-                    <instance-variable comment="the type of minion that this generator is spawning" name="color" type="string" />
                     <instance-variable name="selected" type="boolean" />
                 </instance-variables>
                 <animation-folder expanded="1">
@@ -1302,7 +1300,11 @@
             <instance-variables>
                 <instance-variable comment="the # seperated list of colors connected to this flow node" name="colorsConnected" type="string" />
                 <instance-variable comment="the UID of the outgoing stream" name="streamOutUID" type="number" />
-                <instance-variable comment="does the flow object forward the stream?" name="forwardsStream" type="boolean" />
+                <instance-variable comment="does the flow object block the stream?" name="blockStream" type="boolean" />
+                <instance-variable comment="does the flow object initially extend a stream out?" name="extendStream" type="boolean" />
+                <instance-variable comment="acts as an original source for a stream" name="sourceStream" type="boolean" />
+                <instance-variable comment="is this flow object enabled?" name="active" type="boolean" />
+                <instance-variable comment="the source color of the flow object" name="sourceColor" type="string" />
             </instance-variables>
         </family>
     </families>

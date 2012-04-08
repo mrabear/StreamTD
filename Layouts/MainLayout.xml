@@ -764,13 +764,15 @@
                     <instance-variables>
                         <colorsConnected></colorsConnected>
                         <streamOutUID>0</streamOutUID>
-                        <forwardsStream>true</forwardsStream>
+                        <blockStream>false</blockStream>
+                        <extendStream>true</extendStream>
+                        <sourceStream>false</sourceStream>
+                        <active>true</active>
+                        <sourceColor>&quot;&quot;</sourceColor>
                         <pathUID>0</pathUID>
-                        <active>false</active>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
                         <lastSpawn>0</lastSpawn>
-                        <color>&quot;&quot;</color>
                         <selected>false</selected>
                     </instance-variables>
                     <world>
@@ -1041,7 +1043,11 @@
                     <instance-variables>
                         <colorsConnected></colorsConnected>
                         <streamOutUID>0</streamOutUID>
-                        <forwardsStream>true</forwardsStream>
+                        <blockStream>false</blockStream>
+                        <extendStream>true</extendStream>
+                        <sourceStream>false</sourceStream>
+                        <active>true</active>
+                        <sourceColor>&quot;&quot;</sourceColor>
                     </instance-variables>
                     <world>
                         <x>-120</x>
