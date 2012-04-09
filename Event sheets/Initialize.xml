@@ -68,8 +68,9 @@
         <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
         <comment>HUD parameters</comment>
         <variable comment="The height (in px) of the HUD" name="HUDheight" type="number">65</variable>
+        <variable comment="The refresh rate (sec between updates) of the HUD " name="HUDrefreshRate" type="number">0.25</variable>
         <comment>Flow parameters</comment>
-        <variable comment="The amount of time (in sec) to wait before redrawing a path around a moving flow object" name="flowMoveRedrawDelay" type="number">0.1</variable>
+        <variable comment="The amount of time (in sec) to wait before redrawing a path around a moving flow object" name="flowMoveRedrawDelay" type="number">0.15</variable>
         <comment>Funcation name mappings</comment>
         <variable comment="( ) Deletes all streams and rebuilds them from scratch" name="fnResetStream" type="text">resetStream</variable>
         <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>

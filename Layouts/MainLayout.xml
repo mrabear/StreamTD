@@ -792,8 +792,6 @@
                         <active>true</active>
                         <sourceColor>&quot;&quot;</sourceColor>
                         <moving>false</moving>
-                        <mouseAngle>0</mouseAngle>
-                        <mouseDist>0</mouseDist>
                         <previousActiveState>0</previousActiveState>
                         <pathUID>0</pathUID>
                         <labelUID>0</labelUID>
@@ -1075,8 +1073,6 @@
                         <active>true</active>
                         <sourceColor>&quot;&quot;</sourceColor>
                         <moving>false</moving>
-                        <mouseAngle>0</mouseAngle>
-                        <mouseDist>0</mouseDist>
                         <previousActiveState>0</previousActiveState>
                     </instance-variables>
                     <world>
@@ -1240,7 +1236,7 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>702.86126709</x>
+                        <x>612.86126709</x>
                         <y>541</y>
                         <z>0</z>
                         <width>90.14440918</width>
@@ -1263,7 +1259,7 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>703.864074707</x>
+                        <x>613.864074707</x>
                         <y>545</y>
                         <z>0</z>
                         <width>90.005554199</width>
@@ -1288,7 +1284,7 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>723</x>
+                        <x>633</x>
                         <y>578</y>
                         <z>0</z>
                         <width>21</width>
@@ -1313,7 +1309,7 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>748</x>
+                        <x>658</x>
                         <y>578</y>
                         <z>0</z>
                         <width>21</width>
@@ -1338,7 +1334,7 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>773</x>
+                        <x>683</x>
                         <y>578</y>
                         <z>0</z>
                         <width>21</width>
@@ -1398,11 +1394,11 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>617.199279785</x>
+                        <x>710.199279785</x>
                         <y>541</y>
                         <z>0</z>
-                        <width>78.180664063</width>
-                        <height>55</height>
+                        <width>82</width>
+                        <height>56</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1419,7 +1415,7 @@
                         <id-optional></id-optional>
                     </properties>
                     <world>
-                        <x>623.199401855</x>
+                        <x>717.199401855</x>
                         <y>548.638549805</y>
                         <z>0</z>
                         <width>66.540161133</width>
@@ -1440,7 +1436,7 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>624.012817383</x>
+                        <x>718.012817383</x>
                         <y>561.000854492</y>
                         <z>0</z>
                         <width>64.544250488</width>

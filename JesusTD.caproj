@@ -1169,10 +1169,10 @@
                         </behavior-type>
                     </behaviors>
                     <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Middle" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                             <frame duration="1" hotspotX="0" hotspotY="0" />
                         </animation>
-                        <animation framecount="1" loop="0" name="TopLeft" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <animation framecount="1" loop="0" name="Enabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                             <frame duration="1" hotspotX="0" hotspotY="0" />
                         </animation>
                     </animation-folder>
@@ -1309,6 +1309,13 @@
                     <animation framecount="1" loop="1" name="yellow" pingpong="1" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0" hotspotY="0.538462">
                             <image-point name="Imagepoint 1" x="1" y="0.538462" />
+                            <collision-poly>
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="1" />
+                            </collision-poly>
                         </frame>
                     </animation>
                     <animation framecount="1" loop="1" name="orange" pingpong="1" repeatcount="1" repeatto="0" speed="5">
@@ -1373,8 +1380,6 @@
                 <instance-variable comment="is this flow object enabled?" name="active" type="boolean" />
                 <instance-variable comment="the source color of the flow object" name="sourceColor" type="string" />
                 <instance-variable comment="is the object being moved?" name="moving" type="boolean" />
-                <instance-variable comment="the angle from the center point of the object to the mouse (used for smooth mouse moving)" name="mouseAngle" type="number" />
-                <instance-variable comment="the distance from the object center to the mouse (used for object moving)" name="mouseDist" type="number" />
                 <instance-variable comment="the previous state of a flow object before it is disabled by a system event" name="previousActiveState" type="number" />
             </instance-variables>
         </family>
