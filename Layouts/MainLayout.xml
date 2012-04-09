@@ -722,7 +722,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="BarrierWall">
+                <instance type="LOSTester">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -793,6 +793,7 @@
                         <sourceColor>&quot;&quot;</sourceColor>
                         <moving>false</moving>
                         <previousActiveState>0</previousActiveState>
+                        <isMovable>true</isMovable>
                         <pathUID>0</pathUID>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
@@ -1074,6 +1075,7 @@
                         <sourceColor>&quot;&quot;</sourceColor>
                         <moving>false</moving>
                         <previousActiveState>0</previousActiveState>
+                        <isMovable>true</isMovable>
                     </instance-variables>
                     <world>
                         <x>-120</x>
@@ -1170,10 +1172,10 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>236</x>
+                        <x>231.455322266</x>
                         <y>544</y>
                         <z>0</z>
-                        <width>200</width>
+                        <width>113.635025024</width>
                         <height>50</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
@@ -1195,7 +1197,7 @@
                         <x>224</x>
                         <y>541</y>
                         <z>0</z>
-                        <width>230</width>
+                        <width>126.362884521</width>
                         <height>55</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
@@ -1444,6 +1446,37 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="Barrier">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <colorsConnected></colorsConnected>
+                        <streamOutUID>0</streamOutUID>
+                        <blockStream>false</blockStream>
+                        <extendStream>true</extendStream>
+                        <sourceStream>false</sourceStream>
+                        <active>true</active>
+                        <sourceColor>&quot;&quot;</sourceColor>
+                        <moving>false</moving>
+                        <previousActiveState>0</previousActiveState>
+                        <isMovable>true</isMovable>
+                    </instance-variables>
+                    <world>
+                        <x>880.297485352</x>
+                        <y>658.63659668</y>
+                        <z>0</z>
+                        <width>40</width>
+                        <height>40</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

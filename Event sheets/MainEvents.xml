@@ -21,17 +21,23 @@
         <event-group description="A grid that objects snap to" title="Grid">
             <sub-events>
                 <comment>(coord) returns a &apos;grid friendly&apos; coordindate for a given layout coordinate</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnGetGridCoordinate</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="6" name="Set result" type="fn">
-                            <param id="0" name="Value">floor( fn.Param(0) / gridScale ) * gridScale + ( gridScale / 2 )</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">floor( fn.Param(0) / gridScale ) * gridScale + ( gridScale / 2 )</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>(x,y) returns the UID of the object at the the given location, 0 if there is nothing there</comment>
                 <event-block collapsed="1">
@@ -52,20 +58,20 @@
                         </event-block>
                         <event-block>
                             <conditions>
-                                <condition id="-15" name="Pick nearest/furthest" type="HUDselection">
+                                <condition id="-15" name="Pick nearest/furthest" type="Flow">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">fn.Param( 0 )</param>
                                     <param id="2" name="Y">fn.Param( 1 )</param>
                                 </condition>
                                 <condition id="-8" name="Compare two values" type="System">
-                                    <param id="0" name="First value">distance( fn.Param( 0 ), fn.Param( 1 ), HUDSelection.X, HUDSelection.Y )</param>
+                                    <param id="0" name="First value">distance( fn.Param( 0 ), fn.Param( 1 ), flow.X, flow.Y )</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
                                 <action id="6" name="Set result" type="fn">
-                                    <param id="0" name="Value">HUDSelection.UID</param>
+                                    <param id="0" name="Value">flow.UID</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -215,7 +221,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process a click on the grid</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="1" name="On any click" type="Mouse" />
                     </conditions>
@@ -224,6 +230,7 @@
                         <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                         <variable comment="the new grid y value" name="gridY" type="number">0</variable>
                         <variable comment="uid of the grid object at the clicked location" name="objectAtLocationUID" type="number">0</variable>
+                        <comment>Verify that the click is within the grid</comment>
                         <event-block>
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
@@ -248,7 +255,7 @@
                             </actions>
                             <sub-events>
                                 <comment>If there isn&apos;t an object at the clicked location</comment>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">objectAtLocationUID</param>
@@ -356,6 +363,41 @@
                                                 </action>
                                             </actions>
                                         </event-block>
+                                        <comment>Add a barrier</comment>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="2" name="Mouse button is down" type="Mouse">
+                                                    <param id="0" name="Mouse button">0</param>
+                                                </condition>
+                                                <condition id="2" name="Key is down" type="Keyboard">
+                                                    <param id="0" name="Key">90 (Z)</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-3" name="Create object" type="System">
+                                                    <param id="0" name="Object to create">Barrier</param>
+                                                    <param id="1" name="Layer">activeLayer</param>
+                                                    <param id="2" name="X">gridX</param>
+                                                    <param id="3" name="Y">gridY</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Barrier">
+                                                    <param id="0" name="Instance variable">blockStream</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Barrier">
+                                                    <param id="0" name="Instance variable">extendStream</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Barrier">
+                                                    <param id="0" name="Instance variable">isMovable</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">objectCreated</param>
+                                                    <param id="1" name="Value">barrier.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
                                         <comment>If an object was created, reset the stream and make the new object the current HUD selection</comment>
                                         <event-block>
                                             <conditions>
@@ -403,7 +445,11 @@
                                             <param id="0" name="Unique ID">objectAtLocationUID</param>
                                         </condition>
                                     </conditions>
-                                    <actions />
+                                    <actions>
+                                        <action id="7" name="Execute commands" type="fn">
+                                            <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; flow.UID</param>
+                                        </action>
+                                    </actions>
                                     <sub-events>
                                         <comment>Left click selects the flow object</comment>
                                         <event-block>
@@ -413,9 +459,6 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="7" name="Execute commands" type="fn">
-                                                    <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; flow.UID</param>
-                                                </action>
                                                 <action id="-16" name="Wait" type="System">
                                                     <param id="0" name="Seconds">flowMoveRedrawDelay</param>
                                                 </action>
@@ -426,6 +469,9 @@
                                                     <conditions>
                                                         <condition id="2" name="Mouse button is down" type="Mouse">
                                                             <param id="0" name="Mouse button">0</param>
+                                                        </condition>
+                                                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                                            <param id="0" name="Instance variable">isMovable</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
@@ -459,7 +505,7 @@
                                             </sub-events>
                                         </event-block>
                                         <comment>Right click commands</comment>
-                                        <event-block collapsed="1">
+                                        <event-block>
                                             <conditions>
                                                 <condition id="2" name="Mouse button is down" type="Mouse">
                                                     <param id="0" name="Mouse button">2</param>
@@ -480,9 +526,6 @@
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
                                                             <param id="0" name="Commands">fnResetStream</param>
-                                                        </action>
-                                                        <action id="7" name="Execute commands" type="fn">
-                                                            <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; redirect.UID</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -618,7 +661,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Connect streams to their flow objects</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnLinkStream</param>
@@ -942,7 +985,7 @@
                                     </sub-events>
                                 </event-block>
                                 <comment>Start the cycle again with the next flow element (unless that flow element blocks the stream)</comment>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">anglediff( flow.Angle, angleOfNextObject)</param>
@@ -1725,157 +1768,157 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" disabled="1" title="Minion">
             <sub-events>
                 <comment>Fade the minion trail out over time</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-10" name="Compare opacity" type="MinionTrail">
+                        <condition disabled="1" id="-10" name="Compare opacity" type="MinionTrail">
                             <param id="0" name="Comparison">4</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
-                        <condition id="-6" name="Every X seconds" type="System">
+                        <condition disabled="1" id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">minionTrailDecayRate</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" type="MinionTrail">
+                        <action disabled="1" id="-16" name="Set opacity" type="MinionTrail">
                             <param id="0" name="Opacity">MinionTrail.Opacity - 10</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Destroy the minion trail node as soon as it fades out</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-10" name="Compare opacity" type="MinionTrail">
+                        <condition disabled="1" id="-10" name="Compare opacity" type="MinionTrail">
                             <param id="0" name="Comparison">3</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="MinionTrail" />
+                        <action disabled="1" id="-9" name="Destroy" type="MinionTrail" />
                     </actions>
                 </event-block>
                 <comment>Destroy the minion if it reaches 0 health</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" type="Minion">
+                        <condition disabled="1" id="-7" name="Compare instance variable" type="Minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Comparison">3</param>
                             <param id="2" name="Value">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
+                        <action disabled="1" id="-9" name="Destroy" type="Minion" />
                     </actions>
                 </event-block>
                 <comment>Update the minion health bar</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">updateHealthBar</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
                             <param id="0" name="Instance variable">updateHealthBar</param>
                             <param id="1" name="Value">0</param>
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="HealthBar">
+                                <condition disabled="1" id="-14" name="Pick by unique ID" type="HealthBar">
                                     <param id="0" name="Unique ID">minion.healthBarUID</param>
                                 </condition>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">round( (healthbar.Width/healthbar.startingWidth) * 100 )</param>
                                     <param id="1" name="Comparison">1</param>
                                     <param id="2" name="Second value">round( (minion.health/Minion.maxHealth) * 100 )</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-5" name="Set width" type="HealthBar">
+                                <action disabled="1" id="-5" name="Set width" type="HealthBar">
                                     <param id="0" name="Width">healthbar.startingWidth * ( minion.health/ minion.maxHealth )</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Minion">
+                        <condition disabled="1" id="0" name="On collision with another object" type="Minion">
                             <param id="0" name="Object">flowAnchor</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Redirect">
+                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Redirect">
                             <param id="0" name="Unique ID">flowAnchor.baseUID</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-4" name="Set position to another object" type="Minion">
+                        <action disabled="1" id="-4" name="Set position to another object" type="Minion">
                             <param id="0" name="Object">Redirect</param>
                             <param id="1" name="Image point (optional)">0</param>
                         </action>
-                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                        <action behavior="CustomMovement" disabled="1" id="6" name="Set angle of motion" type="Minion">
                             <param id="0" name="Angle">redirect.Angle</param>
                         </action>
                     </actions>
                 </event-block>
                 <variable comment="The two colors of the minions that collided" name="colorCombo" type="text"></variable>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Minion">
+                        <condition disabled="1" id="0" name="On collision with another object" type="Minion">
                             <param id="0" name="Object">Minion</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-13" name="Pick nth instance" type="System">
+                                <condition disabled="1" id="-13" name="Pick nth instance" type="System">
                                     <param id="0" name="Object">Minion</param>
                                     <param id="1" name="Instance">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">colorCombo</param>
                                     <param id="1" name="Value">minion.AnimationName</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-13" name="Pick nth instance" type="System">
+                                <condition disabled="1" id="-13" name="Pick nth instance" type="System">
                                     <param id="0" name="Object">Minion</param>
                                     <param id="1" name="Instance">1</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">colorCombo</param>
                                     <param id="1" name="Value">colorCombo &amp; &quot;#&quot; &amp; minion.AnimationName</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">tokenat( colorCombo, 0, &quot;#&quot; )</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">tokenat( colorCombo, 1, &quot;#&quot; )</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action disabled="1" id="-9" name="Destroy" type="Minion" />
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">find( colorCombo, &quot;red&quot; )</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Second value">0</param>
@@ -1883,31 +1926,31 @@
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
+                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">find( colorCombo, &quot;blue&quot; )</param>
                                             <param id="1" name="Comparison">5</param>
                                             <param id="2" name="Second value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">colorCombo</param>
                                             <param id="1" name="Value">&quot;purple&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
+                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">find( colorCombo, &quot;yellow&quot; )</param>
                                             <param id="1" name="Comparison">5</param>
                                             <param id="2" name="Second value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-9" name="Set value" type="System">
+                                        <action disabled="1" id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">colorCombo</param>
                                             <param id="1" name="Value">&quot;orange&quot;</param>
                                         </action>
@@ -1915,314 +1958,314 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">find( colorCombo, &quot;blue&quot; )</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">find( colorCombo, &quot;yellow&quot; )</param>
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">colorCombo</param>
                                     <param id="1" name="Value">&quot;green&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-8" name="Compare two values" type="System">
+                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">find(colorCombo, &quot;#&quot;)</param>
                                     <param id="1" name="Comparison">4</param>
                                     <param id="2" name="Second value">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">colorCombo</param>
                                     <param id="1" name="Value">&quot;grey&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-13" name="Pick nth instance" type="System">
+                                <condition disabled="1" id="-13" name="Pick nth instance" type="System">
                                     <param id="0" name="Object">Minion</param>
                                     <param id="1" name="Instance">0</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Minion">
+                                <action disabled="1" id="4" name="Set animation" type="Minion">
                                     <param id="0" name="Animation">colorCombo</param>
                                     <param id="1" name="From">1</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-13" name="Pick nth instance" type="System">
+                                <condition disabled="1" id="-13" name="Pick nth instance" type="System">
                                     <param id="0" name="Object">Minion</param>
                                     <param id="1" name="Instance">1</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action disabled="1" id="-9" name="Destroy" type="Minion" />
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A health bar that shows the current health of an object" title="Health Bar">
+        <event-group collapsed="1" description="A health bar that shows the current health of an object" disabled="1" title="Health Bar">
             <sub-events>
                 <comment>Attach a health bar to a minion if it doesn&apos;t already have one</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" inverted="1" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">healthbarAttached</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Create object" type="System">
+                        <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">HealthBorder</param>
                             <param id="1" name="Layer">activeLayer</param>
                             <param id="2" name="X">minion.X</param>
                             <param id="3" name="Y">minion.Y -  (minion.Height / 2 ) - healthBarHeight - healthBarBorder * 2</param>
                         </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="HealthBorder">
+                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="HealthBorder">
                             <param id="0" name="Pin to">Minion</param>
                         </action>
-                        <action id="-7" name="Set size" type="HealthBorder">
+                        <action disabled="1" id="-7" name="Set size" type="HealthBorder">
                             <param id="0" name="Width">healthBarWidth</param>
                             <param id="1" name="Height">healthBarHeight</param>
                         </action>
-                        <action id="-3" name="Create object" type="System">
+                        <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">HealthBar</param>
                             <param id="1" name="Layer">activeLayer</param>
                             <param id="2" name="X">HealthBorder.ImagePointX(1) + healthBarBorder</param>
                             <param id="3" name="Y">HealthBorder.ImagePointY(1) + healthBarBorder</param>
                         </action>
-                        <action behavior="Pin" id="0" name="Pin to object" type="HealthBar">
+                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="HealthBar">
                             <param id="0" name="Pin to">HealthBorder</param>
                         </action>
-                        <action id="-10" name="Set value" type="HealthBar">
+                        <action disabled="1" id="-10" name="Set value" type="HealthBar">
                             <param id="0" name="Instance variable">startingWidth</param>
                             <param id="1" name="Value">HealthBorder.Width - healthBarBorder * 2</param>
                         </action>
-                        <action id="-7" name="Set size" type="HealthBar">
+                        <action disabled="1" id="-7" name="Set size" type="HealthBar">
                             <param id="0" name="Width">HealthBar.startingWidth</param>
                             <param id="1" name="Height">healthBarHeight - healthBarBorder * 2</param>
                         </action>
-                        <action id="-8" name="Set angle" type="HealthBorder">
+                        <action disabled="1" id="-8" name="Set angle" type="HealthBorder">
                             <param id="0" name="Angle">minion.Angle</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">healthBarUID</param>
                             <param id="1" name="Value">healthbar.UID</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
                             <param id="0" name="Instance variable">healthbarAttached</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Destroy the health bar border if the minion it&apos;s attached to is destroyed</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="HealthBorder" />
+                        <condition behavior="Pin" disabled="1" id="0" inverted="1" name="Is pinned" type="HealthBorder" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="HealthBorder" />
+                        <action disabled="1" id="-9" name="Destroy" type="HealthBorder" />
                     </actions>
                 </event-block>
                 <comment>Destroy the health bar if the border it&apos;s attached to is destroyed</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="HealthBar" />
+                        <condition behavior="Pin" disabled="1" id="0" inverted="1" name="Is pinned" type="HealthBar" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="HealthBar" />
+                        <action disabled="1" id="-9" name="Destroy" type="HealthBar" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A cannon that fires projectiles" title="Cannon">
+        <event-group collapsed="1" description="A cannon that fires projectiles" disabled="1" title="Cannon">
             <sub-events>
                 <comment>Fire the cannon with a defined ammo at a specific fire rate</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-11" name="For Each" type="System">
+                        <condition disabled="1" id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Cannon</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
                         <comment>If the cannon has been created, but not fully setup, create the additional components and setup all of the initial variables.</comment>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Cannon">
+                                <condition disabled="1" id="-8" inverted="1" name="Is boolean instance variable set" type="Cannon">
                                     <param id="0" name="Instance variable">fullyDeployed</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-3" name="Create object" type="System">
+                                <action disabled="1" id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">RangeFinder</param>
                                     <param id="1" name="Layer">defaultLayer</param>
                                     <param id="2" name="X">cannon.X</param>
                                     <param id="3" name="Y">cannon.Y</param>
                                 </action>
-                                <action id="-25" name="Move to bottom" type="RangeFinder" />
-                                <action id="-10" name="Set value" type="RangeFinder">
+                                <action disabled="1" id="-25" name="Move to bottom" type="RangeFinder" />
+                                <action disabled="1" id="-10" name="Set value" type="RangeFinder">
                                     <param id="0" name="Instance variable">baseUID</param>
                                     <param id="1" name="Value">cannon.baseuid</param>
                                 </action>
-                                <action id="-3" name="Create object" type="System">
+                                <action disabled="1" id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">TargetLeadBar</param>
                                     <param id="1" name="Layer">defaultLayer</param>
                                     <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                     <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                 </action>
-                                <action id="-15" name="Set visible" type="TargetLeadBar">
+                                <action disabled="1" id="-15" name="Set visible" type="TargetLeadBar">
                                     <param id="0" name="Visibility">0</param>
                                 </action>
-                                <action id="-10" name="Set value" type="TargetLeadBar">
+                                <action disabled="1" id="-10" name="Set value" type="TargetLeadBar">
                                     <param id="0" name="Instance variable">baseUID</param>
                                     <param id="1" name="Value">cannon.baseuid</param>
                                 </action>
-                                <action id="-16" name="Set opacity" type="TargetLeadBar">
+                                <action disabled="1" id="-16" name="Set opacity" type="TargetLeadBar">
                                     <param id="0" name="Opacity">0</param>
                                 </action>
                             </actions>
                             <sub-events>
                                 <comment>Create a line from the cannon out to it&apos;s current target</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
+                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">cannonShowTargetLead</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">1</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-3" name="Create object" type="System">
+                                        <action disabled="1" id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">distanceToTarget</param>
                                             <param id="1" name="Layer">defaultLayer</param>
                                             <param id="2" name="X">cannon.X</param>
                                             <param id="3" name="Y">cannon.Y</param>
                                         </action>
-                                        <action id="-15" name="Set visible" type="distanceToTarget">
+                                        <action disabled="1" id="-15" name="Set visible" type="distanceToTarget">
                                             <param id="0" name="Visibility">0</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="TargetLeadBar">
+                                        <action disabled="1" id="-10" name="Set value" type="TargetLeadBar">
                                             <param id="0" name="Instance variable">labelUID</param>
                                             <param id="1" name="Value">distanceToTarget.UID</param>
                                         </action>
-                                        <action id="-16" name="Set opacity" type="TargetLeadBar">
+                                        <action disabled="1" id="-16" name="Set opacity" type="TargetLeadBar">
                                             <param id="0" name="Opacity">100</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <comment>Setup the rocket ammo</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-7" name="Compare instance variable" type="Cannon">
+                                        <condition disabled="1" id="-7" name="Compare instance variable" type="Cannon">
                                             <param id="0" name="Instance variable">activeAmmo</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">rocketAmmoType</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="4" name="Set animation" type="Cannon">
+                                        <action disabled="1" id="4" name="Set animation" type="Cannon">
                                             <param id="0" name="Animation">&quot;Rocket&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Cannon">
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">fireRate</param>
                                             <param id="1" name="Value">rocketDefaultFireRate</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Cannon">
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMax</param>
                                             <param id="1" name="Value">rocketTargetRangeMax</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Cannon">
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMin</param>
                                             <param id="1" name="Value">rocketTargetRangeMin</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="RangeFinder">
+                                        <action disabled="1" id="4" name="Set animation" type="RangeFinder">
                                             <param id="0" name="Animation">&quot;Rocket&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <comment>Setup the beam ammo</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-7" name="Compare instance variable" type="Cannon">
+                                        <condition disabled="1" id="-7" name="Compare instance variable" type="Cannon">
                                             <param id="0" name="Instance variable">activeAmmo</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Value">beamAmmoType</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="4" name="Set animation" type="Cannon">
+                                        <action disabled="1" id="4" name="Set animation" type="Cannon">
                                             <param id="0" name="Animation">&quot;Beam&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Cannon">
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">fireRate</param>
                                             <param id="1" name="Value">beamDefaultFireRate</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Cannon">
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMax</param>
                                             <param id="1" name="Value">beamTargetRangeMax</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Cannon">
+                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                             <param id="0" name="Instance variable">targetRangeMin</param>
                                             <param id="1" name="Value">beamTargetRangeMin</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="RangeFinder">
+                                        <action disabled="1" id="4" name="Set animation" type="RangeFinder">
                                             <param id="0" name="Animation">&quot;beam&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <comment>Pin the cannon and range finder to a turret (if that is the base)</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-19" name="Pick all" type="System">
+                                        <condition disabled="1" id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">TurretBase</param>
                                         </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="TurretBase">
+                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="TurretBase">
                                             <param id="0" name="Unique ID">cannon.baseUID</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action behavior="Pin" id="0" name="Pin to object" type="Cannon">
+                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="Cannon">
                                             <param id="0" name="Pin to">TurretBase</param>
                                         </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" type="RangeFinder">
+                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="RangeFinder">
                                             <param id="0" name="Pin to">TurretBase</param>
                                         </action>
                                     </actions>
                                 </event-block>
                                 <comment>Finish up and mark the cannon as fully deployed</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions />
                                     <actions>
-                                        <action id="-7" name="Set size" type="RangeFinder">
+                                        <action disabled="1" id="-7" name="Set size" type="RangeFinder">
                                             <param id="0" name="Width">Cannon.targetRangeMax * 2</param>
                                             <param id="1" name="Height">Cannon.targetRangeMax * 2</param>
                                         </action>
-                                        <action id="-13" name="Set boolean" type="Cannon">
+                                        <action disabled="1" id="-13" name="Set boolean" type="Cannon">
                                             <param id="0" name="Instance variable">fullyDeployed</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
@@ -2232,28 +2275,28 @@
                         </event-block>
                         <comment>See if there are any minions to target</comment>
                         <variable comment="the distance from the turret to the nearest minion" name="distanceToMinion" type="number">0</variable>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-15" name="Pick nearest/furthest" type="Minion">
+                                <condition disabled="1" id="-15" name="Pick nearest/furthest" type="Minion">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">Cannon.X</param>
                                     <param id="2" name="Y">Cannon.Y</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                                     <param id="0" name="Instance variable">active</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Set value" type="System">
+                                <action disabled="1" id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">distanceToMinion</param>
                                     <param id="1" name="Value">distance( cannon.X, cannon.Y, Minion.X, Minion.Y)</param>
                                 </action>
                             </actions>
                             <sub-events>
                                 <comment>Minion is close enough to target</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
+                                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                                             <param id="0" name="First value">clamp(distanceToMinion, cannon.targetRangeMin, cannon.targetRangeMax)</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">distanceToMinion</param>
@@ -2262,164 +2305,164 @@
                                     <actions />
                                     <sub-events>
                                         <comment>Check line of site</comment>
-                                        <event-block>
+                                        <event-block disabled="1">
                                             <conditions>
-                                                <condition id="-7" name="Compare instance variable" type="TargetLeadBar">
+                                                <condition disabled="1" id="-7" name="Compare instance variable" type="TargetLeadBar">
                                                     <param id="0" name="Instance variable">baseUID</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">cannon.baseUID</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="-15" name="Set visible" type="TargetLeadBar">
+                                                <action disabled="1" id="-15" name="Set visible" type="TargetLeadBar">
                                                     <param id="0" name="Visibility">1</param>
                                                 </action>
-                                                <action id="-3" name="Set position" type="TargetLeadBar">
+                                                <action disabled="1" id="-3" name="Set position" type="TargetLeadBar">
                                                     <param id="0" name="X">Cannon.ImagePointX(1)</param>
                                                     <param id="1" name="Y">Cannon.ImagePointY(1)</param>
                                                 </action>
-                                                <action id="-22" name="Set angle toward position" type="TargetLeadBar">
+                                                <action disabled="1" id="-22" name="Set angle toward position" type="TargetLeadBar">
                                                     <param id="0" name="X">Minion.X</param>
                                                     <param id="1" name="Y">Minion.Y</param>
                                                 </action>
-                                                <action id="-7" name="Set size" type="TargetLeadBar">
+                                                <action disabled="1" id="-7" name="Set size" type="TargetLeadBar">
                                                     <param id="0" name="Width">distance( Cannon.ImagePointX(1), Cannon.ImagePointY(1), Minion.X, Minion.Y )</param>
                                                     <param id="1" name="Height">1</param>
                                                 </action>
                                             </actions>
                                             <sub-events>
                                                 <comment>There is line of site</comment>
-                                                <event-block>
+                                                <event-block disabled="1">
                                                     <conditions>
-                                                        <condition id="1" inverted="1" name="Is overlapping another object" type="TargetLeadBar">
-                                                            <param id="0" name="Object">BarrierWall</param>
+                                                        <condition disabled="1" id="1" inverted="1" name="Is overlapping another object" type="TargetLeadBar">
+                                                            <param id="0" name="Object">LOSTester</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="4" name="Set animation" type="TargetLeadBar">
+                                                        <action disabled="1" id="4" name="Set animation" type="TargetLeadBar">
                                                             <param id="0" name="Animation">&quot;LineOfSite&quot;</param>
                                                             <param id="1" name="From">1</param>
                                                         </action>
-                                                        <action id="4" name="Set font color" type="distanceToTarget">
+                                                        <action disabled="1" id="4" name="Set font color" type="distanceToTarget">
                                                             <param id="0" name="Color">rgb(58, 206, 65)</param>
                                                         </action>
-                                                        <action id="-8" name="Set angle" type="Cannon">
+                                                        <action disabled="1" id="-8" name="Set angle" type="Cannon">
                                                             <param id="0" name="Angle">angle( Cannon.X, Cannon.Y, Minion.X, Minion.Y )</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Cannon">
+                                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                                             <param id="0" name="Instance variable">currentTarget</param>
                                                             <param id="1" name="Value">Minion.UID</param>
                                                         </action>
                                                     </actions>
                                                     <sub-events>
                                                         <comment>Fire whatever ammo is active:</comment>
-                                                        <event-block>
+                                                        <event-block disabled="1">
                                                             <conditions>
-                                                                <condition id="-8" name="Compare two values" type="System">
+                                                                <condition disabled="1" id="-8" name="Compare two values" type="System">
                                                                     <param id="0" name="First value">time - Cannon.lastFired</param>
                                                                     <param id="1" name="Comparison">5</param>
                                                                     <param id="2" name="Second value">Cannon.fireRate</param>
                                                                 </condition>
-                                                                <condition id="-8" name="Is boolean instance variable set" type="Cannon">
+                                                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Cannon">
                                                                     <param id="0" name="Instance variable">readyToFire</param>
                                                                 </condition>
                                                             </conditions>
                                                             <actions />
                                                             <sub-events>
                                                                 <comment>Fire a rocket</comment>
-                                                                <event-block>
+                                                                <event-block disabled="1">
                                                                     <conditions>
-                                                                        <condition id="-7" name="Compare instance variable" type="Cannon">
+                                                                        <condition disabled="1" id="-7" name="Compare instance variable" type="Cannon">
                                                                             <param id="0" name="Instance variable">activeAmmo</param>
                                                                             <param id="1" name="Comparison">0</param>
                                                                             <param id="2" name="Value">rocketAmmoType</param>
                                                                         </condition>
                                                                     </conditions>
                                                                     <actions>
-                                                                        <action id="-3" name="Create object" type="System">
+                                                                        <action disabled="1" id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">Rocket</param>
                                                                             <param id="1" name="Layer">activeLayer</param>
                                                                             <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                                                             <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                                                         </action>
-                                                                        <action id="-8" name="Set angle" type="Rocket">
+                                                                        <action disabled="1" id="-8" name="Set angle" type="Rocket">
                                                                             <param id="0" name="Angle">Cannon.Angle</param>
                                                                         </action>
-                                                                        <action id="-10" name="Set value" type="Rocket">
+                                                                        <action disabled="1" id="-10" name="Set value" type="Rocket">
                                                                             <param id="0" name="Instance variable">launchTime</param>
                                                                             <param id="1" name="Value">time</param>
                                                                         </action>
-                                                                        <action behavior="Bullet" id="5" name="Set enabled" type="Rocket">
+                                                                        <action behavior="Bullet" disabled="1" id="5" name="Set enabled" type="Rocket">
                                                                             <param id="0" name="State">1</param>
                                                                         </action>
-                                                                        <action behavior="Bullet" id="0" name="Set speed" type="Rocket">
+                                                                        <action behavior="Bullet" disabled="1" id="0" name="Set speed" type="Rocket">
                                                                             <param id="0" name="Speed">rocketDefaultProjectileSpeed</param>
                                                                         </action>
-                                                                        <action behavior="Bullet" id="3" name="Set angle of motion" type="Rocket">
+                                                                        <action behavior="Bullet" disabled="1" id="3" name="Set angle of motion" type="Rocket">
                                                                             <param id="0" name="Angle">rocket.Angle</param>
                                                                         </action>
-                                                                        <action behavior="Bullet" id="1" name="Set acceleration" type="Rocket">
+                                                                        <action behavior="Bullet" disabled="1" id="1" name="Set acceleration" type="Rocket">
                                                                             <param id="0" name="Acceleration">rocketLaunchBoost</param>
                                                                         </action>
-                                                                        <action id="-3" name="Create object" type="System">
+                                                                        <action disabled="1" id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">RocketEffects</param>
                                                                             <param id="1" name="Layer">activeLayer</param>
                                                                             <param id="2" name="X">rocket.imagepointX(2)</param>
                                                                             <param id="3" name="Y">rocket.imagepointY(2)</param>
                                                                         </action>
-                                                                        <action id="-10" name="Set value" type="Rocket">
+                                                                        <action disabled="1" id="-10" name="Set value" type="Rocket">
                                                                             <param id="0" name="Instance variable">effectsUID</param>
                                                                             <param id="1" name="Value">RocketEffects.UID</param>
                                                                         </action>
-                                                                        <action id="-8" name="Set angle" type="RocketEffects">
+                                                                        <action disabled="1" id="-8" name="Set angle" type="RocketEffects">
                                                                             <param id="0" name="Angle">rocket.angle</param>
                                                                         </action>
-                                                                        <action behavior="Pin" id="0" name="Pin to object" type="RocketEffects">
+                                                                        <action behavior="Pin" disabled="1" id="0" name="Pin to object" type="RocketEffects">
                                                                             <param id="0" name="Pin to">Rocket</param>
                                                                         </action>
-                                                                        <action id="-10" name="Set value" type="RocketEffects">
+                                                                        <action disabled="1" id="-10" name="Set value" type="RocketEffects">
                                                                             <param id="0" name="Instance variable">rocketUID</param>
                                                                             <param id="1" name="Value">rocket.uid</param>
                                                                         </action>
-                                                                        <action id="-10" name="Set value" type="Rocket">
+                                                                        <action disabled="1" id="-10" name="Set value" type="Rocket">
                                                                             <param id="0" name="Instance variable">cannonUID</param>
                                                                             <param id="1" name="Value">cannon.UID</param>
                                                                         </action>
                                                                     </actions>
                                                                 </event-block>
                                                                 <comment>Fire a beam</comment>
-                                                                <event-block>
+                                                                <event-block disabled="1">
                                                                     <conditions>
-                                                                        <condition id="-7" name="Compare instance variable" type="Cannon">
+                                                                        <condition disabled="1" id="-7" name="Compare instance variable" type="Cannon">
                                                                             <param id="0" name="Instance variable">activeAmmo</param>
                                                                             <param id="1" name="Comparison">0</param>
                                                                             <param id="2" name="Value">beamAmmoType</param>
                                                                         </condition>
                                                                     </conditions>
                                                                     <actions>
-                                                                        <action id="-3" name="Create object" type="System">
+                                                                        <action disabled="1" id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">Beam</param>
                                                                             <param id="1" name="Layer">activeLayer</param>
                                                                             <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                                                             <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                                                         </action>
-                                                                        <action id="-8" name="Set angle" type="Beam">
+                                                                        <action disabled="1" id="-8" name="Set angle" type="Beam">
                                                                             <param id="0" name="Angle">Cannon.Angle</param>
                                                                         </action>
-                                                                        <action behavior="Bullet" id="0" name="Set speed" type="Beam">
+                                                                        <action behavior="Bullet" disabled="1" id="0" name="Set speed" type="Beam">
                                                                             <param id="0" name="Speed">beamDefaultProjectileSpeed</param>
                                                                         </action>
-                                                                        <action id="-10" name="Set value" type="Beam">
+                                                                        <action disabled="1" id="-10" name="Set value" type="Beam">
                                                                             <param id="0" name="Instance variable">cannonUID</param>
                                                                             <param id="1" name="Value">cannon.UID</param>
                                                                         </action>
                                                                     </actions>
                                                                 </event-block>
                                                                 <comment>Register fired shot</comment>
-                                                                <event-block>
+                                                                <event-block disabled="1">
                                                                     <conditions />
                                                                     <actions>
-                                                                        <action id="-10" name="Set value" type="Cannon">
+                                                                        <action disabled="1" id="-10" name="Set value" type="Cannon">
                                                                             <param id="0" name="Instance variable">lastFired</param>
                                                                             <param id="1" name="Value">time</param>
                                                                         </action>
@@ -2430,40 +2473,40 @@
                                                     </sub-events>
                                                 </event-block>
                                                 <comment>There is no line of site</comment>
-                                                <event-block>
+                                                <event-block disabled="1">
                                                     <conditions>
-                                                        <condition id="1" name="Is overlapping another object" type="TargetLeadBar">
-                                                            <param id="0" name="Object">BarrierWall</param>
+                                                        <condition disabled="1" id="1" name="Is overlapping another object" type="TargetLeadBar">
+                                                            <param id="0" name="Object">LOSTester</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="-15" name="Set visible" type="TargetLeadBar">
+                                                        <action disabled="1" id="-15" name="Set visible" type="TargetLeadBar">
                                                             <param id="0" name="Visibility">0</param>
                                                         </action>
-                                                        <action id="-15" name="Set visible" type="distanceToTarget">
+                                                        <action disabled="1" id="-15" name="Set visible" type="distanceToTarget">
                                                             <param id="0" name="Visibility">0</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
                                                 <comment>Draw the range to target</comment>
-                                                <event-block>
+                                                <event-block disabled="1">
                                                     <conditions>
-                                                        <condition id="-14" name="Pick by unique ID" type="distanceToTarget">
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="distanceToTarget">
                                                             <param id="0" name="Unique ID">TargetLeadBar.labelUID</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="-3" name="Set position" type="distanceToTarget">
+                                                        <action disabled="1" id="-3" name="Set position" type="distanceToTarget">
                                                             <param id="0" name="X">( cannon.ImagePointX(1) + Minion.X ) / 2 </param>
                                                             <param id="1" name="Y">( cannon.ImagePointY(1) + Minion.Y ) / 2 </param>
                                                         </action>
-                                                        <action id="-8" name="Set angle" type="distanceToTarget">
+                                                        <action disabled="1" id="-8" name="Set angle" type="distanceToTarget">
                                                             <param id="0" name="Angle">TargetLeadBar.Angle</param>
                                                         </action>
-                                                        <action id="-15" name="Set visible" type="distanceToTarget">
+                                                        <action disabled="1" id="-15" name="Set visible" type="distanceToTarget">
                                                             <param id="0" name="Visibility">1</param>
                                                         </action>
-                                                        <action id="0" name="Set text" type="distanceToTarget">
+                                                        <action disabled="1" id="0" name="Set text" type="distanceToTarget">
                                                             <param id="0" name="Text">round( distanceToMinion )</param>
                                                         </action>
                                                     </actions>
@@ -2473,9 +2516,9 @@
                                     </sub-events>
                                 </event-block>
                                 <comment>Minion is too far away to target</comment>
-                                <event-block>
+                                <event-block disabled="1">
                                     <conditions>
-                                        <condition id="-8" inverted="1" name="Compare two values" type="System">
+                                        <condition disabled="1" id="-8" inverted="1" name="Compare two values" type="System">
                                             <param id="0" name="First value">clamp(distanceToMinion, cannon.targetRangeMin, cannon.targetRangeMax)</param>
                                             <param id="1" name="Comparison">0</param>
                                             <param id="2" name="Second value">distanceToMinion</param>
@@ -2483,22 +2526,22 @@
                                     </conditions>
                                     <actions />
                                     <sub-events>
-                                        <event-block>
+                                        <event-block disabled="1">
                                             <conditions>
-                                                <condition id="-7" name="Compare instance variable" type="TargetLeadBar">
+                                                <condition disabled="1" id="-7" name="Compare instance variable" type="TargetLeadBar">
                                                     <param id="0" name="Instance variable">baseUID</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">cannon.baseUID</param>
                                                 </condition>
-                                                <condition id="-14" name="Pick by unique ID" type="distanceToTarget">
+                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="distanceToTarget">
                                                     <param id="0" name="Unique ID">TargetLeadBar.labelUID</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="-15" name="Set visible" type="TargetLeadBar">
+                                                <action disabled="1" id="-15" name="Set visible" type="TargetLeadBar">
                                                     <param id="0" name="Visibility">0</param>
                                                 </action>
-                                                <action id="-15" name="Set visible" type="distanceToTarget">
+                                                <action disabled="1" id="-15" name="Set visible" type="distanceToTarget">
                                                     <param id="0" name="Visibility">0</param>
                                                 </action>
                                             </actions>
@@ -2510,94 +2553,94 @@
                     </sub-events>
                 </event-block>
                 <comment>If the cannon becomes unpinned (probably because the base it was on was destroyed) destroy it</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="Cannon" />
+                        <condition behavior="Pin" disabled="1" id="0" inverted="1" name="Is pinned" type="Cannon" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Cannon" />
+                        <action disabled="1" id="-9" name="Destroy" type="Cannon" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A laser fired from a cannon" title="Beam">
+        <event-group collapsed="1" description="A laser fired from a cannon" disabled="1" title="Beam">
             <sub-events>
                 <comment>Destroy any minion hit by beams</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Beam">
+                        <condition disabled="1" id="0" name="On collision with another object" type="Beam">
                             <param id="0" name="Object">Minion</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">max( 0, minion.health - beamDamage )</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
                             <param id="0" name="Instance variable">updateHealthBar</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-9" name="Destroy" type="Beam" />
+                        <action disabled="1" id="-9" name="Destroy" type="Beam" />
                     </actions>
                 </event-block>
                 <comment>Destroy the beam if it exceeds max range</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-11" name="For Each" type="System">
+                        <condition disabled="1" id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Beam</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Cannon">
+                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Cannon">
                             <param id="0" name="Unique ID">beam.cannonUID</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" type="System">
+                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">abs( distance( beam.X, beam.Y, cannon.X, cannon.Y ) )</param>
                             <param id="1" name="Comparison">4</param>
                             <param id="2" name="Second value">beamTargetRangeMax</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Beam" />
+                        <action disabled="1" id="-9" name="Destroy" type="Beam" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage" title="Rocket">
+        <event-group collapsed="1" description="A rocket that travels slowly, can destroy bases, and explodes causing splash damage" disabled="1" title="Rocket">
             <sub-events>
                 <comment>Destroy any minions hit by rockets</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Rocket">
+                        <condition disabled="1" id="0" name="On collision with another object" type="Rocket">
                             <param id="0" name="Object">Minion</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
+                        <action disabled="1" id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Kill any rocket that exceeds the maximum flight time</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-11" name="For Each" type="System">
+                        <condition disabled="1" id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Rocket</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" type="System">
+                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">time - Rocket.launchTime</param>
                             <param id="1" name="Comparison">5</param>
                             <param id="2" name="Second value">rocketMaxFlightTime</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
+                        <action disabled="1" id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
@@ -2605,87 +2648,87 @@
                 </event-block>
                 <comment>Arm the rocket once it&apos;s cleared the cannon</comment>
                 <comment>Bounce off other rockets (explicitly done because rockets aren&apos;t solid)</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Rocket">
+                        <condition disabled="1" id="0" name="On collision with another object" type="Rocket">
                             <param id="0" name="Object">Rocket</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
+                        <action disabled="1" id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Get rid of the rocket, smoke,  and explosion once the explosion animation is finished</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="4" name="On finished" type="RocketExplosion">
+                        <condition disabled="1" id="4" name="On finished" type="RocketExplosion">
                             <param id="0" name="Animation">&quot;default&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="RocketExplosion" />
+                        <action disabled="1" id="-9" name="Destroy" type="RocketExplosion" />
                     </actions>
                 </event-block>
                 <comment>Kill any minions caught in the shockwave</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="RocketExplosion">
+                        <condition disabled="1" id="0" name="On collision with another object" type="RocketExplosion">
                             <param id="0" name="Object">Minion</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="Minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">max( 0, minion.health - rocketDamage )</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
                             <param id="0" name="Instance variable">updateHealthBar</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>Move any nodes caught in the shockwave</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="RocketExplosion">
+                        <condition disabled="1" id="0" name="On collision with another object" type="RocketExplosion">
                             <param id="0" name="Object">Node</param>
                         </condition>
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block>
+                        <event-block disabled="1">
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Rocket">
+                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Rocket">
                                     <param id="0" name="Unique ID">RocketExplosion.rocketUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action behavior="Bullet" id="5" name="Set enabled" type="Node">
+                                <action behavior="Bullet" disabled="1" id="5" name="Set enabled" type="Node">
                                     <param id="0" name="State">1</param>
                                 </action>
-                                <action id="-8" name="Set angle" type="Node">
+                                <action disabled="1" id="-8" name="Set angle" type="Node">
                                     <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
                                 </action>
-                                <action behavior="Bullet" id="3" name="Set angle of motion" type="Node">
+                                <action behavior="Bullet" disabled="1" id="3" name="Set angle of motion" type="Node">
                                     <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
                                 </action>
-                                <action behavior="Bullet" id="0" name="Set speed" type="Node">
+                                <action behavior="Bullet" disabled="1" id="0" name="Set speed" type="Node">
                                     <param id="0" name="Speed">rocketImpactForce</param>
                                 </action>
-                                <action behavior="Bullet" id="1" name="Set acceleration" type="Node">
+                                <action behavior="Bullet" disabled="1" id="1" name="Set acceleration" type="Node">
                                     <param id="0" name="Acceleration">rocketImpactForceDecay</param>
                                 </action>
-                                <action id="-13" name="Set boolean" type="Node">
+                                <action disabled="1" id="-13" name="Set boolean" type="Node">
                                     <param id="0" name="Instance variable">moving</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="-13" name="Set boolean" type="Node">
+                                <action disabled="1" id="-13" name="Set boolean" type="Node">
                                     <param id="0" name="Instance variable">movingByObject</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -2694,69 +2737,69 @@
                     </sub-events>
                 </event-block>
                 <comment>Destroy the rocket if it goes past max distance</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-11" name="For Each" type="System">
+                        <condition disabled="1" id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Rocket</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Cannon">
+                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Cannon">
                             <param id="0" name="Unique ID">rocket.cannonUID</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" type="System">
+                        <condition disabled="1" id="-8" name="Compare two values" type="System">
                             <param id="0" name="First value">abs( distance( rocket.X, rocket.Y, cannon.X, cannon.Y ) )</param>
                             <param id="1" name="Comparison">4</param>
                             <param id="2" name="Second value">rocketTargetRangeMax</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-13" name="Set boolean" type="Rocket">
+                        <action disabled="1" id="-13" name="Set boolean" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                             <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>If a rocket exhaust becomes unpinned from a rocket, destroy it</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition behavior="Pin" id="0" inverted="1" name="Is pinned" type="RocketEffects" />
+                        <condition behavior="Pin" disabled="1" id="0" inverted="1" name="Is pinned" type="RocketEffects" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="RocketEffects" />
+                        <action disabled="1" id="-9" name="Destroy" type="RocketEffects" />
                     </actions>
                 </event-block>
                 <comment>If the rocket is ready to detonate (and it hasn&apos;t already exploded), create an explosion</comment>
-                <event-block>
+                <event-block disabled="1">
                     <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Rocket">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Rocket">
                             <param id="0" name="Instance variable">readyToDetonate</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" type="Rocket">
+                        <condition disabled="1" id="-7" name="Compare instance variable" type="Rocket">
                             <param id="0" name="Instance variable">explosionUID</param>
                             <param id="1" name="Comparison">0</param>
                             <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Create object" type="System">
+                        <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">RocketExplosion</param>
                             <param id="1" name="Layer">activeLayer</param>
                             <param id="2" name="X">rocket.X</param>
                             <param id="3" name="Y">rocket.Y</param>
                         </action>
-                        <action id="-10" name="Set value" type="RocketExplosion">
+                        <action disabled="1" id="-10" name="Set value" type="RocketExplosion">
                             <param id="0" name="Instance variable">rocketUID</param>
                             <param id="1" name="Value">rocket.UID</param>
                         </action>
-                        <action id="-7" name="Set size" type="RocketExplosion">
+                        <action disabled="1" id="-7" name="Set size" type="RocketExplosion">
                             <param id="0" name="Width">rocketExplosionDiameter</param>
                             <param id="1" name="Height">rocketExplosionDiameter</param>
                         </action>
-                        <action id="-9" name="Destroy" type="Rocket" />
+                        <action disabled="1" id="-9" name="Destroy" type="Rocket" />
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A static turret that can act as a stationary weapons platform" title="Turret">
+        <event-group collapsed="1" description="A static turret that can act as a stationary weapons platform" disabled="1" title="Turret">
             <sub-events>
                 <comment>Create a new rocket turret at the mouse location</comment>
                 <event-block>
@@ -2851,12 +2894,12 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">BarrierWall</param>
+                            <param id="0" name="Object to create">LOSTester</param>
                             <param id="1" name="Layer">defaultLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
-                        <action id="-7" name="Set size" type="BarrierWall">
+                        <action id="-7" name="Set size" type="LOSTester">
                             <param id="0" name="Width">20</param>
                             <param id="1" name="Height">100</param>
                         </action>
@@ -2875,16 +2918,16 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">BarrierWall</param>
+                            <param id="0" name="Object to create">LOSTester</param>
                             <param id="1" name="Layer">defaultLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
-                        <action id="-7" name="Set size" type="BarrierWall">
+                        <action id="-7" name="Set size" type="LOSTester">
                             <param id="0" name="Width">20</param>
                             <param id="1" name="Height">100</param>
                         </action>
-                        <action id="-18" name="Rotate clockwise" type="BarrierWall">
+                        <action id="-18" name="Rotate clockwise" type="LOSTester">
                             <param id="0" name="Degrees">90</param>
                         </action>
                     </actions>

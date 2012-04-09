@@ -225,11 +225,6 @@
                                         </event-block>
                                     </sub-events>
                                 </event-block>
-                                <comment>Setup the object activator section of the HUD</comment>
-                                <event-block>
-                                    <conditions />
-                                    <actions />
-                                </event-block>
                                 <comment>Initialize the HUD</comment>
                                 <event-block>
                                     <conditions />
@@ -250,7 +245,7 @@
                                     <conditions />
                                     <actions>
                                         <action id="-9" name="Destroy" type="Bar" />
-                                        <action id="-9" name="Destroy" type="BarrierWall" />
+                                        <action id="-9" name="Destroy" type="LOSTester" />
                                         <action id="-9" name="Destroy" type="Beam" />
                                         <action id="-9" name="Destroy" type="Cannon" />
                                         <action id="-9" name="Destroy" type="distanceToTarget" />
