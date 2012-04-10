@@ -784,6 +784,7 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
+                        <HUDobjectName></HUDobjectName>
                         <colorsConnected></colorsConnected>
                         <streamOutUID>0</streamOutUID>
                         <blockStream>false</blockStream>
@@ -804,11 +805,11 @@
                         <x>-196</x>
                         <y>-466</y>
                         <z>0</z>
-                        <width>63</width>
-                        <height>51</height>
+                        <width>40</width>
+                        <height>40</height>
                         <depth>0</depth>
-                        <hotspotX>0.412698418</hotspotX>
-                        <hotspotY>0.509803951</hotspotY>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -983,6 +984,28 @@
             <opacity>1</opacity>
             <force-own-texture>0</force-own-texture>
             <instances>
+                <instance type="HUDbackground">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>0</x>
+                        <y>521</y>
+                        <z>0</z>
+                        <width>800</width>
+                        <height>79</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
                 <instance type="HUD">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -993,16 +1016,16 @@
                         <selectionUID>0</selectionUID>
                     </instance-variables>
                     <world>
-                        <x>0</x>
-                        <y>535</y>
+                        <x>4.507629395</x>
+                        <y>525.242919922</y>
                         <z>0</z>
-                        <width>800</width>
-                        <height>65</height>
+                        <width>790.234313965</width>
+                        <height>71.010864258</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.5</opacity>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
                 <instance type="Jesus">
@@ -1036,7 +1059,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HUDcurrentlySelected">
+                <instance type="HUDselectionInfo">
                     <properties>
                         <text></text>
                         <initial-visibility>Visible</initial-visibility>
@@ -1047,11 +1070,11 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>122</x>
-                        <y>550</y>
+                        <x>127.451004028</x>
+                        <y>541</y>
                         <z>0</z>
-                        <width>89</width>
-                        <height>41</height>
+                        <width>80</width>
+                        <height>44</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1066,6 +1089,7 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
+                        <HUDobjectName></HUDobjectName>
                         <colorsConnected></colorsConnected>
                         <streamOutUID>0</streamOutUID>
                         <blockStream>false</blockStream>
@@ -1081,11 +1105,11 @@
                         <x>-120</x>
                         <y>-455</y>
                         <z>0</z>
-                        <width>25</width>
-                        <height>25</height>
+                        <width>30</width>
+                        <height>30</height>
                         <depth>0</depth>
-                        <hotspotX>0.519999981</hotspotX>
-                        <hotspotY>0.519999981</hotspotY>
+                        <hotspotX>0.512820542</hotspotX>
+                        <hotspotY>0.512820542</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1139,44 +1163,22 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HUDbackground">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>1088</x>
-                        <y>760</y>
-                        <z>0</z>
-                        <width>10</width>
-                        <height>10</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="HUDattributes">
                     <properties>
                         <text></text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Calibri,-16,400,0</font>
                         <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
+                        <horizontal-alignment>Center</horizontal-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>231.455322266</x>
-                        <y>544</y>
+                        <x>234.137359619</x>
+                        <y>541</y>
                         <z>0</z>
-                        <width>113.635025024</width>
-                        <height>50</height>
+                        <width>122.843811035</width>
+                        <height>44</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1184,29 +1186,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HUDtextBackground">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>224</x>
-                        <y>541</y>
-                        <z>0</z>
-                        <width>126.362884521</width>
-                        <height>55</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.5</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDtextBackground">
+                <instance type="HUDselectionInfoBg">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -1217,7 +1197,7 @@
                     </behavior-instances>
                     <world>
                         <x>117</x>
-                        <y>541</y>
+                        <y>535</y>
                         <z>0</z>
                         <width>100</width>
                         <height>55</height>
@@ -1225,10 +1205,10 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.5</opacity>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HUDcolorSelectionBackground">
+                <instance type="HUDcolorSelectionBg">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -1238,16 +1218,16 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>612.86126709</x>
-                        <y>541</y>
+                        <x>600.514709473</x>
+                        <y>535</y>
                         <z>0</z>
-                        <width>90.14440918</width>
+                        <width>100</width>
                         <height>55</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.5</opacity>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
                 <instance type="HUDcolorSelectionLabel">
@@ -1261,89 +1241,14 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>613.864074707</x>
-                        <y>545</y>
+                        <x>605.864074707</x>
+                        <y>539</y>
                         <z>0</z>
                         <width>90.005554199</width>
                         <height>20.200439453</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="GeneratorLabel">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <HUDobject>false</HUDobject>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>633</x>
-                        <y>578</y>
-                        <z>0</z>
-                        <width>21</width>
-                        <height>21</height>
-                        <depth>0</depth>
-                        <hotspotX>0.523809552</hotspotX>
-                        <hotspotY>0.523809552</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="GeneratorLabel">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <HUDobject>false</HUDobject>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>658</x>
-                        <y>578</y>
-                        <z>0</z>
-                        <width>21</width>
-                        <height>21</height>
-                        <depth>0</depth>
-                        <hotspotX>0.523809552</hotspotX>
-                        <hotspotY>0.523809552</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="GeneratorLabel">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <HUDobject>false</HUDobject>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>683</x>
-                        <y>578</y>
-                        <z>0</z>
-                        <width>21</width>
-                        <height>21</height>
-                        <depth>0</depth>
-                        <hotspotX>0.523809552</hotspotX>
-                        <hotspotY>0.523809552</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1386,7 +1291,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HUDactivatorBackground">
+                <instance type="HUDactivatorBg">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -1396,16 +1301,16 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>710.199279785</x>
-                        <y>541</y>
+                        <x>707.199279785</x>
+                        <y>535</y>
                         <z>0</z>
                         <width>82</width>
-                        <height>56</height>
+                        <height>55</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.5</opacity>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
                 <instance type="HUDactivatorButton">
@@ -1417,8 +1322,8 @@
                         <id-optional></id-optional>
                     </properties>
                     <world>
-                        <x>717.199401855</x>
-                        <y>548.638549805</y>
+                        <x>714.199401855</x>
+                        <y>542.638549805</y>
                         <z>0</z>
                         <width>66.540161133</width>
                         <height>41.270812988</height>
@@ -1438,8 +1343,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>718.012817383</x>
-                        <y>561.000854492</y>
+                        <x>715.012817383</x>
+                        <y>555.000854492</y>
                         <z>0</z>
                         <width>64.544250488</width>
                         <height>23.637695313</height>
@@ -1469,14 +1374,102 @@
                         <isMovable>true</isMovable>
                     </instance-variables>
                     <world>
-                        <x>880.297485352</x>
-                        <y>658.63659668</y>
+                        <x>871.606384277</x>
+                        <y>643.11517334</y>
                         <z>0</z>
                         <width>40</width>
                         <height>40</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDattributeBg">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>224.23500061</x>
+                        <y>535</y>
+                        <z>0</z>
+                        <width>144</width>
+                        <height>55</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDcolorSelectionButton">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>625</x>
+                        <y>572</y>
+                        <z>0</z>
+                        <width>21</width>
+                        <height>21</height>
+                        <depth>0</depth>
+                        <hotspotX>0.523809552</hotspotX>
+                        <hotspotY>0.523809552</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDcolorSelectionButton">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>650</x>
+                        <y>572</y>
+                        <z>0</z>
+                        <width>21</width>
+                        <height>21</height>
+                        <depth>0</depth>
+                        <hotspotX>0.523809552</hotspotX>
+                        <hotspotY>0.523809552</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDcolorSelectionButton">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>675</x>
+                        <y>572</y>
+                        <z>0</z>
+                        <width>21</width>
+                        <height>21</height>
+                        <depth>0</depth>
+                        <hotspotX>0.523809552</hotspotX>
+                        <hotspotY>0.523809552</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

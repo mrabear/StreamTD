@@ -68,7 +68,7 @@
         <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
         <comment>HUD parameters</comment>
         <variable comment="The height (in px) of the HUD" name="HUDheight" type="number">65</variable>
-        <variable comment="The refresh rate (sec between updates) of the HUD " name="HUDrefreshRate" type="number">0.25</variable>
+        <variable comment="The refresh rate (sec between updates) of the HUD " name="HUDrefreshRate" type="number">0.1</variable>
         <comment>Flow parameters</comment>
         <variable comment="The amount of time (in sec) to wait before redrawing a path around a moving flow object" name="flowMoveRedrawDelay" type="number">0.15</variable>
         <comment>Funcation name mappings</comment>
@@ -79,7 +79,7 @@
         <variable comment="(streamUID) Extend a stingle stream out to the closest flow object" name="fnUpdateStreamOld" type="text">updateStreamOld</variable>
         <variable comment="(layoutCoord) returns a coordinate value rounded to the nearest grid square center" name="fnGetGridCoordinate" type="text">getGridCoordinate</variable>
         <variable comment="(UID) update the currently selected object in the HUD" name="fnUpdateHUDSelection" type="text">updateHUDSelection</variable>
-        <variable comment="(x,y) return UID of object at location, else 0" name="fnGridOjbectAt" type="text">gridObjectAt</variable>
+        <variable comment="(x,y) return UID of object at location, else 0" name="fnGridObjectAt" type="text">gridObjectAt</variable>
         <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
         <variable comment="(uid) toggles the active status of the provided genrator" name="fnToggleGenerator" type="text">toggleGenerator</variable>
@@ -134,16 +134,16 @@
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="-3" name="Set position" type="HUD">
+                                <action disabled="1" id="-3" name="Set position" type="HUD">
                                     <param id="0" name="X">0</param>
                                     <param id="1" name="Y">WindowHeight - HUDHeight</param>
                                 </action>
-                                <action id="-7" name="Set size" type="HUD">
+                                <action disabled="1" id="-7" name="Set size" type="HUD">
                                     <param id="0" name="Width">WindowWidth</param>
                                     <param id="1" name="Height">HUDHeight</param>
                                 </action>
-                                <action id="-16" name="Set opacity" type="HUD">
-                                    <param id="0" name="Opacity">50</param>
+                                <action disabled="1" id="-16" name="Set opacity" type="HUD">
+                                    <param id="0" name="Opacity">100</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -151,32 +151,28 @@
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-3" name="Create object" type="System">
+                                        <action disabled="1" id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">HUDbackground</param>
                                             <param id="1" name="Layer">HUDLayer</param>
                                             <param id="2" name="X">0</param>
                                             <param id="3" name="Y">HUD.Y - ( gridScale - ( HUD.Height % gridScale ) - gridLineWidth )</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="HUDbackground">
+                                        <action disabled="1" id="4" name="Set animation" type="HUDbackground">
                                             <param id="0" name="Animation">&quot;TopLeft&quot;</param>
                                             <param id="1" name="From">1</param>
                                         </action>
-                                        <action id="-7" name="Set size" type="HUDbackground">
+                                        <action disabled="1" id="-7" name="Set size" type="HUDbackground">
                                             <param id="0" name="Width">HUD.Width</param>
                                             <param id="1" name="Height">gridBlock.Y - gridLineWidth</param>
                                         </action>
-                                        <action id="-25" name="Move to bottom" type="HUDbackground" />
+                                        <action disabled="1" id="-25" name="Move to bottom" type="HUDbackground" />
                                     </actions>
                                 </event-block>
                                 <comment>Setup the color options in the bottom of the HUD</comment>
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-13" name="Set boolean" type="GeneratorLabel">
-                                            <param id="0" name="Instance variable">HUDobject</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action id="-15" name="Set visible" type="GeneratorLabel">
+                                        <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionButton">
                                             <param id="0" name="Visibility">0</param>
                                         </action>
                                     </actions>
@@ -184,12 +180,12 @@
                                         <event-block>
                                             <conditions>
                                                 <condition id="-13" name="Pick nth instance" type="System">
-                                                    <param id="0" name="Object">GeneratorLabel</param>
+                                                    <param id="0" name="Object">HUDcolorSelectionButton</param>
                                                     <param id="1" name="Instance">0</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="4" name="Set animation" type="GeneratorLabel">
+                                                <action id="4" name="Set animation" type="HUDcolorSelectionButton">
                                                     <param id="0" name="Animation">&quot;blue&quot;</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
@@ -198,12 +194,12 @@
                                         <event-block>
                                             <conditions>
                                                 <condition id="-13" name="Pick nth instance" type="System">
-                                                    <param id="0" name="Object">GeneratorLabel</param>
+                                                    <param id="0" name="Object">HUDcolorSelectionButton</param>
                                                     <param id="1" name="Instance">1</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="4" name="Set animation" type="GeneratorLabel">
+                                                <action id="4" name="Set animation" type="HUDcolorSelectionButton">
                                                     <param id="0" name="Animation">&quot;red&quot;</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
@@ -212,12 +208,12 @@
                                         <event-block>
                                             <conditions>
                                                 <condition id="-13" name="Pick nth instance" type="System">
-                                                    <param id="0" name="Object">GeneratorLabel</param>
+                                                    <param id="0" name="Object">HUDcolorSelectionButton</param>
                                                     <param id="1" name="Instance">2</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="4" name="Set animation" type="GeneratorLabel">
+                                                <action id="4" name="Set animation" type="HUDcolorSelectionButton">
                                                     <param id="0" name="Animation">&quot;yellow&quot;</param>
                                                     <param id="1" name="From">1</param>
                                                 </action>
@@ -237,7 +233,7 @@
                             </sub-events>
                         </event-block>
                         <comment>Destroy initial instances of most sprites</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions />
                             <actions />
                             <sub-events>
