@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
-    <name>JesusTD</name>
+    <name>StreamTD</name>
     <description></description>
     <version>1.0</version>
-    <author></author>
+    <author>Brian Hebert</author>
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8500</saved-with-version>
     <used-plugins>
+        <plugin id="Button" version="1">Button</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
+        <plugin id="Rex_Function" version="1">Function</plugin>
         <plugin id="Rex_WhileLoop" version="1">While Loop</plugin>
+        <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
-        <plugin id="Button" version="1">Button</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Particles" version="1">Particles</plugin>
-        <plugin id="Rex_Branch" version="1">Branch</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Sprite" version="1">Sprite</plugin>
-        <plugin id="Rex_Function" version="1">Function</plugin>
     </used-plugins>
     <used-behaviors>
-        <behavior id="Rotate" version="1">Rotate</behavior>
         <behavior id="Bullet" version="1">Bullet</behavior>
         <behavior id="DragnDrop" version="1">Drag &amp; Drop</behavior>
         <behavior id="Fade" version="1">Fade</behavior>
         <behavior id="Pin" version="1">Pin</behavior>
+        <behavior id="Rotate" version="1">Rotate</behavior>
         <behavior id="bound" version="1">Bound to layout</behavior>
         <behavior id="custom" version="1">Custom Movement</behavior>
         <behavior id="destroy" version="1">Destroy outside layout</behavior>
@@ -38,9 +38,10 @@
         <width>800</width>
         <height>600</height>
     </window-size>
-    <pixel-rounding>0</pixel-rounding>
+    <pixel-rounding>1</pixel-rounding>
+    <first-layout>MainLayout</first-layout>
     <configuration-settings>
-        <prop name="Clear background">Yes</prop>
+        <prop name="Clear background">No</prop>
         <prop name="Enable WebGL">On</prop>
         <prop name="Fullscreen in browser">Off</prop>
         <prop name="Preview browser">Chrome</prop>
@@ -351,79 +352,20 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Generator">
-            <object-type name="Generator">
-                <plugin id="Sprite" />
-                <instance-variables>
-                    <instance-variable comment="the UID of the path array that the minions of this generator follow" name="pathUID" type="number" />
-                    <instance-variable comment="the uid of the spawn label" name="labelUID" type="number" />
-                    <instance-variable comment="the spawn rate (minions/sec) of the generator" name="spawnRate" type="number" />
-                    <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
-                    <instance-variable name="selected" type="boolean" />
-                </instance-variables>
-                <animation-folder expanded="1">
-                    <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="0" repeatto="0" speed="12">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                            <image-point name="Imagepoint 1" x="0.85" y="0.5" />
-                            <collision-poly>
-                                <point x="0.3" y="0.3" />
-                                <point x="0.5" y="0.175" />
-                                <point x="0.75" y="0.25" />
-                                <point x="0.85" y="0.5" />
-                                <point x="0.75" y="0.75" />
-                                <point x="0.5" y="0.825" />
-                                <point x="0.3" y="0.7" />
-                                <point x="0.15" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                    <animation framecount="1" loop="0" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                            <image-point name="Imagepoint 1" x="0.85" y="0.5" />
-                            <collision-poly>
-                                <point x="0.3" y="0.3" />
-                                <point x="0.5" y="0.175" />
-                                <point x="0.75" y="0.25" />
-                                <point x="0.85" y="0.5" />
-                                <point x="0.75" y="0.75" />
-                                <point x="0.5" y="0.825" />
-                                <point x="0.3" y="0.7" />
-                                <point x="0.15" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                    <animation framecount="1" loop="0" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                            <image-point name="Imagepoint 1" x="0.85" y="0.5" />
-                            <collision-poly>
-                                <point x="0.3" y="0.3" />
-                                <point x="0.5" y="0.175" />
-                                <point x="0.75" y="0.25" />
-                                <point x="0.85" y="0.5" />
-                                <point x="0.75" y="0.75" />
-                                <point x="0.5" y="0.825" />
-                                <point x="0.3" y="0.7" />
-                                <point x="0.15" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                </animation-folder>
-            </object-type>
-        </object-folder>
-        <object-folder expanded="0" name="Minion">
+        <object-folder expanded="1" name="Minion">
             <object-type name="Minion">
                 <plugin id="Sprite" />
                 <instance-variables>
-                    <instance-variable name="currentPathNode" type="number" />
-                    <instance-variable comment="the uid of the path array that this minion is following" name="pathUID" type="number" />
                     <instance-variable comment="is the minion actively following a path?" name="active" type="boolean" />
                     <instance-variable name="baseUID" type="number" />
-                    <instance-variable comment="the time stamp of the last trail node" name="trailTimeStamp" type="number" />
                     <instance-variable comment="the current helath of the minion" name="health" type="number" />
                     <instance-variable comment="the max health of the minion" name="maxHealth" type="number" />
                     <instance-variable comment="is the health bar attached?" name="healthbarAttached" type="boolean" />
                     <instance-variable comment="the UID of the health bar" name="healthBarUID" type="number" />
                     <instance-variable comment="does the health bar need to be updated?" name="updateHealthBar" type="boolean" />
+                    <instance-variable comment="the last time this minion took damage" name="lastDamageTime" type="number" />
+                    <instance-variable comment="the gridX coordinate of the minion" name="currentGridX" type="number" />
+                    <instance-variable comment="the grid Y coorindate of the minion" name="currentGridY" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="CustomMovement">
@@ -531,53 +473,6 @@
                     </animation>
                 </animation-folder>
             </object-type>
-            <object-type name="MinionTrail">
-                <plugin id="Sprite" />
-                <animation-folder expanded="1">
-                    <animation framecount="1" loop="0" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                            <collision-poly>
-                                <point x="0.2" y="0.2" />
-                                <point x="0.5" y="0.1" />
-                                <point x="0.8" y="0.2" />
-                                <point x="0.9" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.9" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.1" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                    <animation framecount="1" loop="0" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                            <collision-poly>
-                                <point x="0.2" y="0.2" />
-                                <point x="0.5" y="0.1" />
-                                <point x="0.8" y="0.2" />
-                                <point x="0.9" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.9" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.1" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                    <animation framecount="1" loop="0" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                            <collision-poly>
-                                <point x="0.2" y="0.2" />
-                                <point x="0.5" y="0.1" />
-                                <point x="0.8" y="0.2" />
-                                <point x="0.9" y="0.5" />
-                                <point x="0.8" y="0.8" />
-                                <point x="0.5" y="0.9" />
-                                <point x="0.2" y="0.8" />
-                                <point x="0.1" y="0.5" />
-                            </collision-poly>
-                        </frame>
-                    </animation>
-                </animation-folder>
-            </object-type>
         </object-folder>
         <object-folder expanded="0" name="Camera">
             <object-type name="ZoomPoint">
@@ -603,26 +498,11 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Health Bar">
+        <object-folder expanded="1" name="Health Bar">
             <object-type name="HealthBorder">
                 <plugin id="Sprite" />
-                <behaviors>
-                    <behavior-type name="Pin">
-                        <behavior id="Pin" />
-                    </behavior-type>
-                </behaviors>
-                <animation-folder expanded="1">
-                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0.6" hotspotY="0.6">
-                            <image-point name="Imagepoint 1" x="0" y="0" />
-                        </frame>
-                    </animation>
-                </animation-folder>
-            </object-type>
-            <object-type name="HealthBar">
-                <plugin id="Sprite" />
                 <instance-variables>
-                    <instance-variable name="startingWidth" type="number" />
+                    <instance-variable comment="the uid of the object that this health bar is attached to" name="sourceUID" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="Pin">
@@ -631,9 +511,24 @@
                 </behaviors>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                        <frame duration="1" hotspotX="0" hotspotY="0" />
+                        <frame duration="1" hotspotX="0" hotspotY="0">
+                            <image-point name="Imagepoint 1" x="0" y="0" />
+                        </frame>
                     </animation>
                 </animation-folder>
+            </object-type>
+            <object-type name="HealthBar">
+                <plugin id="TiledBg" />
+                <instance-variables>
+                    <instance-variable name="startingWidth" type="number" />
+                    <instance-variable name="sourceUID" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <texture />
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="Grid">
@@ -653,37 +548,7 @@
             </object-type>
         </object-folder>
         <object-folder expanded="0" name="HUD">
-            <object-folder expanded="0" name="Grid HUD">
-                <object-type name="moveTarget">
-                    <plugin id="Sprite" />
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                                <collision-poly>
-                                    <point x="0.025" y="0.025" />
-                                    <point x="0.975" y="0.025" />
-                                    <point x="0.975" y="0.975" />
-                                    <point x="0.025" y="0.975" />
-                                </collision-poly>
-                            </frame>
-                        </animation>
-                    </animation-folder>
-                </object-type>
-                <object-type name="selectionBox">
-                    <plugin id="Sprite" />
-                    <behaviors>
-                        <behavior-type name="Pin">
-                            <behavior id="Pin" />
-                        </behavior-type>
-                    </behaviors>
-                    <animation-folder expanded="1">
-                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
-                            <frame duration="1" hotspotX="0.525" hotspotY="0.525" />
-                        </animation>
-                    </animation-folder>
-                </object-type>
-            </object-folder>
-            <object-folder expanded="0" name="Color Selector">
+            <object-folder expanded="1" name="Color Selector">
                 <object-type name="HUDcolorSelectionBg">
                     <plugin id="Sprite" />
                     <behaviors>
@@ -786,7 +651,7 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="Info Panes">
+            <object-folder expanded="1" name="Info Panes">
                 <object-type name="HUDattributes">
                     <plugin id="Text" />
                 </object-type>
@@ -820,11 +685,13 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="HUD core">
-                <object-type name="HUD">
+            <object-folder expanded="1" name="HUD Core">
+                <object-type global="1" name="HUD">
                     <plugin id="TiledBg" />
                     <instance-variables>
                         <instance-variable comment="the UID of the currently selected object" name="selectionUID" type="number" />
+                        <instance-variable comment="is the grid in spawn mode?" name="isSpawning" type="boolean" />
+                        <instance-variable comment="how many minions have been saved" name="minionsSaved" type="number" />
                     </instance-variables>
                     <texture />
                 </object-type>
@@ -842,7 +709,7 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="Activator">
+            <object-folder expanded="1" name="Activator">
                 <object-type name="HUDactivatorBg">
                     <plugin id="Sprite" />
                     <behaviors>
@@ -866,13 +733,75 @@
                     <plugin id="Button" />
                 </object-type>
             </object-folder>
+            <object-folder expanded="1" name="Spawn Control">
+                <object-type name="HUDspawnLabel">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="HUDspawnButton">
+                    <plugin id="Button" />
+                </object-type>
+                <object-type name="HUDspawnBg">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                        <animation framecount="1" loop="0" name="Enabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+            </object-folder>
+            <object-folder expanded="1" name="Minion Score">
+                <object-type name="HUDminionsSavedCount">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="HUDminionsSavedLabel">
+                    <plugin id="Text" />
+                </object-type>
+            </object-folder>
+            <object-folder expanded="1" name="Grid Selection">
+                <object-type name="moveTarget">
+                    <plugin id="Sprite" />
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                <collision-poly>
+                                    <point x="0.025" y="0.025" />
+                                    <point x="0.975" y="0.025" />
+                                    <point x="0.975" y="0.975" />
+                                    <point x="0.025" y="0.975" />
+                                </collision-poly>
+                            </frame>
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="selectionBox">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0.525" hotspotY="0.525" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+            </object-folder>
         </object-folder>
-        <object-folder expanded="0" name="Flow">
+        <object-folder expanded="1" name="Flow">
             <object-type name="Redirect">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" speed="0.5">
-                        <frame duration="1" hotspotX="0.512821" hotspotY="0.512821">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                             <collision-poly>
                                 <point x="0.15625" y="0.15625" />
                                 <point x="0.5" y="0" />
@@ -892,6 +821,363 @@
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Generator">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the UID of the path array that the minions of this generator follow" name="pathUID" type="number" />
+                    <instance-variable comment="the uid of the spawn label" name="labelUID" type="number" />
+                    <instance-variable comment="the spawn rate (minions/sec) of the generator" name="spawnRate" type="number" />
+                    <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
+                    <instance-variable name="selected" type="boolean" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="0" repeatto="0" speed="12">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Spawn" x="0.85" y="0.5" />
+                            <image-point name="Healthbar" x="0" y="1" />
+                            <collision-poly>
+                                <point x="0.3" y="0.3" />
+                                <point x="0.5" y="0.175" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.85" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="0.825" />
+                                <point x="0.3" y="0.7" />
+                                <point x="0.15" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Spawn" x="0.85" y="0.5" />
+                            <image-point name="Healthbar" x="0" y="1" />
+                            <collision-poly>
+                                <point x="0.3" y="0.3" />
+                                <point x="0.5" y="0.175" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.85" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="0.825" />
+                                <point x="0.3" y="0.7" />
+                                <point x="0.15" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Spawn" x="0.85" y="0.5" />
+                            <image-point name="Healthbar" x="0" y="1" />
+                            <collision-poly>
+                                <point x="0.3" y="0.3" />
+                                <point x="0.5" y="0.175" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.85" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="0.825" />
+                                <point x="0.3" y="0.7" />
+                                <point x="0.15" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Painter">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.35" y="0.35" />
+                                <point x="0.5" y="0" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.65" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="1" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.275" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.35" y="0.35" />
+                                <point x="0.5" y="0" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.65" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="1" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.275" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.35" y="0.35" />
+                                <point x="0.5" y="0" />
+                                <point x="0.75" y="0.25" />
+                                <point x="0.65" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="1" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.275" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Exit">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="is this exit unlocked" name="isUnlocked" type="boolean" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="streamend" x="0.2" y="0.5" />
+                            <collision-poly>
+                                <point x="0.2" y="0.5" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0.2" y="0.5" />
+                            <collision-poly>
+                                <point x="0.2" y="0.5" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0.2" y="0.5" />
+                            <collision-poly>
+                                <point x="0.2" y="0.5" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="green" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0.2" y="0.5" />
+                            <collision-poly>
+                                <point x="0.2" y="0.5" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="orange" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0.2" y="0.5" />
+                            <collision-poly>
+                                <point x="0.2" y="0.5" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="purple" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <image-point name="Imagepoint 1" x="0.2" y="0.5" />
+                            <collision-poly>
+                                <point x="0.2" y="0.5" />
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ExitLabel">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the UID of the object this is pinned to" name="sourceUID" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pin">
+                        <behavior id="Pin" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Disabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.2" y="0.5" />
+                                <point x="0.225" y="0.225" />
+                                <point x="0.775" y="0.225" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="12" loop="1" name="Enabled" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="1" y="1" />
+                                <point x="0" y="1" />
+                                <point x="0" y="0" />
+                                <point x="1" y="0" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Lens">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.225" y="0.225" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.775" y="0.225" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.775" y="0.775" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.225" y="0.775" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.225" y="0.225" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.775" y="0.225" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.775" y="0.775" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.225" y="0.775" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.225" y="0.225" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.775" y="0.225" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.775" y="0.775" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.225" y="0.775" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -1065,7 +1351,7 @@
                     </instance-variables>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="(legacy) Jesus">
+            <object-folder expanded="1" name="(legacy) Jesus">
                 <object-type name="Jesus">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -1280,22 +1566,63 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="MinionTrail">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="greyMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="redMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="blueMinion" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.2" y="0.2" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.8" y="0.2" />
+                                <point x="0.9" y="0.5" />
+                                <point x="0.8" y="0.8" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.2" y="0.8" />
+                                <point x="0.1" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
     </object-folder>
     <families>
-        <family name="HUDselection" plugin-id="Sprite">
-            <members>
-                <member>Generator</member>
-                <member>Redirect</member>
-            </members>
-            <instance-variables>
-                <instance-variable comment="The name to use for this object" name="HUDobjectName" type="string" />
-            </instance-variables>
-        </family>
         <family name="Flow" plugin-id="Sprite">
             <members>
                 <member>Barrier</member>
+                <member>Exit</member>
                 <member>Generator</member>
+                <member>Lens</member>
+                <member>Painter</member>
                 <member>Redirect</member>
             </members>
             <instance-variables>
@@ -1304,15 +1631,21 @@
                 <instance-variable comment="does the flow object block the stream?" name="blockStream" type="boolean" />
                 <instance-variable comment="does the flow object initially extend a stream out?" name="extendStream" type="boolean" />
                 <instance-variable comment="acts as an original source for a stream" name="sourceStream" type="boolean" />
-                <instance-variable comment="is this flow object enabled?" name="active" type="boolean" />
-                <instance-variable comment="the source color of the flow object" name="sourceColor" type="string" />
-                <instance-variable comment="is the object being moved?" name="moving" type="boolean" />
+                <instance-variable comment="does this flow object spawn minions?" name="spawnMinions" type="boolean" />
                 <instance-variable comment="the previous state of a flow object before it is disabled by a system event" name="previousActiveState" type="number" />
+                <instance-variable comment="the source color of the flow object" name="sourceColor" type="string" />
+                <instance-variable comment="is the object being moved?" name="isMoving" type="boolean" />
+                <instance-variable comment="is this flow object enabled?" name="isActive" type="boolean" />
                 <instance-variable comment="is the object movable" name="isMovable" type="boolean" />
+                <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawnTime" type="number" />
+                <instance-variable comment="the total number of minions left to spawn" name="minionTotal" type="number" />
+                <instance-variable comment="does this object spawn minions?" name="spawnsMinions" type="boolean" />
+                <instance-variable comment="The HUD name of the object" name="objectName" type="string" />
             </instance-variables>
         </family>
     </families>
     <layout-folder expanded="1">
+        <layout-folder expanded="1" name="Levels" />
         <layout>MainLayout.xml</layout>
     </layout-folder>
     <event-folder expanded="1">

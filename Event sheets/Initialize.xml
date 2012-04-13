@@ -34,26 +34,19 @@
         <variable comment="The amount of time (sec) to wait between each gradual camera zoom" name="zoomScaleDelay" type="number">0.1</variable>
         <variable comment="The amount of time (sec) to wait between before zooming back out" name="zoomResetDelay" type="number">1</variable>
         <comment>Minion parameters</comment>
-        <variable comment="The maximum angle (in degrees) of approach that a minion can be while still being considered on course" name="minionAngleTolerance" type="number">5</variable>
-        <variable comment="The maximum distance (in px) that a minion can be from the next node and still be considered on course" name="minionDistanceTolerance" type="number">50</variable>
         <variable comment="The default speed of the minion" name="minionDefaultSpeed" type="number">75</variable>
         <variable comment="A # seperated list of each starting minion type" name="minionDefaultTypes" type="text">red#blue#yellow</variable>
-        <variable comment="How close (in px) the minion has to be to a target point for it to be considered a match" name="minionNodeArrivalDistance" type="number">5</variable>
-        <variable comment="The frequency (in ticks) that a breadcrumb drops from the minion" name="minionTrailDropRate" type="number">10</variable>
-        <variable comment="The time (in sec) that the breadcrumb stays alive" name="minionTrailDecayRate" type="number">0.02</variable>
-        <variable comment="The default health of the minion" name="minionDefaultHealth" type="number">1000</variable>
-        <comment>Path parameters</comment>
-        <variable comment="The frequency (in sec) that a node is dropped while the player is tracing" name="pathPollRate" type="number">0.02</variable>
-        <variable comment="The amount of time (sec) that a path appears when a path is being previewed" name="pathPreviewTime" type="number">1</variable>
+        <variable comment="The default health of the minion" name="minionDefaultHealth" type="number">10</variable>
+        <variable comment="The height (in px) of the health bar" name="minionHealthBarHeight" type="number">6</variable>
+        <variable comment="The width (in px) of the health bar" name="minionHealthBarWidth" type="number">22</variable>
+        <variable comment="The anchor imagepoint to hang the health bar off of" name="minionHealthBarAnchor" type="number">1</variable>
+        <comment>Health bar parameters</comment>
+        <variable comment="The border (in px) between the black background and the green health bar foreground" name="healthBarBorder" type="number">1</variable>
         <comment>Layer parameters</comment>
         <variable comment="The background layer" name="backgroundLayer" type="number">0</variable>
         <variable comment="The default layer that most objects spawn on" name="defaultLayer" type="number">1</variable>
         <variable comment="The active layer where high priority objects are placed" name="activeLayer" type="number">2</variable>
         <variable comment="The layer the HUD is drawn on" name="HUDLayer" type="number">3</variable>
-        <comment>Health Bar parameters</comment>
-        <variable comment="The height (in px) of the health bar" name="healthBarHeight" type="number">4</variable>
-        <variable comment="The height (in px) of the health bar" name="healthBarWidth" type="number">18</variable>
-        <variable comment="The border (in px) between the black background and the green health bar foreground" name="healthBarBorder" type="number">1</variable>
         <comment>Cannon parameters</comment>
         <variable comment="Set to 1 to show the leading line from the cannon to it&apos;s current target" name="cannonShowTargetLead" type="number">0</variable>
         <comment>Grid parameters</comment>
@@ -65,12 +58,21 @@
         <variable comment="The minimum y value of an object on the grid (calculated at runtime)" name="gridMinY" type="number">-1</variable>
         <comment>Generator parameters</comment>
         <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
+        <variable comment="The total number of minions that a generator can spawn" name="generatorMaxMinions" type="number">10</variable>
         <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">1.25</variable>
+        <variable comment="The height (in px) of the health bar" name="generatorHealthBarHeight" type="number">8</variable>
+        <variable comment="The width (in px) of the health bar" name="generatorHealthBarWidth" type="number">40</variable>
+        <variable comment="The angle of the health bar" name="generatorHealthBarAngle" type="number">270</variable>
+        <variable comment="The anchor imagepoint to hang the health bar off of" name="generatorHealthBarAnchor" type="number">2</variable>
         <comment>HUD parameters</comment>
         <variable comment="The height (in px) of the HUD" name="HUDheight" type="number">65</variable>
         <variable comment="The refresh rate (sec between updates) of the HUD " name="HUDrefreshRate" type="number">0.1</variable>
         <comment>Flow parameters</comment>
         <variable comment="The amount of time (in sec) to wait before redrawing a path around a moving flow object" name="flowMoveRedrawDelay" type="number">0.15</variable>
+        <comment>Stream parameters</comment>
+        <variable comment="the number of seconds to wait before redrawing the streams" name="streamRedrawDelay" type="number">0.05</variable>
+        <variable comment="The frequency (sec between hits) of the stream dmg" name="streamDamageRate" type="number">0.1</variable>
+        <variable comment="The amount of damage a stream does to a minon each time it hits" name="streamDamage" type="number">20</variable>
         <comment>Funcation name mappings</comment>
         <variable comment="( ) Deletes all streams and rebuilds them from scratch" name="fnResetStream" type="text">resetStream</variable>
         <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>
@@ -84,6 +86,10 @@
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
         <variable comment="(uid) toggles the active status of the provided genrator" name="fnToggleGenerator" type="text">toggleGenerator</variable>
         <variable comment="(x,y) returns true if the coordinates given are on the grid" name="fnIsOnGrid" type="text">isOnGrid</variable>
+        <variable comment="(uid) attach a health bar to the object" name="fnAttachHealthBar" type="text">attachHealthBar</variable>
+        <variable comment="(uid, currentHealth, maxHealth) updates the health bar of the given object" name="fnUpdateHealthBar" type="text">updateHealthBar</variable>
+        <variable comment="(uid) destroys the given meeting" name="fnDestroyMinion" type="text">destroyMinion</variable>
+        <variable comment="destroys all minions on the grid" name="fnDestroyAllMinions" type="text">destroyAllMinions</variable>
         <comment></comment>
         <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
@@ -260,10 +266,8 @@
                                         <action id="-9" name="Destroy" type="TargetLeadBar" />
                                         <action id="-9" name="Destroy" type="TurretBase" />
                                         <action id="-9" name="Destroy" type="HealthBorder" />
-                                        <action id="-9" name="Destroy" type="HealthBar" />
                                         <action id="-9" name="Destroy" type="Stream" />
-                                        <action id="-9" name="Destroy" type="HUDselection" />
-                                        <action id="-9" name="Destroy" type="Flow" />
+                                        <action disabled="1" id="-9" name="Destroy" type="Flow" />
                                     </actions>
                                 </event-block>
                             </sub-events>
