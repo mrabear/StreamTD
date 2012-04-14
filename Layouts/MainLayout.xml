@@ -1745,5 +1745,6 @@
             </properties>
         </instance>
         <instance type="while" />
+        <instance type="LevelData" />
     </nonworld-instances>
 </c2layout>
