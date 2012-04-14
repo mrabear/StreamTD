@@ -7,13 +7,14 @@
         <comment>Author: Brian Hebert</comment>
         <comment>File: Main event sheet</comment>
         <comment></comment>
-        <comment>Ideas: </comment>
+        <comment>Ideas:</comment>
         <comment>Add hud menu above each selected flow object to let you control it</comment>
         <comment>Flow object that kills minions (laser)</comment>
         <comment>Flow object that splits a combined beam back into seperate parts (prism)</comment>
         <comment>Have second tier color streams grant some sort of benefit to the minions that are on it (potentially only to those minions that share one of the two primary colors)</comment>
         <comment>Level editor that can save the state of the board for reuse later (using sprite bank)</comment>
         <comment>An inventory section to drag and drop flow objects onto the grid</comment>
+        <comment>The screen seems to shake when an object is selected (but not when a previous object is in the HUD)</comment>
         <comment></comment>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <include>Initialize</include>
