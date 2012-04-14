@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Initialize</name>
     <events>
-        <comment>Project: JesusTD</comment>
+        <comment>Project: StreamTD</comment>
         <comment>Author: Brian Hebert</comment>
         <comment>File: Game initialization</comment>
         <comment></comment>
