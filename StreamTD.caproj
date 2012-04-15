@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2project>
     <name>StreamTD</name>
-    <description></description>
+    <description>My balls ache</description>
     <version>1.0</version>
     <author>Brian Hebert</author>
     <unique-id>3lwefwx8ssrq4</unique-id>
@@ -39,7 +39,7 @@
         <width>800</width>
         <height>600</height>
     </window-size>
-    <pixel-rounding>1</pixel-rounding>
+    <pixel-rounding>0</pixel-rounding>
     <first-layout>MainLayout</first-layout>
     <configuration-settings>
         <prop name="Clear background">No</prop>
@@ -801,7 +801,21 @@
             <object-type name="Redirect">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
-                    <animation framecount="1" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" speed="0.5">
+                    <animation framecount="1" loop="1" name="Passive" pingpong="1" repeatcount="1" repeatto="0" speed="0.5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.15625" y="0.15625" />
+                                <point x="0.5" y="0" />
+                                <point x="0.84375" y="0.15625" />
+                                <point x="1" y="0.5" />
+                                <point x="0.84375" y="0.84375" />
+                                <point x="0.5" y="1" />
+                                <point x="0.15625" y="0.84375" />
+                                <point x="0" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="Active" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                             <collision-poly>
                                 <point x="0.15625" y="0.15625" />
@@ -833,6 +847,7 @@
                     <instance-variable comment="the spawn rate (minions/sec) of the generator" name="spawnRate" type="number" />
                     <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
                     <instance-variable name="selected" type="boolean" />
+                    <instance-variable comment="the uid of the object this generator is a slave to" name="baseUID" type="number" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="0" repeatto="0" speed="12">
@@ -1141,49 +1156,104 @@
                     <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                             <collision-poly>
-                                <point x="0.225" y="0.225" />
+                                <point x="0.35" y="0.35" />
                                 <point x="0.5" y="0.1" />
-                                <point x="0.775" y="0.225" />
-                                <point x="0.9" y="0.5" />
-                                <point x="0.775" y="0.775" />
+                                <point x="0.65" y="0.35" />
+                                <point x="0.65" y="0.65" />
                                 <point x="0.5" y="0.9" />
-                                <point x="0.225" y="0.775" />
-                                <point x="0.1" y="0.5" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.325" y="0.5" />
                             </collision-poly>
                         </frame>
                     </animation>
                     <animation framecount="1" loop="0" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                             <collision-poly>
-                                <point x="0.225" y="0.225" />
+                                <point x="0.35" y="0.35" />
                                 <point x="0.5" y="0.1" />
-                                <point x="0.775" y="0.225" />
-                                <point x="0.9" y="0.5" />
-                                <point x="0.775" y="0.775" />
+                                <point x="0.65" y="0.35" />
+                                <point x="0.65" y="0.65" />
                                 <point x="0.5" y="0.9" />
-                                <point x="0.225" y="0.775" />
-                                <point x="0.1" y="0.5" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.325" y="0.5" />
                             </collision-poly>
                         </frame>
                     </animation>
                     <animation framecount="1" loop="0" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5">
                             <collision-poly>
-                                <point x="0.225" y="0.225" />
+                                <point x="0.35" y="0.35" />
                                 <point x="0.5" y="0.1" />
-                                <point x="0.775" y="0.225" />
-                                <point x="0.9" y="0.5" />
-                                <point x="0.775" y="0.775" />
+                                <point x="0.65" y="0.35" />
+                                <point x="0.65" y="0.65" />
                                 <point x="0.5" y="0.9" />
-                                <point x="0.225" y="0.775" />
-                                <point x="0.1" y="0.5" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.325" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="orange" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.35" y="0.35" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.65" y="0.35" />
+                                <point x="0.65" y="0.65" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.325" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="green" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.35" y="0.35" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.65" y="0.35" />
+                                <point x="0.65" y="0.65" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.325" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                    <animation framecount="1" loop="0" name="purple" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.35" y="0.35" />
+                                <point x="0.5" y="0.1" />
+                                <point x="0.65" y="0.35" />
+                                <point x="0.65" y="0.65" />
+                                <point x="0.5" y="0.9" />
+                                <point x="0.35" y="0.65" />
+                                <point x="0.325" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="Prism">
+                <plugin id="Sprite" />
+                <animation-folder expanded="1">
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                            <collision-poly>
+                                <point x="0.225" y="0.225" />
+                                <point x="0.5" y="0.125" />
+                                <point x="0.775" y="0.225" />
+                                <point x="0.925" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="0.875" />
+                                <point x="0.25" y="0.75" />
+                                <point x="0.125" y="0.5" />
                             </collision-poly>
                         </frame>
                     </animation>
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="Stream">
+        <object-folder expanded="1" name="Stream">
             <object-type name="Stream">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -1629,6 +1699,7 @@
                 <member>Generator</member>
                 <member>Lens</member>
                 <member>Painter</member>
+                <member>Prism</member>
                 <member>Redirect</member>
             </members>
             <instance-variables>

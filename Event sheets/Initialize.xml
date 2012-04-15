@@ -78,6 +78,7 @@
         <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>
         <variable comment="( ) hide all visual elements of the HUD" name="fnResetHUDDisplay" type="text">resetHUDDisplay</variable>
         <variable comment="(flowUID) Extend a stingle stream out to the closest flow object" name="fnLinkStream" type="text">linkStream</variable>
+        <variable comment="(flowUID) Starts a new stream chain at the flow object UID (must have sourceStream flag set)" name="fnStartStreamChainAt" type="text">startStreamChainAt</variable>
         <variable comment="(streamUID) Extend a stingle stream out to the closest flow object" name="fnUpdateStreamOld" type="text">updateStreamOld</variable>
         <variable comment="(layoutCoord) returns a coordinate value rounded to the nearest grid square center" name="fnGetGridCoordinate" type="text">getGridCoordinate</variable>
         <variable comment="(UID) update the currently selected object in the HUD" name="fnUpdateHUDSelection" type="text">updateHUDSelection</variable>
