@@ -10,7 +10,6 @@
         <comment>Ideas:</comment>
         <comment>Add hud menu above each selected flow object to let you control it</comment>
         <comment>Flow object that kills minions (laser)</comment>
-        <comment>Flow object that splits a combined beam back into seperate parts (prism)</comment>
         <comment>Have second tier color streams grant some sort of benefit to the minions that are on it (potentially only to those minions that share one of the two primary colors)</comment>
         <comment>Level editor that can save the state of the board for reuse later (using sprite bank)</comment>
         <comment>An inventory section to drag and drop flow objects onto the grid</comment>
@@ -18,7 +17,7 @@
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <include>Initialize</include>
         <comment>Game Object Events</comment>
-        <event-group description="A grid that objects snap to" title="Grid">
+        <event-group collapsed="1" description="A grid that objects snap to" title="Grid">
             <sub-events>
                 <comment>(coord) returns a &apos;grid friendly&apos; coordindate for a given layout coordinate</comment>
                 <event-block collapsed="1">
@@ -229,7 +228,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process a click on the grid</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="1" name="On any click" type="Mouse" />
                     </conditions>
@@ -736,10 +735,10 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A stream that flows out from a generator" title="Stream">
+        <event-group collapsed="1" description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnResetStream</param>
@@ -897,7 +896,7 @@
                     </sub-events>
                 </event-block>
                 <comment>(UID) Start a stream chain at the given flow object</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnStartStreamChainAt</param>
@@ -965,7 +964,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Processes a single link in a stream chain</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnLinkStream</param>
@@ -1632,7 +1631,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Flow objects direct minions around the map" title="Flow">
+        <event-group collapsed="1" description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
                 <comment>Move the flow object</comment>
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
@@ -1772,7 +1771,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
                 <event-block collapsed="1">
@@ -2494,8 +2493,9 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
+                <comment>(uid) destroys the specified minion</comment>
                 <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
@@ -2555,6 +2555,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
+                <comment>Destroys all minions</comment>
                 <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
@@ -2596,10 +2597,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Monitor the minion as it travels on the stream</comment>
-                <variable comment="the new grid x value" name="gridX" type="number">0</variable>
-                <variable comment="the new grid y value" name="gridY" type="number">0</variable>
-                <variable comment="uid of the grid object at the clicked location" name="objectAtLocationUID" type="number">0</variable>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Minion</param>
@@ -2608,21 +2606,28 @@
                             <param id="0" name="Object">Stream</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">gridX</param>
-                            <param id="1" name="Value">fn.Call( fnGetGridCoordinate, minion.X )</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">gridY</param>
-                            <param id="1" name="Value">fn.Call( fnGetGridCoordinate, minion.Y )</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">objectAtLocationUID</param>
-                            <param id="1" name="Value">fn.Call( fnGridObjectAt, gridX, gridY )</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <variable comment="the new grid x value" name="gridX" type="number">0</variable>
+                        <variable comment="the new grid y value" name="gridY" type="number">0</variable>
+                        <variable comment="uid of the grid object at the clicked location" name="objectAtLocationUID" type="number">0</variable>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">gridX</param>
+                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, minion.X )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">gridY</param>
+                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, minion.Y )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">objectAtLocationUID</param>
+                                    <param id="1" name="Value">fn.Call( fnGridObjectAt, gridX, gridY )</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <comment>The minion has move to a new grid square</comment>
                         <event-block>
                             <conditions>
