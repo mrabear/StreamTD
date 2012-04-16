@@ -751,6 +751,17 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Stream</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="Stream" />
+                            </actions>
+                        </event-block>
+                        <comment>Reset all streams</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">ExitLabel</param>
                                 </condition>
                             </conditions>
@@ -775,6 +786,51 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <comment>Reset all prisms</comment>
+                        <event-block collapsed="1">
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Prism</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Prism">
+                                    <param id="0" name="Instance variable">streamOutCount</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Prism">
+                                    <param id="0" name="Instance variable">activeStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Prism">
+                                    <param id="0" name="Instance variable">slotsLeft</param>
+                                    <param id="1" name="Value">prismStreamAngles</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-11" name="For Each" type="System">
+                                            <param id="0" name="Object">Prism</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="1" name="Set value by key string" type="PrismStreams">
+                                            <param id="0" name="Key string">prism.UID &amp; &quot;red&quot;</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                        <action id="1" name="Set value by key string" type="PrismStreams">
+                                            <param id="0" name="Key string">prism.UID &amp; &quot;yellow&quot;</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                        <action id="1" name="Set value by key string" type="PrismStreams">
+                                            <param id="0" name="Key string">prism.UID &amp; &quot;blue&quot;</param>
+                                            <param id="1" name="Value">-1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <comment>Reset all prism generators</comment>
                         <event-block>
                             <conditions>
@@ -789,17 +845,6 @@
                             </conditions>
                             <actions>
                                 <action id="-9" name="Destroy" type="Generator" />
-                            </actions>
-                        </event-block>
-                        <comment>Reset all streams</comment>
-                        <event-block>
-                            <conditions>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Stream</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Destroy" type="Stream" />
                             </actions>
                         </event-block>
                         <comment>Reset all flow instance variables</comment>
@@ -964,7 +1009,7 @@
                             </actions>
                             <sub-events>
                                 <comment>If the flow object extends a new stream, check various flow conditions</comment>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-8" name="Is boolean instance variable set" type="Flow">
                                             <param id="0" name="Instance variable">extendStream</param>
@@ -1264,7 +1309,7 @@
                                     </sub-events>
                                 </event-block>
                                 <comment>If the flow object is a prism, start new chain reactions</comment>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Prism</param>
@@ -1274,13 +1319,17 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">debugMsg</param>
-                                            <param id="1" name="Value">debugMsg &amp; &quot;START**&quot; &amp; flow.colorsConnected &amp; &quot;***&quot; &amp; newline</param>
-                                        </action>
                                         <action id="-10" name="Set value" type="Prism">
                                             <param id="0" name="Instance variable">colorsConnected</param>
                                             <param id="1" name="Value">&quot;&quot;</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Prism">
+                                            <param id="0" name="Instance variable">streamOutCount</param>
+                                            <param id="1" name="Value">tokencount( flow.colorsConnected, &quot;#&quot;)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">debugMsg</param>
+                                            <param id="1" name="Value">debugMsg &amp; &quot;START**&quot; &amp; flow.colorsConnected &amp; &quot;***&quot; &amp; prism.streamOutCount &amp; &quot;***&quot; &amp; newline</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -1303,68 +1352,103 @@
                                         <comment>Drop hidden generators and start stream chains from each </comment>
                                         <event-block>
                                             <conditions>
-                                                <condition id="-8" name="Compare two values" type="System">
-                                                    <param id="0" name="First value">tokencount( flow.colorsConnected, &quot;#&quot;)</param>
+                                                <condition id="-10" name="For" type="System">
+                                                    <param id="0" name="Name">&quot;streamLoop&quot;</param>
+                                                    <param id="1" name="Start index">0</param>
+                                                    <param id="2" name="End index">prism.streamOutCount - 1</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" type="Prism">
+                                                    <param id="0" name="Instance variable">streamOutCount</param>
                                                     <param id="1" name="Comparison">4</param>
-                                                    <param id="2" name="Second value">1</param>
+                                                    <param id="2" name="Value">1</param>
                                                 </condition>
                                             </conditions>
-                                            <actions />
+                                            <actions>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">debugMsg</param>
+                                                    <param id="1" name="Value">debugMsg &amp; tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) &amp; &quot;===&quot; &amp; tokenat( prismStreamAngles, loopindex, &quot;#&quot;) &amp; newline</param>
+                                                </action>
+                                                <action id="-3" name="Create object" type="System">
+                                                    <param id="0" name="Object to create">Generator</param>
+                                                    <param id="1" name="Layer">backgroundLayer</param>
+                                                    <param id="2" name="X">prism.X</param>
+                                                    <param id="3" name="Y">prism.Y</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Generator">
+                                                    <param id="0" name="Instance variable">sourceColor</param>
+                                                    <param id="1" name="Value">tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) </param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Generator">
+                                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                                    <param id="1" name="Value">generator.sourceColor &amp; &quot;#&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" type="Generator">
+                                                    <param id="0" name="Animation">generator.sourceColor</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Generator">
+                                                    <param id="0" name="Instance variable">blockStream</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Generator">
+                                                    <param id="0" name="Instance variable">spawnMinions</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Generator">
+                                                    <param id="0" name="Instance variable">sourceStream</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-15" name="Set visible" type="Generator">
+                                                    <param id="0" name="Visibility">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Generator">
+                                                    <param id="0" name="Instance variable">prismUID</param>
+                                                    <param id="1" name="Value">prism.UID</param>
+                                                </action>
+                                            </actions>
                                             <sub-events>
-                                                <variable comment="an ordered list of angles that the streams spawning out of the prism will take" name="prismStreamAngles" type="text">270#90#0</variable>
+                                                <comment>If this color hasn&apos;t been established at the prism, assign it to an empty slot and register it</comment>
                                                 <event-block>
                                                     <conditions>
-                                                        <condition id="-10" name="For" type="System">
-                                                            <param id="0" name="Name">&quot;streamLoop&quot;</param>
-                                                            <param id="1" name="Start index">0</param>
-                                                            <param id="2" name="End index">tokencount( flow.colorsConnected, &quot;#&quot;) - 1</param>
+                                                        <condition id="-8" name="Compare two values" type="System">
+                                                            <param id="0" name="First value">PrismStreams.At( prism.UID &amp; generator.sourceColor)</param>
+                                                            <param id="1" name="Comparison">2</param>
+                                                            <param id="2" name="Second value">0</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="-9" name="Set value" type="System">
-                                                            <param id="0" name="Variable">debugMsg</param>
-                                                            <param id="1" name="Value">debugMsg &amp; tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) &amp; &quot;===&quot; &amp; tokenat( prismStreamAngles, loopindex, &quot;#&quot;) &amp; newline</param>
-                                                        </action>
-                                                        <action id="-3" name="Create object" type="System">
-                                                            <param id="0" name="Object to create">Generator</param>
-                                                            <param id="1" name="Layer">backgroundLayer</param>
-                                                            <param id="2" name="X">prism.X</param>
-                                                            <param id="3" name="Y">prism.Y</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">sourceColor</param>
-                                                            <param id="1" name="Value">tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) </param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                                            <param id="1" name="Value">generator.sourceColor &amp; &quot;#&quot;</param>
-                                                        </action>
-                                                        <action id="4" name="Set animation" type="Generator">
-                                                            <param id="0" name="Animation">generator.sourceColor</param>
-                                                            <param id="1" name="From">1</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" type="Generator">
-                                                            <param id="0" name="Instance variable">blockStream</param>
-                                                            <param id="1" name="Value">1</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" type="Generator">
-                                                            <param id="0" name="Instance variable">spawnMinions</param>
-                                                            <param id="1" name="Value">0</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" type="Generator">
-                                                            <param id="0" name="Instance variable">sourceStream</param>
-                                                            <param id="1" name="Value">1</param>
-                                                        </action>
                                                         <action id="-8" name="Set angle" type="Generator">
-                                                            <param id="0" name="Angle">int( tokenat( prismStreamAngles, loopindex, &quot;#&quot;) )</param>
+                                                            <param id="0" name="Angle">int( tokenat( prism.slotsLeft, 0, &quot;#&quot;) )</param>
                                                         </action>
-                                                        <action id="-15" name="Set visible" type="Generator">
-                                                            <param id="0" name="Visibility">0</param>
+                                                        <action id="1" name="Set value by key string" type="PrismStreams">
+                                                            <param id="0" name="Key string">prism.UID &amp; generator.sourceColor</param>
+                                                            <param id="1" name="Value">generator.Angle</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">prismUID</param>
-                                                            <param id="1" name="Value">prism.UID</param>
+                                                        <action id="-10" name="Set value" type="Prism">
+                                                            <param id="0" name="Instance variable">slotsLeft</param>
+                                                            <param id="1" name="Value">replace( prism.slotsLeft, generator.Angle &amp; &quot;#&quot;, &quot;&quot; )</param>
                                                         </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>If this color has already been established at the prism, use the slot it previously occupied</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" type="System">
+                                                            <param id="0" name="First value">PrismStreams.At( prism.UID &amp; generator.sourceColor)</param>
+                                                            <param id="1" name="Comparison">5</param>
+                                                            <param id="2" name="Second value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" type="Generator">
+                                                            <param id="0" name="Angle">PrismStreams.At( prism.UID &amp; generator.sourceColor )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Start a new stream chain from this generator</comment>
+                                                <event-block>
+                                                    <conditions />
+                                                    <actions>
                                                         <action id="7" name="Execute commands" type="fn">
                                                             <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; generator.UID</param>
                                                         </action>
@@ -1375,7 +1459,7 @@
                                     </sub-events>
                                 </event-block>
                                 <comment>Start the cycle again with the next flow element (unless that flow element blocks the stream)</comment>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">ableToExtend</param>
@@ -1472,7 +1556,7 @@
                                                     <actions>
                                                         <action id="-10" name="Set value" type="Flow">
                                                             <param id="0" name="Instance variable">colorsConnected</param>
-                                                            <param id="1" name="Value">color &amp; &quot;#&quot; &amp; flow.colorsConnected </param>
+                                                            <param id="1" name="Value">flow.colorsConnected &amp; &quot;#&quot; &amp; color</param>
                                                         </action>
                                                         <action id="6" name="Set result" type="fn">
                                                             <param id="0" name="Value">closestFlowUID</param>
@@ -1554,7 +1638,7 @@
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
                 <variable comment="the new grid y value" name="result" type="number">0</variable>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
@@ -1599,7 +1683,7 @@
                     </sub-events>
                 </event-block>
                 <comment>When the moving is done, snap the flow object to the grid and reset the streams</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
@@ -1691,7 +1775,7 @@
         <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnUpdateHUDSelection</param>
@@ -2032,9 +2116,12 @@
                                                 </event-block>
                                             </sub-events>
                                         </event-block>
-                                        <event-block>
+                                        <event-block any="1">
                                             <conditions>
                                                 <condition id="-14" name="Pick by unique ID" type="Redirect">
+                                                    <param id="0" name="Unique ID">flow.UID</param>
+                                                </condition>
+                                                <condition id="-14" name="Pick by unique ID" type="Prism">
                                                     <param id="0" name="Unique ID">flow.UID</param>
                                                 </condition>
                                             </conditions>
@@ -2160,7 +2247,7 @@
                             <conditions />
                             <actions>
                                 <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                    <param id="0" name="Seconds">prismStreamAngles</param>
                                 </action>
                                 <action id="7" name="Execute commands" type="fn">
                                     <param id="0" name="Commands">fnResetStream</param>
@@ -2339,6 +2426,14 @@
                             <param id="2" name="X">flow.ImagePointX( 1 )</param>
                             <param id="3" name="Y">flow.Y</param>
                         </action>
+                        <action id="-10" name="Set value" type="Minion">
+                            <param id="0" name="Instance variable">streamOffset</param>
+                            <param id="1" name="Value">random( -1 * minionStreamOffsetRange, minionStreamOffsetRange )</param>
+                        </action>
+                        <action id="-3" name="Set position" type="Minion">
+                            <param id="0" name="X">flow.ImagePointX(1)</param>
+                            <param id="1" name="Y">flow.Y + minion.streamOffset</param>
+                        </action>
                         <action id="4" name="Set animation" type="Minion">
                             <param id="0" name="Animation">flow.sourceColor</param>
                             <param id="1" name="From">1</param>
@@ -2389,17 +2484,17 @@
                             <param id="0" name="Instance variable">lastSpawnTime</param>
                             <param id="1" name="Value">time</param>
                         </action>
-                        <action id="7" name="Execute commands" type="fn">
+                        <action disabled="1" id="7" name="Execute commands" type="fn">
                             <param id="0" name="Commands">fnAttachHealthBar &amp; &quot;,&quot; &amp; minion.UID &amp; &quot;,&quot; &amp; minion.X &amp; &quot;,&quot; &amp; minion.Y</param>
                         </action>
-                        <action id="7" name="Execute commands" type="fn">
+                        <action disabled="1" id="7" name="Execute commands" type="fn">
                             <param id="0" name="Commands">fnUpdateHealthBar &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,&quot; &amp; flow.minionTotal &amp; &quot;,&quot; &amp; generatorMaxMinions</param>
                         </action>
                     </actions>
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <event-block collapsed="1">
                     <conditions>
@@ -2504,7 +2599,7 @@
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
                 <variable comment="uid of the grid object at the clicked location" name="objectAtLocationUID" type="number">0</variable>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
                             <param id="0" name="Object">Minion</param>
@@ -2608,20 +2703,68 @@
                                                     <param id="0" name="Seconds">0.25</param>
                                                 </action>
                                                 <action id="-3" name="Set position" type="Minion">
-                                                    <param id="0" name="X">redirect.X</param>
-                                                    <param id="1" name="Y">redirect.Y</param>
-                                                </action>
-                                                <action id="-4" name="Set position to another object" type="Minion">
-                                                    <param id="0" name="Object">Redirect</param>
-                                                    <param id="1" name="Image point (optional)">0</param>
+                                                    <param id="0" name="X">redirect.X + minion.streamOffset</param>
+                                                    <param id="1" name="Y">redirect.Y + minion.streamOffset</param>
                                                 </action>
                                                 <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
                                                     <param id="0" name="Angle">redirect.Angle</param>
                                                 </action>
                                             </actions>
                                         </event-block>
-                                        <comment>Exits save minions if activated</comment>
+                                        <comment>Redirectors change the direction of a minion</comment>
                                         <event-block>
+                                            <conditions>
+                                                <condition id="-14" name="Pick by unique ID" type="Prism">
+                                                    <param id="0" name="Unique ID">objectAtLocationUID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions />
+                                            <sub-events>
+                                                <comment>If the prism is active, send the minion along a random paths</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" type="Prism">
+                                                            <param id="0" name="Instance variable">streamOutCount</param>
+                                                            <param id="1" name="Comparison">4</param>
+                                                            <param id="2" name="Value">1</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-16" name="Wait" type="System">
+                                                            <param id="0" name="Seconds">0.25</param>
+                                                        </action>
+                                                        <action id="-3" name="Set position" type="Minion">
+                                                            <param id="0" name="X">prism.X + minion.streamOffset</param>
+                                                            <param id="1" name="Y">prism.Y + minion.streamOffset</param>
+                                                        </action>
+                                                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                                                            <param id="0" name="Angle">int( tokenat( prismStreamAngles, prism.activeStream, &quot;#&quot;) )</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="Prism">
+                                                            <param id="0" name="Instance variable">activeStream</param>
+                                                            <param id="1" name="Value">prism.activeStream + 1 &lt; prism.streamOutCount ? prism.activeStream + 1 : 0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>If the prism is not active, destroy the minion</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" type="Prism">
+                                                            <param id="0" name="Instance variable">streamOutCount</param>
+                                                            <param id="1" name="Comparison">3</param>
+                                                            <param id="2" name="Value">1</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="7" name="Execute commands" type="fn">
+                                                            <param id="0" name="Commands">fnDestroyMinion &amp; &quot;,&quot; &amp; minion.UID</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <comment>Exits save minions if activated</comment>
+                                        <event-block collapsed="1">
                                             <conditions>
                                                 <condition id="-14" name="Pick by unique ID" type="Exit">
                                                     <param id="0" name="Unique ID">objectAtLocationUID</param>

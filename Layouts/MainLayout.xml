@@ -698,6 +698,7 @@
                         <lastDamageTime>0</lastDamageTime>
                         <currentGridX>0</currentGridX>
                         <currentGridY>0</currentGridY>
+                        <streamOffset>0</streamOffset>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
@@ -1743,6 +1744,9 @@
                         <minionTotal>0</minionTotal>
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
+                        <streamOutCount>0</streamOutCount>
+                        <activeStream>0</activeStream>
+                        <slotsLeft></slotsLeft>
                     </instance-variables>
                     <world>
                         <x>-150.726623535</x>
@@ -1783,5 +1787,10 @@
         </instance>
         <instance type="while" />
         <instance type="LevelData" />
+        <instance type="PrismStreams">
+            <properties>
+                <contains></contains>
+            </properties>
+        </instance>
     </nonworld-instances>
 </c2layout>
