@@ -804,7 +804,7 @@
                         <spawnRate>0</spawnRate>
                         <lastSpawn>0</lastSpawn>
                         <selected>false</selected>
-                        <baseUID>0</baseUID>
+                        <prismUID>0</prismUID>
                     </instance-variables>
                     <world>
                         <x>-196</x>

@@ -847,7 +847,7 @@
                     <instance-variable comment="the spawn rate (minions/sec) of the generator" name="spawnRate" type="number" />
                     <instance-variable comment="the timestamp of the last minion spawn" name="lastSpawn" type="number" />
                     <instance-variable name="selected" type="boolean" />
-                    <instance-variable comment="the uid of the object this generator is a slave to" name="baseUID" type="number" />
+                    <instance-variable comment="the uid of the object this generator is a slave to" name="prismUID" type="number" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="blue" pingpong="0" repeatcount="0" repeatto="0" speed="12">
