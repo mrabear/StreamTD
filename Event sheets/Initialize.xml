@@ -60,7 +60,7 @@
         <comment>Generator parameters</comment>
         <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
         <variable comment="The total number of minions that a generator can spawn" name="generatorMaxMinions" type="number">10000</variable>
-        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">0.25</variable>
+        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">0.5</variable>
         <variable comment="The height (in px) of the health bar" name="generatorHealthBarHeight" type="number">8</variable>
         <variable comment="The width (in px) of the health bar" name="generatorHealthBarWidth" type="number">40</variable>
         <variable comment="The angle of the health bar" name="generatorHealthBarAngle" type="number">270</variable>
