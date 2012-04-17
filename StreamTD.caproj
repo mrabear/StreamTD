@@ -1034,6 +1034,40 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
+            <object-folder expanded="1" name="Laser">
+                <object-type name="Laser">
+                    <plugin id="Sprite" />
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                <collision-poly>
+                                    <point x="0.3" y="0.3" />
+                                    <point x="0.5" y="0.325" />
+                                    <point x="0.625" y="0.375" />
+                                    <point x="0.825" y="0.5" />
+                                    <point x="0.625" y="0.625" />
+                                    <point x="0.5" y="0.675" />
+                                    <point x="0.3" y="0.7" />
+                                    <point x="0.15" y="0.5" />
+                                </collision-poly>
+                            </frame>
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="LaserBeam">
+                    <plugin id="Sprite" />
+                    <animation-folder expanded="1">
+                        <animation framecount="6" loop="1" name="Default" pingpong="1" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                            <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+            </object-folder>
             <object-type name="Redirect">
                 <plugin id="Sprite" />
                 <animation-folder expanded="1">
@@ -1711,6 +1745,7 @@
                 <member>Barrier</member>
                 <member>Exit</member>
                 <member>Generator</member>
+                <member>Laser</member>
                 <member>Lens</member>
                 <member>Painter</member>
                 <member>Prism</member>
@@ -1732,6 +1767,7 @@
                 <instance-variable comment="the total number of minions left to spawn" name="minionTotal" type="number" />
                 <instance-variable comment="does this object spawn minions?" name="spawnsMinions" type="boolean" />
                 <instance-variable comment="The HUD name of the object" name="objectName" type="string" />
+                <instance-variable comment="A # separated list of streams that have passed through this object" name="streamsPassedThrough" type="string" />
             </instance-variables>
         </family>
     </families>

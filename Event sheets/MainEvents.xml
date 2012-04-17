@@ -17,7 +17,7 @@
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <include>Initialize</include>
         <comment>Game Object Events</comment>
-        <event-group collapsed="1" description="A grid that objects snap to" title="Grid">
+        <event-group description="A grid that objects snap to" title="Grid">
             <sub-events>
                 <comment>(coord) returns a &apos;grid friendly&apos; coordindate for a given layout coordinate</comment>
                 <event-block collapsed="1">
@@ -228,7 +228,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process a click on the grid</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="1" name="On any click" type="Mouse" />
                     </conditions>
@@ -393,6 +393,44 @@
                                                 <action id="-9" name="Set value" type="System">
                                                     <param id="0" name="Variable">objectCreated</param>
                                                     <param id="1" name="Value">barrier.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Add a laser</comment>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="2" name="Mouse button is down" type="Mouse">
+                                                    <param id="0" name="Mouse button">0</param>
+                                                </condition>
+                                                <condition id="2" name="Key is down" type="Keyboard">
+                                                    <param id="0" name="Key">86 (V)</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-3" name="Create object" type="System">
+                                                    <param id="0" name="Object to create">Laser</param>
+                                                    <param id="1" name="Layer">activeLayer</param>
+                                                    <param id="2" name="X">gridX</param>
+                                                    <param id="3" name="Y">gridY</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Laser">
+                                                    <param id="0" name="Instance variable">blockStream</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" type="Laser">
+                                                    <param id="0" name="Instance variable">extendStream</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                                <action id="-10" name="Set value" type="Laser">
+                                                    <param id="0" name="Instance variable">objectName</param>
+                                                    <param id="1" name="Value">&quot;Laser&quot;</param>
+                                                </action>
+                                                <action id="-8" name="Set angle" type="Laser">
+                                                    <param id="0" name="Angle">90</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">objectCreated</param>
+                                                    <param id="1" name="Value">laser.UID</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -725,6 +763,22 @@
                                                         </action>
                                                     </actions>
                                                 </event-block>
+                                                <comment>Right click rotates a generator</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-14" name="Pick by unique ID" type="Laser">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-18" name="Rotate clockwise" type="Laser">
+                                                            <param id="0" name="Degrees">90</param>
+                                                        </action>
+                                                        <action id="7" name="Execute commands" type="fn">
+                                                            <param id="0" name="Commands">fnResetStream</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
                                             </sub-events>
                                         </event-block>
                                     </sub-events>
@@ -738,7 +792,7 @@
         <event-group description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnResetStream</param>
@@ -786,7 +840,7 @@
                             </actions>
                         </event-block>
                         <comment>Reset all prisms</comment>
-                        <event-block collapsed="1">
+                        <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">Prism</param>
@@ -830,6 +884,55 @@
                                 </event-block>
                             </sub-events>
                         </event-block>
+                        <comment>Reset all lasers</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">LaserBeam</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="LaserBeam" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Laser</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-11" name="For Each" type="System">
+                                            <param id="0" name="Object">Laser</param>
+                                        </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" type="Laser">
+                                            <param id="0" name="Instance variable">isActive</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="7" name="Execute commands" type="fn">
+                                            <param id="0" name="Commands">fnClosestObject &amp; &quot;,&quot; &amp; laser.x &amp; &quot;,&quot; &amp; laser.y &amp; &quot;,&quot; &amp; laser.angle</param>
+                                        </action>
+                                        <action id="-3" name="Create object" type="System">
+                                            <param id="0" name="Object to create">LaserBeam</param>
+                                            <param id="1" name="Layer">activeLayer</param>
+                                            <param id="2" name="X">laser.X</param>
+                                            <param id="3" name="Y">laser.Y</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" type="LaserBeam">
+                                            <param id="0" name="Angle">laser.Angle</param>
+                                        </action>
+                                        <action id="-5" name="Set width" type="LaserBeam">
+                                            <param id="0" name="Width">fn.Ret(1)</param>
+                                        </action>
+                                        <action id="-24" name="Move to top" type="Laser" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
                         <comment>Reset all prism generators</comment>
                         <event-block>
                             <conditions>
@@ -866,6 +969,10 @@
                                     <param id="0" name="Instance variable">streamOutUID</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">streamsPassedThrough</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
                             </actions>
                             <sub-events>
                                 <comment>Loop through each generator and start a stream chain for each</comment>
@@ -887,7 +994,7 @@
                                             <param id="1" name="Value">flow.sourceColor &amp; &quot;#&quot;</param>
                                         </action>
                                         <action id="7" name="Execute commands" type="fn">
-                                            <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,0&quot;</param>
+                                            <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,&quot; &amp; flow.UID</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -895,7 +1002,7 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <comment>(UID) Start a stream chain at the given flow object</comment>
+                <comment>(UID, originatingUID) Start a stream chain at the given flow object</comment>
                 <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
@@ -906,20 +1013,17 @@
                     <sub-events>
                         <comment>Setup the loop</comment>
                         <variable comment="a list of the flow objects passed on this chain" name="flowObjectsPassed" type="text"></variable>
-                        <variable name="nextUID" type="number">0</variable>
+                        <variable comment="the uid of the next flow object to attach the stream to" name="nextUID" type="number">0</variable>
+                        <variable comment="the UID of the generator that created this stream" name="sourceUID" type="number">0</variable>
                         <event-block>
                             <conditions />
                             <actions>
-                                <action disabled="1" id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">debugMsg &amp; &quot;PRESTART**&quot; &amp; fn.Param(1) &amp; &quot;***&quot; &amp; newline</param>
-                                </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">nextUID</param>
                                     <param id="1" name="Value">fn.Param(0)</param>
                                 </action>
                                 <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">flowObjectsPassed</param>
+                                    <param id="0" name="Variable">sourceUID</param>
                                     <param id="1" name="Value">fn.Param(1)</param>
                                 </action>
                                 <action id="1" name="Set condition value" type="while">
@@ -932,12 +1036,7 @@
                             <conditions>
                                 <condition id="1" name="While" type="while" />
                             </conditions>
-                            <actions>
-                                <action disabled="1" id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">debugMsg &amp; &quot;START**&quot; &amp; flowObjectsPassed &amp; &quot;***&quot; &amp; newline</param>
-                                </action>
-                            </actions>
+                            <actions />
                             <sub-events>
                                 <comment>Processes a single link in a stream chain</comment>
                                 <variable comment="how far is the flow object from the stream?" name="distanceToClosestObject" type="number">0</variable>
@@ -955,10 +1054,6 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">debugMsg</param>
-                                            <param id="1" name="Value">debugMsg &amp; &quot;         STARTLINK*&quot; &amp; flow.UID &amp; newline</param>
-                                        </action>
                                         <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">nextUID</param>
                                             <param id="1" name="Value">0</param>
@@ -1299,10 +1394,6 @@
                                                     <param id="0" name="Instance variable">streamOutCount</param>
                                                     <param id="1" name="Value">tokencount( flow.colorsConnected, &quot;#&quot;)</param>
                                                 </action>
-                                                <action disabled="1" id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">debugMsg</param>
-                                                    <param id="1" name="Value">debugMsg &amp; &quot;               PRISMSTART*&quot; &amp; flow.colorsConnected &amp; &quot;*&quot; &amp; prism.streamOutCount &amp; newline</param>
-                                                </action>
                                             </actions>
                                             <sub-events>
                                                 <comment>Destroy any existing generators spawned from this prism</comment>
@@ -1336,10 +1427,6 @@
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                                            <param id="0" name="Variable">debugMsg</param>
-                                                            <param id="1" name="Value">debugMsg &amp; tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) &amp; &quot;===&quot; &amp; tokenat( prismStreamAngles, loopindex, &quot;#&quot;) &amp; newline</param>
-                                                        </action>
                                                         <action id="-3" name="Create object" type="System">
                                                             <param id="0" name="Object to create">Generator</param>
                                                             <param id="1" name="Layer">backgroundLayer</param>
@@ -1376,10 +1463,6 @@
                                                         <action id="-10" name="Set value" type="Generator">
                                                             <param id="0" name="Instance variable">prismUID</param>
                                                             <param id="1" name="Value">prism.UID</param>
-                                                        </action>
-                                                        <action id="-9" name="Set value" type="System">
-                                                            <param id="0" name="Variable">debugMsg</param>
-                                                            <param id="1" name="Value">debugMsg &amp; &quot;generator &quot; &amp; generator.UID &amp; newline</param>
                                                         </action>
                                                     </actions>
                                                     <sub-events>
@@ -1425,15 +1508,8 @@
                                                         <event-block>
                                                             <conditions />
                                                             <actions>
-                                                                <action id="-9" name="Set value" type="System">
-                                                                    <param id="0" name="Variable">debugMsg</param>
-                                                                    <param id="1" name="Value">debugMsg &amp; flowObjectsPassed &amp; &quot;&lt;&lt;&lt;&quot; &amp; newline</param>
-                                                                </action>
                                                                 <action id="7" name="Execute commands" type="fn">
-                                                                    <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; generator.UID</param>
-                                                                </action>
-                                                                <action disabled="1" id="7" name="Execute commands" type="fn">
-                                                                    <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; generator.UID &amp; &quot;,&quot; &amp; &quot;&quot;&quot;&quot; &amp; flowObjectsPassed &amp; &quot;&quot;&quot;&quot;</param>
+                                                                    <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; generator.UID &amp; &quot;,&quot; &amp; sourceUID</param>
                                                                 </action>
                                                             </actions>
                                                         </event-block>
@@ -1442,7 +1518,7 @@
                                             </sub-events>
                                         </event-block>
                                         <comment>Start the cycle again with the next flow element (unless that flow element blocks the stream)</comment>
-                                        <event-block>
+                                        <event-block collapsed="1">
                                             <conditions>
                                                 <condition id="-14" name="Compare variable" type="System">
                                                     <param id="0" name="Variable">ableToExtend</param>
@@ -1610,38 +1686,40 @@
                                                 </event-block>
                                             </sub-events>
                                         </event-block>
+                                        <comment>If this flow object has already been traversed, we are in an infinite loop and need to stop</comment>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">find( flow.streamsPassedThrough, sourceUID &amp; &quot;#&quot; )</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">nextUID</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <comment>Add the current flow objects to the list of objects traversed</comment>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="-10" name="Set value" type="Flow">
+                                                    <param id="0" name="Instance variable">streamsPassedThrough</param>
+                                                    <param id="1" name="Value">sourceUID &amp; &quot;#&quot; &amp; flow.streamsPassedThrough</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
                                     </sub-events>
                                 </event-block>
-                                <comment>If this flow object has already been traversed, we are in an infinite loop and need to stop</comment>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">find( flowObjectsPassed, &quot;#&quot; &amp; nextUID )</param>
-                                            <param id="1" name="Comparison">5</param>
-                                            <param id="2" name="Second value">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">nextUID</param>
-                                            <param id="1" name="Value">0</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <comment>Add the current flow objects to the list of objects traversed</comment>
+                                <comment>At this point, nextUID will either be set to the UID of th next flow object in the chain or it will be 0 indicating that the chain has ended for one reason or another</comment>
                                 <event-block>
                                     <conditions />
                                     <actions>
                                         <action id="1" name="Set condition value" type="while">
                                             <param id="0" name="Value">nextUID</param>
-                                        </action>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">flowObjectsPassed</param>
-                                            <param id="1" name="Value">flowObjectsPassed &amp; &quot;#&quot; &amp; nextUID</param>
-                                        </action>
-                                        <action id="-9" name="Set value" type="System">
-                                            <param id="0" name="Variable">debugMsg</param>
-                                            <param id="1" name="Value">debugMsg &amp; &quot;END**&quot; &amp; flowObjectsPassed &amp; &quot;***&quot; &amp; newline</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -2513,7 +2591,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>(uid) destroys the specified minion</comment>
                 <event-block collapsed="1">
@@ -2877,6 +2955,19 @@
                     <conditions>
                         <condition id="1" inverted="1" name="Is overlapping another object" type="Minion">
                             <param id="0" name="Object">Stream</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Execute commands" type="fn">
+                            <param id="0" name="Commands">fnDestroyMinion &amp; &quot;,&quot; &amp; minion.UID</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Destroy a minion if it intersects a laser beam</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" type="Minion">
+                            <param id="0" name="Object">LaserBeam</param>
                         </condition>
                     </conditions>
                     <actions>
