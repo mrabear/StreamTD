@@ -15,6 +15,7 @@
         <plugin id="Rex_WhileLoop" version="1">While Loop</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
+        <plugin id="TextBox" version="1">Text box</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="chromeconsole" version="0.100000001">Chrome Console</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
@@ -695,13 +696,15 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="HUD Core">
+            <object-folder expanded="1" name="HUD Core">
                 <object-type global="1" name="HUD">
                     <plugin id="TiledBg" />
                     <instance-variables>
                         <instance-variable comment="the UID of the currently selected object" name="selectionUID" type="number" />
                         <instance-variable comment="is the grid in spawn mode?" name="isSpawning" type="boolean" />
                         <instance-variable comment="how many minions have been saved" name="minionsSaved" type="number" />
+                        <instance-variable comment="the current level " name="currentLevel" type="number" />
+                        <instance-variable comment="is the HUD in the process of changing levels?" name="isChangingLevels" type="boolean" />
                     </instance-variables>
                     <texture />
                 </object-type>
@@ -738,9 +741,6 @@
                 </object-type>
                 <object-type name="HUDactivatorLabel">
                     <plugin id="Text" />
-                </object-type>
-                <object-type name="HUDactivatorButton">
-                    <plugin id="Button" />
                 </object-type>
             </object-folder>
             <object-folder expanded="0" name="Spawn Control">
@@ -819,11 +819,67 @@
                         </animation>
                     </animation-folder>
                 </object-type>
-                <object-type name="HUDsaveLevelButton">
-                    <plugin id="Button" />
-                </object-type>
                 <object-type name="HUDsaveLevelLabel">
                     <plugin id="Text" />
+                </object-type>
+            </object-folder>
+            <object-folder expanded="1" name="Level">
+                <object-type name="HUDlevelBg">
+                    <plugin id="Sprite" />
+                    <behaviors>
+                        <behavior-type name="Pin">
+                            <behavior id="Pin" />
+                        </behavior-type>
+                    </behaviors>
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Middle" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="HUDlevelLabel">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="HUDlevelNum">
+                    <plugin id="TextBox" />
+                </object-type>
+                <object-type name="HUDlevelNext">
+                    <plugin id="Sprite" />
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                <collision-poly>
+                                    <point x="0.0454545" y="0.0555556" />
+                                    <point x="0.5" y="0.277778" />
+                                    <point x="0.681818" y="0.388889" />
+                                    <point x="0.909091" y="0.5" />
+                                    <point x="0.681818" y="0.611111" />
+                                    <point x="0.5" y="0.722222" />
+                                    <point x="0.0454545" y="0.944444" />
+                                    <point x="0.181818" y="0.5" />
+                                </collision-poly>
+                            </frame>
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="HUDlevelPrev">
+                    <plugin id="Sprite" />
+                    <animation-folder expanded="1">
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                                <collision-poly>
+                                    <point x="0.818182" y="0.5" />
+                                    <point x="0.954545" y="0.944444" />
+                                    <point x="0.5" y="0.722222" />
+                                    <point x="0.318182" y="0.611111" />
+                                    <point x="0.090909" y="0.5" />
+                                    <point x="0.318182" y="0.388889" />
+                                    <point x="0.5" y="0.277778" />
+                                    <point x="0.954545" y="0.0555556" />
+                                </collision-poly>
+                            </frame>
+                        </animation>
+                    </animation-folder>
                 </object-type>
             </object-folder>
         </object-folder>
@@ -857,7 +913,7 @@
                     <plugin id="Rex_Hash" />
                 </object-type>
             </object-folder>
-            <object-folder expanded="0" name="Exit">
+            <object-folder expanded="1" name="Exit">
                 <object-type name="Exit">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -1762,8 +1818,11 @@
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="Level Data">
-            <object-type name="LevelData">
+            <object-type name="LevelEditorData">
                 <plugin id="Rex_SpriteBank" />
+            </object-type>
+            <object-type name="LevelData">
+                <plugin id="Arr" />
             </object-type>
         </object-folder>
     </object-folder>
@@ -1798,6 +1857,21 @@
                 <instance-variable comment="A # separated list of streams that have passed through this object" name="streamsPassedThrough" type="string" />
             </instance-variables>
         </family>
+        <family name="LevelObjects" plugin-id="Sprite">
+            <members>
+                <member>Barrier</member>
+                <member>Exit</member>
+                <member>ExitLabel</member>
+                <member>Generator</member>
+                <member>Laser</member>
+                <member>LaserBeam</member>
+                <member>Lens</member>
+                <member>Painter</member>
+                <member>Prism</member>
+                <member>Redirect</member>
+                <member>Stream</member>
+            </members>
+        </family>
     </families>
     <layout-folder expanded="1">
         <layout-folder expanded="1" name="Levels" />
@@ -1806,6 +1880,7 @@
     <event-folder expanded="1">
         <event-sheet>MainEvents.xml</event-sheet>
         <event-sheet>Initialize.xml</event-sheet>
+        <event-sheet>LevelData.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" />

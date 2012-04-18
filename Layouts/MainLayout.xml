@@ -1027,6 +1027,8 @@
                         <selectionUID>0</selectionUID>
                         <isSpawning>false</isSpawning>
                         <minionsSaved>0</minionsSaved>
+                        <currentLevel>0</currentLevel>
+                        <isChangingLevels>false</isChangingLevels>
                     </instance-variables>
                     <world>
                         <x>0</x>
@@ -1159,8 +1161,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>511</x>
-                        <y>537</y>
+                        <x>399.925598145</x>
+                        <y>661.597900391</y>
                         <z>0</z>
                         <width>100</width>
                         <height>55</height>
@@ -1182,8 +1184,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>517</x>
-                        <y>541</y>
+                        <x>405.925598145</x>
+                        <y>665.597900391</y>
                         <z>0</z>
                         <width>90.005554199</width>
                         <height>20.200439453</height>
@@ -1242,11 +1244,11 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>620</x>
-                        <y>562</y>
+                        <x>226.403930664</x>
+                        <y>568.460754395</y>
                         <z>0</z>
-                        <width>82</width>
-                        <height>30</height>
+                        <width>86.614013672</width>
+                        <height>23</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1258,18 +1260,18 @@
                     <properties>
                         <text>Activate</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Calibri,-19,400,0</font>
-                        <color>255,255,255</color>
+                        <font>Calibri,-16,400,0</font>
+                        <color>0,0,0</color>
                         <horizontal-alignment>Center</horizontal-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>622.772094727</x>
-                        <y>537.066894531</y>
+                        <x>227.176055908</x>
+                        <y>572.066894531</y>
                         <z>0</z>
-                        <width>75</width>
-                        <height>32</height>
+                        <width>84.227966309</width>
+                        <height>20.923828125</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1324,8 +1326,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>224.23500061</x>
-                        <y>537</y>
+                        <x>223.313049316</x>
+                        <y>658.829711914</y>
                         <z>0</z>
                         <width>144</width>
                         <height>55</height>
@@ -1346,8 +1348,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>536</x>
-                        <y>574</y>
+                        <x>424.925598145</x>
+                        <y>698.597900391</y>
                         <z>0</z>
                         <width>21</width>
                         <height>21</height>
@@ -1368,8 +1370,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>561</x>
-                        <y>574</y>
+                        <x>449.925598145</x>
+                        <y>698.597900391</y>
                         <z>0</z>
                         <width>21</width>
                         <height>21</height>
@@ -1390,8 +1392,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>586</x>
-                        <y>574</y>
+                        <x>474.925598145</x>
+                        <y>698.597900391</y>
                         <z>0</z>
                         <width>21</width>
                         <height>21</height>
@@ -1443,6 +1445,28 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
+                <instance type="HUDlevelBg">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
+                    <world>
+                        <x>320.066589355</x>
+                        <y>536.156982422</y>
+                        <z>0</z>
+                        <width>87</width>
+                        <height>54.380432129</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
         </layer>
         <layer name="HUDTop">
@@ -1491,8 +1515,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>234.137359619</x>
-                        <y>543</y>
+                        <x>233.215408325</x>
+                        <y>664.829711914</y>
                         <z>0</z>
                         <width>122.843811035</width>
                         <height>44</height>
@@ -1816,8 +1840,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>48</x>
-                        <y>477</y>
+                        <x>53.339477539</x>
+                        <y>445.726287842</y>
                         <z>0</z>
                         <width>708</width>
                         <height>30</height>
@@ -1838,11 +1862,11 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>710</x>
-                        <y>562</y>
+                        <x>226.403930664</x>
+                        <y>537</y>
                         <z>0</z>
-                        <width>82</width>
-                        <height>30</height>
+                        <width>87.537353516</width>
+                        <height>23</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -1852,23 +1876,84 @@
                 </instance>
                 <instance type="HUDsaveLevelLabel">
                     <properties>
-                        <text>Save</text>
+                        <text>Save Level</text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Calibri,-19,400,0</font>
-                        <color>255,255,255</color>
+                        <font>Calibri,-16,400,0</font>
+                        <color>0,0,0</color>
                         <horizontal-alignment>Center</horizontal-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>716</x>
-                        <y>538</y>
+                        <x>223.866485596</x>
+                        <y>541</y>
                         <z>0</z>
-                        <width>68</width>
-                        <height>27</height>
+                        <width>91.996276855</width>
+                        <height>21.462646484</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDlevelLabel">
+                    <properties>
+                        <text>Level 12</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Calibri,-16,400,0</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Center</horizontal-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                    </properties>
+                    <world>
+                        <x>322.145935059</x>
+                        <y>540.385864258</y>
+                        <z>0</z>
+                        <width>82.784332275</width>
+                        <height>25.384643555</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDlevelPrev">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <world>
+                        <x>343.623077393</x>
+                        <y>571.884643555</y>
+                        <z>0</z>
+                        <width>25.753845215</width>
+                        <height>20.769229889</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="HUDlevelNext">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <world>
+                        <x>381.383087158</x>
+                        <y>571.884643555</y>
+                        <z>0</z>
+                        <width>25.753845215</width>
+                        <height>20.769229889</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1898,10 +1983,17 @@
             </properties>
         </instance>
         <instance type="while" />
-        <instance type="LevelData" />
+        <instance type="LevelEditorData" />
         <instance type="PrismStreams">
             <properties>
                 <contains></contains>
+            </properties>
+        </instance>
+        <instance type="LevelData">
+            <properties>
+                <width>10</width>
+                <height>1</height>
+                <depth>1</depth>
             </properties>
         </instance>
     </nonworld-instances>
