@@ -88,6 +88,7 @@
         <variable comment="(x,y) return UID of object at location, else 0" name="fnGridObjectAt" type="text">gridObjectAt</variable>
         <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
+        <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestBlockingObject" type="text">closestBlockingObject</variable>
         <variable comment="(uid) toggles the active status of the provided genrator" name="fnToggleGenerator" type="text">toggleGenerator</variable>
         <variable comment="(x,y) returns true if the coordinates given are on the grid" name="fnIsOnGrid" type="text">isOnGrid</variable>
         <variable comment="(uid) attach a health bar to the object" name="fnAttachHealthBar" type="text">attachHealthBar</variable>
