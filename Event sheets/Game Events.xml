@@ -16,7 +16,7 @@
         <include>Initialize</include>
         <include>Level Data</include>
         <comment>Game Object Events</comment>
-        <event-group collapsed="1" description="A grid that objects snap to" title="Grid">
+        <event-group description="A grid that objects snap to" title="Grid">
             <sub-events>
                 <comment>(coord) returns a &apos;grid friendly&apos; coordindate for a given layout coordinate</comment>
                 <event-block collapsed="1">
@@ -900,7 +900,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A stream that flows out from a generator" title="Stream">
+        <event-group description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
                 <event-block collapsed="1">
@@ -955,10 +955,6 @@
                             </actions>
                         </event-block>
                         <comment>Reset all prisms</comment>
-                        <event-block>
-                            <conditions />
-                            <actions />
-                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
@@ -2091,7 +2087,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
                 <event-block collapsed="1">
@@ -2523,7 +2519,7 @@
                     </actions>
                 </event-block>
                 <comment>Start spawning minions from the generators</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On clicked" type="HUDspawnButton" />
                     </conditions>
@@ -2653,7 +2649,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Events used to generate and load level instances" title="Level">
+        <event-group description="Events used to generate and load level instances" title="Level">
             <sub-events>
                 <comment>Start spawning minions from any flow object capable of doing so</comment>
                 <event-block collapsed="1">
@@ -3197,7 +3193,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>(uid) destroys the specified minion</comment>
                 <event-block collapsed="1">
