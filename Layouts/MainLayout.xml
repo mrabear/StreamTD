@@ -1531,18 +1531,18 @@
                     <properties>
                         <text></text>
                         <initial-visibility>Visible</initial-visibility>
-                        <font>Calibri,-16,400,0</font>
+                        <font>Calibri,-13,400,0</font>
                         <color>0,0,0</color>
                         <horizontal-alignment>Center</horizontal-alignment>
                         <hotspot>Top-left</hotspot>
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>127.451004028</x>
-                        <y>541</y>
+                        <x>118.436630249</x>
+                        <y>547.240478516</y>
                         <z>0</z>
-                        <width>80</width>
-                        <height>44</height>
+                        <width>96.642333984</width>
+                        <height>37.759521484</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>

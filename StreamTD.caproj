@@ -7,9 +7,13 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8700</saved-with-version>
     <used-plugins>
-        <plugin id="Rex_Function" version="1">Function</plugin>
+        <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
+        <plugin id="Rex_Branch" version="1">Branch</plugin>
+        <plugin id="Rex_SpriteBank" version="0.800000012">Sprite Bank</plugin>
         <plugin id="Button" version="1">Button</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
         <plugin id="Rex_WhileLoop" version="1">While Loop</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
@@ -17,12 +21,8 @@
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="chromeconsole" version="0.100000001">Chrome Console</plugin>
         <plugin id="wastrel_or" version="1">OR</plugin>
-        <plugin id="Particles" version="1">Particles</plugin>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
-        <plugin id="Rex_SpriteBank" version="0.800000012">Sprite Bank</plugin>
-        <plugin id="Rex_Branch" version="1">Branch</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Rex_Function" version="1">Function</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -42,7 +42,7 @@
         <width>800</width>
         <height>600</height>
     </window-size>
-    <pixel-rounding>0</pixel-rounding>
+    <pixel-rounding>1</pixel-rounding>
     <first-layout>MainLayout</first-layout>
     <configuration-settings>
         <prop name="Clear background">No</prop>
@@ -558,7 +558,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="0" name="HUD">
+        <object-folder expanded="1" name="HUD">
             <object-folder expanded="1" name="Color Selector">
                 <object-type name="HUDcolorSelectionBg">
                     <plugin id="Sprite" />
