@@ -713,7 +713,7 @@
                                             </conditions>
                                             <actions>
                                                 <action id="7" name="Execute commands" type="fn">
-                                                    <param id="0" name="Commands">fnResetStream</param>
+                                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
                                                 </action>
                                                 <action id="7" name="Execute commands" type="fn">
                                                     <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; objectCreated</param>
@@ -808,7 +808,7 @@
                                                             <param id="1" name="Value">0</param>
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
-                                                            <param id="0" name="Commands">fnResetStream</param>
+                                                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -838,7 +838,7 @@
                                                             <param id="0" name="Degrees">90</param>
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
-                                                            <param id="0" name="Commands">fnResetStream</param>
+                                                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -854,7 +854,7 @@
                                                             <param id="0" name="Degrees">90</param>
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
-                                                            <param id="0" name="Commands">fnResetStream</param>
+                                                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -870,7 +870,7 @@
                                                             <param id="0" name="Degrees">90</param>
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
-                                                            <param id="0" name="Commands">fnResetStream</param>
+                                                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -886,7 +886,7 @@
                                                             <param id="0" name="Degrees">90</param>
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
-                                                            <param id="0" name="Commands">fnResetStream</param>
+                                                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -903,7 +903,7 @@
         <event-group description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnResetStream</param>
@@ -911,7 +911,7 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Log Text" type="debugConsole">
-                            <param id="0" name="Data">&quot;[[[[[[[ RESETTING STREAM ]]]]]]]&quot; &amp; newline</param>
+                            <param id="0" name="Data">&quot;Resetting Stream&quot; &amp; newline</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -955,6 +955,10 @@
                             </actions>
                         </event-block>
                         <comment>Reset all prisms</comment>
+                        <event-block>
+                            <conditions />
+                            <actions />
+                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
@@ -1088,43 +1092,70 @@
                                     <param id="0" name="Instance variable">streamsPassedThrough</param>
                                     <param id="1" name="Value">&quot;&quot;</param>
                                 </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">minionTotal</param>
+                                    <param id="1" name="Value">generatorMaxMinions</param>
+                                </action>
                             </actions>
-                            <sub-events>
-                                <comment>Loop through each generator and start a stream chain for each</comment>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-11" name="For Each" type="System">
-                                            <param id="0" name="Object">Flow</param>
-                                        </condition>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
-                                            <param id="0" name="Instance variable">sourceStream</param>
-                                        </condition>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
-                                            <param id="0" name="Instance variable">isActive</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" type="Flow">
-                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                            <param id="1" name="Value">flow.sourceColor &amp; &quot;#&quot;</param>
-                                        </action>
-                                        <action id="7" name="Execute commands" type="fn">
-                                            <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,&quot; &amp; flow.UID</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>( ) Redraws the streams from each of the stream generators, calls resetStream</comment>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="fn">
+                            <param id="0" name="Name">fnRedrawAllStreams</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Execute commands" type="fn">
+                            <param id="0" name="Commands">fnResetStream</param>
+                        </action>
+                        <action id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">&quot;Drawing New Stream&quot; &amp; newline</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Loop through each generator and start a stream chain for each</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                    <param id="0" name="Instance variable">sourceStream</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                    <param id="0" name="Instance variable">isActive</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">flow.sourceColor &amp; &quot;#&quot;</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,&quot; &amp; flow.UID</param>
+                                </action>
+                            </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
                 <comment>(UID, originatingUID) Start a stream chain at the given flow object</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnStartStreamChainAt</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">&quot;....Starting Chain next=(&quot; &amp; fn.Param(0) &amp; &quot;)&quot; &amp; &quot; source=(&quot; &amp; fn.Param(1) &amp; &quot;)&quot;</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <comment>Setup the loop</comment>
                         <variable comment="a list of the flow objects passed on this chain" name="flowObjectsPassed" type="text"></variable>
@@ -1140,9 +1171,6 @@
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">sourceUID</param>
                                     <param id="1" name="Value">fn.Param(1)</param>
-                                </action>
-                                <action id="0" name="Log Text" type="debugConsole">
-                                    <param id="0" name="Data">&quot;Starting Chain nextUID=(&quot; &amp; nextUID &amp; &quot;)&quot; &amp; &quot; sourceUID=(&quot; &amp; sourceUID &amp; &quot;)&quot;</param>
                                 </action>
                                 <action id="1" name="Set condition value" type="while">
                                     <param id="0" name="Value">1</param>
@@ -1193,6 +1221,75 @@
                                         </action>
                                     </actions>
                                     <sub-events>
+                                        <comment>DEBUG: prints information about the closest flow object to the debug console</comment>
+                                        <event-block collapsed="1">
+                                            <conditions>
+                                                <condition id="-19" name="Pick all" type="System">
+                                                    <param id="0" name="Object">Flow</param>
+                                                </condition>
+                                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                                    <param id="0" name="Unique ID">closestFlowUID</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Log Text" type="debugConsole">
+                                                    <param id="0" name="Data">&quot;........Closest Flow Object &quot; &amp; flow.objectName &amp; &quot; (&quot; &amp; flow.UID &amp; &quot;)&quot;</param>
+                                                </action>
+                                                <action disabled="1" id="1" name="Log Object" type="debugConsole">
+                                                    <param id="0" name="Object">Flow</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Generator">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                                            <param id="0" name="Data">&quot;........is a generator prismUID=&quot; &amp; generator.prismUID</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Redirect">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                                            <param id="0" name="Data">&quot;........is a redirector&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Prism">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                                            <param id="0" name="Data">&quot;........is a prism&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Barrier">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                                            <param id="0" name="Data">&quot;........is a barrier&quot;</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
                                         <comment>If the flow object extends a new stream, check various flow conditions</comment>
                                         <event-block collapsed="1">
                                             <conditions>
@@ -1504,6 +1601,9 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
+                                                <action id="0" name="Log Text" type="debugConsole">
+                                                    <param id="0" name="Data">&quot;........Prism &quot; &amp; prism.UID &amp; &quot; hit&quot;</param>
+                                                </action>
                                                 <action id="-10" name="Set value" type="Prism">
                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                     <param id="1" name="Value">&quot;&quot;</param>
@@ -1551,6 +1651,9 @@
                                                             <param id="2" name="X">prism.X</param>
                                                             <param id="3" name="Y">prism.Y</param>
                                                         </action>
+                                                        <action id="0" name="Log Text" type="debugConsole">
+                                                            <param id="0" name="Data">&quot;........Prism Generator &quot; &amp; generator.UID &amp; &quot; spawned&quot;</param>
+                                                        </action>
                                                         <action id="-10" name="Set value" type="Generator">
                                                             <param id="0" name="Instance variable">sourceColor</param>
                                                             <param id="1" name="Value">tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) </param>
@@ -1581,6 +1684,10 @@
                                                         <action id="-10" name="Set value" type="Generator">
                                                             <param id="0" name="Instance variable">prismUID</param>
                                                             <param id="1" name="Value">prism.UID</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" type="Generator">
+                                                            <param id="0" name="Instance variable">objectName</param>
+                                                            <param id="1" name="Value">&quot;PrismGenerator&quot;</param>
                                                         </action>
                                                     </actions>
                                                     <sub-events>
@@ -1942,7 +2049,7 @@
                             <conditions />
                             <actions>
                                 <action id="7" name="Execute commands" type="fn">
-                                    <param id="0" name="Commands">fnResetStream</param>
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -1984,7 +2091,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
                 <event-block collapsed="1">
@@ -2049,21 +2156,19 @@
                     </sub-events>
                 </event-block>
                 <comment>Clear the HUD display elements</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnResetHUDDisplay</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-15" name="Set visible" type="HUD">
-                            <param id="0" name="Visibility">1</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
                         <event-block>
                             <conditions />
                             <actions>
+                                <action id="-25" name="Move to bottom" type="HUD" />
+                                <action id="-25" name="Move to bottom" type="HUDbackground" />
                                 <action id="0" name="Set text" type="HUDselectionInfo">
                                     <param id="0" name="Text">&quot;&quot;</param>
                                 </action>
@@ -2136,19 +2241,23 @@
                             <param id="0" name="Unique ID">hud.selectionUID</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-9" name="Destroy" type="Flow" />
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetHUD</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Destroy" type="Flow" />
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnResetHUD</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-7" name="Compare instance variable" type="ExitLabel">
@@ -2164,7 +2273,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Update the HUD with real time information on the currently selected object</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">HUDrefreshRate</param>
@@ -2293,83 +2402,90 @@
                                                 </event-block>
                                             </sub-events>
                                         </event-block>
-                                        <event-block collapsed="1" disabled="1">
-                                            <conditions>
-                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Generator">
-                                                    <param id="0" name="Unique ID">flow.UID</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action disabled="1" id="0" name="Set text" type="HUDattributes">
-                                                    <param id="0" name="Text">&quot;Color:&quot; &amp; newline &amp; flow.colorsConnected</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="HUDattributeBg">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionLabel">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionBg">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="selectionCircle">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionButton">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                            </actions>
+                                        <comment>Legacy HUD Events</comment>
+                                        <event-block collapsed="1">
+                                            <conditions />
+                                            <actions />
                                             <sub-events>
-                                                <event-block disabled="1">
+                                                <event-block collapsed="1" disabled="1">
                                                     <conditions>
-                                                        <condition disabled="1" id="2" name="Is playing" type="HUDcolorSelectionButton">
-                                                            <param id="0" name="Animation">Generator.sourceColor</param>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Generator">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action disabled="1" id="-3" name="Set position" type="selectionCircle">
-                                                            <param id="0" name="X">HUDcolorSelectionButton.X</param>
-                                                            <param id="1" name="Y">HUDcolorSelectionButton.Y</param>
+                                                        <action disabled="1" id="0" name="Set text" type="HUDattributes">
+                                                            <param id="0" name="Text">&quot;Color:&quot; &amp; newline &amp; flow.colorsConnected</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="HUDattributeBg">
+                                                            <param id="0" name="Visibility">1</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionLabel">
+                                                            <param id="0" name="Visibility">1</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionBg">
+                                                            <param id="0" name="Visibility">1</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="selectionCircle">
+                                                            <param id="0" name="Visibility">1</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="HUDcolorSelectionButton">
+                                                            <param id="0" name="Visibility">1</param>
+                                                        </action>
+                                                    </actions>
+                                                    <sub-events>
+                                                        <event-block disabled="1">
+                                                            <conditions>
+                                                                <condition disabled="1" id="2" name="Is playing" type="HUDcolorSelectionButton">
+                                                                    <param id="0" name="Animation">Generator.sourceColor</param>
+                                                                </condition>
+                                                            </conditions>
+                                                            <actions>
+                                                                <action disabled="1" id="-3" name="Set position" type="selectionCircle">
+                                                                    <param id="0" name="X">HUDcolorSelectionButton.X</param>
+                                                                    <param id="1" name="Y">HUDcolorSelectionButton.Y</param>
+                                                                </action>
+                                                            </actions>
+                                                        </event-block>
+                                                    </sub-events>
+                                                </event-block>
+                                                <event-block any="1" disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Redirect">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Prism">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="0" name="Set text" type="HUDattributes">
+                                                            <param id="0" name="Text">&quot;Color:&quot; &amp; newline &amp; flow.colorsConnected</param>
+                                                        </action>
+                                                        <action disabled="1" id="0" name="Set text" type="txtDebugBottom">
+                                                            <param id="0" name="Text">flow.streamsPassedThrough</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="HUDattributeBg">
+                                                            <param id="0" name="Visibility">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block disabled="1">
+                                                    <conditions>
+                                                        <condition disabled="1" id="-14" name="Pick by unique ID" type="Exit">
+                                                            <param id="0" name="Unique ID">flow.UID</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action disabled="1" id="0" name="Set text" type="HUDattributes">
+                                                            <param id="0" name="Text">newline &amp; exit.isUnlocked=1?&quot;Unlocked&quot;:&quot;Locked&quot;</param>
+                                                        </action>
+                                                        <action disabled="1" id="-15" name="Set visible" type="HUDattributeBg">
+                                                            <param id="0" name="Visibility">1</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
                                             </sub-events>
-                                        </event-block>
-                                        <event-block any="1" disabled="1">
-                                            <conditions>
-                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Redirect">
-                                                    <param id="0" name="Unique ID">flow.UID</param>
-                                                </condition>
-                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Prism">
-                                                    <param id="0" name="Unique ID">flow.UID</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action disabled="1" id="0" name="Set text" type="HUDattributes">
-                                                    <param id="0" name="Text">&quot;Color:&quot; &amp; newline &amp; flow.colorsConnected</param>
-                                                </action>
-                                                <action disabled="1" id="0" name="Set text" type="txtDebugBottom">
-                                                    <param id="0" name="Text">flow.streamsPassedThrough</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="HUDattributeBg">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <event-block disabled="1">
-                                            <conditions>
-                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Exit">
-                                                    <param id="0" name="Unique ID">flow.UID</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action disabled="1" id="0" name="Set text" type="HUDattributes">
-                                                    <param id="0" name="Text">newline &amp; exit.isUnlocked=1?&quot;Unlocked&quot;:&quot;Locked&quot;</param>
-                                                </action>
-                                                <action disabled="1" id="-15" name="Set visible" type="HUDattributeBg">
-                                                    <param id="0" name="Visibility">1</param>
-                                                </action>
-                                            </actions>
                                         </event-block>
                                     </sub-events>
                                 </event-block>
@@ -2402,7 +2518,7 @@
                             <param id="0" name="Seconds">streamRedrawDelay</param>
                         </action>
                         <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
+                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                         </action>
                     </actions>
                 </event-block>
@@ -2411,20 +2527,10 @@
                     <conditions>
                         <condition id="0" name="On clicked" type="HUDspawnButton" />
                     </conditions>
-                    <actions>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetHUD</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Flow">
-                            <param id="0" name="Instance variable">minionTotal</param>
-                            <param id="1" name="Value">generatorMaxMinions</param>
-                        </action>
-                        <action id="-14" name="Toggle boolean" type="HUD">
-                            <param id="0" name="Instance variable">isSpawning</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
                         <comment>If the spawning is being stopped, reset the HUD</comment>
+                        <variable comment="has the button click resulted in a spawn start?" name="spawnStarted" type="number">0</variable>
                         <event-block>
                             <conditions>
                                 <condition id="-8" inverted="1" name="Is boolean instance variable set" type="HUD">
@@ -2433,17 +2539,11 @@
                             </conditions>
                             <actions>
                                 <action id="7" name="Execute commands" type="fn">
-                                    <param id="0" name="Commands">fnDestroyAllMinions</param>
+                                    <param id="0" name="Commands">fnStartSpawning</param>
                                 </action>
-                                <action id="2" name="Stop" type="ExitLabel" />
-                                <action id="0" name="Set text" type="HUDminionsSavedCount">
-                                    <param id="0" name="Text">&quot;&quot;</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="HUDminionsSavedLabel">
-                                    <param id="0" name="Visibility">0</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="HUDselectionInfoBg">
-                                    <param id="0" name="Visibility">0</param>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">spawnStarted</param>
+                                    <param id="1" name="Value">1</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -2453,43 +2553,21 @@
                                 <condition id="-8" name="Is boolean instance variable set" type="HUD">
                                     <param id="0" name="Instance variable">isSpawning</param>
                                 </condition>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">spawnStarted</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="HUD">
-                                    <param id="0" name="Instance variable">minionsSaved</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="3" name="Start" type="ExitLabel">
-                                    <param id="0" name="From">0</param>
-                                </action>
-                                <action id="0" name="Set text" type="HUDminionsSavedCount">
-                                    <param id="0" name="Text">hud.minionsSaved</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="HUDminionsSavedLabel">
-                                    <param id="0" name="Visibility">1</param>
-                                </action>
-                                <action id="-15" name="Set visible" type="HUDselectionInfoBg">
-                                    <param id="0" name="Visibility">1</param>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnStopSpawning</param>
                                 </action>
                             </actions>
-                            <sub-events>
-                                <comment>Attach health bars to each minion generator</comment>
-                                <event-block>
-                                    <conditions>
-                                        <condition id="-11" name="For Each" type="System">
-                                            <param id="0" name="Object">Flow</param>
-                                        </condition>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
-                                            <param id="0" name="Instance variable">spawnMinions</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="7" name="Execute commands" type="fn">
-                                            <param id="0" name="Commands">fnAttachHealthBar &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,&quot; &amp; flow.X &amp; &quot;,&quot; &amp; flow.Y</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -2510,10 +2588,11 @@
                             <param id="0" name="Instance variable">isActive</param>
                         </action>
                         <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
+                            <param id="0" name="Commands">fnRedrawAllStreams</param>
                         </action>
                     </actions>
                 </event-block>
+                <comment>If the save button is pushed, call the save level method</comment>
                 <event-block>
                     <conditions>
                         <condition id="6" name="On object clicked" type="Mouse">
@@ -2528,6 +2607,7 @@
                         </action>
                     </actions>
                 </event-block>
+                <comment>Activate the next level</comment>
                 <event-block>
                     <conditions>
                         <condition id="6" name="On object clicked" type="Mouse">
@@ -2535,25 +2615,21 @@
                             <param id="1" name="Click type">0</param>
                             <param id="2" name="Object clicked">HUDlevelNext</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" type="System">
-                            <param id="0" name="First value">hud.currentLevel + 1</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Second value">levelMax</param>
-                        </condition>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="HUD">
                             <param id="0" name="Instance variable">isChangingLevels</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-11" name="Add to" type="HUD">
+                        <action id="-10" name="Set value" type="HUD">
                             <param id="0" name="Instance variable">currentLevel</param>
-                            <param id="1" name="Value">1</param>
+                            <param id="1" name="Value">hud.currentLevel&lt;levelMax?hud.currentLevel+1:0</param>
                         </action>
                         <action id="7" name="Execute commands" type="fn">
                             <param id="0" name="Commands">fnLoadLevel &amp; &quot;,&quot; &amp; hud.currentLevel</param>
                         </action>
                     </actions>
                 </event-block>
+                <comment>Activate the previous level</comment>
                 <event-block>
                     <conditions>
                         <condition id="6" name="On object clicked" type="Mouse">
@@ -2561,19 +2637,14 @@
                             <param id="1" name="Click type">0</param>
                             <param id="2" name="Object clicked">HUDlevelPrev</param>
                         </condition>
-                        <condition id="-8" name="Compare two values" type="System">
-                            <param id="0" name="First value">hud.currentLevel - 1</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Second value">0</param>
-                        </condition>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" type="HUD">
                             <param id="0" name="Instance variable">isChangingLevels</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-12" name="Subtract from" type="HUD">
+                        <action id="-10" name="Set value" type="HUD">
                             <param id="0" name="Instance variable">currentLevel</param>
-                            <param id="1" name="Value">1</param>
+                            <param id="1" name="Value">hud.currentLevel&gt;0?hud.currentLevel-1:levelMax</param>
                         </action>
                         <action id="7" name="Execute commands" type="fn">
                             <param id="0" name="Commands">fnLoadLevel &amp; &quot;,&quot; &amp; hud.currentLevel</param>
@@ -2584,35 +2655,146 @@
         </event-group>
         <event-group description="Events used to generate and load level instances" title="Level">
             <sub-events>
+                <comment>Start spawning minions from any flow object capable of doing so</comment>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="fn">
+                            <param id="0" name="Name">fnStartSpawning</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">&quot;Start Spawning&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnResetHUD</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="HUD">
+                                    <param id="0" name="Instance variable">isSpawning</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="HUD">
+                                    <param id="0" name="Instance variable">minionsSaved</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="3" name="Start" type="ExitLabel">
+                                    <param id="0" name="From">0</param>
+                                </action>
+                                <action id="0" name="Set text" type="HUDminionsSavedCount">
+                                    <param id="0" name="Text">hud.minionsSaved</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="HUDminionsSavedLabel">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="HUDselectionInfoBg">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Attach health bars to each minion generator</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                    <param id="0" name="Instance variable">spawnMinions</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnAttachHealthBar &amp; &quot;,&quot; &amp; flow.UID &amp; &quot;,&quot; &amp; flow.X &amp; &quot;,&quot; &amp; flow.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Stop minions from spawning</comment>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="fn">
+                            <param id="0" name="Name">fnStopSpawning</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">&quot;Stop Spawning&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" type="HUD">
+                                    <param id="0" name="Instance variable">isSpawning</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnDestroyAllMinions</param>
+                                </action>
+                                <action id="2" name="Stop" type="ExitLabel" />
+                                <action id="0" name="Set text" type="HUDminionsSavedCount">
+                                    <param id="0" name="Text">&quot;&quot;</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="HUDminionsSavedLabel">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="HUDselectionInfoBg">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnResetHUD</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
                 <comment>Save the current state of the grid</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnSaveLevel</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Clean bank" type="LevelEditorData" />
-                        <action id="1" name="Save instances" type="LevelEditorData">
-                            <param id="0" name="Object">LevelObjects</param>
-                            <param id="1" name="All instances">1</param>
-                        </action>
-                        <action disabled="1" id="1" name="Save instances" type="LevelEditorData">
-                            <param id="0" name="Object">Flow</param>
-                            <param id="1" name="All instances">1</param>
-                        </action>
-                        <action disabled="1" id="1" name="Save instances" type="LevelEditorData">
-                            <param id="0" name="Object">ExitLabel</param>
-                            <param id="1" name="All instances">1</param>
-                        </action>
                         <action id="0" name="Log Text" type="debugConsole">
-                            <param id="0" name="Data">&quot;Level Data: &quot; &amp; newline &amp; LevelEditorData.BankToString</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">debugMsg &amp; &quot;Level Data Saved (&quot; &amp; len( LevelEditorData.BankToString ) &amp; &quot; bytes)&quot; &amp; newline</param>
+                            <param id="0" name="Data">&quot;Saving Level Data&quot;</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <comment>Save level data to chrome console</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnResetStream</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="0" name="Clean bank" type="LevelEditorData" />
+                                <action id="1" name="Save instances" type="LevelEditorData">
+                                    <param id="0" name="Object">LevelObjects</param>
+                                    <param id="1" name="All instances">1</param>
+                                </action>
+                                <action id="0" name="Log Text" type="debugConsole">
+                                    <param id="0" name="Data">&quot;Level Data: &quot; &amp; newline &amp; LevelEditorData.BankToString</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">debugMsg</param>
+                                    <param id="1" name="Value">debugMsg &amp; &quot;level data logged (&quot; &amp; len( LevelEditorData.BankToString ) &amp; &quot; bytes)&quot; &amp; newline</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>(levelNumber) load the given level</comment>
                 <event-block>
@@ -2622,54 +2804,114 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-13" name="Set boolean" type="HUD">
-                            <param id="0" name="Instance variable">isChangingLevels</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnClearLevel</param>
-                        </action>
-                        <action id="0" name="Clean bank" type="LevelEditorData" />
-                        <action id="3" name="Load bank from JSON string" type="LevelEditorData">
-                            <param id="0" name="JSON string">LevelData.at( fn.Param(0) )</param>
-                        </action>
-                        <action id="2" name="Load all instances" type="LevelEditorData" />
                         <action id="0" name="Log Text" type="debugConsole">
-                            <param id="0" name="Data">&quot;Level &quot; &amp;  fn.Param(0) &amp; &quot; Loaded&quot;</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">debugMsg</param>
-                            <param id="1" name="Value">debugMsg &amp; &quot;Level &quot; &amp;  fn.Param(0) &amp; &quot; Loaded&quot; &amp; newline</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetHUD</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="-13" name="Set boolean" type="HUD">
-                            <param id="0" name="Instance variable">isChangingLevels</param>
-                            <param id="1" name="Value">0</param>
+                            <param id="0" name="Data">&quot;Loading level &quot; &amp;  fn.Param(0)</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnStopSpawning</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnClearLevel</param>
+                                </action>
+                                <action id="0" name="Clean bank" type="LevelEditorData" />
+                                <action id="3" name="Load bank from JSON string" type="LevelEditorData">
+                                    <param id="0" name="JSON string">LevelData.at( fn.Param(0) )</param>
+                                </action>
+                                <action id="2" name="Load all instances" type="LevelEditorData" />
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">debugMsg</param>
+                                    <param id="1" name="Value">debugMsg &amp; &quot;Level &quot; &amp;  fn.Param(0) &amp; &quot; Loaded&quot; &amp; newline</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Reattach exit labels to their exit objects</comment>
+                        <variable comment="the UID of the exit found at the exitlabel&apos;s position" name="exitUID" type="number">0</variable>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">ExitLabel</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">ExitLabel</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">exitUID</param>
+                                    <param id="1" name="Value">fn.Call(fnGridObjectAt,ExitLabel.X, ExitLabel.Y)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Exit</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Exit">
+                                            <param id="0" name="Unique ID">exitUID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" type="ExitLabel">
+                                            <param id="0" name="Instance variable">sourceUID</param>
+                                            <param id="1" name="Value">exit.UID</param>
+                                        </action>
+                                        <action behavior="Pin" id="0" name="Pin to object" type="ExitLabel">
+                                            <param id="0" name="Pin to">Exit</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">exitUID</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" type="ExitLabel" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Reset the game environment around the new level</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnResetHUD</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <comment>Clears all game objects from the current grid</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnClearLevel</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="4" name="Clean all" type="PrismStreams" />
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="4" name="Clean all" type="PrismStreams" />
+                            </actions>
+                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
@@ -2694,149 +2936,161 @@
                     </actions>
                 </event-block>
                 <comment>Change the color of the selected flow object</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">49 (1)</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
-                            <param id="0" name="Unique ID">hud.selectionUID</param>
+                        <condition id="-7" name="Compare instance variable" type="HUD">
+                            <param id="0" name="Instance variable">selectionUID</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">0</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Flow">
-                            <param id="0" name="Animation">&quot;red&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Flow">
-                            <param id="0" name="Instance variable">sourceColor</param>
-                            <param id="1" name="Value">flow.AnimationName</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">50 (2)</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
-                            <param id="0" name="Unique ID">hud.selectionUID</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Flow">
-                            <param id="0" name="Animation">&quot;yellow&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Flow">
-                            <param id="0" name="Instance variable">sourceColor</param>
-                            <param id="1" name="Value">flow.AnimationName</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">51 (3)</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
-                            <param id="0" name="Unique ID">hud.selectionUID</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Flow">
-                            <param id="0" name="Animation">&quot;blue&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-10" name="Set value" type="Flow">
-                            <param id="0" name="Instance variable">sourceColor</param>
-                            <param id="1" name="Value">flow.AnimationName</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">52 (4)</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
-                            <param id="0" name="Unique ID">hud.selectionUID</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Flow">
-                            <param id="0" name="Animation">&quot;green&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">53 (5)</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
-                            <param id="0" name="Unique ID">hud.selectionUID</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Flow">
-                            <param id="0" name="Animation">&quot;purple&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On key pressed" type="Keyboard">
-                            <param id="0" name="Key">54 (6)</param>
-                        </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
-                            <param id="0" name="Unique ID">hud.selectionUID</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="4" name="Set animation" type="Flow">
-                            <param id="0" name="Animation">&quot;orange&quot;</param>
-                            <param id="1" name="From">1</param>
-                        </action>
-                        <action id="-16" name="Wait" type="System">
-                            <param id="0" name="Seconds">streamRedrawDelay</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnResetStream</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">49 (1)</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">hud.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Flow">
+                                    <param id="0" name="Animation">&quot;red&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">sourceColor</param>
+                                    <param id="1" name="Value">flow.AnimationName</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">50 (2)</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">hud.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Flow">
+                                    <param id="0" name="Animation">&quot;yellow&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">sourceColor</param>
+                                    <param id="1" name="Value">flow.AnimationName</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">51 (3)</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">hud.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Flow">
+                                    <param id="0" name="Animation">&quot;blue&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Flow">
+                                    <param id="0" name="Instance variable">sourceColor</param>
+                                    <param id="1" name="Value">flow.AnimationName</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">52 (4)</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">hud.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Flow">
+                                    <param id="0" name="Animation">&quot;green&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">53 (5)</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">hud.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Flow">
+                                    <param id="0" name="Animation">&quot;purple&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="0" name="On key pressed" type="Keyboard">
+                                    <param id="0" name="Key">54 (6)</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">hud.selectionUID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="4" name="Set animation" type="Flow">
+                                    <param id="0" name="Animation">&quot;orange&quot;</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-16" name="Wait" type="System">
+                                    <param id="0" name="Seconds">streamRedrawDelay</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>

@@ -335,7 +335,7 @@
                 <plugin id="Text" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Misc">
+        <object-folder expanded="0" name="Misc">
             <object-type name="HiddenWall">
                 <plugin id="Sprite" />
                 <behaviors>
@@ -558,7 +558,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="HUD">
+        <object-folder expanded="0" name="HUD">
             <object-folder expanded="1" name="Color Selector">
                 <object-type name="HUDcolorSelectionBg">
                     <plugin id="Sprite" />
@@ -884,7 +884,7 @@
             </object-folder>
         </object-folder>
         <object-folder expanded="1" name="Flow">
-            <object-folder expanded="1" name="Prism">
+            <object-folder expanded="0" name="Prism">
                 <object-type name="Prism">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -913,7 +913,7 @@
                     <plugin id="Rex_Hash" />
                 </object-type>
             </object-folder>
-            <object-folder expanded="1" name="Exit">
+            <object-folder expanded="0" name="Exit">
                 <object-type name="Exit">
                     <plugin id="Sprite" />
                     <instance-variables>
@@ -1118,7 +1118,7 @@
                     </animation-folder>
                 </object-type>
             </object-folder>
-            <object-folder expanded="1" name="Laser">
+            <object-folder expanded="0" name="Laser">
                 <object-type name="Laser">
                     <plugin id="Sprite" />
                     <animation-folder expanded="1">
@@ -1864,12 +1864,10 @@
                 <member>ExitLabel</member>
                 <member>Generator</member>
                 <member>Laser</member>
-                <member>LaserBeam</member>
                 <member>Lens</member>
                 <member>Painter</member>
                 <member>Prism</member>
                 <member>Redirect</member>
-                <member>Stream</member>
             </members>
         </family>
     </families>

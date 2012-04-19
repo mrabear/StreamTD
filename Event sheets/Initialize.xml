@@ -77,6 +77,7 @@
         <variable comment="The frequency (sec between hits) of the stream dmg" name="streamDamageRate" type="number">0.1</variable>
         <variable comment="The amount of damage a stream does to a minon each time it hits" name="streamDamage" type="number">20</variable>
         <comment>Funcation name mappings</comment>
+        <variable comment="( ) Redraws the streams from each of the stream generators, calls resetStream" name="fnRedrawAllStreams" type="text">redrawAllStreams</variable>
         <variable comment="( ) Deletes all streams and rebuilds them from scratch" name="fnResetStream" type="text">resetStream</variable>
         <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>
         <variable comment="( ) hide all visual elements of the HUD" name="fnResetHUDDisplay" type="text">resetHUDDisplay</variable>
@@ -98,6 +99,8 @@
         <variable comment="saves the current state of all game objects into a JSON string for later use" name="fnSaveLevel" type="text">saveLevel</variable>
         <variable comment="(levelNumber) loads the given level, calls clearLevel before loading" name="fnLoadLevel" type="text">loadLevel</variable>
         <variable comment="clears the current level" name="fnClearLevel" type="text">clearLevel</variable>
+        <variable comment="start spawning minions from all flow objects that can spawn" name="fnStartSpawning" type="text">startSpawning</variable>
+        <variable comment="stop spawning minions from all flow objects that can spawn" name="fnStopSpawning" type="text">stopSpawning</variable>
         <comment></comment>
         <event-group description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
