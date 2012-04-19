@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>LevelData</name>
+    <name>Level Data</name>
     <events>
         <variable name="levelMax" type="number">3</variable>
         <event-block>

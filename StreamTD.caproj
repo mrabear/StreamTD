@@ -1876,9 +1876,10 @@
         <layout>MainLayout.xml</layout>
     </layout-folder>
     <event-folder expanded="1">
-        <event-sheet>MainEvents.xml</event-sheet>
+        <event-sheet>Game Events.xml</event-sheet>
         <event-sheet>Initialize.xml</event-sheet>
-        <event-sheet>LevelData.xml</event-sheet>
+        <event-sheet>Level Data.xml</event-sheet>
+        <event-sheet>Legacy Events.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" />

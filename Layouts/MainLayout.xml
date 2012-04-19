@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
     <name>MainLayout</name>
-    <event-sheet>MainEvents</event-sheet>
+    <event-sheet>Game Events</event-sheet>
     <size>
         <width>800</width>
         <height>600</height>

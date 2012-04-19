@@ -102,7 +102,7 @@
         <variable comment="start spawning minions from all flow objects that can spawn" name="fnStartSpawning" type="text">startSpawning</variable>
         <variable comment="stop spawning minions from all flow objects that can spawn" name="fnStopSpawning" type="text">stopSpawning</variable>
         <comment></comment>
-        <event-group description="Events that run to setup the game environments" title="Initialization">
+        <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>
                 <comment>Startup layout</comment>
                 <event-block>
@@ -148,22 +148,26 @@
                             </sub-events>
                         </event-block>
                         <comment>Setup the HUD</comment>
-                        <event-block>
+                        <event-block collapsed="1">
                             <conditions />
-                            <actions>
-                                <action disabled="1" id="-3" name="Set position" type="HUD">
-                                    <param id="0" name="X">0</param>
-                                    <param id="1" name="Y">WindowHeight - HUDHeight</param>
-                                </action>
-                                <action disabled="1" id="-7" name="Set size" type="HUD">
-                                    <param id="0" name="Width">WindowWidth</param>
-                                    <param id="1" name="Height">HUDHeight</param>
-                                </action>
-                                <action disabled="1" id="-16" name="Set opacity" type="HUD">
-                                    <param id="0" name="Opacity">100</param>
-                                </action>
-                            </actions>
+                            <actions />
                             <sub-events>
+                                <event-block>
+                                    <conditions />
+                                    <actions>
+                                        <action disabled="1" id="-3" name="Set position" type="HUD">
+                                            <param id="0" name="X">0</param>
+                                            <param id="1" name="Y">WindowHeight - HUDHeight</param>
+                                        </action>
+                                        <action disabled="1" id="-7" name="Set size" type="HUD">
+                                            <param id="0" name="Width">WindowWidth</param>
+                                            <param id="1" name="Height">HUDHeight</param>
+                                        </action>
+                                        <action disabled="1" id="-16" name="Set opacity" type="HUD">
+                                            <param id="0" name="Opacity">100</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
                                 <comment>Add a gutter to block out whatever lines the HUD is over</comment>
                                 <event-block>
                                     <conditions />
