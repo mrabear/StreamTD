@@ -101,6 +101,7 @@
         <variable comment="clears the current level" name="fnClearLevel" type="text">clearLevel</variable>
         <variable comment="start spawning minions from all flow objects that can spawn" name="fnStartSpawning" type="text">startSpawning</variable>
         <variable comment="stop spawning minions from all flow objects that can spawn" name="fnStopSpawning" type="text">stopSpawning</variable>
+        <variable comment='(&quot;flowObjectName&quot;,x,y,angle,animationName) creates a new flow object' name="fnCreateFlowObject" type="text">createFlowObject</variable>
         <comment></comment>
         <event-group collapsed="1" description="Events that run to setup the game environments" title="Initialization">
             <sub-events>

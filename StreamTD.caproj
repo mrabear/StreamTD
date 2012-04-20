@@ -558,7 +558,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="HUD">
+        <object-folder expanded="0" name="HUD">
             <object-folder expanded="1" name="Color Selector">
                 <object-type name="HUDcolorSelectionBg">
                     <plugin id="Sprite" />
@@ -883,7 +883,7 @@
                 </object-type>
             </object-folder>
         </object-folder>
-        <object-folder expanded="1" name="Flow">
+        <object-folder expanded="1" name="Flow Objects">
             <object-folder expanded="0" name="Prism">
                 <object-type name="Prism">
                     <plugin id="Sprite" />
@@ -1820,6 +1820,9 @@
         <object-folder expanded="1" name="Level Data">
             <object-type name="LevelEditorData">
                 <plugin id="Rex_SpriteBank" />
+            </object-type>
+            <object-type name="LevelDataMap">
+                <plugin id="Arr" />
             </object-type>
             <object-type name="LevelData">
                 <plugin id="Arr" />

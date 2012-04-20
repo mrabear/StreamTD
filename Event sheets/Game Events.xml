@@ -339,7 +339,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process a click on the grid</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="1" name="On any click" type="Mouse" />
                     </conditions>
@@ -387,338 +387,127 @@
                                     <actions />
                                     <sub-events>
                                         <variable comment="has an object been created?" name="objectCreated" type="number">0</variable>
-                                        <comment>Add a redirector</comment>
                                         <event-block>
                                             <conditions>
                                                 <condition id="2" name="Mouse button is down" type="Mouse">
                                                     <param id="0" name="Mouse button">0</param>
                                                 </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">65 (A)</param>
-                                                </condition>
                                             </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Redirect</param>
-                                                    <param id="1" name="Layer">activeLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">redirect.UID</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Redirect">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Redirector&quot;</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Redirect">
-                                                    <param id="0" name="Angle">0</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add a generator</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">81 (Q)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Generator</param>
-                                                    <param id="1" name="Layer">activeLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Generator">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Generator&quot;</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Generator">
-                                                    <param id="0" name="Instance variable">sourceColor</param>
-                                                    <param id="1" name="Value">tokenat(minionDefaultTypes, random( 0, tokencount(minionDefaultTypes, &quot;#&quot;)), &quot;#&quot;)</param>
-                                                </action>
-                                                <action id="4" name="Set animation" type="Generator">
-                                                    <param id="0" name="Animation">generator.sourceColor</param>
-                                                    <param id="1" name="From">1</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Generator">
-                                                    <param id="0" name="Instance variable">spawnRate</param>
-                                                    <param id="1" name="Value">generatorSpawnRate</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Generator">
-                                                    <param id="0" name="Instance variable">blockStream</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Generator">
-                                                    <param id="0" name="Instance variable">spawnMinions</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Generator">
-                                                    <param id="0" name="Instance variable">sourceStream</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Generator">
-                                                    <param id="0" name="Instance variable">minionTotal</param>
-                                                    <param id="1" name="Value">generatorMaxMinions</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Generator">
-                                                    <param id="0" name="Angle">0</param>
-                                                </action>
-                                                <action id="7" name="Execute commands" type="fn">
-                                                    <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; generator.UID</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">generator.UID</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add a barrier</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">90 (Z)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Barrier</param>
-                                                    <param id="1" name="Layer">activeLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Barrier">
-                                                    <param id="0" name="Instance variable">blockStream</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Barrier">
-                                                    <param id="0" name="Angle">0</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Barrier">
-                                                    <param id="0" name="Instance variable">extendStream</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Barrier">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Barrier&quot;</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">barrier.UID</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add a laser</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">86 (V)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Laser</param>
-                                                    <param id="1" name="Layer">activeLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Laser">
-                                                    <param id="0" name="Instance variable">blockStream</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Laser">
-                                                    <param id="0" name="Instance variable">extendStream</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Laser">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Laser&quot;</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Laser">
-                                                    <param id="0" name="Angle">90</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">laser.UID</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add a painter</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">88 (X)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Painter</param>
-                                                    <param id="1" name="Layer">defaultLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="4" name="Set animation" type="Painter">
-                                                    <param id="0" name="Animation">&quot;blue&quot;</param>
-                                                    <param id="1" name="From">1</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Painter">
-                                                    <param id="0" name="Instance variable">extendStream</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">painter.UID</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Painter">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Painter&quot;</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Painter">
-                                                    <param id="0" name="Angle">0</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add a lens</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">67 (C)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Lens</param>
-                                                    <param id="1" name="Layer">defaultLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="4" name="Set animation" type="Lens">
-                                                    <param id="0" name="Animation">&quot;blue&quot;</param>
-                                                    <param id="1" name="From">1</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">lens.UID</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Lens">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Lens&quot;</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Lens">
-                                                    <param id="0" name="Angle">0</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add a lens</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">69 (E)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Prism</param>
-                                                    <param id="1" name="Layer">defaultLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">prism.UID</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="Prism">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Prism&quot;</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Prism">
-                                                    <param id="0" name="Instance variable">blockStream</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Prism">
-                                                    <param id="0" name="Instance variable">extendStream</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Prism">
-                                                    <param id="0" name="Angle">0</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                        <comment>Add an exit</comment>
-                                        <event-block>
-                                            <conditions>
-                                                <condition id="2" name="Mouse button is down" type="Mouse">
-                                                    <param id="0" name="Mouse button">0</param>
-                                                </condition>
-                                                <condition id="2" name="Key is down" type="Keyboard">
-                                                    <param id="0" name="Key">87 (W)</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">Exit</param>
-                                                    <param id="1" name="Layer">defaultLayer</param>
-                                                    <param id="2" name="X">gridX</param>
-                                                    <param id="3" name="Y">gridY</param>
-                                                </action>
-                                                <action id="4" name="Set animation" type="Exit">
-                                                    <param id="0" name="Animation">&quot;blue&quot;</param>
-                                                    <param id="1" name="From">1</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Exit">
-                                                    <param id="0" name="Instance variable">extendStream</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                                <action id="-13" name="Set boolean" type="Exit">
-                                                    <param id="0" name="Instance variable">blockStream</param>
-                                                    <param id="1" name="Value">1</param>
-                                                </action>
-                                                <action id="-8" name="Set angle" type="Exit">
-                                                    <param id="0" name="Angle">180</param>
-                                                </action>
-                                                <action id="-9" name="Set value" type="System">
-                                                    <param id="0" name="Variable">objectCreated</param>
-                                                    <param id="1" name="Value">exit.UID</param>
-                                                </action>
-                                                <action id="-3" name="Create object" type="System">
-                                                    <param id="0" name="Object to create">ExitLabel</param>
-                                                    <param id="1" name="Layer">defaultLayer</param>
-                                                    <param id="2" name="X">exit.X</param>
-                                                    <param id="3" name="Y">exit.Y</param>
-                                                </action>
-                                                <action behavior="Pin" id="0" name="Pin to object" type="ExitLabel">
-                                                    <param id="0" name="Pin to">Exit</param>
-                                                </action>
-                                                <action id="-10" name="Set value" type="ExitLabel">
-                                                    <param id="0" name="Instance variable">sourceUID</param>
-                                                    <param id="1" name="Value">exit.UID</param>
-                                                </action>
-                                                <action id="-24" name="Move to top" type="Exit" />
-                                                <action id="-10" name="Set value" type="Exit">
-                                                    <param id="0" name="Instance variable">objectName</param>
-                                                    <param id="1" name="Value">&quot;Exit&quot;</param>
-                                                </action>
-                                            </actions>
+                                            <actions />
+                                            <sub-events>
+                                                <comment>Add a redirector</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">65 (A)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Redirector&quot;, gridX, gridY, 0, &quot;&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add a generator</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">81 (Q)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Generator&quot;, gridX, gridY, 0, tokenat(minionDefaultTypes, random( 0, tokencount(minionDefaultTypes, &quot;#&quot;)), &quot;#&quot;) )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add a barrier</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">90 (Z)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Barrier&quot;, gridX, gridY, 0, &quot;&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add a laser</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">86 (V)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Laser&quot;, gridX, gridY, 90, &quot;&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add a painter</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">88 (X)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Painter&quot;, gridX, gridY, 0, &quot;blue&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add a lens</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">67 (C)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Lens&quot;, gridX, gridY, 0, &quot;blue&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add a lens</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">69 (E)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Prism&quot;, gridX, gridY, 0, &quot;&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <comment>Add an exit</comment>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="2" name="Key is down" type="Keyboard">
+                                                            <param id="0" name="Key">87 (W)</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">objectCreated</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;Exit&quot;, gridX, gridY, 180, &quot;blue&quot; )</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
                                         </event-block>
                                         <comment>If an object was created, reset the stream and make the new object the current HUD selection</comment>
                                         <event-block>
@@ -756,7 +545,7 @@
                                     </sub-events>
                                 </event-block>
                                 <comment>If there is a flow object at the current location</comment>
-                                <event-block>
+                                <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">objectAtLocationUID</param>
@@ -921,7 +710,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A stream that flows out from a generator" title="Stream">
+        <event-group collapsed="1" description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
                 <event-block collapsed="1">
@@ -1200,7 +989,7 @@
                                 <condition id="1" name="While" type="while" />
                             </conditions>
                             <actions>
-                                <action id="0" name="Log Text" type="debugConsole">
+                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
                                     <param id="0" name="Data">&quot;........Start Next Link from (&quot; &amp; nextUID &amp; &quot;)&quot; &amp; &quot;(&quot; &amp; sourceUID &amp; &quot;)&quot;</param>
                                 </action>
                             </actions>
@@ -1243,21 +1032,18 @@
                                     </actions>
                                     <sub-events>
                                         <comment>DEBUG: prints information about the closest flow object to the debug console</comment>
-                                        <event-block collapsed="1">
+                                        <event-block collapsed="1" disabled="1">
                                             <conditions>
-                                                <condition id="-19" name="Pick all" type="System">
+                                                <condition disabled="1" id="-19" name="Pick all" type="System">
                                                     <param id="0" name="Object">Flow</param>
                                                 </condition>
-                                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Flow">
                                                     <param id="0" name="Unique ID">closestFlowUID</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="0" name="Log Text" type="debugConsole">
+                                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
                                                     <param id="0" name="Data">&quot;............Closest Flow Object &quot; &amp; flow.objectName &amp; &quot; (&quot; &amp; flow.UID &amp; &quot;)&quot;</param>
-                                                </action>
-                                                <action disabled="1" id="1" name="Log Object" type="debugConsole">
-                                                    <param id="0" name="Object">Flow</param>
                                                 </action>
                                             </actions>
                                             <sub-events>
@@ -1816,7 +1602,7 @@
                                             </actions>
                                         </event-block>
                                         <comment>If the flow object is a prism, start new chain reactions</comment>
-                                        <event-block collapsed="1">
+                                        <event-block>
                                             <conditions>
                                                 <condition id="-19" name="Pick all" type="System">
                                                     <param id="0" name="Object">Prism</param>
@@ -1826,7 +1612,7 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="0" name="Log Text" type="debugConsole">
+                                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
                                                     <param id="0" name="Data">&quot;............Prism &quot; &amp; prism.UID &amp; &quot; hit&quot;</param>
                                                 </action>
                                                 <action id="-10" name="Set value" type="Prism">
@@ -1856,6 +1642,7 @@
                                                     </actions>
                                                 </event-block>
                                                 <comment>Drop hidden generators and start stream chains from each </comment>
+                                                <variable comment="the UID of the created generator" name="generatorUID" type="number">0</variable>
                                                 <event-block>
                                                     <conditions>
                                                         <condition id="-10" name="For" type="System">
@@ -1870,98 +1657,76 @@
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="-3" name="Create object" type="System">
-                                                            <param id="0" name="Object to create">Generator</param>
-                                                            <param id="1" name="Layer">backgroundLayer</param>
-                                                            <param id="2" name="X">prism.X</param>
-                                                            <param id="3" name="Y">prism.Y</param>
-                                                        </action>
-                                                        <action id="0" name="Log Text" type="debugConsole">
-                                                            <param id="0" name="Data">&quot;....Hidden Prism Generator &quot; &amp; generator.UID &amp; &quot; spawned&quot;</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">sourceColor</param>
-                                                            <param id="1" name="Value">tokenat( flow.colorsConnected, loopindex, &quot;#&quot;) </param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                                            <param id="1" name="Value">generator.sourceColor &amp; &quot;#&quot;</param>
-                                                        </action>
-                                                        <action id="4" name="Set animation" type="Generator">
-                                                            <param id="0" name="Animation">generator.sourceColor</param>
-                                                            <param id="1" name="From">1</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" type="Generator">
-                                                            <param id="0" name="Instance variable">blockStream</param>
-                                                            <param id="1" name="Value">1</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" type="Generator">
-                                                            <param id="0" name="Instance variable">spawnMinions</param>
-                                                            <param id="1" name="Value">0</param>
-                                                        </action>
-                                                        <action id="-13" name="Set boolean" type="Generator">
-                                                            <param id="0" name="Instance variable">sourceStream</param>
-                                                            <param id="1" name="Value">0</param>
-                                                        </action>
-                                                        <action id="-15" name="Set visible" type="Generator">
-                                                            <param id="0" name="Visibility">0</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">prismUID</param>
-                                                            <param id="1" name="Value">prism.UID</param>
-                                                        </action>
-                                                        <action id="-10" name="Set value" type="Generator">
-                                                            <param id="0" name="Instance variable">objectName</param>
-                                                            <param id="1" name="Value">&quot;PrismGenerator&quot;</param>
+                                                        <action id="-9" name="Set value" type="System">
+                                                            <param id="0" name="Variable">generatorUID</param>
+                                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, &quot;PrismGenerator&quot;, prism.X, prism.Y, 0, tokenat( flow.colorsConnected, loopindex, &quot;#&quot;)  )</param>
                                                         </action>
                                                     </actions>
                                                     <sub-events>
-                                                        <comment>If this color hasn&apos;t been established at the prism, assign it to an empty slot and register it</comment>
                                                         <event-block>
                                                             <conditions>
-                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                    <param id="0" name="First value">PrismStreams.At( prism.UID &amp; generator.sourceColor)</param>
-                                                                    <param id="1" name="Comparison">2</param>
-                                                                    <param id="2" name="Second value">0</param>
+                                                                <condition id="-14" name="Pick by unique ID" type="Generator">
+                                                                    <param id="0" name="Unique ID">generatorUID</param>
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="-8" name="Set angle" type="Generator">
-                                                                    <param id="0" name="Angle">int( tokenat( prism.slotsLeft, 0, &quot;#&quot;) )</param>
+                                                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                                                    <param id="0" name="Data">&quot;....Hidden Prism Generator &quot; &amp; generator.UID &amp; &quot; spawned&quot;</param>
                                                                 </action>
-                                                                <action id="1" name="Set value by key string" type="PrismStreams">
-                                                                    <param id="0" name="Key string">prism.UID &amp; generator.sourceColor</param>
-                                                                    <param id="1" name="Value">generator.Angle</param>
-                                                                </action>
-                                                                <action id="-10" name="Set value" type="Prism">
-                                                                    <param id="0" name="Instance variable">slotsLeft</param>
-                                                                    <param id="1" name="Value">replace( prism.slotsLeft, generator.Angle &amp; &quot;#&quot;, &quot;&quot; )</param>
+                                                                <action id="-10" name="Set value" type="Generator">
+                                                                    <param id="0" name="Instance variable">prismUID</param>
+                                                                    <param id="1" name="Value">prism.UID</param>
                                                                 </action>
                                                             </actions>
-                                                        </event-block>
-                                                        <comment>If this color has already been established at the prism, use the slot it previously occupied</comment>
-                                                        <event-block>
-                                                            <conditions>
-                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                    <param id="0" name="First value">PrismStreams.At( prism.UID &amp; generator.sourceColor)</param>
-                                                                    <param id="1" name="Comparison">5</param>
-                                                                    <param id="2" name="Second value">0</param>
-                                                                </condition>
-                                                            </conditions>
-                                                            <actions>
-                                                                <action id="-8" name="Set angle" type="Generator">
-                                                                    <param id="0" name="Angle">PrismStreams.At( prism.UID &amp; generator.sourceColor )</param>
-                                                                </action>
-                                                            </actions>
-                                                        </event-block>
-                                                        <comment>Start a new stream chain from this generator</comment>
-                                                        <event-block>
-                                                            <conditions />
-                                                            <actions>
-                                                                <action id="7" name="Execute commands" type="fn">
-                                                                    <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; generator.UID &amp; &quot;,&quot; &amp; sourceUID</param>
-                                                                </action>
-                                                            </actions>
+                                                            <sub-events>
+                                                                <comment>If this color hasn&apos;t been established at the prism, assign it to an empty slot and register it</comment>
+                                                                <event-block>
+                                                                    <conditions>
+                                                                        <condition id="-8" name="Compare two values" type="System">
+                                                                            <param id="0" name="First value">PrismStreams.At( prism.UID &amp; generator.sourceColor)</param>
+                                                                            <param id="1" name="Comparison">2</param>
+                                                                            <param id="2" name="Second value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-8" name="Set angle" type="Generator">
+                                                                            <param id="0" name="Angle">int( tokenat( prism.slotsLeft, 0, &quot;#&quot;) )</param>
+                                                                        </action>
+                                                                        <action id="1" name="Set value by key string" type="PrismStreams">
+                                                                            <param id="0" name="Key string">prism.UID &amp; generator.sourceColor</param>
+                                                                            <param id="1" name="Value">generator.Angle</param>
+                                                                        </action>
+                                                                        <action id="-10" name="Set value" type="Prism">
+                                                                            <param id="0" name="Instance variable">slotsLeft</param>
+                                                                            <param id="1" name="Value">replace( prism.slotsLeft, generator.Angle &amp; &quot;#&quot;, &quot;&quot; )</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                                <comment>If this color has already been established at the prism, use the slot it previously occupied</comment>
+                                                                <event-block>
+                                                                    <conditions>
+                                                                        <condition id="-8" name="Compare two values" type="System">
+                                                                            <param id="0" name="First value">PrismStreams.At( prism.UID &amp; generator.sourceColor)</param>
+                                                                            <param id="1" name="Comparison">5</param>
+                                                                            <param id="2" name="Second value">0</param>
+                                                                        </condition>
+                                                                    </conditions>
+                                                                    <actions>
+                                                                        <action id="-8" name="Set angle" type="Generator">
+                                                                            <param id="0" name="Angle">PrismStreams.At( prism.UID &amp; generator.sourceColor )</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                                <comment>Start a new stream chain from this generator</comment>
+                                                                <event-block>
+                                                                    <conditions />
+                                                                    <actions>
+                                                                        <action id="7" name="Execute commands" type="fn">
+                                                                            <param id="0" name="Commands">fnStartStreamChainAt &amp; &quot;,&quot; &amp; generator.UID &amp; &quot;,&quot; &amp; sourceUID</param>
+                                                                        </action>
+                                                                    </actions>
+                                                                </event-block>
+                                                            </sub-events>
                                                         </event-block>
                                                     </sub-events>
                                                 </event-block>
@@ -1986,11 +1751,423 @@
         </event-group>
         <event-group collapsed="1" description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
-                <comment>Move the flow object</comment>
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
+                <comment>(&quot;flowObjectName&quot;,x,y,angle,animationName) creates a new flow object</comment>
+                <event-block collapsed="1">
+                    <conditions>
+                        <condition id="0" name="On function" type="fn">
+                            <param id="0" name="Name">fnCreateFlowObject</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">&quot;Creating &quot; &amp; fn.Param( 0 ) &amp; &quot; @ (&quot; &amp; fn.Param(1) &amp; &quot;,&quot; &amp; fn.Param(2) &amp; &quot;) &quot; &amp; fn.Param(3) &amp; &quot;deg &quot; &amp; fn.Param(4)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable comment="the angle of the flow object" name="flowAngle" type="number">0</variable>
+                        <variable comment="the type of flow object to create" name="flowObjectType" type="text"></variable>
+                        <variable comment="the animation name of the flow object" name="flowAnimation" type="text"></variable>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Value">fn.Param(0)</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">gridX</param>
+                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, fn.Param(1) )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">gridY</param>
+                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, fn.Param(2) )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">flowAngle</param>
+                                    <param id="1" name="Value">fn.Param(3)</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">flowAnimation</param>
+                                    <param id="1" name="Value">fn.Param(4)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a redirector</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Redirector&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Redirect</param>
+                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Redirect">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Redirector&quot;</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Redirect">
+                                    <param id="0" name="Angle">flowAngle</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">redirect.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a prism generator</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;PrismGenerator&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Generator</param>
+                                    <param id="1" name="Layer">backgroundLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">sourceColor</param>
+                                    <param id="1" name="Value">flowAnimation</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">generator.sourceColor &amp; &quot;#&quot;</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Generator">
+                                    <param id="0" name="Animation">generator.sourceColor</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">blockStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">spawnMinions</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">sourceStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="Generator">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;PrismGenerator&quot;</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">generator.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a generator</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Generator&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Generator</param>
+                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Generator&quot;</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">sourceColor</param>
+                                    <param id="1" name="Value">flowAnimation</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Generator">
+                                    <param id="0" name="Animation">generator.sourceColor</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">spawnRate</param>
+                                    <param id="1" name="Value">generatorSpawnRate</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">blockStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">spawnMinions</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Generator">
+                                    <param id="0" name="Instance variable">sourceStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Generator">
+                                    <param id="0" name="Instance variable">minionTotal</param>
+                                    <param id="1" name="Value">generatorMaxMinions</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Generator">
+                                    <param id="0" name="Angle">flowAngle</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">generator.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a barrier</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Barrier&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Barrier</param>
+                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Barrier">
+                                    <param id="0" name="Instance variable">blockStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Barrier">
+                                    <param id="0" name="Angle">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Barrier">
+                                    <param id="0" name="Instance variable">extendStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Barrier">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Barrier&quot;</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">barrier.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a laser</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Laser&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Laser</param>
+                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Laser">
+                                    <param id="0" name="Instance variable">blockStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Laser">
+                                    <param id="0" name="Instance variable">extendStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Laser">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Laser&quot;</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Laser">
+                                    <param id="0" name="Angle">flowAngle</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">laser.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a painter</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Painter&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Painter</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Painter">
+                                    <param id="0" name="Animation">flowAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Painter">
+                                    <param id="0" name="Instance variable">extendStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Painter">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Painter&quot;</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Painter">
+                                    <param id="0" name="Angle">flowAngle</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">painter.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a lens</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Lens&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Lens</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Lens">
+                                    <param id="0" name="Animation">flowAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Lens">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Lens&quot;</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Lens">
+                                    <param id="0" name="Angle">flowAngle</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">lens.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add a lens</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Prism&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Prism</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="-10" name="Set value" type="Prism">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Prism&quot;</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Prism">
+                                    <param id="0" name="Instance variable">blockStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Prism">
+                                    <param id="0" name="Instance variable">extendStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Prism">
+                                    <param id="0" name="Angle">flowAngle</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">prism.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Add an exit</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-14" name="Compare variable" type="System">
+                                    <param id="0" name="Variable">flowObjectType</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Exit&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">Exit</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">gridX</param>
+                                    <param id="3" name="Y">gridY</param>
+                                </action>
+                                <action id="4" name="Set animation" type="Exit">
+                                    <param id="0" name="Animation">flowAnimation</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Exit">
+                                    <param id="0" name="Instance variable">extendStream</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" type="Exit">
+                                    <param id="0" name="Instance variable">blockStream</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-8" name="Set angle" type="Exit">
+                                    <param id="0" name="Angle">180</param>
+                                </action>
+                                <action id="-3" name="Create object" type="System">
+                                    <param id="0" name="Object to create">ExitLabel</param>
+                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="2" name="X">exit.X</param>
+                                    <param id="3" name="Y">exit.Y</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" type="ExitLabel">
+                                    <param id="0" name="Pin to">Exit</param>
+                                </action>
+                                <action id="-10" name="Set value" type="ExitLabel">
+                                    <param id="0" name="Instance variable">sourceUID</param>
+                                    <param id="1" name="Value">exit.UID</param>
+                                </action>
+                                <action id="-24" name="Move to top" type="Exit" />
+                                <action id="-10" name="Set value" type="Exit">
+                                    <param id="0" name="Instance variable">objectName</param>
+                                    <param id="1" name="Value">&quot;Exit&quot;</param>
+                                </action>
+                                <action id="6" name="Set result" type="fn">
+                                    <param id="0" name="Value">exit.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Move the flow object</comment>
                 <variable comment="the new grid y value" name="result" type="number">0</variable>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
@@ -1999,21 +2176,25 @@
                             <param id="0" name="Instance variable">isMoving</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-3" name="Set position" type="Flow">
-                            <param id="0" name="X">mouse.X</param>
-                            <param id="1" name="Y">mouse.Y</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">gridX</param>
-                            <param id="1" name="Value">fn.Call( fnGetGridCoordinate, mouse.X )</param>
-                        </action>
-                        <action id="-9" name="Set value" type="System">
-                            <param id="0" name="Variable">gridY</param>
-                            <param id="1" name="Value">fn.Call( fnGetGridCoordinate, mouse.Y )</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-3" name="Set position" type="Flow">
+                                    <param id="0" name="X">mouse.X</param>
+                                    <param id="1" name="Y">mouse.Y</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">gridX</param>
+                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, mouse.X )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">gridY</param>
+                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, mouse.Y )</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <event-block>
                             <conditions>
                                 <condition id="-8" name="Compare two values" type="System">
@@ -2032,7 +2213,7 @@
                     </sub-events>
                 </event-block>
                 <comment>When the moving is done, snap the flow object to the grid and reset the streams</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
@@ -2041,23 +2222,27 @@
                             <param id="0" name="Instance variable">isMoving</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action id="-13" name="Set boolean" type="Flow">
-                            <param id="0" name="Instance variable">isMoving</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
-                        <action id="-15" name="Set visible" type="moveTarget">
-                            <param id="0" name="Visibility">0</param>
-                        </action>
-                        <action id="-3" name="Set position" type="Flow">
-                            <param id="0" name="X">moveTarget.X</param>
-                            <param id="1" name="Y">moveTarget.Y</param>
-                        </action>
-                        <action id="7" name="Execute commands" type="fn">
-                            <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; flow.UID</param>
-                        </action>
-                    </actions>
+                    <actions />
                     <sub-events>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-13" name="Set boolean" type="Flow">
+                                    <param id="0" name="Instance variable">isMoving</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-15" name="Set visible" type="moveTarget">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                                <action id="-3" name="Set position" type="Flow">
+                                    <param id="0" name="X">moveTarget.X</param>
+                                    <param id="1" name="Y">moveTarget.Y</param>
+                                </action>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnUpdateHUDSelection &amp; &quot;,&quot; &amp; flow.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <comment>If the flow object was previously active, turn it back on again</comment>
                         <event-block>
                             <conditions>
@@ -2121,7 +2306,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
                 <event-block collapsed="1">
@@ -2314,7 +2499,7 @@
                             <param id="0" name="Commands">fnResetHUDDisplay</param>
                         </action>
                         <action id="0" name="Set text" type="HUDlevelLabel">
-                            <param id="0" name="Text">&quot;Level &quot; &amp; hud.currentLevel + 1</param>
+                            <param id="0" name="Text">&quot;Level &quot; &amp; hud.currentLevel</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -2645,8 +2830,21 @@
                             <param id="1" name="Click type">0</param>
                             <param id="2" name="Object clicked">HUDlevelNext</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="HUD">
-                            <param id="0" name="Instance variable">isChangingLevels</param>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="HUD">
+                            <param id="0" name="Instance variable">currentLevel</param>
+                            <param id="1" name="Value">hud.currentLevel&lt;levelMax?hud.currentLevel+1:0</param>
+                        </action>
+                        <action id="7" name="Execute commands" type="fn">
+                            <param id="0" name="Commands">fnLoadLevel &amp; &quot;,&quot; &amp; hud.currentLevel</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">39 (Right arrow)</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2667,8 +2865,21 @@
                             <param id="1" name="Click type">0</param>
                             <param id="2" name="Object clicked">HUDlevelPrev</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="HUD">
-                            <param id="0" name="Instance variable">isChangingLevels</param>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" type="HUD">
+                            <param id="0" name="Instance variable">currentLevel</param>
+                            <param id="1" name="Value">hud.currentLevel&gt;0?hud.currentLevel-1:levelMax</param>
+                        </action>
+                        <action id="7" name="Execute commands" type="fn">
+                            <param id="0" name="Commands">fnLoadLevel &amp; &quot;,&quot; &amp; hud.currentLevel</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">37 (Left arrow)</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -2681,12 +2892,24 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On key pressed" type="Keyboard">
+                            <param id="0" name="Key">38 (Up arrow)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Execute commands" type="fn">
+                            <param id="0" name="Commands">fnLoadLevel &amp; &quot;,&quot; &amp; hud.currentLevel</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Events used to generate and load level instances" title="Level">
+        <event-group collapsed="1" description="Events used to generate and load level instances" title="Level">
             <sub-events>
                 <comment>Start spawning minions from any flow object capable of doing so</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnStartSpawning</param>
@@ -2785,7 +3008,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Save the current state of the grid</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnSaveLevel</param>
@@ -2793,41 +3016,65 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Log Text" type="debugConsole">
-                            <param id="0" name="Data">&quot;Saving Level Data&quot;</param>
+                            <param id="0" name="Data">&quot;Saving Level Data (NEW STYLE)&quot;</param>
+                        </action>
+                        <action id="1" name="Set size" type="LevelData">
+                            <param id="0" name="Width">levelobjects.Count</param>
+                            <param id="1" name="Height">5</param>
+                            <param id="2" name="Depth">1</param>
                         </action>
                     </actions>
                     <sub-events>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set at XY" type="LevelData">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">0</param>
+                                    <param id="2" name="Value">flow.objectName</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="LevelData">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">1</param>
+                                    <param id="2" name="Value">flow.X</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="LevelData">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">2</param>
+                                    <param id="2" name="Value">flow.y</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="LevelData">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">3</param>
+                                    <param id="2" name="Value">flow.angle</param>
+                                </action>
+                                <action id="3" name="Set at XY" type="LevelData">
+                                    <param id="0" name="X">loopindex</param>
+                                    <param id="1" name="Y">4</param>
+                                    <param id="2" name="Value">flow.AnimationName</param>
+                                </action>
+                            </actions>
+                        </event-block>
                         <comment>Save level data to chrome console</comment>
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="7" name="Execute commands" type="fn">
-                                    <param id="0" name="Commands">fnResetStream</param>
-                                </action>
-                                <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">1</param>
-                                </action>
-                                <action id="0" name="Clean bank" type="LevelEditorData" />
-                                <action id="1" name="Save instances" type="LevelEditorData">
-                                    <param id="0" name="Object">LevelObjects</param>
-                                    <param id="1" name="All instances">1</param>
-                                </action>
                                 <action id="0" name="Log Text" type="debugConsole">
-                                    <param id="0" name="Data">&quot;Level Data: &quot; &amp; newline &amp; LevelEditorData.BankToString</param>
-                                </action>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">debugMsg &amp; &quot;level data logged (&quot; &amp; len( LevelEditorData.BankToString ) &amp; &quot; bytes)&quot; &amp; newline</param>
-                                </action>
-                                <action id="7" name="Execute commands" type="fn">
-                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                    <param id="0" name="Data">LevelData.AsJSON</param>
                                 </action>
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
                 <comment>(levelNumber) load the given level</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnLoadLevel</param>
@@ -2839,6 +3086,7 @@
                         </action>
                     </actions>
                     <sub-events>
+                        <comment>Reset the level and load the object array</comment>
                         <event-block>
                             <conditions />
                             <actions>
@@ -2848,87 +3096,53 @@
                                 <action id="7" name="Execute commands" type="fn">
                                     <param id="0" name="Commands">fnClearLevel</param>
                                 </action>
-                                <action id="0" name="Clean bank" type="LevelEditorData" />
-                                <action id="3" name="Load bank from JSON string" type="LevelEditorData">
-                                    <param id="0" name="JSON string">LevelData.at( fn.Param(0) )</param>
+                                <action id="0" name="Clear" type="LevelData" />
+                                <action id="11" name="Load" type="LevelData">
+                                    <param id="0" name="JSON">LevelDataMap.at( fn.Param(0) )</param>
                                 </action>
-                                <action id="2" name="Load all instances" type="LevelEditorData" />
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">debugMsg</param>
-                                    <param id="1" name="Value">debugMsg &amp; &quot;Level &quot; &amp;  fn.Param(0) &amp; &quot; Loaded&quot; &amp; newline</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <comment>Reattach exit labels to their exit objects</comment>
-                        <variable comment="the UID of the exit found at the exitlabel&apos;s position" name="exitUID" type="number">0</variable>
-                        <event-block>
-                            <conditions>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">ExitLabel</param>
-                                </condition>
-                                <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">ExitLabel</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-9" name="Set value" type="System">
-                                    <param id="0" name="Variable">exitUID</param>
-                                    <param id="1" name="Value">fn.Call(fnGridObjectAt,ExitLabel.X, ExitLabel.Y)</param>
+                                <action id="0" name="Log Text" type="debugConsole">
+                                    <param id="0" name="Data">&quot;Total Objects Found: &quot; &amp; LevelData.Width</param>
                                 </action>
                             </actions>
                             <sub-events>
+                                <comment>Loop through the object array and recreate each object found</comment>
+                                <variable comment="the uid of the created flow object" name="createdObjectUID" type="number">0</variable>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Exit</param>
-                                        </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="Exit">
-                                            <param id="0" name="Unique ID">exitUID</param>
+                                        <condition id="-10" name="For" type="System">
+                                            <param id="0" name="Name">&quot;Load Flow Objects&quot;</param>
+                                            <param id="1" name="Start index">0</param>
+                                            <param id="2" name="End index">LevelData.Width</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-10" name="Set value" type="ExitLabel">
-                                            <param id="0" name="Instance variable">sourceUID</param>
-                                            <param id="1" name="Value">exit.UID</param>
-                                        </action>
-                                        <action behavior="Pin" id="0" name="Pin to object" type="ExitLabel">
-                                            <param id="0" name="Pin to">Exit</param>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">createdObjectUID</param>
+                                            <param id="1" name="Value">fn.Call( fnCreateFlowObject, LevelData.At( loopindex, 0 ),LevelData.At( loopindex, 1 ),LevelData.At( loopindex, 2 ),LevelData.At( loopindex, 3 ),LevelData.At( loopindex, 4 ) )</param>
                                         </action>
                                     </actions>
                                 </event-block>
+                                <comment>Redraw the stream with the new grid state</comment>
                                 <event-block>
-                                    <conditions>
-                                        <condition id="-14" name="Compare variable" type="System">
-                                            <param id="0" name="Variable">exitUID</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">0</param>
-                                        </condition>
-                                    </conditions>
+                                    <conditions />
                                     <actions>
-                                        <action id="-9" name="Destroy" type="ExitLabel" />
+                                        <action id="-16" name="Wait" type="System">
+                                            <param id="0" name="Seconds">0.05</param>
+                                        </action>
+                                        <action id="7" name="Execute commands" type="fn">
+                                            <param id="0" name="Commands">fnResetHUD</param>
+                                        </action>
+                                        <action id="7" name="Execute commands" type="fn">
+                                            <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <comment>Reset the game environment around the new level</comment>
-                        <event-block>
-                            <conditions />
-                            <actions>
-                                <action id="-16" name="Wait" type="System">
-                                    <param id="0" name="Seconds">0.05</param>
-                                </action>
-                                <action id="7" name="Execute commands" type="fn">
-                                    <param id="0" name="Commands">fnResetHUD</param>
-                                </action>
-                                <action id="7" name="Execute commands" type="fn">
-                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
-                                </action>
-                            </actions>
-                        </event-block>
                     </sub-events>
                 </event-block>
                 <comment>Clears all game objects from the current grid</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnClearLevel</param>
@@ -3230,7 +3444,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>(uid) destroys the specified minion</comment>
                 <event-block collapsed="1">
