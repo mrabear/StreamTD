@@ -67,8 +67,8 @@
                                 </condition>
                                 <condition id="-8" name="Compare two values" type="System">
                                     <param id="0" name="First value">distance( fn.Param(0), fn.Param(1), flow.X, flow.Y )</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">0</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Second value">round( gridScale / 2 )</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -93,15 +93,30 @@
                     </actions>
                     <sub-events>
                         <variable comment="the distance from the initial point to the current flow object" name="currentDistance" type="number">0</variable>
+                        <variable comment="the source X value to check from" name="sourceX" type="number">0</variable>
+                        <variable comment="the source Y value to check from" name="sourceY" type="number">0</variable>
+                        <variable comment="the source angle to check from" name="sourceAngle" type="number">0</variable>
                         <event-block>
                             <conditions />
                             <actions>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">sourceX</param>
+                                    <param id="1" name="Value">fn.Param( 0 )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">sourceY</param>
+                                    <param id="1" name="Value">fn.Param( 1 )</param>
+                                </action>
+                                <action id="-9" name="Set value" type="System">
+                                    <param id="0" name="Variable">sourceAngle</param>
+                                    <param id="1" name="Value">fn.Param( 2 )</param>
+                                </action>
                                 <action id="-3" name="Set position" type="overlapTester">
-                                    <param id="0" name="X">fn.Param( 0 )</param>
-                                    <param id="1" name="Y">fn.Param( 1 )</param>
+                                    <param id="0" name="X">sourceX</param>
+                                    <param id="1" name="Y">sourceY</param>
                                 </action>
                                 <action id="-8" name="Set angle" type="overlapTester">
-                                    <param id="0" name="Angle">fn.Param( 2 )</param>
+                                    <param id="0" name="Angle">sourceAngle</param>
                                 </action>
                                 <action id="-5" name="Set width" type="overlapTester">
                                     <param id="0" name="Width">max( WindowHeight, WindowWidth )</param>
@@ -145,9 +160,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
-                                    <param id="0" name="Data">&quot;    Checking flow object &quot; &amp; flow.UID</param>
-                                </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">currentDistance</param>
                                     <param id="1" name="Value">distance( overlapTester.X, overlapTester.Y, flow.X, flow.Y ) + round( gridScale / 2 )</param>
@@ -194,9 +206,6 @@
                                 <condition id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">Stream</param>
                                 </condition>
-                                <condition disabled="1" id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Stream</param>
-                                </condition>
                                 <condition id="1" name="Is overlapping another object" type="Stream">
                                     <param id="0" name="Object">overlapTester</param>
                                 </condition>
@@ -205,33 +214,99 @@
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Second value">90</param>
                                 </condition>
-                                <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
-                                </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
-                                    <param id="0" name="Unique ID">stream.sourceUID</param>
-                                </condition>
-                                <condition id="1" inverted="1" name="Is overlapping another object" type="Flow">
-                                    <param id="0" name="Object">overlapTester</param>
-                                </condition>
                             </conditions>
                             <actions>
                                 <action id="0" name="Log Text" type="debugConsole">
                                     <param id="0" name="Data">&quot;        Stream &quot; &amp; stream.sourceUID &amp; &quot; found streamAngle(&quot; &amp; stream.Angle &amp; &quot;)-overlapAngle(&quot; &amp; overlapTester.Angle &amp; &quot;)=&quot; &amp; anglediff( stream.Angle, overlapTester.Angle )</param>
                                 </action>
-                                <action id="4" name="Set a return value" type="fn">
-                                    <param id="0" name="Index">0</param>
-                                    <param id="1" name="Value">-1</param>
-                                </action>
-                                <action id="4" name="Set a return value" type="fn">
-                                    <param id="0" name="Index">1</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                                <action id="4" name="Set a return value" type="fn">
-                                    <param id="0" name="Index">2</param>
-                                    <param id="1" name="Value">-1</param>
+                                <action id="-5" name="Set width" type="overlapTester">
+                                    <param id="0" name="Width">gridScale</param>
                                 </action>
                             </actions>
+                            <sub-events>
+                                <comment>If there are valid streams found, move the overlap tester until the closest is found</comment>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-23" name="While" type="System" />
+                                        <condition id="-4" inverted="1" name="Is outside layout" type="overlapTester" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <variable comment="the grid friendly X coordinate" name="gridX" type="number">0</variable>
+                                        <variable comment="the grid friendly Y coordinate" name="gridY" type="number">0</variable>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-19" name="Pick all" type="System">
+                                                    <param id="0" name="Object">Stream</param>
+                                                </condition>
+                                                <condition id="1" name="Is overlapping another object" type="Stream">
+                                                    <param id="0" name="Object">overlapTester</param>
+                                                </condition>
+                                                <condition id="-8" name="Compare two values" type="System">
+                                                    <param id="0" name="First value">round( anglediff( stream.Angle, overlapTester.Angle ) )</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">90</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-17" name="Move forward" type="overlapTester">
+                                                    <param id="0" name="Distance">2</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">gridX</param>
+                                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, overlapTester.X )</param>
+                                                </action>
+                                                <action id="-9" name="Set value" type="System">
+                                                    <param id="0" name="Variable">gridY</param>
+                                                    <param id="1" name="Value">fn.Call( fnGetGridCoordinate, overlapTester.Y )</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block>
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" type="System">
+                                                            <param id="0" name="First value">fn.Call( fnGridObjectAt, gridX, gridY )</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Log Text" type="debugConsole">
+                                                            <param id="0" name="Data">&quot;        No flow found, blocking stream at (&quot; &amp; sourceX &amp; &quot;,&quot; &amp; sourceY &amp; &quot;) &quot; &amp; distance( sourceX, sourceY, gridX, gridY )</param>
+                                                        </action>
+                                                        <action id="4" name="Set a return value" type="fn">
+                                                            <param id="0" name="Index">0</param>
+                                                            <param id="1" name="Value">-1</param>
+                                                        </action>
+                                                        <action id="4" name="Set a return value" type="fn">
+                                                            <param id="0" name="Index">1</param>
+                                                            <param id="1" name="Value">distance( sourceX, sourceY, gridX, gridY )</param>
+                                                        </action>
+                                                        <action id="4" name="Set a return value" type="fn">
+                                                            <param id="0" name="Index">2</param>
+                                                            <param id="1" name="Value">-1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block>
+                                                    <conditions />
+                                                    <actions>
+                                                        <action id="-24" name="Stop loop" type="System" />
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="-17" name="Move forward" type="overlapTester">
+                                                    <param id="0" name="Distance">gridScale</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <comment>Reset the location of the testing sprite</comment>
                         <event-block>
@@ -399,7 +474,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Process a click on the grid</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="1" name="On any click" type="Mouse" />
                     </conditions>
@@ -605,7 +680,7 @@
                                     </sub-events>
                                 </event-block>
                                 <comment>If there is a flow object at the current location</comment>
-                                <event-block collapsed="1">
+                                <event-block>
                                     <conditions>
                                         <condition id="-14" name="Compare variable" type="System">
                                             <param id="0" name="Variable">objectAtLocationUID</param>
@@ -673,6 +748,9 @@
                                                         <action id="-13" name="Set boolean" type="Flow">
                                                             <param id="0" name="Instance variable">isActive</param>
                                                             <param id="1" name="Value">0</param>
+                                                        </action>
+                                                        <action disabled="1" id="-16" name="Wait" type="System">
+                                                            <param id="0" name="Seconds">flowMoveRedrawDelay</param>
                                                         </action>
                                                         <action id="7" name="Execute commands" type="fn">
                                                             <param id="0" name="Commands">fnRedrawAllStreams</param>

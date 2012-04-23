@@ -1856,18 +1856,6 @@
                 <instance-variable comment="A # separated list of streams that have passed through this object" name="streamsPassedThrough" type="string" />
             </instance-variables>
         </family>
-        <family name="overlapObjects" plugin-id="Sprite">
-            <members>
-                <member>Barrier</member>
-                <member>Exit</member>
-                <member>Generator</member>
-                <member>Laser</member>
-                <member>Lens</member>
-                <member>Painter</member>
-                <member>Prism</member>
-                <member>Redirect</member>
-            </members>
-        </family>
     </families>
     <layout-folder expanded="1">
         <layout>MainLayout.xml</layout>
