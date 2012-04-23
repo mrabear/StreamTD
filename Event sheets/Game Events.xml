@@ -11,6 +11,7 @@
         <comment>Add hud menu above each selected flow object to let you control it</comment>
         <comment>Have second tier color streams grant some sort of benefit to the minions that are on it (potentially only to those minions that share one of the two primary colors)</comment>
         <comment>An inventory section to drag and drop flow objects onto the grid</comment>
+        <comment>Seperate color and stream into two seperate components, the streams are colored by the minions that travel along them, the painters and lenses are colored by the laser beams</comment>
         <comment></comment>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <include>Initialize</include>
@@ -38,7 +39,7 @@
                     </sub-events>
                 </event-block>
                 <comment>(x,y) returns the UID of the object at the the given location, 0 if there is nothing there</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnGridObjectAt</param>
@@ -79,13 +80,17 @@
                     </sub-events>
                 </event-block>
                 <comment>(x,y,angle) returns the uid of the closest object in a given flow direction</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnClosestObject</param>
                         </condition>
                     </conditions>
-                    <actions />
+                    <actions>
+                        <action id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">&quot;    Checking for closest object from (&quot; &amp; fn.Param(0) &amp; &quot;,&quot; &amp; fn.Param(1) &amp; &quot;)&quot;</param>
+                        </action>
+                    </actions>
                     <sub-events>
                         <variable comment="the distance from the initial point to the current flow object" name="currentDistance" type="number">0</variable>
                         <event-block>
@@ -113,6 +118,9 @@
                                     <param id="0" name="Index">2</param>
                                     <param id="1" name="Value">overlapTester.angle</param>
                                 </action>
+                                <action id="-17" name="Move forward" type="overlapTester">
+                                    <param id="0" name="Distance">round( gridScale / 2 )</param>
+                                </action>
                             </actions>
                         </event-block>
                         <comment>Loop through each overlapping object to find the closest one (do not consider the object if it is not active, or if it doesn&apos;t interact with the stream in any way)</comment>
@@ -137,9 +145,12 @@
                                 </condition>
                             </conditions>
                             <actions>
+                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                    <param id="0" name="Data">&quot;    Checking flow object &quot; &amp; flow.UID</param>
+                                </action>
                                 <action id="-9" name="Set value" type="System">
                                     <param id="0" name="Variable">currentDistance</param>
-                                    <param id="1" name="Value">distance( overlapTester.X, overlapTester.Y, flow.X, flow.Y )</param>
+                                    <param id="1" name="Value">distance( overlapTester.X, overlapTester.Y, flow.X, flow.Y ) + round( gridScale / 2 )</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -149,11 +160,6 @@
                                             <param id="0" name="First value">currentDistance</param>
                                             <param id="1" name="Comparison">2</param>
                                             <param id="2" name="Second value">fn.Ret( 1 )</param>
-                                        </condition>
-                                        <condition id="-8" name="Compare two values" type="System">
-                                            <param id="0" name="First value">currentDistance</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Second value">gridScale / 2</param>
                                         </condition>
                                     </conditions>
                                     <actions>
@@ -172,6 +178,60 @@
                                     </actions>
                                 </event-block>
                             </sub-events>
+                        </event-block>
+                        <comment>Reset the overlap tester to check for blocking streams (streams that intersect at a 90deg angle)</comment>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="-5" name="Set width" type="overlapTester">
+                                    <param id="0" name="Width">fn.Ret(1)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Check to see if there are any perpendicular streams blocking the path</comment>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Stream</param>
+                                </condition>
+                                <condition disabled="1" id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Stream</param>
+                                </condition>
+                                <condition id="1" name="Is overlapping another object" type="Stream">
+                                    <param id="0" name="Object">overlapTester</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" type="System">
+                                    <param id="0" name="First value">round( anglediff( stream.Angle, overlapTester.Angle ) )</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">90</param>
+                                </condition>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">Flow</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                    <param id="0" name="Unique ID">stream.sourceUID</param>
+                                </condition>
+                                <condition id="1" inverted="1" name="Is overlapping another object" type="Flow">
+                                    <param id="0" name="Object">overlapTester</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Log Text" type="debugConsole">
+                                    <param id="0" name="Data">&quot;        Stream &quot; &amp; stream.sourceUID &amp; &quot; found streamAngle(&quot; &amp; stream.Angle &amp; &quot;)-overlapAngle(&quot; &amp; overlapTester.Angle &amp; &quot;)=&quot; &amp; anglediff( stream.Angle, overlapTester.Angle )</param>
+                                </action>
+                                <action id="4" name="Set a return value" type="fn">
+                                    <param id="0" name="Index">0</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                                <action id="4" name="Set a return value" type="fn">
+                                    <param id="0" name="Index">1</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="4" name="Set a return value" type="fn">
+                                    <param id="0" name="Index">2</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                            </actions>
                         </event-block>
                         <comment>Reset the location of the testing sprite</comment>
                         <event-block>
@@ -713,7 +773,7 @@
         <event-group description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnResetStream</param>
@@ -825,19 +885,21 @@
                                 <condition id="-19" name="Pick all" type="System">
                                     <param id="0" name="Object">Laser</param>
                                 </condition>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Laser</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" type="Laser">
+                                    <param id="0" name="Instance variable">isActive</param>
+                                </condition>
                             </conditions>
                             <actions />
                             <sub-events>
                                 <event-block>
-                                    <conditions>
-                                        <condition id="-11" name="For Each" type="System">
-                                            <param id="0" name="Object">Laser</param>
-                                        </condition>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Laser">
-                                            <param id="0" name="Instance variable">isActive</param>
-                                        </condition>
-                                    </conditions>
+                                    <conditions />
                                     <actions>
+                                        <action id="0" name="Log Text" type="debugConsole">
+                                            <param id="0" name="Data">&quot;Drawing new laser&quot;</param>
+                                        </action>
                                         <action id="7" name="Execute commands" type="fn">
                                             <param id="0" name="Commands">fnClosestObject &amp; &quot;,&quot; &amp; laser.x &amp; &quot;,&quot; &amp; laser.y &amp; &quot;,&quot; &amp; laser.angle</param>
                                         </action>
@@ -991,7 +1053,7 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                <action id="0" name="Log Text" type="debugConsole">
                                     <param id="0" name="Data">&quot;........Start Next Link from (&quot; &amp; nextUID &amp; &quot;)&quot; &amp; &quot;(&quot; &amp; sourceUID &amp; &quot;)&quot;</param>
                                 </action>
                             </actions>
@@ -1742,7 +1804,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Flow objects direct minions around the map" title="Flow">
+        <event-group collapsed="1" description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
@@ -2902,7 +2964,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Events used to generate and load level instances" title="Level">
+        <event-group description="Events used to generate and load level instances" title="Level">
             <sub-events>
                 <comment>Start spawning minions from any flow object capable of doing so</comment>
                 <event-block collapsed="1">
@@ -3004,7 +3066,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Save the current state of the grid</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnSaveLevel</param>
@@ -3015,7 +3077,7 @@
                             <param id="0" name="Data">&quot;Saving Level Data (NEW STYLE)&quot;</param>
                         </action>
                         <action id="1" name="Set size" type="LevelData">
-                            <param id="0" name="Width">levelobjects.Count</param>
+                            <param id="0" name="Width">flow.Count</param>
                             <param id="1" name="Height">5</param>
                             <param id="2" name="Depth">1</param>
                         </action>
@@ -3138,7 +3200,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Clears all game objects from the current grid</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnClearLevel</param>
@@ -3158,11 +3220,21 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">LevelObjects</param>
+                                    <param id="0" name="Object">Flow</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="LevelObjects" />
+                                <action id="-9" name="Destroy" type="Flow" />
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions>
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">ExitLabel</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" type="ExitLabel" />
                             </actions>
                         </event-block>
                     </sub-events>
