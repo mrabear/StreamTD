@@ -1161,8 +1161,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>399.925598145</x>
-                        <y>661.597900391</y>
+                        <x>-224</x>
+                        <y>-103</y>
                         <z>0</z>
                         <width>100</width>
                         <height>55</height>
@@ -1184,8 +1184,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>405.925598145</x>
-                        <y>665.597900391</y>
+                        <x>-218</x>
+                        <y>-99</y>
                         <z>0</z>
                         <width>90.005554199</width>
                         <height>20.200439453</height>
@@ -1326,8 +1326,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>223.313049316</x>
-                        <y>658.829711914</y>
+                        <x>-400</x>
+                        <y>-105</y>
                         <z>0</z>
                         <width>144</width>
                         <height>55</height>
@@ -1348,8 +1348,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>424.925598145</x>
-                        <y>698.597900391</y>
+                        <x>-199</x>
+                        <y>-66</y>
                         <z>0</z>
                         <width>21</width>
                         <height>21</height>
@@ -1370,8 +1370,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>449.925598145</x>
-                        <y>698.597900391</y>
+                        <x>-174</x>
+                        <y>-66</y>
                         <z>0</z>
                         <width>21</width>
                         <height>21</height>
@@ -1392,8 +1392,8 @@
                         <behavior-instance type="Pin" />
                     </behavior-instances>
                     <world>
-                        <x>474.925598145</x>
-                        <y>698.597900391</y>
+                        <x>-149</x>
+                        <y>-66</y>
                         <z>0</z>
                         <width>21</width>
                         <height>21</height>
@@ -1467,6 +1467,25 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="streamIntersect">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <world>
+                        <x>-162</x>
+                        <y>-152</y>
+                        <z>0</z>
+                        <width>39</width>
+                        <height>39</height>
+                        <depth>0</depth>
+                        <hotspotX>0.512820542</hotspotX>
+                        <hotspotY>0.512820542</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
         </layer>
         <layer name="HUDTop">
@@ -1515,8 +1534,8 @@
                         <wrapping>Word</wrapping>
                     </properties>
                     <world>
-                        <x>233.215408325</x>
-                        <y>664.829711914</y>
+                        <x>-390</x>
+                        <y>-99</y>
                         <z>0</z>
                         <width>122.843811035</width>
                         <height>44</height>
