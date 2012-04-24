@@ -87,6 +87,7 @@
         <variable comment="(layoutCoord) returns a coordinate value rounded to the nearest grid square center" name="fnGetGridCoordinate" type="text">getGridCoordinate</variable>
         <variable comment="(UID) update the currently selected object in the HUD" name="fnUpdateHUDSelection" type="text">updateHUDSelection</variable>
         <variable comment="(x,y) return UID of object at location, else 0" name="fnGridObjectAt" type="text">gridObjectAt</variable>
+        <variable comment="(x,y) return UID of an active flow object at location, else 0" name="fnGridActiveObjectAt" type="text">gridObjectAt</variable>
         <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestBlockingObject" type="text">closestBlockingObject</variable>
