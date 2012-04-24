@@ -1085,7 +1085,7 @@
                                         </action>
                                         <action id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">LaserBeam</param>
-                                            <param id="1" name="Layer">defaultLayer</param>
+                                            <param id="1" name="Layer">flowLayer</param>
                                             <param id="2" name="X">laser.X</param>
                                             <param id="3" name="Y">laser.Y</param>
                                         </action>
@@ -1377,7 +1377,7 @@
                                                     <actions>
                                                         <action id="-3" name="Create object" type="System">
                                                             <param id="0" name="Object to create">Stream</param>
-                                                            <param id="1" name="Layer">defaultLayer</param>
+                                                            <param id="1" name="Layer">streamLayer</param>
                                                             <param id="2" name="X">flow.X</param>
                                                             <param id="3" name="Y">flow.Y</param>
                                                         </action>
@@ -1448,7 +1448,7 @@
                                                                     <actions>
                                                                         <action id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">streamIntersect</param>
-                                                                            <param id="1" name="Layer">activeLayer</param>
+                                                                            <param id="1" name="Layer">flowLayer</param>
                                                                             <param id="2" name="X">intersectX</param>
                                                                             <param id="3" name="Y">intersectY</param>
                                                                         </action>
@@ -2062,12 +2062,12 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="Flow objects direct minions around the map" title="Flow">
+        <event-group description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
                 <comment>(&quot;flowObjectName&quot;,x,y,angle,animationName) creates a new flow object</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnCreateFlowObject</param>
@@ -2122,7 +2122,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Redirect</param>
-                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2150,7 +2150,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Generator</param>
-                                    <param id="1" name="Layer">backgroundLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2202,7 +2202,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Generator</param>
-                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2258,7 +2258,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Barrier</param>
-                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2294,7 +2294,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Laser</param>
-                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2330,7 +2330,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Painter</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2366,7 +2366,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Lens</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2398,7 +2398,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Prism</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2434,7 +2434,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">Exit</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">gridX</param>
                                     <param id="3" name="Y">gridY</param>
                                 </action>
@@ -2455,7 +2455,7 @@
                                 </action>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">ExitLabel</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">flowLayer</param>
                                     <param id="2" name="X">exit.X</param>
                                     <param id="3" name="Y">exit.Y</param>
                                 </action>
@@ -2622,7 +2622,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
                 <event-block collapsed="1">
@@ -2687,7 +2687,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Clear the HUD display elements</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnResetHUDDisplay</param>
@@ -3667,7 +3667,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Spawn minions from each of the generators</comment>
                 <event-block>
@@ -3698,7 +3698,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Minion</param>
-                            <param id="1" name="Layer">HUDLayer</param>
+                            <param id="1" name="Layer">minionLayer</param>
                             <param id="2" name="X">flow.ImagePointX( 1 )</param>
                             <param id="3" name="Y">flow.Y</param>
                         </action>
@@ -4170,7 +4170,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A health bar that shows the current health of an object" title="Health Bar">
+        <event-group description="A health bar that shows the current health of an object" title="Health Bar">
             <sub-events>
                 <comment>Update the minion health bar</comment>
                 <event-block collapsed="1">
@@ -4206,7 +4206,7 @@
                     </sub-events>
                 </event-block>
                 <comment>(uid,x,y,width,height,border) attaches a health bar to the object given</comment>
-                <event-block collapsed="1">
+                <event-block>
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnAttachHealthBar</param>
@@ -4215,7 +4215,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">HealthBorder</param>
-                            <param id="1" name="Layer">activeLayer</param>
+                            <param id="1" name="Layer">minionLayer</param>
                             <param id="2" name="X">-100</param>
                             <param id="3" name="Y">-100</param>
                         </action>
@@ -4286,7 +4286,7 @@
                             <actions>
                                 <action id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">HealthBar</param>
-                                    <param id="1" name="Layer">activeLayer</param>
+                                    <param id="1" name="Layer">minionLayer</param>
                                     <param id="2" name="X">HealthBorder.X + healthBarBorder</param>
                                     <param id="3" name="Y">HealthBorder.Y + healthBarBorder</param>
                                 </action>

@@ -24,7 +24,7 @@
                             <actions>
                                 <action disabled="1" id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">RangeFinder</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">streamLayer</param>
                                     <param id="2" name="X">cannon.X</param>
                                     <param id="3" name="Y">cannon.Y</param>
                                 </action>
@@ -35,7 +35,7 @@
                                 </action>
                                 <action disabled="1" id="-3" name="Create object" type="System">
                                     <param id="0" name="Object to create">TargetLeadBar</param>
-                                    <param id="1" name="Layer">defaultLayer</param>
+                                    <param id="1" name="Layer">streamLayer</param>
                                     <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                     <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                 </action>
@@ -63,7 +63,7 @@
                                     <actions>
                                         <action disabled="1" id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">distanceToTarget</param>
-                                            <param id="1" name="Layer">defaultLayer</param>
+                                            <param id="1" name="Layer">streamLayer</param>
                                             <param id="2" name="X">cannon.X</param>
                                             <param id="3" name="Y">cannon.Y</param>
                                         </action>
@@ -286,7 +286,7 @@
                                                                     <actions>
                                                                         <action disabled="1" id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">Rocket</param>
-                                                                            <param id="1" name="Layer">activeLayer</param>
+                                                                            <param id="1" name="Layer">flowLayer</param>
                                                                             <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                                                             <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                                                         </action>
@@ -311,7 +311,7 @@
                                                                         </action>
                                                                         <action disabled="1" id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">RocketEffects</param>
-                                                                            <param id="1" name="Layer">activeLayer</param>
+                                                                            <param id="1" name="Layer">flowLayer</param>
                                                                             <param id="2" name="X">rocket.imagepointX(2)</param>
                                                                             <param id="3" name="Y">rocket.imagepointY(2)</param>
                                                                         </action>
@@ -347,7 +347,7 @@
                                                                     <actions>
                                                                         <action disabled="1" id="-3" name="Create object" type="System">
                                                                             <param id="0" name="Object to create">Beam</param>
-                                                                            <param id="1" name="Layer">activeLayer</param>
+                                                                            <param id="1" name="Layer">flowLayer</param>
                                                                             <param id="2" name="X">Cannon.ImagePointX(1)</param>
                                                                             <param id="3" name="Y">Cannon.ImagePointY(1)</param>
                                                                         </action>
@@ -687,7 +687,7 @@
                     <actions>
                         <action disabled="1" id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">RocketExplosion</param>
-                            <param id="1" name="Layer">activeLayer</param>
+                            <param id="1" name="Layer">flowLayer</param>
                             <param id="2" name="X">rocket.X</param>
                             <param id="3" name="Y">rocket.Y</param>
                         </action>
@@ -720,7 +720,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">TurretBase</param>
-                            <param id="1" name="Layer">activeLayer</param>
+                            <param id="1" name="Layer">flowLayer</param>
                             <param id="2" name="X">round( mouse.X / gridScale ) * gridScale</param>
                             <param id="3" name="Y">round( mouse.Y / gridScale ) * gridScale</param>
                         </action>
@@ -730,7 +730,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Cannon</param>
-                            <param id="1" name="Layer">activeLayer</param>
+                            <param id="1" name="Layer">flowLayer</param>
                             <param id="2" name="X">TurretBase.X</param>
                             <param id="3" name="Y">TurretBase.Y</param>
                         </action>
@@ -758,7 +758,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">TurretBase</param>
-                            <param id="1" name="Layer">activeLayer</param>
+                            <param id="1" name="Layer">flowLayer</param>
                             <param id="2" name="X">round( mouse.X / gridScale ) * gridScale</param>
                             <param id="3" name="Y">round( mouse.Y / gridScale ) * gridScale</param>
                         </action>
@@ -768,7 +768,7 @@
                         </action>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">Cannon</param>
-                            <param id="1" name="Layer">activeLayer</param>
+                            <param id="1" name="Layer">flowLayer</param>
                             <param id="2" name="X">TurretBase.X</param>
                             <param id="3" name="Y">TurretBase.Y</param>
                         </action>
@@ -800,7 +800,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">LOSTester</param>
-                            <param id="1" name="Layer">defaultLayer</param>
+                            <param id="1" name="Layer">streamLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>
@@ -824,7 +824,7 @@
                     <actions>
                         <action id="-3" name="Create object" type="System">
                             <param id="0" name="Object to create">LOSTester</param>
-                            <param id="1" name="Layer">defaultLayer</param>
+                            <param id="1" name="Layer">streamLayer</param>
                             <param id="2" name="X">mouse.X</param>
                             <param id="3" name="Y">mouse.Y</param>
                         </action>

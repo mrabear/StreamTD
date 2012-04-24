@@ -12,7 +12,7 @@
     </margins>
     <unbounded-scrolling>0</unbounded-scrolling>
     <layers>
-        <layer name="Background">
+        <layer name="Grid">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>0</transparent>
@@ -86,7 +86,7 @@
                 </instance>
             </instances>
         </layer>
-        <layer name="Default">
+        <layer name="Stream">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
@@ -392,7 +392,7 @@
                 </instance>
             </instances>
         </layer>
-        <layer name="Active">
+        <layer name="Flow">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
@@ -982,6 +982,19 @@
                     </world>
                 </instance>
             </instances>
+        </layer>
+        <layer name="Minion">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <instances />
         </layer>
         <layer name="HUD">
             <initially-visible>1</initially-visible>

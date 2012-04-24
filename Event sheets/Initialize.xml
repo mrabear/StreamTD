@@ -44,10 +44,12 @@
         <comment>Health bar parameters</comment>
         <variable comment="The border (in px) between the black background and the green health bar foreground" name="healthBarBorder" type="number">1</variable>
         <comment>Layer parameters</comment>
-        <variable comment="The background layer" name="backgroundLayer" type="number">0</variable>
-        <variable comment="The default layer that most objects spawn on" name="defaultLayer" type="number">1</variable>
-        <variable comment="The active layer where high priority objects are placed" name="activeLayer" type="number">2</variable>
-        <variable comment="The layer the HUD is drawn on" name="HUDLayer" type="number">3</variable>
+        <variable comment="The bottom layer that the grid is drawn on" name="gridLayer" type="number">0</variable>
+        <variable comment="Stream layer that connect flow objects" name="streamLayer" type="number">1</variable>
+        <variable comment="The layer where flow objects are placed" name="flowLayer" type="number">2</variable>
+        <variable comment="The layer the minions spawn on" name="minionLayer" type="number">3</variable>
+        <variable comment="The layer the HUD base is spawned on" name="HUDlayer" type="number">4</variable>
+        <variable comment="The layer the HUD priority items are spawned on" name="HUDtopLayer" type="number">5</variable>
         <comment>Cannon parameters</comment>
         <variable comment="Set to 1 to show the leading line from the cannon to it&apos;s current target" name="cannonShowTargetLead" type="number">0</variable>
         <comment>Grid parameters</comment>
@@ -176,7 +178,7 @@
                                     <actions>
                                         <action disabled="1" id="-3" name="Create object" type="System">
                                             <param id="0" name="Object to create">HUDbackground</param>
-                                            <param id="1" name="Layer">HUDLayer</param>
+                                            <param id="1" name="Layer">minionLayer</param>
                                             <param id="2" name="X">0</param>
                                             <param id="3" name="Y">HUD.Y - ( gridScale - ( HUD.Height % gridScale ) - gridLineWidth )</param>
                                         </action>
