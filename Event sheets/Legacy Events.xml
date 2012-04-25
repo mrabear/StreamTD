@@ -238,11 +238,7 @@
                                             <sub-events>
                                                 <comment>There is line of site</comment>
                                                 <event-block disabled="1">
-                                                    <conditions>
-                                                        <condition disabled="1" id="1" inverted="1" name="Is overlapping another object" type="TargetLeadBar">
-                                                            <param id="0" name="Object">LOSTester</param>
-                                                        </condition>
-                                                    </conditions>
+                                                    <conditions />
                                                     <actions>
                                                         <action disabled="1" id="4" name="Set animation" type="TargetLeadBar">
                                                             <param id="0" name="Animation">&quot;LineOfSite&quot;</param>
@@ -379,11 +375,7 @@
                                                 </event-block>
                                                 <comment>There is no line of site</comment>
                                                 <event-block disabled="1">
-                                                    <conditions>
-                                                        <condition disabled="1" id="1" name="Is overlapping another object" type="TargetLeadBar">
-                                                            <param id="0" name="Object">LOSTester</param>
-                                                        </condition>
-                                                    </conditions>
+                                                    <conditions />
                                                     <actions>
                                                         <action disabled="1" id="-15" name="Set visible" type="TargetLeadBar">
                                                             <param id="0" name="Visibility">0</param>
@@ -600,11 +592,7 @@
                 </event-block>
                 <comment>Move any nodes caught in the shockwave</comment>
                 <event-block disabled="1">
-                    <conditions>
-                        <condition disabled="1" id="0" name="On collision with another object" type="RocketExplosion">
-                            <param id="0" name="Object">Node</param>
-                        </condition>
-                    </conditions>
+                    <conditions />
                     <actions />
                     <sub-events>
                         <event-block disabled="1">
@@ -613,31 +601,7 @@
                                     <param id="0" name="Unique ID">RocketExplosion.rocketUID</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action behavior="Bullet" disabled="1" id="5" name="Set enabled" type="Node">
-                                    <param id="0" name="State">1</param>
-                                </action>
-                                <action disabled="1" id="-8" name="Set angle" type="Node">
-                                    <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
-                                </action>
-                                <action behavior="Bullet" disabled="1" id="3" name="Set angle of motion" type="Node">
-                                    <param id="0" name="Angle">angle( rocket.X, rocket.Y, node.X, node.Y )</param>
-                                </action>
-                                <action behavior="Bullet" disabled="1" id="0" name="Set speed" type="Node">
-                                    <param id="0" name="Speed">rocketImpactForce</param>
-                                </action>
-                                <action behavior="Bullet" disabled="1" id="1" name="Set acceleration" type="Node">
-                                    <param id="0" name="Acceleration">rocketImpactForceDecay</param>
-                                </action>
-                                <action disabled="1" id="-13" name="Set boolean" type="Node">
-                                    <param id="0" name="Instance variable">moving</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action disabled="1" id="-13" name="Set boolean" type="Node">
-                                    <param id="0" name="Instance variable">movingByObject</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                            </actions>
+                            <actions />
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -779,61 +743,6 @@
                         <action id="-10" name="Set value" type="Cannon">
                             <param id="0" name="Instance variable">baseUID</param>
                             <param id="1" name="Value">turretbase.UID</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-group collapsed="1" description="A barrier that blocks line of site" disabled="1" title="Barrier">
-            <sub-events>
-                <comment>Create a new wide barrier</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
-                        <condition id="2" name="Key is down" type="Keyboard">
-                            <param id="0" name="Key">67 (C)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">LOSTester</param>
-                            <param id="1" name="Layer">streamLayer</param>
-                            <param id="2" name="X">mouse.X</param>
-                            <param id="3" name="Y">mouse.Y</param>
-                        </action>
-                        <action id="-7" name="Set size" type="LOSTester">
-                            <param id="0" name="Width">20</param>
-                            <param id="1" name="Height">100</param>
-                        </action>
-                    </actions>
-                </event-block>
-                <comment>Create a new tall barrier</comment>
-                <event-block>
-                    <conditions>
-                        <condition id="0" name="On click" type="Mouse">
-                            <param id="0" name="Mouse button">0</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
-                        <condition id="2" name="Key is down" type="Keyboard">
-                            <param id="0" name="Key">86 (V)</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">LOSTester</param>
-                            <param id="1" name="Layer">streamLayer</param>
-                            <param id="2" name="X">mouse.X</param>
-                            <param id="3" name="Y">mouse.Y</param>
-                        </action>
-                        <action id="-7" name="Set size" type="LOSTester">
-                            <param id="0" name="Width">20</param>
-                            <param id="1" name="Height">100</param>
-                        </action>
-                        <action id="-18" name="Rotate clockwise" type="LOSTester">
-                            <param id="0" name="Degrees">90</param>
                         </action>
                     </actions>
                 </event-block>

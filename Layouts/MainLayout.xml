@@ -35,7 +35,7 @@
                         <y>0</y>
                         <z>0</z>
                         <width>800</width>
-                        <height>600</height>
+                        <height>520</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -98,60 +98,6 @@
             <opacity>1</opacity>
             <force-own-texture>0</force-own-texture>
             <instances>
-                <instance type="Node">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <nodeIndex>0</nodeIndex>
-                        <barUID>0</barUID>
-                        <moving>false</moving>
-                        <nextNode>0</nextNode>
-                        <previousNode>0</previousNode>
-                        <movingByObject>false</movingByObject>
-                        <pathUID>0</pathUID>
-                        <fullyConnected>false</fullyConnected>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="CustomMovement">
-                            <properties>
-                                <stepping-mode>None</stepping-mode>
-                                <pixels-per-step>5</pixels-per-step>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>0</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>Yes</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="Fade">
-                            <properties>
-                                <fade-in-time>0</fade-in-time>
-                                <wait-time>0</wait-time>
-                                <fade-out-time>1.5</fade-out-time>
-                                <destroy>After fade out</destroy>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <world>
-                        <x>-263</x>
-                        <y>-315</y>
-                        <z>0</z>
-                        <width>7</width>
-                        <height>7</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.5</opacity>
-                    </world>
-                </instance>
                 <instance type="txtDebug">
                     <properties>
                         <text></text>
@@ -173,39 +119,6 @@
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="Bar">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <nodeUID>0</nodeUID>
-                        <valid>true</valid>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Fade">
-                            <properties>
-                                <fade-in-time>0</fade-in-time>
-                                <wait-time>0</wait-time>
-                                <fade-out-time>1.5</fade-out-time>
-                                <destroy>After fade out</destroy>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <world>
-                        <x>-230</x>
-                        <y>-322</y>
-                        <z>0</z>
-                        <width>2</width>
-                        <height>2</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0.600000024</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.5</opacity>
                     </world>
                 </instance>
                 <instance type="Rocket">
@@ -368,28 +281,6 @@
                         <opacity>0.5</opacity>
                     </world>
                 </instance>
-                <instance type="gridBlock">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-125</x>
-                        <y>-294</y>
-                        <z>0</z>
-                        <width>10</width>
-                        <height>10</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
             </instances>
         </layer>
         <layer name="Flow">
@@ -485,73 +376,6 @@
                         <z>0</z>
                         <width>810</width>
                         <height>5</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="KrullBlade">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <minionsKilled>0</minionsKilled>
-                        <baseUID>0</baseUID>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                        <behavior-instance type="Rotate">
-                            <properties>
-                                <speed>0</speed>
-                                <acceleration>0</acceleration>
-                            </properties>
-                        </behavior-instance>
-                    </behavior-instances>
-                    <world>
-                        <x>-78</x>
-                        <y>-377</y>
-                        <z>0</z>
-                        <width>50</width>
-                        <height>50</height>
-                        <depth>0</depth>
-                        <hotspotX>0.498127341</hotspotX>
-                        <hotspotY>0.513108611</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="KrullBase">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <totalMinionsKilled>0</totalMinionsKilled>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Bullet">
-                            <properties>
-                                <speed>0</speed>
-                                <acceleration>0</acceleration>
-                                <gravity>0</gravity>
-                                <bounce-off-solids>Yes</bounce-off-solids>
-                                <set-angle>No</set-angle>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="Solid" />
-                        <behavior-instance type="DragDrop" />
-                    </behavior-instances>
-                    <world>
-                        <x>-100</x>
-                        <y>-176</y>
-                        <z>0</z>
-                        <width>50</width>
-                        <height>50</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -723,61 +547,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="LOSTester">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <beingPlaced>false</beingPlaced>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Solid" />
-                        <behavior-instance type="DragDrop" />
-                    </behavior-instances>
-                    <world>
-                        <x>-114</x>
-                        <y>-259</y>
-                        <z>0</z>
-                        <width>20</width>
-                        <height>200</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.5</opacity>
-                    </world>
-                </instance>
-                <instance type="NodeLabel">
-                    <properties>
-                        <text></text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                    </properties>
-                    <instance-variables>
-                        <parentNodeUID>0</parentNodeUID>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-415</x>
-                        <y>-362</y>
-                        <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="Generator">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
@@ -801,6 +570,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                         <pathUID>0</pathUID>
                         <labelUID>0</labelUID>
                         <spawnRate>0</spawnRate>
@@ -814,70 +584,6 @@
                         <z>0</z>
                         <width>40</width>
                         <height>40</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="PathStart">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <baseUID>0</baseUID>
-                        <fadingIn>false</fadingIn>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-239</x>
-                        <y>-278</y>
-                        <z>0</z>
-                        <width>26</width>
-                        <height>30</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.400000006</hotspotY>
-                        <angle>0</angle>
-                        <opacity>0.5</opacity>
-                    </world>
-                </instance>
-                <instance type="MinionTrail">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <world>
-                        <x>-238</x>
-                        <y>-192</y>
-                        <z>0</z>
-                        <width>10</width>
-                        <height>10</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="MinionTrail">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <world>
-                        <x>-264</x>
-                        <y>-254</y>
-                        <z>0</z>
-                        <width>10</width>
-                        <height>10</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -1079,6 +785,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                     </instance-variables>
                     <world>
                         <x>-120</x>
@@ -1086,31 +793,6 @@
                         <z>0</z>
                         <width>30</width>
                         <height>30</height>
-                        <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="flowAnchor">
-                    <properties>
-                        <initial-visibility>Invisible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <instance-variables>
-                        <baseUID>0</baseUID>
-                    </instance-variables>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-239</x>
-                        <y>-184</y>
-                        <z>0</z>
-                        <width>1</width>
-                        <height>1</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -1160,70 +842,6 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDcolorSelectionBg">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-224</x>
-                        <y>-103</y>
-                        <z>0</z>
-                        <width>100</width>
-                        <height>55</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDcolorSelectionLabel">
-                    <properties>
-                        <text>Active Color</text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Calibri,-16,400,0</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Center</horizontal-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                    </properties>
-                    <world>
-                        <x>-218</x>
-                        <y>-99</y>
-                        <z>0</z>
-                        <width>90.005554199</width>
-                        <height>20.200439453</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="selectionCircle">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <world>
-                        <x>-239</x>
-                        <y>-340</y>
-                        <z>0</z>
-                        <width>25</width>
-                        <height>25</height>
-                        <depth>0</depth>
-                        <hotspotX>0.519999981</hotspotX>
-                        <hotspotY>0.519999981</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1315,6 +933,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                     </instance-variables>
                     <world>
                         <x>-402</x>
@@ -1325,94 +944,6 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDattributeBg">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-400</x>
-                        <y>-105</y>
-                        <z>0</z>
-                        <width>144</width>
-                        <height>55</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDcolorSelectionButton">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-199</x>
-                        <y>-66</y>
-                        <z>0</z>
-                        <width>21</width>
-                        <height>21</height>
-                        <depth>0</depth>
-                        <hotspotX>0.523809552</hotspotX>
-                        <hotspotY>0.523809552</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDcolorSelectionButton">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-174</x>
-                        <y>-66</y>
-                        <z>0</z>
-                        <width>21</width>
-                        <height>21</height>
-                        <depth>0</depth>
-                        <hotspotX>0.523809552</hotspotX>
-                        <hotspotY>0.523809552</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="HUDcolorSelectionButton">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-frame>0</initial-frame>
-                        <effect>(none)</effect>
-                    </properties>
-                    <behavior-instances>
-                        <behavior-instance type="Pin" />
-                    </behavior-instances>
-                    <world>
-                        <x>-149</x>
-                        <y>-66</y>
-                        <z>0</z>
-                        <width>21</width>
-                        <height>21</height>
-                        <depth>0</depth>
-                        <hotspotX>0.523809552</hotspotX>
-                        <hotspotY>0.523809552</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -1536,29 +1067,6 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HUDattributes">
-                    <properties>
-                        <text></text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Calibri,-16,400,0</font>
-                        <color>0,0,0</color>
-                        <horizontal-alignment>Center</horizontal-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                    </properties>
-                    <world>
-                        <x>-390</x>
-                        <y>-99</y>
-                        <z>0</z>
-                        <width>122.843811035</width>
-                        <height>44</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
                 <instance type="HUDselectionInfo">
                     <properties>
                         <text></text>
@@ -1605,6 +1113,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                     </instance-variables>
                     <world>
                         <x>-371</x>
@@ -1642,6 +1151,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                         <isUnlocked>false</isUnlocked>
                     </instance-variables>
                     <world>
@@ -1751,6 +1261,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                     </instance-variables>
                     <world>
                         <x>-350</x>
@@ -1788,6 +1299,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                         <streamOutCount>0</streamOutCount>
                         <activeStream>0</activeStream>
                         <slotsLeft></slotsLeft>
@@ -1828,6 +1340,7 @@
                         <spawnsMinions>false</spawnsMinions>
                         <objectName></objectName>
                         <streamsPassedThrough></streamsPassedThrough>
+                        <inInventory>false</inInventory>
                     </instance-variables>
                     <world>
                         <x>-141.496765137</x>
@@ -1992,29 +1505,46 @@
                 </instance>
             </instances>
         </layer>
+        <layer name="Inventory">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <instances>
+                <instance type="inventory">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <effect>(none)</effect>
+                        <hotspot>Top-left</hotspot>
+                    </properties>
+                    <world>
+                        <x>423</x>
+                        <y>533</y>
+                        <z>0</z>
+                        <width>360</width>
+                        <height>60</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+            </instances>
+        </layer>
     </layers>
     <nonworld-instances>
-        <instance type="Path">
-            <properties>
-                <width>500</width>
-                <height>3</height>
-                <depth>1</depth>
-            </properties>
-            <instance-variables>
-                <pathCount>0</pathCount>
-                <currentlyMovingNode>false</currentlyMovingNode>
-                <currentlyTracing>false</currentlyTracing>
-                <baseUID>0</baseUID>
-                <validData>true</validData>
-                <redrawPath>false</redrawPath>
-            </instance-variables>
-        </instance>
         <instance type="fn">
             <properties>
                 <debug-mode>Off</debug-mode>
             </properties>
         </instance>
-        <instance type="LevelEditorData" />
         <instance type="PrismStreams">
             <properties>
                 <contains></contains>
