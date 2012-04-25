@@ -26,6 +26,8 @@
         <variable comment="The minimum distance that a minion can be targetd by the beam cannon" name="beamTargetRangeMin" type="number">0</variable>
         <variable comment="The default speed of the beam" name="beamDefaultProjectileSpeed" type="number">400</variable>
         <variable comment="The amount of damage caused by a beam" name="beamDamage" type="number">100</variable>
+        <comment>Cannon parameters</comment>
+        <variable comment="Set to 1 to show the leading line from the cannon to it&apos;s current target" name="cannonShowTargetLead" type="number">0</variable>
         <comment>Camera zoom effect parameters</comment>
         <variable comment="The default layout scale" name="zoomMinScale" type="number">1</variable>
         <variable comment="The maximum scale to stop the zoom effect at" name="zoomMaxScale" type="number">3</variable>
@@ -51,8 +53,6 @@
         <variable comment="The layer the HUD base is spawned on" name="HUDlayer" type="number">4</variable>
         <variable comment="The layer the HUD priority items are spawned on" name="HUDtopLayer" type="number">5</variable>
         <variable comment="The inventory layer" name="inventoryLayer" type="number">6</variable>
-        <comment>Cannon parameters</comment>
-        <variable comment="Set to 1 to show the leading line from the cannon to it&apos;s current target" name="cannonShowTargetLead" type="number">0</variable>
         <comment>Inventory parameters</comment>
         <variable comment="The distance (in px) between each of the points in inventory grid" name="inventoryScale" type="number">30</variable>
         <comment>Grid parameters</comment>
@@ -82,19 +82,14 @@
         <variable comment="( ) Deletes all streams and rebuilds them from scratch" name="fnResetStream" type="text">resetStream</variable>
         <variable comment="( ) clears the HUD selection, executes an implicit resetHUDDisplay" name="fnResetHUD" type="text">resetHUD</variable>
         <variable comment="( ) hide all visual elements of the HUD" name="fnResetHUDDisplay" type="text">resetHUDDisplay</variable>
-        <variable comment="(flowUID) Extend a stingle stream out to the closest flow object" name="fnLinkStream" type="text">linkStream</variable>
         <variable comment="(flowUID) Starts a new stream chain at the flow object UID (must have sourceStream flag set)" name="fnStartStreamChainAt" type="text">startStreamChainAt</variable>
-        <variable comment="(streamUID) Extend a stingle stream out to the closest flow object" name="fnUpdateStreamOld" type="text">updateStreamOld</variable>
-        <variable comment="(coord, offset, scale) returns a coordinate value rounded to the nearest grid square center" name="fnSnapCoordinate" type="text">getSnapCoordinate</variable>
+        <variable comment="(coord, offset, scale) returns a coordinate value rounded to the nearest grid square center" name="fnSnapCoordinate" type="text">snapCoordinate</variable>
         <variable comment="(layoutCoord) returns the X value rounded to the nearest inventory square center" name="fnGetGridCoordinate" type="text">getGridCoordinate</variable>
-        <variable comment="(layoutCoord) returns the Y value rounded to the nearest inventory square center" name="fnGetGridYCoordinate" type="text">getGridYCoordinate</variable>
         <variable comment="(UID) update the currently selected object in the HUD" name="fnUpdateHUDSelection" type="text">updateHUDSelection</variable>
         <variable comment="(x,y) return UID of object at location, else 0" name="fnGridObjectAt" type="text">gridObjectAt</variable>
         <variable comment="(x,y) return UID of an active flow object at location, else 0" name="fnGridActiveObjectAt" type="text">gridActiveObjectAt</variable>
-        <variable comment="(uid,color) updates the generator color" name="fnUpdateGenColor" type="text">updateGenColor</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestObject" type="text">closestObject</variable>
         <variable comment="(x,y,angle) returns the uid of the closest object " name="fnClosestBlockingObject" type="text">closestBlockingObject</variable>
-        <variable comment="(uid) toggles the active status of the provided genrator" name="fnToggleGenerator" type="text">toggleGenerator</variable>
         <variable comment="(uid) attach a health bar to the object" name="fnAttachHealthBar" type="text">attachHealthBar</variable>
         <variable comment="(uid, currentHealth, maxHealth) updates the health bar of the given object" name="fnUpdateHealthBar" type="text">updateHealthBar</variable>
         <variable comment="(uid) destroys the given meeting" name="fnDestroyMinion" type="text">destroyMinion</variable>

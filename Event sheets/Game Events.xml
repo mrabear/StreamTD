@@ -2555,10 +2555,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action disabled="1" id="-3" name="Set position" type="Flow">
-                                    <param id="0" name="X">fn.Call( fnGetGridCoordinate, flow.X )</param>
-                                    <param id="1" name="Y">fn.Call( fnGetGridYCoordinate, flow.Y )</param>
-                                </action>
                                 <action id="-7" name="Set size" type="Flow">
                                     <param id="0" name="Width">round( flow.Width * inventoryScale / gridScale )</param>
                                     <param id="1" name="Height">round( flow.Height * inventoryScale / gridScale )</param>
