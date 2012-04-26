@@ -538,11 +538,11 @@
                         <x>-261</x>
                         <y>-353</y>
                         <z>0</z>
-                        <width>23</width>
-                        <height>13</height>
+                        <width>16</width>
+                        <height>15</height>
                         <depth>0</depth>
-                        <hotspotX>0.521739125</hotspotX>
-                        <hotspotY>0.538461566</hotspotY>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.533333361</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>

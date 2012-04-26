@@ -36,7 +36,7 @@
         <variable comment="The amount of time (sec) to wait between each gradual camera zoom" name="zoomScaleDelay" type="number">0.1</variable>
         <variable comment="The amount of time (sec) to wait between before zooming back out" name="zoomResetDelay" type="number">1</variable>
         <comment>Minion parameters</comment>
-        <variable comment="The default speed of the minion" name="minionDefaultSpeed" type="number">75</variable>
+        <variable comment="The default speed of the minion" name="minionDefaultSpeed" type="number">40</variable>
         <variable comment="A # seperated list of each starting minion type" name="minionDefaultTypes" type="text">red#blue#yellow</variable>
         <variable comment="The default health of the minion" name="minionDefaultHealth" type="number">10</variable>
         <variable comment="The height (in px) of the health bar" name="minionHealthBarHeight" type="number">6</variable>
@@ -61,7 +61,7 @@
         <comment>Generator parameters</comment>
         <variable comment="The opacity of the starting path node at each generator" name="generatorPathStartMaxOpacity" type="number">100</variable>
         <variable comment="The total number of minions that a generator can spawn" name="generatorMaxMinions" type="number">10000</variable>
-        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">0.5</variable>
+        <variable comment="The default spawn rate of the generator" name="generatorSpawnRate" type="number">4</variable>
         <variable comment="The height (in px) of the health bar" name="generatorHealthBarHeight" type="number">8</variable>
         <variable comment="The width (in px) of the health bar" name="generatorHealthBarWidth" type="number">40</variable>
         <variable comment="The angle of the health bar" name="generatorHealthBarAngle" type="number">270</variable>
