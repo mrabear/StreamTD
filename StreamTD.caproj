@@ -7,17 +7,17 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8700</saved-with-version>
     <used-plugins>
-        <plugin id="Button" version="1">Button</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
         <plugin id="TextBox" version="1">Text box</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="chromeconsole" version="0.100000001">Chrome Console</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
+        <plugin id="Button" version="1">Button</plugin>
         <plugin id="Keyboard" version="1">Keyboard</plugin>
-        <plugin id="Rex_Function" version="1">Function</plugin>
+        <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Rex_Hash" version="1">Hash</plugin>
+        <plugin id="Rex_Function" version="1">Function</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
     </used-plugins>
     <used-behaviors>
@@ -384,16 +384,7 @@
                     </behavior-type>
                 </behaviors>
                 <animation-folder expanded="1">
-                    <animation framecount="15" loop="1" name="red" pingpong="1" repeatcount="1" repeatto="0" speed="20">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
+                    <animation framecount="6" loop="1" name="red" pingpong="0" repeatcount="1" repeatto="0" speed="10">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
@@ -401,16 +392,7 @@
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                     </animation>
-                    <animation framecount="15" loop="1" name="blue" pingpong="1" repeatcount="1" repeatto="0" speed="20">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
+                    <animation framecount="6" loop="1" name="blue" pingpong="0" repeatcount="1" repeatto="0" speed="10">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
@@ -418,16 +400,7 @@
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                     </animation>
-                    <animation framecount="15" loop="1" name="yellow" pingpong="1" repeatcount="1" repeatto="0" speed="20">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
+                    <animation framecount="6" loop="1" name="yellow" pingpong="0" repeatcount="1" repeatto="0" speed="10">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
