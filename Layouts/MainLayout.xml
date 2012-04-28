@@ -810,6 +810,7 @@
                         <sourceUID>0</sourceUID>
                         <fullyConnected>false</fullyConnected>
                         <updateColor>false</updateColor>
+                        <colorsConnected></colorsConnected>
                     </instance-variables>
                     <world>
                         <x>-170</x>

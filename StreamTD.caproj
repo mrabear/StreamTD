@@ -12,12 +12,12 @@
         <plugin id="TextBox" version="1">Text box</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="chromeconsole" version="0.100000001">Chrome Console</plugin>
-        <plugin id="Button" version="1">Button</plugin>
         <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Button" version="1">Button</plugin>
         <plugin id="Arr" version="1">Array</plugin>
-        <plugin id="Mouse" version="1">Mouse</plugin>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Rex_Function" version="1">Function</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
+        <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
     </used-plugins>
     <used-behaviors>
@@ -1199,6 +1199,7 @@
                     <instance-variable comment="the uid of the flow element that this stream flows from" name="sourceUID" type="number" />
                     <instance-variable comment="is the stream fully connected" name="fullyConnected" type="boolean" />
                     <instance-variable comment="has the color been updated?" name="updateColor" type="boolean" />
+                    <instance-variable comment="a # separated list of colors connected to the stream" name="colorsConnected" type="string" />
                 </instance-variables>
                 <animation-folder expanded="1">
                     <animation framecount="1" loop="0" name="grey" pingpong="0" repeatcount="1" repeatto="0" speed="5">
