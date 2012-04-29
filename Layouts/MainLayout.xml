@@ -512,6 +512,7 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
+                        <colorsConnected></colorsConnected>
                         <active>false</active>
                         <baseUID>0</baseUID>
                         <health>0</health>
@@ -523,6 +524,7 @@
                         <currentGridX>0</currentGridX>
                         <currentGridY>0</currentGridY>
                         <streamOffset>0</streamOffset>
+                        <fadeOut>false</fadeOut>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
@@ -807,10 +809,10 @@
                         <effect>(none)</effect>
                     </properties>
                     <instance-variables>
+                        <colorsConnected></colorsConnected>
                         <sourceUID>0</sourceUID>
                         <fullyConnected>false</fullyConnected>
                         <updateColor>false</updateColor>
-                        <colorsConnected></colorsConnected>
                     </instance-variables>
                     <world>
                         <x>-170</x>

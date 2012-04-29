@@ -1983,7 +1983,7 @@
                                             </actions>
                                         </event-block>
                                         <comment>If the flow object is a prism, start new chain reactions</comment>
-                                        <event-block collapsed="1">
+                                        <event-block>
                                             <conditions>
                                                 <condition id="-19" name="Pick all" type="System">
                                                     <param id="0" name="Object">Prism</param>
@@ -3450,10 +3450,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="Stream">
-                                    <param id="0" name="Instance variable">colorsConnected</param>
-                                    <param id="1" name="Value">&quot;&quot;</param>
-                                </action>
                                 <action id="4" name="Set animation" type="Stream">
                                     <param id="0" name="Animation">&quot;grey&quot;</param>
                                     <param id="1" name="From">1</param>
@@ -3507,10 +3503,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="Stream">
-                                    <param id="0" name="Instance variable">colorsConnected</param>
-                                    <param id="1" name="Value">&quot;&quot;</param>
-                                </action>
                                 <action id="4" name="Set animation" type="Stream">
                                     <param id="0" name="Animation">&quot;grey&quot;</param>
                                     <param id="1" name="From">1</param>
@@ -3864,7 +3856,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Spawn minions from each of the generators</comment>
                 <event-block>
@@ -3949,6 +3941,10 @@
                             <param id="0" name="Instance variable">currentGridY</param>
                             <param id="1" name="Value">flow.Y</param>
                         </action>
+                        <action id="-10" name="Set value" type="Minion">
+                            <param id="0" name="Instance variable">colorsConnected</param>
+                            <param id="1" name="Value">minion.AnimationName</param>
+                        </action>
                         <action id="-12" name="Subtract from" type="Flow">
                             <param id="0" name="Instance variable">minionTotal</param>
                             <param id="1" name="Value">1</param>
@@ -3983,7 +3979,10 @@
                         <variable comment="The two colors of the minions that collided" name="color" type="text"></variable>
                         <event-block>
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Stream">
+                                <condition id="-19" name="Pick all" type="System">
+                                    <param id="0" name="Object">streamObjects</param>
+                                </condition>
+                                <condition id="-14" name="Pick by unique ID" type="streamObjects">
                                     <param id="0" name="Unique ID">fn.Param( 0 )</param>
                                 </condition>
                             </conditions>
@@ -3994,7 +3993,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">colorString</param>
-                                            <param id="1" name="Value">stream.colorsConnected</param>
+                                            <param id="1" name="Value">streamObjects.colorsConnected</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -4211,11 +4210,11 @@
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-10" name="Set value" type="Stream">
+                                        <action id="-10" name="Set value" type="streamObjects">
                                             <param id="0" name="Instance variable">colorsConnected</param>
                                             <param id="1" name="Value">newColorString</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="Stream">
+                                        <action id="4" name="Set animation" type="streamObjects">
                                             <param id="0" name="Animation">color</param>
                                             <param id="1" name="From">1</param>
                                         </action>
@@ -4231,6 +4230,12 @@
                                 <comment>If the stream color change affects an exit, check to see if the exit becomes unlocked</comment>
                                 <event-block collapsed="1">
                                     <conditions>
+                                        <condition id="-19" name="Pick all" type="System">
+                                            <param id="0" name="Object">Stream</param>
+                                        </condition>
+                                        <condition id="-14" name="Pick by unique ID" type="Stream">
+                                            <param id="0" name="Unique ID">streamObjects.UID</param>
+                                        </condition>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Exit</param>
                                         </condition>
@@ -4292,7 +4297,7 @@
                                                     <param id="0" name="Instance variable">isUnlocked</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
-                                                <action id="-5" name="Set width" type="Stream">
+                                                <action disabled="1" id="-5" name="Set width" type="Stream">
                                                     <param id="0" name="Width">distance( stream.X, stream.Y, exit.ImagePointX(1), exit.ImagePointY(1) )</param>
                                                 </action>
                                             </actions>
@@ -4359,25 +4364,81 @@
                                             <param id="0" name="Object">Minion</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-10" name="Set value" type="Stream">
-                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                            <param id="1" name="Value">replace( stream.colorsConnected, &quot;#&quot; &amp; minion.AnimationName, &quot;&quot; )</param>
-                                        </action>
-                                        <action id="7" name="Execute commands" type="fn">
-                                            <param id="0" name="Commands">fnUpdateStreamColor &amp; &quot;,&quot; &amp; stream.UID</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block>
+                                            <conditions>
+                                                <condition id="-10" name="For" type="System">
+                                                    <param id="0" name="Name">&quot;color loop&quot;</param>
+                                                    <param id="1" name="Start index">0</param>
+                                                    <param id="2" name="End index">tokencount( minion.colorsConnected, &quot;#&quot; ) - 1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" type="Stream">
+                                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                                    <param id="1" name="Value">replace( stream.colorsConnected, tokenat( minion.colorsConnected, loopindex, &quot;#&quot; ), &quot;&quot; )</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block>
+                                            <conditions />
+                                            <actions>
+                                                <action id="7" name="Execute commands" type="fn">
+                                                    <param id="0" name="Commands">fnUpdateStreamColor &amp; &quot;,&quot; &amp; stream.UID</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-9" name="Destroy" type="Minion" />
+                                        <action disabled="1" id="-9" name="Destroy" type="Minion" />
+                                        <action id="-13" name="Set boolean" type="Minion">
+                                            <param id="0" name="Instance variable">fadeOut</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
                                     </actions>
                                 </event-block>
                             </sub-events>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <comment>If a minion has been flagged to be faded out, start reducing its opacity</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" type="System">
+                            <param id="0" name="Interval (seconds)">0.1</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">fadeOut</param>
+                        </condition>
+                        <condition id="-10" name="Compare opacity" type="Minion">
+                            <param id="0" name="Comparison">4</param>
+                            <param id="1" name="Opacity">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" type="Minion">
+                            <param id="0" name="Opacity">minion.Opacity - 10</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>If a minion flagged to be faded hits 0 opacity, destroy it</comment>
+                <event-block>
+                    <conditions>
+                        <condition id="-10" name="Compare opacity" type="Minion">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Opacity">0</param>
+                        </condition>
+                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                            <param id="0" name="Instance variable">fadeOut</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" type="Minion" />
+                    </actions>
                 </event-block>
                 <comment>Destroys all minions</comment>
                 <event-block collapsed="1">
@@ -4500,13 +4561,12 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="4" name="Set animation" type="Stream">
-                                                    <param id="0" name="Animation">minion.AnimationName</param>
-                                                    <param id="1" name="From">1</param>
-                                                </action>
                                                 <action id="-10" name="Set value" type="Stream">
                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                     <param id="1" name="Value">&quot;#&quot; &amp; minion.AnimationName</param>
+                                                </action>
+                                                <action id="7" name="Execute commands" type="fn">
+                                                    <param id="0" name="Commands">fnUpdateStreamColor &amp; &quot;,&quot; &amp; stream.UID</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -4612,9 +4672,9 @@
                                                                     <actions>
                                                                         <action id="-10" name="Set value" type="Stream">
                                                                             <param id="0" name="Instance variable">colorsConnected</param>
-                                                                            <param id="1" name="Value">minion.AnimationName &amp; &quot;#&quot; &amp; stream.colorsConnected</param>
+                                                                            <param id="1" name="Value">minion.colorsConnected &amp; &quot;#&quot; &amp; stream.colorsConnected</param>
                                                                         </action>
-                                                                        <action id="0" name="Log Text" type="debugConsole">
+                                                                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
                                                                             <param id="0" name="Data">&quot;....adding color to next stream (&quot; &amp; stream.colorsConnected &amp; &quot;)&quot;</param>
                                                                         </action>
                                                                     </actions>
@@ -4628,236 +4688,29 @@
                                                                             <param id="2" name="Value">stream.UID</param>
                                                                         </condition>
                                                                     </conditions>
-                                                                    <actions>
-                                                                        <action id="-10" name="Set value" type="Stream">
-                                                                            <param id="0" name="Instance variable">colorsConnected</param>
-                                                                            <param id="1" name="Value">replace( stream.colorsConnected, &quot;#&quot; &amp; minion.AnimationName, &quot;&quot; )</param>
-                                                                        </action>
-                                                                        <action disabled="1" id="0" name="Log Text" type="debugConsole">
-                                                                            <param id="0" name="Data">&quot;....removing color from previous stream (&quot; &amp; stream.colorsConnected &amp; &quot;)&quot;</param>
-                                                                        </action>
-                                                                    </actions>
-                                                                </event-block>
-                                                                <comment>Calculate the new stream color</comment>
-                                                                <event-block collapsed="1" disabled="1">
-                                                                    <conditions />
-                                                                    <actions>
-                                                                        <action disabled="1" id="-9" name="Set value" type="System">
-                                                                            <param id="0" name="Variable">colorString</param>
-                                                                            <param id="1" name="Value">stream.colorsConnected</param>
-                                                                        </action>
-                                                                    </actions>
+                                                                    <actions />
                                                                     <sub-events>
-                                                                        <comment>If all three colors are in the stream, push it to grey</comment>
                                                                         <event-block>
                                                                             <conditions>
-                                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                                    <param id="0" name="First value">find( colorString, &quot;red&quot; )</param>
-                                                                                    <param id="1" name="Comparison">5</param>
-                                                                                    <param id="2" name="Second value">0</param>
-                                                                                </condition>
-                                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                                    <param id="0" name="First value">find( colorString, &quot;blue&quot; )</param>
-                                                                                    <param id="1" name="Comparison">5</param>
-                                                                                    <param id="2" name="Second value">0</param>
-                                                                                </condition>
-                                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                                    <param id="0" name="First value">find( colorString, &quot;yellow&quot; )</param>
-                                                                                    <param id="1" name="Comparison">5</param>
-                                                                                    <param id="2" name="Second value">0</param>
+                                                                                <condition id="-10" name="For" type="System">
+                                                                                    <param id="0" name="Name">&quot;color loop&quot;</param>
+                                                                                    <param id="1" name="Start index">0</param>
+                                                                                    <param id="2" name="End index">tokencount( minion.colorsConnected, &quot;#&quot; ) - 1</param>
                                                                                 </condition>
                                                                             </conditions>
                                                                             <actions>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Value">&quot;grey&quot;</param>
+                                                                                <action id="-10" name="Set value" type="Stream">
+                                                                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                                                                    <param id="1" name="Value">replace( stream.colorsConnected, tokenat( minion.colorsConnected, loopindex, &quot;#&quot; ), &quot;&quot; )</param>
                                                                                 </action>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">newColorString</param>
-                                                                                    <param id="1" name="Value">&quot;#red#blue#yellow&quot;</param>
-                                                                                </action>
-                                                                            </actions>
-                                                                        </event-block>
-                                                                        <comment>Red can combine with blue to produce purple and yellow to produce orange</comment>
-                                                                        <event-block>
-                                                                            <conditions>
-                                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                                    <param id="0" name="First value">find( colorString, &quot;red&quot; )</param>
-                                                                                    <param id="1" name="Comparison">5</param>
-                                                                                    <param id="2" name="Second value">0</param>
-                                                                                </condition>
-                                                                                <condition id="-14" name="Compare variable" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Comparison">0</param>
-                                                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                                                </condition>
-                                                                            </conditions>
-                                                                            <actions>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Value">&quot;red&quot;</param>
-                                                                                </action>
-                                                                            </actions>
-                                                                            <sub-events>
-                                                                                <event-block>
-                                                                                    <conditions>
-                                                                                        <condition id="-8" name="Compare two values" type="System">
-                                                                                            <param id="0" name="First value">find( colorString, &quot;blue&quot; )</param>
-                                                                                            <param id="1" name="Comparison">5</param>
-                                                                                            <param id="2" name="Second value">0</param>
-                                                                                        </condition>
-                                                                                    </conditions>
-                                                                                    <actions>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">color</param>
-                                                                                            <param id="1" name="Value">&quot;purple&quot;</param>
-                                                                                        </action>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">newColorString</param>
-                                                                                            <param id="1" name="Value">&quot;#red#blue&quot;</param>
-                                                                                        </action>
-                                                                                    </actions>
-                                                                                </event-block>
-                                                                                <event-block>
-                                                                                    <conditions>
-                                                                                        <condition id="-8" name="Compare two values" type="System">
-                                                                                            <param id="0" name="First value">find( colorString, &quot;yellow&quot; )</param>
-                                                                                            <param id="1" name="Comparison">5</param>
-                                                                                            <param id="2" name="Second value">0</param>
-                                                                                        </condition>
-                                                                                    </conditions>
-                                                                                    <actions>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">color</param>
-                                                                                            <param id="1" name="Value">&quot;orange&quot;</param>
-                                                                                        </action>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">newColorString</param>
-                                                                                            <param id="1" name="Value">&quot;#red#yellow&quot;</param>
-                                                                                        </action>
-                                                                                    </actions>
-                                                                                </event-block>
-                                                                                <event-block>
-                                                                                    <conditions>
-                                                                                        <condition id="-14" name="Compare variable" type="System">
-                                                                                            <param id="0" name="Variable">color</param>
-                                                                                            <param id="1" name="Comparison">0</param>
-                                                                                            <param id="2" name="Value">&quot;red&quot;</param>
-                                                                                        </condition>
-                                                                                    </conditions>
-                                                                                    <actions>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">newColorString</param>
-                                                                                            <param id="1" name="Value">&quot;#red&quot;</param>
-                                                                                        </action>
-                                                                                    </actions>
-                                                                                </event-block>
-                                                                            </sub-events>
-                                                                        </event-block>
-                                                                        <comment>Blue can combine with yellow to produce green</comment>
-                                                                        <event-block>
-                                                                            <conditions>
-                                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                                    <param id="0" name="First value">find( colorString, &quot;blue&quot; )</param>
-                                                                                    <param id="1" name="Comparison">5</param>
-                                                                                    <param id="2" name="Second value">0</param>
-                                                                                </condition>
-                                                                                <condition id="-14" name="Compare variable" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Comparison">0</param>
-                                                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                                                </condition>
-                                                                            </conditions>
-                                                                            <actions>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Value">&quot;blue&quot;</param>
-                                                                                </action>
-                                                                            </actions>
-                                                                            <sub-events>
-                                                                                <event-block>
-                                                                                    <conditions>
-                                                                                        <condition id="-8" name="Compare two values" type="System">
-                                                                                            <param id="0" name="First value">find( colorString, &quot;yellow&quot; )</param>
-                                                                                            <param id="1" name="Comparison">5</param>
-                                                                                            <param id="2" name="Second value">0</param>
-                                                                                        </condition>
-                                                                                    </conditions>
-                                                                                    <actions>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">color</param>
-                                                                                            <param id="1" name="Value">&quot;green&quot;</param>
-                                                                                        </action>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">newColorString</param>
-                                                                                            <param id="1" name="Value">&quot;#blue#yellow&quot;</param>
-                                                                                        </action>
-                                                                                    </actions>
-                                                                                </event-block>
-                                                                                <event-block>
-                                                                                    <conditions>
-                                                                                        <condition id="-14" name="Compare variable" type="System">
-                                                                                            <param id="0" name="Variable">color</param>
-                                                                                            <param id="1" name="Comparison">0</param>
-                                                                                            <param id="2" name="Value">&quot;blue&quot;</param>
-                                                                                        </condition>
-                                                                                    </conditions>
-                                                                                    <actions>
-                                                                                        <action id="-9" name="Set value" type="System">
-                                                                                            <param id="0" name="Variable">newColorString</param>
-                                                                                            <param id="1" name="Value">&quot;#blue&quot;</param>
-                                                                                        </action>
-                                                                                    </actions>
-                                                                                </event-block>
-                                                                            </sub-events>
-                                                                        </event-block>
-                                                                        <comment>All of yellow&apos;s combo combinations are taken care of in the above conditions</comment>
-                                                                        <event-block>
-                                                                            <conditions>
-                                                                                <condition id="-8" name="Compare two values" type="System">
-                                                                                    <param id="0" name="First value">find( colorString, &quot;yellow&quot; )</param>
-                                                                                    <param id="1" name="Comparison">5</param>
-                                                                                    <param id="2" name="Second value">0</param>
-                                                                                </condition>
-                                                                                <condition id="-14" name="Compare variable" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Comparison">0</param>
-                                                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                                                </condition>
-                                                                            </conditions>
-                                                                            <actions>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Value">&quot;yellow&quot;</param>
-                                                                                </action>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">newColorString</param>
-                                                                                    <param id="1" name="Value">&quot;#yellow&quot;</param>
-                                                                                </action>
-                                                                            </actions>
-                                                                        </event-block>
-                                                                        <comment>If no color match has been found, default the stream to grey</comment>
-                                                                        <event-block>
-                                                                            <conditions>
-                                                                                <condition id="-14" name="Compare variable" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Comparison">0</param>
-                                                                                    <param id="2" name="Value">&quot;&quot;</param>
-                                                                                </condition>
-                                                                            </conditions>
-                                                                            <actions>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">color</param>
-                                                                                    <param id="1" name="Value">&quot;grey&quot;</param>
-                                                                                </action>
-                                                                                <action id="-9" name="Set value" type="System">
-                                                                                    <param id="0" name="Variable">newColorString</param>
-                                                                                    <param id="1" name="Value">&quot;&quot;</param>
+                                                                                <action disabled="1" id="0" name="Log Text" type="debugConsole">
+                                                                                    <param id="0" name="Data">&quot;....removing &lt;&quot; &amp; tokenat( minion.colorsConnected, loopindex, &quot;#&quot; ) &amp; &quot;&gt; from previous stream (&quot; &amp; stream.colorsConnected &amp; &quot;)&quot;</param>
                                                                                 </action>
                                                                             </actions>
                                                                         </event-block>
                                                                     </sub-events>
                                                                 </event-block>
+                                                                <comment>Calculate the new stream color</comment>
                                                                 <event-block>
                                                                     <conditions />
                                                                     <actions>
@@ -5049,6 +4902,73 @@
                             <param id="0" name="Commands">fnDestroyMinion &amp; &quot;,&quot; &amp; minion.UID</param>
                         </action>
                     </actions>
+                </event-block>
+                <event-block>
+                    <conditions>
+                        <condition id="0" name="On collision with another object" type="Minion">
+                            <param id="0" name="Object">Minion</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Log Text" type="debugConsole">
+                            <param id="0" name="Data">minion.PickedCount &amp; &quot; minion collision&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable name="colorString" type="text"></variable>
+                        <event-block>
+                            <conditions>
+                                <condition id="-11" name="For Each" type="System">
+                                    <param id="0" name="Object">Minion</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">colorString</param>
+                                            <param id="1" name="Comparison">1</param>
+                                            <param id="2" name="Value">&quot;&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Log Text" type="debugConsole">
+                                            <param id="0" name="Data">&quot;....second minion: &quot; &amp; minion.AnimationName</param>
+                                        </action>
+                                        <action id="-10" name="Set value" type="Minion">
+                                            <param id="0" name="Instance variable">colorsConnected</param>
+                                            <param id="1" name="Value">minion.colorsConnected &amp; &quot;#&quot; &amp; colorString</param>
+                                        </action>
+                                        <action id="7" name="Execute commands" type="fn">
+                                            <param id="0" name="Commands">fnUpdateStreamColor &amp; &quot;,&quot; &amp; minion.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block>
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" type="System">
+                                            <param id="0" name="Variable">colorString</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">&quot;&quot;</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Log Text" type="debugConsole">
+                                            <param id="0" name="Data">&quot;....initial minion: &quot; &amp; minion.AnimationName</param>
+                                        </action>
+                                        <action id="-9" name="Set value" type="System">
+                                            <param id="0" name="Variable">colorString</param>
+                                            <param id="1" name="Value">minion.AnimationName</param>
+                                        </action>
+                                        <action id="7" name="Execute commands" type="fn">
+                                            <param id="0" name="Commands">fnDestroyMinion &amp; &quot;,&quot; &amp; minion.UID</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
