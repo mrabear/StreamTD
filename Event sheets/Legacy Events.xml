@@ -182,12 +182,12 @@
                         <variable comment="the distance from the turret to the nearest minion" name="distanceToMinion" type="number">0</variable>
                         <event-block disabled="1">
                             <conditions>
-                                <condition disabled="1" id="-15" name="Pick nearest/furthest" type="Minion">
+                                <condition disabled="1" id="-15" name="Pick nearest/furthest" type="minion">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">Cannon.X</param>
                                     <param id="2" name="Y">Cannon.Y</param>
                                 </condition>
-                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
+                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="minion">
                                     <param id="0" name="Instance variable">active</param>
                                 </condition>
                             </conditions>
@@ -466,18 +466,18 @@
                 <event-block disabled="1">
                     <conditions>
                         <condition disabled="1" id="0" name="On collision with another object" type="Beam">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">minion</param>
                         </condition>
-                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">max( 0, minion.health - beamDamage )</param>
                         </action>
-                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="minion">
                             <param id="0" name="Instance variable">updateHealthBar</param>
                             <param id="1" name="Value">1</param>
                         </action>
@@ -511,9 +511,9 @@
                 <event-block disabled="1">
                     <conditions>
                         <condition disabled="1" id="0" name="On collision with another object" type="Rocket">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">minion</param>
                         </condition>
-                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
@@ -573,18 +573,18 @@
                 <event-block disabled="1">
                     <conditions>
                         <condition disabled="1" id="0" name="On collision with another object" type="RocketExplosion">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">minion</param>
                         </condition>
-                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition disabled="1" id="-8" name="Is boolean instance variable set" type="minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action disabled="1" id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">max( 0, minion.health - rocketDamage )</param>
                         </action>
-                        <action disabled="1" id="-13" name="Set boolean" type="Minion">
+                        <action disabled="1" id="-13" name="Set boolean" type="minion">
                             <param id="0" name="Instance variable">updateHealthBar</param>
                             <param id="1" name="Value">1</param>
                         </action>

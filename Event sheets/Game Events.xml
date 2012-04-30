@@ -11,15 +11,13 @@
         <comment>Add hud menu above each selected flow object to let you control it</comment>
         <comment>Have second tier color streams grant some sort of benefit to the minions that are on it (potentially only to those minions that share one of the two primary colors)</comment>
         <comment>Seperate color and stream into two seperate components, the streams are colored by the minions that travel along them, the painters and lenses are colored by the laser beams</comment>
-        <comment>Have minions color streams as they pass over it</comment>
         <comment>Add a music loop track to each of the colors (drum, bass, lead) and have the minions pulse along with the beat</comment>
-        <comment>Have the minions merge to form a new color</comment>
         <comment></comment>
         <variable comment="Anything that needs to be appended to the debug portion of the screen" name="debugMsg" type="text"></variable>
         <include>Initialize</include>
         <include>Level Data</include>
         <comment>Game Object Events</comment>
-        <event-group description="A grid that objects snap to" title="Grid">
+        <event-group collapsed="1" description="A grid that objects snap to" title="Grid">
             <sub-events>
                 <comment>(coord, offset, scale) returns a &apos;grid friendly&apos; coordindate for a given layout coordinate</comment>
                 <event-block collapsed="1">
@@ -158,9 +156,9 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="-15" name="Pick nearest/furthest" type="Flow">
+                                <condition id="-15" name="Pick nearest/furthest" type="flow">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">fn.Param(0)</param>
                                     <param id="2" name="Y">fn.Param(1)</param>
@@ -199,9 +197,9 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="-15" name="Pick nearest/furthest" type="Flow">
+                                <condition id="-15" name="Pick nearest/furthest" type="flow">
                                     <param id="0" name="Which">0</param>
                                     <param id="1" name="X">fn.Param(0)</param>
                                     <param id="2" name="Y">fn.Param(1)</param>
@@ -211,7 +209,7 @@
                                     <param id="1" name="Comparison">3</param>
                                     <param id="2" name="Second value">5</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                 </condition>
                             </conditions>
@@ -286,15 +284,15 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                                 <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="1" name="Is overlapping another object" type="Flow">
+                                <condition id="1" name="Is overlapping another object" type="flow">
                                     <param id="0" name="Object">overlapTester</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                 </condition>
                                 <condition id="-8" name="Compare two values" type="System">
@@ -348,9 +346,9 @@
                         <event-block collapsed="1" disabled="1">
                             <conditions>
                                 <condition disabled="1" id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Stream</param>
+                                    <param id="0" name="Object">stream</param>
                                 </condition>
-                                <condition disabled="1" id="1" name="Is overlapping another object" type="Stream">
+                                <condition disabled="1" id="1" name="Is overlapping another object" type="stream">
                                     <param id="0" name="Object">overlapTester</param>
                                 </condition>
                                 <condition disabled="1" id="-8" name="Compare two values" type="System">
@@ -381,9 +379,9 @@
                                         <event-block>
                                             <conditions>
                                                 <condition id="-19" name="Pick all" type="System">
-                                                    <param id="0" name="Object">Stream</param>
+                                                    <param id="0" name="Object">stream</param>
                                                 </condition>
-                                                <condition id="1" name="Is overlapping another object" type="Stream">
+                                                <condition id="1" name="Is overlapping another object" type="stream">
                                                     <param id="0" name="Object">overlapTester</param>
                                                 </condition>
                                                 <condition id="-8" name="Compare two values" type="System">
@@ -467,7 +465,7 @@
                                                         </event-block>
                                                         <event-block>
                                                             <conditions>
-                                                                <condition id="1" name="Is overlapping another object" type="Stream">
+                                                                <condition id="1" name="Is overlapping another object" type="stream">
                                                                     <param id="0" name="Object">overlapTester</param>
                                                                 </condition>
                                                             </conditions>
@@ -554,18 +552,18 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                                 <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="1" name="Is overlapping another object" type="Flow">
+                                <condition id="1" name="Is overlapping another object" type="flow">
                                     <param id="0" name="Object">overlapTester</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">blockStream</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                 </condition>
                                 <condition id="-8" name="Compare two values" type="System">
@@ -847,9 +845,9 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Flow</param>
+                                            <param id="0" name="Object">flow</param>
                                         </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="Flow">
+                                        <condition id="-14" name="Pick by unique ID" type="flow">
                                             <param id="0" name="Unique ID">objectAtLocationUID</param>
                                         </condition>
                                     </conditions>
@@ -878,7 +876,7 @@
                                                         <condition id="2" name="Mouse button is down" type="Mouse">
                                                             <param id="0" name="Mouse button">0</param>
                                                         </condition>
-                                                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                                                             <param id="0" name="Instance variable">isMovable</param>
                                                         </condition>
                                                     </conditions>
@@ -893,18 +891,18 @@
                                                         <action id="-15" name="Set visible" type="selectionBox">
                                                             <param id="0" name="Visibility">0</param>
                                                         </action>
-                                                        <action id="-26" name="Move to layer" type="Flow">
+                                                        <action id="-26" name="Move to layer" type="flow">
                                                             <param id="0" name="Layer">inventoryLayer</param>
                                                         </action>
-                                                        <action id="-13" name="Set boolean" type="Flow">
+                                                        <action id="-13" name="Set boolean" type="flow">
                                                             <param id="0" name="Instance variable">isMoving</param>
                                                             <param id="1" name="Value">1</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Flow">
+                                                        <action id="-10" name="Set value" type="flow">
                                                             <param id="0" name="Instance variable">previousActiveState</param>
                                                             <param id="1" name="Value">flow.inInventory?1:flow.isActive</param>
                                                         </action>
-                                                        <action id="-13" name="Set boolean" type="Flow">
+                                                        <action id="-13" name="Set boolean" type="flow">
                                                             <param id="0" name="Instance variable">isActive</param>
                                                             <param id="1" name="Value">0</param>
                                                         </action>
@@ -1017,11 +1015,11 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Stream</param>
+                                    <param id="0" name="Object">stream</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Stream" />
+                                <action id="-9" name="Destroy" type="stream" />
                             </actions>
                         </event-block>
                         <comment>Reset all stream intersections</comment>
@@ -1179,7 +1177,7 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -1187,19 +1185,19 @@
                                     <param id="0" name="Variable">debugMsg</param>
                                     <param id="1" name="Value">&quot;&quot;</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">colorsConnected</param>
                                     <param id="1" name="Value">&quot;&quot;</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">streamOutUID</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">streamsPassedThrough</param>
                                     <param id="1" name="Value">&quot;&quot;</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">minionTotal</param>
                                     <param id="1" name="Value">generatorMaxMinions</param>
                                 </action>
@@ -1226,9 +1224,9 @@
                         <event-block disabled="1">
                             <conditions>
                                 <condition disabled="1" id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                 </condition>
                             </conditions>
@@ -1242,20 +1240,20 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                                 <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">sourceStream</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">colorsConnected</param>
                                     <param id="1" name="Value">flow.sourceColor &amp; &quot;#&quot;</param>
                                 </action>
@@ -1321,9 +1319,9 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Flow</param>
+                                            <param id="0" name="Object">flow</param>
                                         </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="Flow">
+                                        <condition id="-14" name="Pick by unique ID" type="flow">
                                             <param id="0" name="Unique ID">nextUID</param>
                                         </condition>
                                     </conditions>
@@ -1353,9 +1351,9 @@
                                         <event-block collapsed="1" disabled="1">
                                             <conditions>
                                                 <condition disabled="1" id="-19" name="Pick all" type="System">
-                                                    <param id="0" name="Object">Flow</param>
+                                                    <param id="0" name="Object">flow</param>
                                                 </condition>
-                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="Flow">
+                                                <condition disabled="1" id="-14" name="Pick by unique ID" type="flow">
                                                     <param id="0" name="Unique ID">closestFlowUID</param>
                                                 </condition>
                                             </conditions>
@@ -1418,7 +1416,7 @@
                                         <comment>If the flow object extends a new stream, check various flow conditions</comment>
                                         <event-block>
                                             <conditions>
-                                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                                     <param id="0" name="Instance variable">extendStream</param>
                                                 </condition>
                                             </conditions>
@@ -1427,7 +1425,7 @@
                                                 <comment>Create new stream and extend it to the next flow object (if this is the type of flow object that extends streams)</comment>
                                                 <event-block>
                                                     <conditions>
-                                                        <condition id="-7" name="Compare instance variable" type="Flow">
+                                                        <condition id="-7" name="Compare instance variable" type="flow">
                                                             <param id="0" name="Instance variable">streamOutUID</param>
                                                             <param id="1" name="Comparison">0</param>
                                                             <param id="2" name="Value">0</param>
@@ -1435,26 +1433,26 @@
                                                     </conditions>
                                                     <actions>
                                                         <action id="-3" name="Create object" type="System">
-                                                            <param id="0" name="Object to create">Stream</param>
+                                                            <param id="0" name="Object to create">stream</param>
                                                             <param id="1" name="Layer">streamLayer</param>
                                                             <param id="2" name="X">flow.X</param>
                                                             <param id="3" name="Y">flow.Y</param>
                                                         </action>
-                                                        <action id="-8" name="Set angle" type="Stream">
+                                                        <action id="-8" name="Set angle" type="stream">
                                                             <param id="0" name="Angle">flow.angle</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Flow">
+                                                        <action id="-10" name="Set value" type="flow">
                                                             <param id="0" name="Instance variable">streamOutUID</param>
                                                             <param id="1" name="Value">stream.UID</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Stream">
+                                                        <action id="-10" name="Set value" type="stream">
                                                             <param id="0" name="Instance variable">sourceUID</param>
                                                             <param id="1" name="Value">flow.UID</param>
                                                         </action>
-                                                        <action id="-5" name="Set width" type="Stream">
+                                                        <action id="-5" name="Set width" type="stream">
                                                             <param id="0" name="Width">distanceToClosestObject</param>
                                                         </action>
-                                                        <action id="-24" name="Move to top" type="Stream" />
+                                                        <action id="-24" name="Move to top" type="stream" />
                                                     </actions>
                                                     <sub-events>
                                                         <comment>If the new stream overlaps any existing ones, place an intersection object on the intersection</comment>
@@ -1463,21 +1461,21 @@
                                                         <event-block>
                                                             <conditions>
                                                                 <condition id="-19" name="Pick all" type="System">
-                                                                    <param id="0" name="Object">streamIntersectObjects</param>
+                                                                    <param id="0" name="Object">streamIntersectObject</param>
                                                                 </condition>
                                                                 <condition id="-11" name="For Each" type="System">
-                                                                    <param id="0" name="Object">streamIntersectObjects</param>
+                                                                    <param id="0" name="Object">streamIntersectObject</param>
                                                                 </condition>
-                                                                <condition id="1" name="Is overlapping another object" type="Stream">
-                                                                    <param id="0" name="Object">streamIntersectObjects</param>
+                                                                <condition id="1" name="Is overlapping another object" type="stream">
+                                                                    <param id="0" name="Object">streamIntersectObject</param>
                                                                 </condition>
                                                                 <condition id="-8" name="Compare two values" type="System">
-                                                                    <param id="0" name="First value">round( anglediff( stream.Angle, streamIntersectObjects.Angle ) )</param>
+                                                                    <param id="0" name="First value">round( anglediff( stream.Angle, streamIntersectObject.Angle ) )</param>
                                                                     <param id="1" name="Comparison">0</param>
                                                                     <param id="2" name="Second value">90</param>
                                                                 </condition>
                                                                 <condition id="-8" name="Compare two values" type="System">
-                                                                    <param id="0" name="First value">streamIntersectObjects.UID</param>
+                                                                    <param id="0" name="First value">streamIntersectObject.UID</param>
                                                                     <param id="1" name="Comparison">1</param>
                                                                     <param id="2" name="Second value">stream.UID</param>
                                                                 </condition>
@@ -1485,11 +1483,11 @@
                                                             <actions>
                                                                 <action id="-9" name="Set value" type="System">
                                                                     <param id="0" name="Variable">intersectX</param>
-                                                                    <param id="1" name="Value">round(stream.Angle)=90|round(stream.Angle)=270?stream.X:streamIntersectObjects.x</param>
+                                                                    <param id="1" name="Value">round(stream.Angle)=90|round(stream.Angle)=270?stream.X:streamIntersectObject.x</param>
                                                                 </action>
                                                                 <action id="-9" name="Set value" type="System">
                                                                     <param id="0" name="Variable">intersectY</param>
-                                                                    <param id="1" name="Value">round(stream.Angle)=90|round(stream.Angle)=270?streamIntersectObjects.y:stream.y</param>
+                                                                    <param id="1" name="Value">round(stream.Angle)=90|round(stream.Angle)=270?streamIntersectObject.y:stream.y</param>
                                                                 </action>
                                                                 <action disabled="1" id="0" name="Log Text" type="debugConsole">
                                                                     <param id="0" name="Data">&quot;............Possible intersection found at (&quot; &amp; intersectX &amp; &quot;,&quot; &amp; intersectY &amp; &quot;)&quot;</param>
@@ -1578,7 +1576,7 @@
                                                             <param id="0" name="Variable">color</param>
                                                             <param id="1" name="Value">&quot;grey&quot;</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Flow">
+                                                        <action id="-10" name="Set value" type="flow">
                                                             <param id="0" name="Instance variable">colorsConnected</param>
                                                             <param id="1" name="Value">&quot;red#blue#yellow&quot;</param>
                                                         </action>
@@ -1618,7 +1616,7 @@
                                                                     <param id="0" name="Variable">color</param>
                                                                     <param id="1" name="Value">&quot;purple&quot;</param>
                                                                 </action>
-                                                                <action id="-10" name="Set value" type="Flow">
+                                                                <action id="-10" name="Set value" type="flow">
                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                     <param id="1" name="Value">&quot;red#blue&quot;</param>
                                                                 </action>
@@ -1637,7 +1635,7 @@
                                                                     <param id="0" name="Variable">color</param>
                                                                     <param id="1" name="Value">&quot;orange&quot;</param>
                                                                 </action>
-                                                                <action id="-10" name="Set value" type="Flow">
+                                                                <action id="-10" name="Set value" type="flow">
                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                     <param id="1" name="Value">&quot;red#yellow&quot;</param>
                                                                 </action>
@@ -1652,7 +1650,7 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="-10" name="Set value" type="Flow">
+                                                                <action id="-10" name="Set value" type="flow">
                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                     <param id="1" name="Value">&quot;red&quot;</param>
                                                                 </action>
@@ -1694,7 +1692,7 @@
                                                                     <param id="0" name="Variable">color</param>
                                                                     <param id="1" name="Value">&quot;green&quot;</param>
                                                                 </action>
-                                                                <action id="-10" name="Set value" type="Flow">
+                                                                <action id="-10" name="Set value" type="flow">
                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                     <param id="1" name="Value">&quot;blue#yellow&quot;</param>
                                                                 </action>
@@ -1709,7 +1707,7 @@
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="-10" name="Set value" type="Flow">
+                                                                <action id="-10" name="Set value" type="flow">
                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                     <param id="1" name="Value">&quot;blue&quot;</param>
                                                                 </action>
@@ -1736,7 +1734,7 @@
                                                             <param id="0" name="Variable">color</param>
                                                             <param id="1" name="Value">&quot;yellow&quot;</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Flow">
+                                                        <action id="-10" name="Set value" type="flow">
                                                             <param id="0" name="Instance variable">colorsConnected</param>
                                                             <param id="1" name="Value">&quot;yellow&quot;</param>
                                                         </action>
@@ -1756,7 +1754,7 @@
                                                             <param id="0" name="Variable">color</param>
                                                             <param id="1" name="Value">&quot;grey&quot;</param>
                                                         </action>
-                                                        <action id="-10" name="Set value" type="Flow">
+                                                        <action id="-10" name="Set value" type="flow">
                                                             <param id="0" name="Instance variable">colorsConnected</param>
                                                             <param id="1" name="Value">&quot;grey&quot;</param>
                                                         </action>
@@ -1765,12 +1763,12 @@
                                                 <comment>Update the stream with the chosen color</comment>
                                                 <event-block>
                                                     <conditions>
-                                                        <condition id="-14" name="Pick by unique ID" type="Stream">
+                                                        <condition id="-14" name="Pick by unique ID" type="stream">
                                                             <param id="0" name="Unique ID">flow.streamOutUID</param>
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="4" name="Set animation" type="Stream">
+                                                        <action id="4" name="Set animation" type="stream">
                                                             <param id="0" name="Animation">color</param>
                                                             <param id="1" name="From">1</param>
                                                         </action>
@@ -1786,7 +1784,7 @@
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">1</param>
                                                 </condition>
-                                                <condition id="-14" name="Pick by unique ID" type="Stream">
+                                                <condition id="-14" name="Pick by unique ID" type="stream">
                                                     <param id="0" name="Unique ID">flow.streamOutUID</param>
                                                 </condition>
                                             </conditions>
@@ -1858,9 +1856,9 @@
                                                 <event-block>
                                                     <conditions>
                                                         <condition id="-19" name="Pick all" type="System">
-                                                            <param id="0" name="Object">Flow</param>
+                                                            <param id="0" name="Object">flow</param>
                                                         </condition>
-                                                        <condition id="-14" name="Pick by unique ID" type="Flow">
+                                                        <condition id="-14" name="Pick by unique ID" type="flow">
                                                             <param id="0" name="Unique ID">closestFlowUID</param>
                                                         </condition>
                                                     </conditions>
@@ -1869,12 +1867,12 @@
                                                         <comment>Start the next iteration if the stream wasn&apos;t blocked</comment>
                                                         <event-block>
                                                             <conditions>
-                                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Flow">
+                                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="flow">
                                                                     <param id="0" name="Instance variable">blockStream</param>
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
-                                                                <action id="-10" name="Set value" type="Flow">
+                                                                <action id="-10" name="Set value" type="flow">
                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                     <param id="1" name="Value">flow.colorsConnected &amp; &quot;#&quot; &amp; color</param>
                                                                 </action>
@@ -1945,7 +1943,7 @@
                                                                             <param id="0" name="Instance variable">isUnlocked</param>
                                                                             <param id="1" name="Value">1</param>
                                                                         </action>
-                                                                        <action id="-5" name="Set width" type="Stream">
+                                                                        <action id="-5" name="Set width" type="stream">
                                                                             <param id="0" name="Width">distance( stream.X, stream.Y, exit.ImagePointX(1), exit.ImagePointY(1) )</param>
                                                                         </action>
                                                                     </actions>
@@ -1976,7 +1974,7 @@
                                         <event-block>
                                             <conditions />
                                             <actions>
-                                                <action id="-10" name="Set value" type="Flow">
+                                                <action id="-10" name="Set value" type="flow">
                                                     <param id="0" name="Instance variable">streamsPassedThrough</param>
                                                     <param id="1" name="Value">sourceUID &amp; &quot;#&quot; &amp; flow.streamsPassedThrough</param>
                                                 </action>
@@ -2552,29 +2550,29 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">fn.Result</param>
                                 </condition>
-                                <condition id="1" name="Is overlapping another object" type="Flow">
+                                <condition id="1" name="Is overlapping another object" type="flow">
                                     <param id="0" name="Object">inventory</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-7" name="Set size" type="Flow">
+                                <action id="-7" name="Set size" type="flow">
                                     <param id="0" name="Width">round( flow.Width * inventoryScale / gridScale )</param>
                                     <param id="1" name="Height">round( flow.Height * inventoryScale / gridScale )</param>
                                 </action>
-                                <action id="-13" name="Set boolean" type="Flow">
+                                <action id="-13" name="Set boolean" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
-                                <action id="-13" name="Set boolean" type="Flow">
+                                <action id="-13" name="Set boolean" type="flow">
                                     <param id="0" name="Instance variable">inInventory</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
-                                <action id="-26" name="Move to layer" type="Flow">
+                                <action id="-26" name="Move to layer" type="flow">
                                     <param id="0" name="Layer">inventoryLayer</param>
                                 </action>
                             </actions>
@@ -2588,12 +2586,12 @@
                         <condition id="2" name="Mouse button is down" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">isMoving</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Set position" type="Flow">
+                        <action id="-3" name="Set position" type="flow">
                             <param id="0" name="X">mouse.X</param>
                             <param id="1" name="Y">mouse.Y</param>
                         </action>
@@ -2628,12 +2626,12 @@
                             <sub-events>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Flow">
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="flow">
                                             <param id="0" name="Instance variable">inInventory</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-7" name="Set size" type="Flow">
+                                        <action id="-7" name="Set size" type="flow">
                                             <param id="0" name="Width">round( flow.Width * inventoryScale / gridScale )</param>
                                             <param id="1" name="Height">round( flow.Height * inventoryScale / gridScale )</param>
                                         </action>
@@ -2642,7 +2640,7 @@
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-13" name="Set boolean" type="Flow">
+                                        <action id="-13" name="Set boolean" type="flow">
                                             <param id="0" name="Instance variable">inInventory</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
@@ -2669,12 +2667,12 @@
                             <sub-events>
                                 <event-block>
                                     <conditions>
-                                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                                             <param id="0" name="Instance variable">inInventory</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-7" name="Set size" type="Flow">
+                                        <action id="-7" name="Set size" type="flow">
                                             <param id="0" name="Width">round( flow.Width * gridScale / inventoryScale )</param>
                                             <param id="1" name="Height">round( flow.Height * gridScale / inventoryScale )</param>
                                         </action>
@@ -2683,7 +2681,7 @@
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-13" name="Set boolean" type="Flow">
+                                        <action id="-13" name="Set boolean" type="flow">
                                             <param id="0" name="Instance variable">inInventory</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
@@ -2737,7 +2735,7 @@
                         <condition id="3" name="On button released" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">isMoving</param>
                         </condition>
                     </conditions>
@@ -2746,14 +2744,14 @@
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="-13" name="Set boolean" type="Flow">
+                                <action id="-13" name="Set boolean" type="flow">
                                     <param id="0" name="Instance variable">isMoving</param>
                                     <param id="1" name="Value">0</param>
                                 </action>
                                 <action id="-15" name="Set visible" type="moveTarget">
                                     <param id="0" name="Visibility">0</param>
                                 </action>
-                                <action id="-3" name="Set position" type="Flow">
+                                <action id="-3" name="Set position" type="flow">
                                     <param id="0" name="X">moveTarget.X</param>
                                     <param id="1" name="Y">moveTarget.Y</param>
                                 </action>
@@ -2765,17 +2763,17 @@
                         <comment>If the flow object was previously active, turn it back on again</comment>
                         <event-block>
                             <conditions>
-                                <condition id="1" inverted="1" name="Is overlapping another object" type="Flow">
+                                <condition id="1" inverted="1" name="Is overlapping another object" type="flow">
                                     <param id="0" name="Object">inventory</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" type="Flow">
+                                <condition id="-7" name="Compare instance variable" type="flow">
                                     <param id="0" name="Instance variable">previousActiveState</param>
                                     <param id="1" name="Comparison">0</param>
                                     <param id="2" name="Value">1</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-13" name="Set boolean" type="Flow">
+                                <action id="-13" name="Set boolean" type="flow">
                                     <param id="0" name="Instance variable">isActive</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
@@ -2795,19 +2793,19 @@
                 <comment>Fade out an inactive flow object</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">isActive</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">inInventory</param>
                         </condition>
-                        <condition id="-10" name="Compare opacity" type="Flow">
+                        <condition id="-10" name="Compare opacity" type="flow">
                             <param id="0" name="Comparison">0</param>
                             <param id="1" name="Opacity">100</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" type="Flow">
+                        <action id="-16" name="Set opacity" type="flow">
                             <param id="0" name="Opacity">40</param>
                         </action>
                     </actions>
@@ -2815,16 +2813,16 @@
                 <comment>Fade in an active flow object</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">isActive</param>
                         </condition>
-                        <condition id="-10" name="Compare opacity" type="Flow">
+                        <condition id="-10" name="Compare opacity" type="flow">
                             <param id="0" name="Comparison">2</param>
                             <param id="1" name="Opacity">100</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" type="Flow">
+                        <action id="-16" name="Set opacity" type="flow">
                             <param id="0" name="Opacity">100</param>
                         </action>
                     </actions>
@@ -2832,16 +2830,16 @@
                 <comment>Fade an object in if it is in the inventory</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">inInventory</param>
                         </condition>
-                        <condition id="-10" name="Compare opacity" type="Flow">
+                        <condition id="-10" name="Compare opacity" type="flow">
                             <param id="0" name="Comparison">2</param>
                             <param id="1" name="Opacity">100</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" type="Flow">
+                        <action id="-16" name="Set opacity" type="flow">
                             <param id="0" name="Opacity">100</param>
                         </action>
                     </actions>
@@ -2882,7 +2880,7 @@
                     <sub-events>
                         <event-block>
                             <conditions>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">fn.Param(0)</param>
                                 </condition>
                             </conditions>
@@ -2902,7 +2900,7 @@
                             <sub-events>
                                 <event-block>
                                     <conditions>
-                                        <condition id="1" name="Is overlapping another object" type="Flow">
+                                        <condition id="1" name="Is overlapping another object" type="flow">
                                             <param id="0" name="Object">inventory</param>
                                         </condition>
                                     </conditions>
@@ -2918,7 +2916,7 @@
                                 </event-block>
                                 <event-block>
                                     <conditions>
-                                        <condition id="1" name="Is overlapping another object" type="Flow">
+                                        <condition id="1" name="Is overlapping another object" type="flow">
                                             <param id="0" name="Object">grid</param>
                                         </condition>
                                     </conditions>
@@ -3027,7 +3025,7 @@
                         <condition id="0" name="On key pressed" type="Keyboard">
                             <param id="0" name="Key">46 (Delete)</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
+                        <condition id="-14" name="Pick by unique ID" type="flow">
                             <param id="0" name="Unique ID">hud.selectionUID</param>
                         </condition>
                     </conditions>
@@ -3036,7 +3034,7 @@
                         <event-block>
                             <conditions />
                             <actions>
-                                <action id="-9" name="Destroy" type="Flow" />
+                                <action id="-9" name="Destroy" type="flow" />
                                 <action id="-16" name="Wait" type="System">
                                     <param id="0" name="Seconds">streamRedrawDelay</param>
                                 </action>
@@ -3051,7 +3049,7 @@
                     </sub-events>
                 </event-block>
                 <comment>Update the HUD with real time information on the currently selected object</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">HUDrefreshRate</param>
@@ -3127,9 +3125,9 @@
                                 <event-block>
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Flow</param>
+                                            <param id="0" name="Object">flow</param>
                                         </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="Flow">
+                                        <condition id="-14" name="Pick by unique ID" type="flow">
                                             <param id="0" name="Unique ID">HUD.selectionUID</param>
                                         </condition>
                                     </conditions>
@@ -3144,7 +3142,7 @@
                                     <sub-events>
                                         <event-block>
                                             <conditions>
-                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Flow">
+                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" type="flow">
                                                     <param id="0" name="Instance variable">inInventory</param>
                                                 </condition>
                                             </conditions>
@@ -3160,7 +3158,7 @@
                                                 <comment>Update the color of the activator button (unless the node is moving)</comment>
                                                 <event-block>
                                                     <conditions>
-                                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="Flow">
+                                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" type="flow">
                                                             <param id="0" name="Instance variable">isMoving</param>
                                                         </condition>
                                                     </conditions>
@@ -3176,7 +3174,7 @@
                                                     <sub-events>
                                                         <event-block>
                                                             <conditions>
-                                                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                                                     <param id="0" name="Instance variable">isActive</param>
                                                                 </condition>
                                                             </conditions>
@@ -3240,10 +3238,6 @@
                                 </action>
                             </actions>
                         </event-block>
-                        <event-block>
-                            <conditions />
-                            <actions />
-                        </event-block>
                     </sub-events>
                 </event-block>
                 <comment>Toggle the active state of a flow object </comment>
@@ -3254,12 +3248,12 @@
                             <param id="1" name="Click type">0</param>
                             <param id="2" name="Object clicked">HUDactivatorBg</param>
                         </condition>
-                        <condition id="-14" name="Pick by unique ID" type="Flow">
+                        <condition id="-14" name="Pick by unique ID" type="flow">
                             <param id="0" name="Unique ID">hud.selectionUID</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-14" name="Toggle boolean" type="Flow">
+                        <action id="-14" name="Toggle boolean" type="flow">
                             <param id="0" name="Instance variable">isActive</param>
                         </action>
                         <action id="7" name="Execute commands" type="fn">
@@ -3366,7 +3360,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Events used to generate and load level instances" title="Level">
+        <event-group collapsed="1" description="Events used to generate and load level instances" title="Level">
             <sub-events>
                 <comment>Start spawning minions from any flow object capable of doing so</comment>
                 <event-block collapsed="1">
@@ -3384,6 +3378,9 @@
                         <event-block>
                             <conditions />
                             <actions>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
+                                </action>
                                 <action id="7" name="Execute commands" type="fn">
                                     <param id="0" name="Commands">fnResetHUD</param>
                                 </action>
@@ -3413,9 +3410,9 @@
                         <event-block disabled="1">
                             <conditions>
                                 <condition disabled="1" id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition disabled="1" id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">spawnMinions</param>
                                 </condition>
                             </conditions>
@@ -3429,14 +3426,14 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
-                                <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                                <condition id="-8" name="Is boolean instance variable set" type="flow">
                                     <param id="0" name="Instance variable">spawnMinions</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">lastSpawnTime</param>
                                     <param id="1" name="Value">-999</param>
                                 </action>
@@ -3446,13 +3443,17 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Stream</param>
+                                    <param id="0" name="Object">stream</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Stream">
+                                <action id="4" name="Set animation" type="stream">
                                     <param id="0" name="Animation">&quot;grey&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="stream">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -3499,13 +3500,25 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Stream</param>
+                                    <param id="0" name="Object">stream</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Stream">
+                                <action id="4" name="Set animation" type="stream">
                                     <param id="0" name="Animation">&quot;grey&quot;</param>
                                     <param id="1" name="From">1</param>
+                                </action>
+                                <action id="-10" name="Set value" type="stream">
+                                    <param id="0" name="Instance variable">colorsConnected</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block>
+                            <conditions />
+                            <actions>
+                                <action id="7" name="Execute commands" type="fn">
+                                    <param id="0" name="Commands">fnRedrawAllStreams</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -3532,10 +3545,10 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                                 <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                             </conditions>
                             <actions>
@@ -3667,11 +3680,11 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Flow</param>
+                                    <param id="0" name="Object">flow</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Flow" />
+                                <action id="-9" name="Destroy" type="flow" />
                             </actions>
                         </event-block>
                         <event-block>
@@ -3713,16 +3726,16 @@
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">49 (1)</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">hud.selectionUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Flow">
+                                <action id="4" name="Set animation" type="flow">
                                     <param id="0" name="Animation">&quot;red&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">sourceColor</param>
                                     <param id="1" name="Value">flow.AnimationName</param>
                                 </action>
@@ -3739,16 +3752,16 @@
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">50 (2)</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">hud.selectionUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Flow">
+                                <action id="4" name="Set animation" type="flow">
                                     <param id="0" name="Animation">&quot;yellow&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">sourceColor</param>
                                     <param id="1" name="Value">flow.AnimationName</param>
                                 </action>
@@ -3765,16 +3778,16 @@
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">51 (3)</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">hud.selectionUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Flow">
+                                <action id="4" name="Set animation" type="flow">
                                     <param id="0" name="Animation">&quot;blue&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
-                                <action id="-10" name="Set value" type="Flow">
+                                <action id="-10" name="Set value" type="flow">
                                     <param id="0" name="Instance variable">sourceColor</param>
                                     <param id="1" name="Value">flow.AnimationName</param>
                                 </action>
@@ -3791,12 +3804,12 @@
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">52 (4)</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">hud.selectionUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Flow">
+                                <action id="4" name="Set animation" type="flow">
                                     <param id="0" name="Animation">&quot;green&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
@@ -3813,12 +3826,12 @@
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">53 (5)</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">hud.selectionUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Flow">
+                                <action id="4" name="Set animation" type="flow">
                                     <param id="0" name="Animation">&quot;purple&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
@@ -3835,12 +3848,12 @@
                                 <condition id="0" name="On key pressed" type="Keyboard">
                                     <param id="0" name="Key">54 (6)</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Flow">
+                                <condition id="-14" name="Pick by unique ID" type="flow">
                                     <param id="0" name="Unique ID">hud.selectionUID</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="4" name="Set animation" type="Flow">
+                                <action id="4" name="Set animation" type="flow">
                                     <param id="0" name="Animation">&quot;orange&quot;</param>
                                     <param id="1" name="From">1</param>
                                 </action>
@@ -3856,23 +3869,23 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Spawn minions from each of the generators</comment>
                 <event-block>
                     <conditions>
                         <condition id="-11" name="For Each" type="System">
-                            <param id="0" name="Object">Flow</param>
+                            <param id="0" name="Object">flow</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">isActive</param>
                         </condition>
-                        <condition disabled="1" id="-7" name="Compare instance variable" type="Flow">
+                        <condition disabled="1" id="-7" name="Compare instance variable" type="flow">
                             <param id="0" name="Instance variable">minionTotal</param>
                             <param id="1" name="Comparison">4</param>
                             <param id="2" name="Value">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Flow">
+                        <condition id="-8" name="Is boolean instance variable set" type="flow">
                             <param id="0" name="Instance variable">spawnMinions</param>
                         </condition>
                         <condition id="-8" name="Compare two values" type="System">
@@ -3886,70 +3899,70 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" type="System">
-                            <param id="0" name="Object to create">Minion</param>
+                            <param id="0" name="Object to create">minion</param>
                             <param id="1" name="Layer">minionLayer</param>
                             <param id="2" name="X">flow.ImagePointX( 1 )</param>
                             <param id="3" name="Y">flow.Y</param>
                         </action>
-                        <action disabled="1" id="-10" name="Set value" type="Minion">
+                        <action disabled="1" id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">streamOffset</param>
                             <param id="1" name="Value">random( -1 * minionStreamOffsetRange, minionStreamOffsetRange )</param>
                         </action>
-                        <action id="-3" name="Set position" type="Minion">
+                        <action id="-3" name="Set position" type="minion">
                             <param id="0" name="X">flow.ImagePointX(1)</param>
                             <param id="1" name="Y">flow.Y + minion.streamOffset</param>
                         </action>
-                        <action id="4" name="Set animation" type="Minion">
+                        <action id="4" name="Set animation" type="minion">
                             <param id="0" name="Animation">flow.sourceColor</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action behavior="CustomMovement" id="2" name="Set speed" type="Minion">
+                        <action behavior="CustomMovement" id="2" name="Set speed" type="minion">
                             <param id="0" name="Which">0</param>
                             <param id="1" name="Speed">minionDefaultSpeed</param>
                         </action>
-                        <action id="-24" name="Move to top" type="Minion" />
-                        <action id="3" name="Start" type="Minion">
+                        <action id="-24" name="Move to top" type="minion" />
+                        <action id="3" name="Start" type="minion">
                             <param id="0" name="From">0</param>
                         </action>
-                        <action id="-13" name="Set boolean" type="Minion">
+                        <action id="-13" name="Set boolean" type="minion">
                             <param id="0" name="Instance variable">active</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-8" name="Set angle" type="Minion">
+                        <action id="-8" name="Set angle" type="minion">
                             <param id="0" name="Angle">0</param>
                         </action>
-                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="minion">
                             <param id="0" name="Angle">flow.Angle</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">baseUID</param>
                             <param id="1" name="Value">flow.UID</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">maxHealth</param>
                             <param id="1" name="Value">minionDefaultHealth</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">minion.maxHealth</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">currentGridX</param>
                             <param id="1" name="Value">flow.X</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">currentGridY</param>
                             <param id="1" name="Value">flow.Y</param>
                         </action>
-                        <action id="-10" name="Set value" type="Minion">
+                        <action id="-10" name="Set value" type="minion">
                             <param id="0" name="Instance variable">colorsConnected</param>
                             <param id="1" name="Value">minion.AnimationName</param>
                         </action>
-                        <action id="-12" name="Subtract from" type="Flow">
+                        <action id="-12" name="Subtract from" type="flow">
                             <param id="0" name="Instance variable">minionTotal</param>
                             <param id="1" name="Value">1</param>
                         </action>
-                        <action id="-10" name="Set value" type="Flow">
+                        <action id="-10" name="Set value" type="flow">
                             <param id="0" name="Instance variable">lastSpawnTime</param>
                             <param id="1" name="Value">time</param>
                         </action>
@@ -3963,10 +3976,10 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>(uid) updates the color of the given stream</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnUpdateStreamColor</param>
@@ -3980,9 +3993,9 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">streamObjects</param>
+                                    <param id="0" name="Object">streamObject</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="streamObjects">
+                                <condition id="-14" name="Pick by unique ID" type="streamObject">
                                     <param id="0" name="Unique ID">fn.Param( 0 )</param>
                                 </condition>
                             </conditions>
@@ -3993,7 +4006,7 @@
                                     <actions>
                                         <action id="-9" name="Set value" type="System">
                                             <param id="0" name="Variable">colorString</param>
-                                            <param id="1" name="Value">streamObjects.colorsConnected</param>
+                                            <param id="1" name="Value">streamObject.colorsConnected</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -4210,11 +4223,11 @@
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action id="-10" name="Set value" type="streamObjects">
+                                        <action id="-10" name="Set value" type="streamObject">
                                             <param id="0" name="Instance variable">colorsConnected</param>
                                             <param id="1" name="Value">newColorString</param>
                                         </action>
-                                        <action id="4" name="Set animation" type="streamObjects">
+                                        <action id="4" name="Set animation" type="streamObject">
                                             <param id="0" name="Animation">color</param>
                                             <param id="1" name="From">1</param>
                                         </action>
@@ -4231,15 +4244,15 @@
                                 <event-block collapsed="1">
                                     <conditions>
                                         <condition id="-19" name="Pick all" type="System">
-                                            <param id="0" name="Object">Stream</param>
+                                            <param id="0" name="Object">stream</param>
                                         </condition>
-                                        <condition id="-14" name="Pick by unique ID" type="Stream">
-                                            <param id="0" name="Unique ID">streamObjects.UID</param>
+                                        <condition id="-14" name="Pick by unique ID" type="stream">
+                                            <param id="0" name="Unique ID">streamObject.UID</param>
                                         </condition>
                                         <condition id="-19" name="Pick all" type="System">
                                             <param id="0" name="Object">Exit</param>
                                         </condition>
-                                        <condition id="1" name="Is overlapping another object" type="Stream">
+                                        <condition id="1" name="Is overlapping another object" type="stream">
                                             <param id="0" name="Object">Exit</param>
                                         </condition>
                                         <condition id="-19" name="Pick all" type="System">
@@ -4297,7 +4310,7 @@
                                                     <param id="0" name="Instance variable">isUnlocked</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
-                                                <action disabled="1" id="-5" name="Set width" type="Stream">
+                                                <action disabled="1" id="-5" name="Set width" type="stream">
                                                     <param id="0" name="Width">distance( stream.X, stream.Y, exit.ImagePointX(1), exit.ImagePointY(1) )</param>
                                                 </action>
                                             </actions>
@@ -4309,7 +4322,7 @@
                     </sub-events>
                 </event-block>
                 <comment>(uid) destroys the specified minion</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="0" name="On function" type="fn">
                             <param id="0" name="Name">fnDestroyMinion</param>
@@ -4320,9 +4333,9 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Minion</param>
+                                    <param id="0" name="Object">minion</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Minion">
+                                <condition id="-14" name="Pick by unique ID" type="minion">
                                     <param id="0" name="Unique ID">fn.Param( 0 )</param>
                                 </condition>
                             </conditions>
@@ -4360,8 +4373,8 @@
                                 </event-block>
                                 <event-block>
                                     <conditions>
-                                        <condition id="1" name="Is overlapping another object" type="Stream">
-                                            <param id="0" name="Object">Minion</param>
+                                        <condition id="1" name="Is overlapping another object" type="stream">
+                                            <param id="0" name="Object">minion</param>
                                         </condition>
                                     </conditions>
                                     <actions />
@@ -4375,7 +4388,7 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="-10" name="Set value" type="Stream">
+                                                <action id="-10" name="Set value" type="stream">
                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                     <param id="1" name="Value">replace( stream.colorsConnected, tokenat( minion.colorsConnected, loopindex, &quot;#&quot; ), &quot;&quot; )</param>
                                                 </action>
@@ -4394,8 +4407,8 @@
                                 <event-block>
                                     <conditions />
                                     <actions>
-                                        <action disabled="1" id="-9" name="Destroy" type="Minion" />
-                                        <action id="-13" name="Set boolean" type="Minion">
+                                        <action disabled="1" id="-9" name="Destroy" type="minion" />
+                                        <action id="-13" name="Set boolean" type="minion">
                                             <param id="0" name="Instance variable">fadeOut</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
@@ -4411,33 +4424,33 @@
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">0.1</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="minion">
                             <param id="0" name="Instance variable">fadeOut</param>
                         </condition>
-                        <condition id="-10" name="Compare opacity" type="Minion">
+                        <condition id="-10" name="Compare opacity" type="minion">
                             <param id="0" name="Comparison">4</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-16" name="Set opacity" type="Minion">
-                            <param id="0" name="Opacity">minion.Opacity - 10</param>
+                        <action id="-16" name="Set opacity" type="minion">
+                            <param id="0" name="Opacity">minion.Opacity - 20</param>
                         </action>
                     </actions>
                 </event-block>
                 <comment>If a minion flagged to be faded hits 0 opacity, destroy it</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-10" name="Compare opacity" type="Minion">
+                        <condition id="-10" name="Compare opacity" type="minion">
                             <param id="0" name="Comparison">0</param>
                             <param id="1" name="Opacity">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="minion">
                             <param id="0" name="Instance variable">fadeOut</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-9" name="Destroy" type="Minion" />
+                        <action id="-9" name="Destroy" type="minion" />
                     </actions>
                 </event-block>
                 <comment>Destroys all minions</comment>
@@ -4472,20 +4485,20 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Minion</param>
+                                    <param id="0" name="Object">minion</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action id="-9" name="Destroy" type="minion" />
                             </actions>
                         </event-block>
                     </sub-events>
                 </event-block>
                 <comment>Monitor the minion as it travels on the stream</comment>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
                         <condition id="-19" name="Pick all" type="System">
-                            <param id="0" name="Object">Minion</param>
+                            <param id="0" name="Object">minion</param>
                         </condition>
                         <condition id="-6" name="Every X seconds" type="System">
                             <param id="0" name="Interval (seconds)">0.1</param>
@@ -4500,10 +4513,10 @@
                         <event-block>
                             <conditions>
                                 <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Minion</param>
+                                    <param id="0" name="Object">minion</param>
                                 </condition>
-                                <condition id="1" name="Is overlapping another object" type="Minion">
-                                    <param id="0" name="Object">Stream</param>
+                                <condition id="1" name="Is overlapping another object" type="minion">
+                                    <param id="0" name="Object">stream</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -4541,11 +4554,11 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-10" name="Set value" type="Minion">
+                                        <action id="-10" name="Set value" type="minion">
                                             <param id="0" name="Instance variable">currentGridX</param>
                                             <param id="1" name="Value">gridX</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Minion">
+                                        <action id="-10" name="Set value" type="minion">
                                             <param id="0" name="Instance variable">currentGridY</param>
                                             <param id="1" name="Value">gridY</param>
                                         </action>
@@ -4554,14 +4567,14 @@
                                         <comment>If there is no color on the stream, set it to the minion&apos;s color</comment>
                                         <event-block>
                                             <conditions>
-                                                <condition id="-7" name="Compare instance variable" type="Stream">
+                                                <condition id="-7" name="Compare instance variable" type="stream">
                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                     <param id="1" name="Comparison">0</param>
                                                     <param id="2" name="Value">&quot;&quot;</param>
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action id="-10" name="Set value" type="Stream">
+                                                <action id="-10" name="Set value" type="stream">
                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                     <param id="1" name="Value">&quot;#&quot; &amp; minion.AnimationName</param>
                                                 </action>
@@ -4580,11 +4593,11 @@
                                                 </condition>
                                             </conditions>
                                             <actions>
-                                                <action disabled="1" id="-12" name="Subtract from" type="Minion">
+                                                <action disabled="1" id="-12" name="Subtract from" type="minion">
                                                     <param id="0" name="Instance variable">health</param>
                                                     <param id="1" name="Value">1</param>
                                                 </action>
-                                                <action disabled="1" id="-10" name="Set value" type="Minion">
+                                                <action disabled="1" id="-10" name="Set value" type="minion">
                                                     <param id="0" name="Instance variable">lastDamageTime</param>
                                                     <param id="1" name="Value">time</param>
                                                 </action>
@@ -4612,7 +4625,7 @@
                                                         </condition>
                                                     </conditions>
                                                     <actions>
-                                                        <action id="4" name="Set animation" type="Minion">
+                                                        <action id="4" name="Set animation" type="minion">
                                                             <param id="0" name="Animation">painter.AnimationName</param>
                                                             <param id="1" name="From">1</param>
                                                         </action>
@@ -4629,11 +4642,11 @@
                                                         <action id="-16" name="Wait" type="System">
                                                             <param id="0" name="Seconds">0.5</param>
                                                         </action>
-                                                        <action id="-3" name="Set position" type="Minion">
+                                                        <action id="-3" name="Set position" type="minion">
                                                             <param id="0" name="X">redirect.X + minion.streamOffset</param>
                                                             <param id="1" name="Y">redirect.Y + minion.streamOffset</param>
                                                         </action>
-                                                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                                                        <action behavior="CustomMovement" id="6" name="Set angle of motion" type="minion">
                                                             <param id="0" name="Angle">redirect.Angle</param>
                                                         </action>
                                                     </actions>
@@ -4642,13 +4655,13 @@
                                                         <event-block>
                                                             <conditions>
                                                                 <condition id="-19" name="Pick all" type="System">
-                                                                    <param id="0" name="Object">Stream</param>
+                                                                    <param id="0" name="Object">stream</param>
                                                                 </condition>
                                                                 <condition id="-11" name="For Each" type="System">
-                                                                    <param id="0" name="Object">Stream</param>
+                                                                    <param id="0" name="Object">stream</param>
                                                                 </condition>
                                                                 <condition id="1" name="Is overlapping another object" type="Redirect">
-                                                                    <param id="0" name="Object">Stream</param>
+                                                                    <param id="0" name="Object">stream</param>
                                                                 </condition>
                                                             </conditions>
                                                             <actions>
@@ -4670,7 +4683,7 @@
                                                                         </condition>
                                                                     </conditions>
                                                                     <actions>
-                                                                        <action id="-10" name="Set value" type="Stream">
+                                                                        <action id="-10" name="Set value" type="stream">
                                                                             <param id="0" name="Instance variable">colorsConnected</param>
                                                                             <param id="1" name="Value">minion.colorsConnected &amp; &quot;#&quot; &amp; stream.colorsConnected</param>
                                                                         </action>
@@ -4699,7 +4712,7 @@
                                                                                 </condition>
                                                                             </conditions>
                                                                             <actions>
-                                                                                <action id="-10" name="Set value" type="Stream">
+                                                                                <action id="-10" name="Set value" type="stream">
                                                                                     <param id="0" name="Instance variable">colorsConnected</param>
                                                                                     <param id="1" name="Value">replace( stream.colorsConnected, tokenat( minion.colorsConnected, loopindex, &quot;#&quot; ), &quot;&quot; )</param>
                                                                                 </action>
@@ -4748,11 +4761,11 @@
                                                                 <action id="-16" name="Wait" type="System">
                                                                     <param id="0" name="Seconds">0.5</param>
                                                                 </action>
-                                                                <action id="-3" name="Set position" type="Minion">
+                                                                <action id="-3" name="Set position" type="minion">
                                                                     <param id="0" name="X">prism.X + minion.streamOffset</param>
                                                                     <param id="1" name="Y">prism.Y + minion.streamOffset</param>
                                                                 </action>
-                                                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="Minion">
+                                                                <action behavior="CustomMovement" id="6" name="Set angle of motion" type="minion">
                                                                     <param id="0" name="Angle">int( tokenat( prismStreamAngles, prism.activeStream, &quot;#&quot;) )</param>
                                                                 </action>
                                                                 <action id="-10" name="Set value" type="Prism">
@@ -4849,12 +4862,12 @@
                 <comment>Destroy the minion if it reaches 0 health</comment>
                 <event-block>
                     <conditions>
-                        <condition id="-7" name="Compare instance variable" type="Minion">
+                        <condition id="-7" name="Compare instance variable" type="minion">
                             <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Comparison">3</param>
                             <param id="2" name="Value">0</param>
                         </condition>
-                        <condition id="-8" name="Is boolean instance variable set" type="Minion">
+                        <condition id="-8" name="Is boolean instance variable set" type="minion">
                             <param id="0" name="Instance variable">active</param>
                         </condition>
                     </conditions>
@@ -4867,8 +4880,8 @@
                 <comment>Destroy a minion if it somehow gets off the path</comment>
                 <event-block>
                     <conditions>
-                        <condition id="1" inverted="1" name="Is overlapping another object" type="Minion">
-                            <param id="0" name="Object">Stream</param>
+                        <condition id="1" inverted="1" name="Is overlapping another object" type="minion">
+                            <param id="0" name="Object">stream</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -4880,7 +4893,7 @@
                 <comment>Destroy a minion if it intersects a laser beam</comment>
                 <event-block>
                     <conditions>
-                        <condition id="1" name="Is overlapping another object" type="Minion">
+                        <condition id="1" name="Is overlapping another object" type="minion">
                             <param id="0" name="Object">LaserBeam</param>
                         </condition>
                     </conditions>
@@ -4893,7 +4906,7 @@
                 <comment>Destroy a minion if it enters any of the following death states</comment>
                 <event-block>
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Minion">
+                        <condition id="0" name="On collision with another object" type="minion">
                             <param id="0" name="Object">streamIntersect</param>
                         </condition>
                     </conditions>
@@ -4903,10 +4916,10 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-block>
+                <event-block collapsed="1">
                     <conditions>
-                        <condition id="0" name="On collision with another object" type="Minion">
-                            <param id="0" name="Object">Minion</param>
+                        <condition id="0" name="On collision with another object" type="minion">
+                            <param id="0" name="Object">minion</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -4919,7 +4932,7 @@
                         <event-block>
                             <conditions>
                                 <condition id="-11" name="For Each" type="System">
-                                    <param id="0" name="Object">Minion</param>
+                                    <param id="0" name="Object">minion</param>
                                 </condition>
                             </conditions>
                             <actions />
@@ -4936,7 +4949,7 @@
                                         <action id="0" name="Log Text" type="debugConsole">
                                             <param id="0" name="Data">&quot;....second minion: &quot; &amp; minion.AnimationName</param>
                                         </action>
-                                        <action id="-10" name="Set value" type="Minion">
+                                        <action id="-10" name="Set value" type="minion">
                                             <param id="0" name="Instance variable">colorsConnected</param>
                                             <param id="1" name="Value">minion.colorsConnected &amp; &quot;#&quot; &amp; colorString</param>
                                         </action>
@@ -5026,9 +5039,9 @@
                         <event-block>
                             <conditions>
                                 <condition id="-19" name="Pick all" type="System">
-                                    <param id="0" name="Object">Minion</param>
+                                    <param id="0" name="Object">minion</param>
                                 </condition>
-                                <condition id="-14" name="Pick by unique ID" type="Minion">
+                                <condition id="-14" name="Pick by unique ID" type="minion">
                                     <param id="0" name="Unique ID">fn.Param(0)</param>
                                 </condition>
                             </conditions>
@@ -5049,7 +5062,7 @@
                                     <param id="0" name="Angle">minion.Angle</param>
                                 </action>
                                 <action behavior="Pin" id="0" name="Pin to object" type="HealthBorder">
-                                    <param id="0" name="Pin to">Minion</param>
+                                    <param id="0" name="Pin to">minion</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -5079,7 +5092,7 @@
                                     <param id="0" name="Angle">generatorHealthBarAngle</param>
                                 </action>
                                 <action behavior="Pin" id="0" name="Pin to object" type="HealthBorder">
-                                    <param id="0" name="Pin to">Flow</param>
+                                    <param id="0" name="Pin to">flow</param>
                                 </action>
                             </actions>
                         </event-block>

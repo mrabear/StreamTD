@@ -142,7 +142,7 @@
                                 <action id="-9" name="Destroy" type="Cannon" />
                                 <action id="-9" name="Destroy" type="distanceToTarget" />
                                 <action id="-9" name="Destroy" type="Generator" />
-                                <action id="-9" name="Destroy" type="Minion" />
+                                <action id="-9" name="Destroy" type="minion" />
                                 <action id="-9" name="Destroy" type="RangeFinder" />
                                 <action id="-9" name="Destroy" type="Rocket" />
                                 <action id="-9" name="Destroy" type="RocketEffects" />
@@ -150,8 +150,8 @@
                                 <action id="-9" name="Destroy" type="TargetLeadBar" />
                                 <action id="-9" name="Destroy" type="TurretBase" />
                                 <action id="-9" name="Destroy" type="HealthBorder" />
-                                <action id="-9" name="Destroy" type="Stream" />
-                                <action id="-9" name="Destroy" type="Flow" />
+                                <action id="-9" name="Destroy" type="stream" />
+                                <action id="-9" name="Destroy" type="flow" />
                                 <action id="-9" name="Destroy" type="ExitLabel" />
                                 <action id="-9" name="Destroy" type="LaserBeam" />
                                 <action id="-9" name="Destroy" type="HealthBar" />

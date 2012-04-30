@@ -7,18 +7,18 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8700</saved-with-version>
     <used-plugins>
+        <plugin id="Arr" version="1">Array</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
         <plugin id="TextBox" version="1">Text box</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="chromeconsole" version="0.100000001">Chrome Console</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
         <plugin id="Button" version="1">Button</plugin>
-        <plugin id="Arr" version="1">Array</plugin>
-        <plugin id="Rex_Function" version="1">Function</plugin>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Rex_Function" version="1">Function</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -357,7 +357,7 @@
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="Minion">
-            <object-type name="Minion">
+            <object-type name="minion">
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="is the minion actively following a path?" name="active" type="boolean" />
@@ -433,6 +433,23 @@
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
                         <frame duration="1" hotspotX="0.5" hotspotY="0.533333" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="pulse">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable comment="the minion that owns this pulse" name="sourceMinion" type="number" />
+                </instance-variables>
+                <animation-folder expanded="1">
+                    <animation framecount="7" loop="1" name="Default" pingpong="0" repeatcount="1" repeatto="0" speed="15">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510638" />
                     </animation>
                 </animation-folder>
             </object-type>
@@ -1219,7 +1236,7 @@
             </object-type>
         </object-folder>
         <object-folder expanded="1" name="Stream">
-            <object-type name="Stream">
+            <object-type name="stream">
                 <plugin id="Sprite" />
                 <instance-variables>
                     <instance-variable comment="the uid of the flow element that this stream flows from" name="sourceUID" type="number" />
@@ -1333,7 +1350,7 @@
         </object-folder>
     </object-folder>
     <families>
-        <family name="Flow" plugin-id="Sprite">
+        <family name="flow" plugin-id="Sprite">
             <members>
                 <member>Barrier</member>
                 <member>Exit</member>
@@ -1364,15 +1381,15 @@
                 <instance-variable name="inInventory" type="boolean" />
             </instance-variables>
         </family>
-        <family name="streamIntersectObjects" plugin-id="Sprite">
+        <family name="streamIntersectObject" plugin-id="Sprite">
             <members>
-                <member>Stream</member>
+                <member>stream</member>
             </members>
         </family>
-        <family name="streamObjects" plugin-id="Sprite">
+        <family name="streamObject" plugin-id="Sprite">
             <members>
-                <member>Minion</member>
-                <member>Stream</member>
+                <member>minion</member>
+                <member>stream</member>
             </members>
             <instance-variables>
                 <instance-variable name="colorsConnected" type="string" />

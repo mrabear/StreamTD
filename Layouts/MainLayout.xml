@@ -505,7 +505,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Minion">
+                <instance type="minion">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -802,7 +802,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Stream">
+                <instance type="stream">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-frame>0</initial-frame>
@@ -1537,6 +1537,28 @@
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="pulse">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>(none)</effect>
+                    </properties>
+                    <instance-variables>
+                        <sourceMinion>0</sourceMinion>
+                    </instance-variables>
+                    <world>
+                        <x>-64.003341675</x>
+                        <y>-395.191711426</y>
+                        <z>0</z>
+                        <width>442</width>
+                        <height>47</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.510638297</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
                     </world>
                 </instance>
             </instances>
