@@ -283,6 +283,19 @@
                 </instance>
             </instances>
         </layer>
+        <layer name="Pulse">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>1</force-own-texture>
+            <instances />
+        </layer>
         <layer name="Flow">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
@@ -525,6 +538,7 @@
                         <currentGridY>0</currentGridY>
                         <streamOffset>0</streamOffset>
                         <fadeOut>false</fadeOut>
+                        <pulseUID>0</pulseUID>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="CustomMovement">
@@ -1548,17 +1562,42 @@
                     <instance-variables>
                         <sourceMinion>0</sourceMinion>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pin" />
+                    </behavior-instances>
                     <world>
                         <x>-64.003341675</x>
                         <y>-395.191711426</y>
                         <z>0</z>
                         <width>442</width>
-                        <height>47</height>
+                        <height>30</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
+                        <hotspotX>1</hotspotX>
                         <hotspotY>0.510638297</hotspotY>
                         <angle>0</angle>
-                        <opacity>0.5</opacity>
+                        <opacity>0.75</opacity>
+                    </world>
+                </instance>
+                <instance type="pulseCover">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-frame>0</initial-frame>
+                        <effect>Destination out</effect>
+                    </properties>
+                    <instance-variables>
+                        <sourceMinion>0</sourceMinion>
+                    </instance-variables>
+                    <world>
+                        <x>-271.248687744</x>
+                        <y>-255.418136597</y>
+                        <z>0</z>
+                        <width>442</width>
+                        <height>47</height>
+                        <depth>0</depth>
+                        <hotspotX>1</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
             </instances>

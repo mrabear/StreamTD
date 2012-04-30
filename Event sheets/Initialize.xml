@@ -48,11 +48,12 @@
         <comment>Layer parameters</comment>
         <variable comment="The bottom layer that the grid is drawn on" name="gridLayer" type="number">0</variable>
         <variable comment="Stream layer that connect flow objects" name="streamLayer" type="number">1</variable>
-        <variable comment="The layer where flow objects are placed" name="flowLayer" type="number">2</variable>
-        <variable comment="The layer the minions spawn on" name="minionLayer" type="number">3</variable>
-        <variable comment="The layer the HUD base is spawned on" name="HUDlayer" type="number">4</variable>
-        <variable comment="The layer the HUD priority items are spawned on" name="HUDtopLayer" type="number">5</variable>
-        <variable comment="The inventory layer" name="inventoryLayer" type="number">6</variable>
+        <variable comment="The layer of effects drawn between the stream and flow objects" name="pulseLayer" type="number">2</variable>
+        <variable comment="The layer where flow objects are placed" name="flowLayer" type="number">3</variable>
+        <variable comment="The layer the minions spawn on" name="minionLayer" type="number">4</variable>
+        <variable comment="The layer the HUD base is spawned on" name="HUDlayer" type="number">5</variable>
+        <variable comment="The layer the HUD priority items are spawned on" name="HUDtopLayer" type="number">6</variable>
+        <variable comment="The inventory layer" name="inventoryLayer" type="number">7</variable>
         <comment>Inventory parameters</comment>
         <variable comment="The distance (in px) between each of the points in inventory grid" name="inventoryScale" type="number">30</variable>
         <comment>Grid parameters</comment>
