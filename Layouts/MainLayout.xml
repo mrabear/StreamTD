@@ -1572,7 +1572,7 @@
                         <width>442</width>
                         <height>30</height>
                         <depth>0</depth>
-                        <hotspotX>1</hotspotX>
+                        <hotspotX>0.5</hotspotX>
                         <hotspotY>0.510638297</hotspotY>
                         <angle>0</angle>
                         <opacity>0.75</opacity>
@@ -1586,6 +1586,7 @@
                     </properties>
                     <instance-variables>
                         <sourceMinion>0</sourceMinion>
+                        <trailingCover>false</trailingCover>
                     </instance-variables>
                     <world>
                         <x>-271.248687744</x>
@@ -1595,7 +1596,7 @@
                         <height>47</height>
                         <depth>0</depth>
                         <hotspotX>1</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotY>0.600000024</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
