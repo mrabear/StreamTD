@@ -5,7 +5,7 @@
     <events>
         <comment>Project: StreamTD</comment>
         <comment>Author: Brian Hebert</comment>
-        <comment>File: Main event sheet</comment>
+        <comment>File: Main event sheet </comment>
         <comment></comment>
         <comment>Ideas:</comment>
         <comment>Add hud menu above each selected flow object to let you control it</comment>
@@ -996,7 +996,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A stream that flows out from a generator" title="Stream">
+        <event-group collapsed="1" description="A stream that flows out from a generator" title="Stream">
             <sub-events>
                 <comment>Resets all streams, redraws them on the screen </comment>
                 <event-block collapsed="1">
@@ -2119,7 +2119,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Flow objects direct minions around the map" title="Flow">
+        <event-group collapsed="1" description="Flow objects direct minions around the map" title="Flow">
             <sub-events>
                 <variable comment="the new grid x value" name="gridX" type="number">0</variable>
                 <variable comment="the new grid y value" name="gridY" type="number">0</variable>
@@ -2867,7 +2867,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A heads up display that holds menu options and game inventory" title="HUD">
+        <event-group collapsed="1" description="A heads up display that holds menu options and game inventory" title="HUD">
             <sub-events>
                 <comment>A new object has been selected, update the selection rectangle and HUD active object</comment>
                 <event-block collapsed="1">
@@ -3360,7 +3360,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Events used to generate and load level instances" title="Level">
+        <event-group collapsed="1" description="Events used to generate and load level instances" title="Level">
             <sub-events>
                 <comment>Start spawning minions from any flow object capable of doing so</comment>
                 <event-block collapsed="1">
@@ -3869,7 +3869,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="A minion generator that spawns minions following a unique path" title="Generator">
+        <event-group collapsed="1" description="A minion generator that spawns minions following a unique path" title="Generator">
             <sub-events>
                 <comment>Spawn minions from each of the generators</comment>
                 <variable name="closestFlowObject" type="number">0</variable>
@@ -4043,7 +4043,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
+        <event-group collapsed="1" description="Minions spawn from bases and follow a path drawn by the player" title="Minion">
             <sub-events>
                 <comment>Whenever a minion is destroyed, remove it&apos;s dependant parts</comment>
                 <event-block>

@@ -3,7 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Level Data</name>
     <events>
-        <variable name="levelMax" type="number">6</variable>
+        <variable name="levelMax" type="number">5</variable>
         <event-block>
             <conditions>
                 <condition id="-4" name="Trigger once while true" type="System" />
@@ -22,7 +22,7 @@
                     <actions>
                         <action id="2" name="Set at X" type="LevelDataMap">
                             <param id="0" name="X">0</param>
-                            <param id="1" name="Value">BlankLevel</param>
+                            <param id="1" name="Value">Level6ObjectData</param>
                         </action>
                         <action id="2" name="Set at X" type="LevelDataMap">
                             <param id="0" name="X">1</param>

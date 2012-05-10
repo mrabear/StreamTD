@@ -7,18 +7,18 @@
     <unique-id>3lwefwx8ssrq4</unique-id>
     <saved-with-version>8700</saved-with-version>
     <used-plugins>
-        <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Arr" version="1">Array</plugin>
+        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Button" version="1">Button</plugin>
         <plugin id="Mouse" version="1">Mouse</plugin>
         <plugin id="Particles" version="1">Particles</plugin>
-        <plugin id="Keyboard" version="1">Keyboard</plugin>
+        <plugin id="Rex_Function" version="1">Function</plugin>
+        <plugin id="Rex_Hash" version="1">Hash</plugin>
         <plugin id="Sprite" version="1">Sprite</plugin>
         <plugin id="Text" version="1">Text</plugin>
         <plugin id="TextBox" version="1">Text box</plugin>
         <plugin id="TiledBg" version="1">Tiled Background</plugin>
         <plugin id="chromeconsole" version="0.100000001">Chrome Console</plugin>
-        <plugin id="Button" version="1">Button</plugin>
-        <plugin id="Rex_Function" version="1">Function</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior id="Bullet" version="1">Bullet</behavior>
@@ -356,7 +356,7 @@
                 <plugin id="chromeconsole" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Minion">
+        <object-folder expanded="0" name="Minion">
             <object-type name="minion">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -532,7 +532,7 @@
                 <texture />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Grid">
+        <object-folder expanded="0" name="Grid">
             <object-type name="grid">
                 <plugin id="TiledBg" />
                 <texture />
@@ -548,7 +548,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="HUD">
+        <object-folder expanded="0" name="HUD">
             <object-folder expanded="0" name="Info Panes">
                 <object-type name="HUDselectionInfo">
                     <plugin id="Text" />
@@ -754,7 +754,7 @@
                 </object-type>
             </object-folder>
         </object-folder>
-        <object-folder expanded="1" name="Flow Objects">
+        <object-folder expanded="0" name="Flow Objects">
             <object-folder expanded="0" name="Prism">
                 <object-type name="Prism">
                     <plugin id="Sprite" />
@@ -1256,7 +1256,7 @@
                 </animation-folder>
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Stream">
+        <object-folder expanded="0" name="Stream">
             <object-type name="stream">
                 <plugin id="Sprite" />
                 <instance-variables>
@@ -1363,7 +1363,7 @@
                 <plugin id="Arr" />
             </object-type>
         </object-folder>
-        <object-folder expanded="1" name="Inventory">
+        <object-folder expanded="0" name="Inventory">
             <object-type name="inventory">
                 <plugin id="TiledBg" />
                 <texture />
